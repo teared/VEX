@@ -1,0 +1,11 @@
+<snippet>
+    <description>While Loop</description>
+    <content><![CDATA[
+while ($1)
+{
+    $2
+}
+]]></content>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.vex</scope>
+</snippet>

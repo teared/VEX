@@ -1,0 +1,11 @@
+<snippet>
+    <description>Else Clause</description>
+    <content><![CDATA[
+else
+{
+    $1
+}
+]]></content>
+    <tabTrigger>else</tabTrigger>
+    <scope>source.vex</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+    <description>If Statement</description>
+    <content><![CDATA[
+if ($1)
+{
+    $2
+}
+]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.vex</scope>
+</snippet>

@@ -1,0 +1,126 @@
+#include <voplib.h>
+#include "hair.h"
+
+#ifndef TEST
+    #if 0 access("testing.h") && environment(TESTING)
+        #include "testing.h"
+    #endif
+#elif !strcmp(__vex_major, TEST)
+    #define TEST 100
+#elif !strcmp(100, TEST)
+    #define TEST NaN
+#else
+    #define TEST 100
+#endif
+
+#define TEST "NaN"
+#define SWAP(a, b) ((b), (a));
+
+#define GREET(EXP, name)             \
+    do                               \
+    {                                \
+        if (EXP)                     \
+        {                            \
+            printf("Hello, ##name"); \
+        }                            \
+    }                                \
+    while (false)
+
+_Pragma("label parm \"Parameter Label\"");
+
+#pragma opname v_supermat
+#pragma oplabel "Super Material"
+#pragma opicon SHOP_surface
+
+#pragma label spectype "Shading Model"
+#pragma label amb "Ambient"
+#pragma label diff "Diffuse"
+#pragma label spec "Specular"
+#pragma label refl "Reflection"
+#pragma label trans "Transmit"
+#pragma label emit "Emission"
+#pragma label drough "Diff Rough"
+
+#pragma choice  tstyle  0   "Intrinsic World Space"    \
+                        1   "Intrinsic Object Space"   \
+                        2   "Compute from UV"
+
+import shader;
+import(something);
+import_test();
+
+vector Cf;
+Cf = 0;
+
+p@orient = {0, 0, 1, 1};
+@orient = .3;
+
+cvex
+vop_fbmNoiseFV(
+    vector pos; float rough; int maxoctaves; string noisetype)
+{
+    float   blur = sqrt(AREA(pos));
+    vector  pp = pos;
+    float   nval;
+    VOP_FBMNOISE_FUNC( float )
+    return nval;
+}
+
+float vop_fbmNoiseFV(vector pos; float rough; int maxoctaves; string noisetype)
+{
+    float   blur = sqrt(AREA(pos));
+    vector  pp = pos;
+    float   nval;
+    VOP_FBMNOISE_FUNC( float )
+    return nval;
+}
+
+vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+
+float x;
+x = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+float y = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+
+/*
+ * Test block comment.
+ */
+int stable(float TABLE_SIZE)
+{
+    // Test line comment.
+    int table[TABLE_SIZE];
+    find(table, 1);
+    {
+        asdasd;
+        return 0;
+    }
+    // Test      \
+       continued \
+       comment.
+    find(table, 1);
+}
+
+x = 0 ? x : 1;
+superfoo.x = x;
+
+sad012sad13;
+
+x = 0.1;
+7.7e+13;
+09e13;
+0x71;
+14e-2;
+1.;
+0x123;
+
+"sad\"asdg\taf\f%s\nd";
+'sad\"asdg\taf\f%s\nd';
+"s%afsd%%gf%y%f%sk%ddsfa";
+"\\d\sd";
+"\x41a";
+"\595";
+"\101";
+"\895";
+"\795";
+"\uDEAD";
+"\u951232321123";
+"\n \b \" \\ \r ";

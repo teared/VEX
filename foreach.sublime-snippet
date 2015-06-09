@@ -1,0 +1,11 @@
+<snippet>
+    <description>Foreach Loop</description>
+    <content><![CDATA[
+foreach (${1:value}; ${2:array})
+{
+    $3
+}
+]]></content>
+    <tabTrigger>foreach</tabTrigger>
+    <scope>source.vex</scope>
+</snippet>
