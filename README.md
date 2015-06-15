@@ -1,12 +1,12 @@
 #### VEX
 Houdini VEX language definition, syntax highlighting and autocompletions for Sublime Text editor.
 
-#### Installation
-[`VEX.sublime-package`](https://github.com/teared/vex/raw/master/VEX.sublime-package)
 
-Drop into [Data](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory)/Installed Packages folder (near other "*.sublime-package" files).
+#### Installation
+Drop [`VEX.sublime-package`](https://github.com/teared/vex/raw/master/VEX.sublime-package) into [Data](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory)/Installed Packages
 
 No Package Control distribution. Sorry.
+
 
 #### License
 This is free and unencumbered software released into the public domain.
