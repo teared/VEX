@@ -1,0 +1,7 @@
+* text=auto
+*.YAML-tmLanguage       linguist-language=YAML
+
+# Fix generated files showing as main repository language.
+*.html                  linguist-vendored
+*.sublime-completions   linguist-vendored
+*.sublime-settings      linguist-vendored
