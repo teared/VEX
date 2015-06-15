@@ -52,8 +52,9 @@ import_test();
 vector Cf;
 Cf = 0;
 
-p@orient = {0, 0, 1, 1};
+f@orient = {0, 0, 1, 1};
 @orient = .3;
+3[]@test;
 
 cvex
 vop_fbmNoiseFV(

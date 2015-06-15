@@ -4,6 +4,7 @@ scopeName: source.vex
 fileTypes: [vfl, h]
 
 patterns:
+- include: '#attribute-access'
 - include: '#include'
 - include: '#define'
 - include: '#if'
@@ -50,17 +51,11 @@ patterns:
 - name: keyword.operator.dereference.vex
   match: (\.)(?=[A-Za-z_]\w*)
 
-- name: keyword.operator.attribute-access.vex
-  match: (@)
-
 - name: storage.modifier.vex
   match: \b(const|export)\b
 
 - name: storage.type.vex
   match: \b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|struct|bsdf|light|material)\b
-
-- name: storage.type.attribute-access.vex
-  match: \b([ifuvp234s](?:\[\])?)?(?=@)
 
 - name: support.constant.vex
   match: \b(__vex|__vex_major|__vex_minor|__vex_build|__vex_patch|__LINE__|__FILE__|__DATE__|__TIME__)\b
@@ -254,6 +249,11 @@ repository:
 
   string:
     patterns:
+    - name: string.quoted.hscript.vex
+      begin: (`)
+      end: (`)
+      contentName: string.quoted.double.vex
+
     - name: string.quoted.double.vex
       begin: (")
       beginCaptures:
@@ -317,3 +317,10 @@ repository:
     captures:
       '1': {name: keyword.continuation.vex}
       '2': {name: invalid.illegal.continuation-space.vex}
+
+  attribute-access:
+    patterns:
+    - name: keyword.operator.attribute-access.vex
+      match: (@)
+    - name: storage.type.attribute-access.vex
+      match: \b([ifuvp234s](?:\[\])?)?(?=@)

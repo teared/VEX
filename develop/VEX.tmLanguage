@@ -13,6 +13,10 @@
 	<array>
 		<dict>
 			<key>include</key>
+			<string>#attribute-access</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#include</string>
 		</dict>
 		<dict>
@@ -115,12 +119,6 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(@)</string>
-			<key>name</key>
-			<string>keyword.operator.attribute-access.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
 			<string>\b(const|export)\b</string>
 			<key>name</key>
 			<string>storage.modifier.vex</string>
@@ -130,12 +128,6 @@
 			<string>\b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|struct|bsdf|light|material)\b</string>
 			<key>name</key>
 			<string>storage.type.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b([ifuvp234s](?:\[\])?)?(?=@)</string>
-			<key>name</key>
-			<string>storage.type.attribute-access.vex</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -164,6 +156,24 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>attribute-access</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(@)</string>
+					<key>name</key>
+					<string>keyword.operator.attribute-access.vex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b([ifuvp234s](?:\[\])?)?(?=@)</string>
+					<key>name</key>
+					<string>storage.type.attribute-access.vex</string>
+				</dict>
+			</array>
+		</dict>
 		<key>comment</key>
 		<dict>
 			<key>patterns</key>
@@ -659,6 +669,16 @@
 			<array>
 				<dict>
 					<key>begin</key>
+					<string>(`)</string>
+					<key>contentName</key>
+					<string>string.quoted.double.vex</string>
+					<key>end</key>
+					<string>(`)</string>
+					<key>name</key>
+					<string>string.quoted.hscript.vex</string>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(")</string>
 					<key>beginCaptures</key>
 					<dict>
@@ -763,7 +783,5 @@
 	</dict>
 	<key>scopeName</key>
 	<string>source.vex</string>
-	<key>uuid</key>
-	<string>aefd3a51-9647-45c8-b050-3dada3bec3b2</string>
 </dict>
 </plist>

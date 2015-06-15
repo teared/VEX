@@ -11,7 +11,6 @@ import subprocess
 
 HFS = "C:\Program Files\Side Effects Software\Houdini 14.0.335"
 
-
 def vcc_sigs(vcc_path):
     """Collect functions from vcc output into a dictionary"""
     # Get a list of all VEX contexts.
@@ -29,7 +28,6 @@ def vcc_sigs(vcc_path):
             [vcc_path, "--list-context", context],
             universal_newlines=True
         )
-        print(output)
         # Skip lines to the beginning of the functions list.
         output = output.partition("Functions:\n")[2]
 
@@ -372,16 +370,8 @@ if __name__ == '__main__':
     data_dir = os.path.join(os.path.dirname(__file__))
 
     # Query VCC for all real functions from all contexts.
-    vcc_dump = os.path.join(data_dir, "vcc_dump.p")
-    if os.path.exists(vcc_dump):
-        with open(vcc_dump, "rb") as f:
-            sigs = pickle.load(f)
-    else:
-        # Create dump for time saving.
-        vcc_path = os.path.join(HFS, "bin", "vcc")
-        sigs = vcc_sigs(vcc_path)
-        with open(vcc_dump, "wb") as f:
-            pickle.dump(sigs, f)
+    vcc_path = os.path.join(HFS, "bin", "vcc")
+    sigs = vcc_sigs(vcc_path)
 
     # Get signatures with argument names from help and overrides file.
     docfiles_path  = os.path.join(HFS, "houdini", "help", "vex", "functions")
