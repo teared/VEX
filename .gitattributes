@@ -1,6 +1,7 @@
 * text=auto
 
 # Fix generated files showing as a main repository language.
+*.cmd                   linguist-vendored
 *.html                  linguist-vendored
 *.sublime-completions   linguist-vendored
 *.sublime-settings      linguist-vendored
