@@ -19,7 +19,7 @@
 #define GREET(EXP, name)             \
     do                               \
     {                                \
-        if (EXP)                     \
+        if (##EXP)                   \
         {                            \
             printf("Hello, ##name"); \
         }                            \
@@ -57,26 +57,32 @@ f@orient = {0, 0, 1, 1};
 3[]@test;
 
 cvex
-vop_fbmNoiseFV(
-    vector pos; float rough; int maxoctaves; string noisetype)
+vop_fbmNoiseFV(vector pos; float rough; int maxoctaves; string noisetype)
 {
     float   blur = sqrt(AREA(pos));
     vector  pp = pos;
     float   nval;
     VOP_FBMNOISE_FUNC( float )
+    float inner_function(vector pos; float rough)
+    {
+        return nval;
+    }
     return nval;
 }
 
-float vop_fbmNoiseFV(vector pos; float rough; int maxoctaves; string noisetype)
+float function(vector pos)
 {
-    float   blur = sqrt(AREA(pos));
-    vector  pp = pos;
-    float   nval;
-    VOP_FBMNOISE_FUNC( float )
-    return nval;
+    return 8;
 }
 
 vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+
+vop_fbmNoiseFV(
+    pos,
+    rough,
+    maxoctaves,
+    noisetype
+);
 
 float x;
 x = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
@@ -84,6 +90,7 @@ float y = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
 
 /*
  * Test block comment.
+ * Test TODO.
  */
 int stable(float TABLE_SIZE)
 {

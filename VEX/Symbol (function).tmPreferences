@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<string>source.vex entity.name.function.definition</string>
+	<key>settings</key>
+	<dict>
+		<key>showInIndexedSymbolList</key>
+		<string>0</string>
+		<key>showInSymbolList</key>
+		<string>1</string>
+		<key>symbolTransformation</key>
+		<string>s/\s*([\w]+)/$1 - function/g;</string>
+	</dict>
+</dict>
+</plist>

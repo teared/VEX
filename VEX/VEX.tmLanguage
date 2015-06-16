@@ -13,10 +13,6 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#attribute-access</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#include</string>
 		</dict>
 		<dict>
@@ -38,6 +34,14 @@
 		<dict>
 			<key>include</key>
 			<string>#string</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#access</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#function</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -71,51 +75,15 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(\-|\+|\*|\/|%|&amp;|\||\^)?=</string>
-			<key>name</key>
-			<string>keyword.operator.assignment.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(==|!=|&lt;=|&gt;=|&lt;&gt;|&lt;|&gt;)</string>
-			<key>name</key>
-			<string>keyword.operator.comparison.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(\-\-|\+\+)</string>
-			<key>name</key>
-			<string>keyword.operator.increment-decrement.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
 			<string>(\?|:)</string>
 			<key>name</key>
-			<string>keyword.operator.ternary.vex</string>
+			<string>keyword.ternary.vex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(\-|\+|\*|\/|%)</string>
+			<string>\b(struct)\b</string>
 			<key>name</key>
-			<string>keyword.operator.arithmetic.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(!|&amp;&amp;|\|\|)</string>
-			<key>name</key>
-			<string>keyword.operator.logical.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(~|&amp;|\||\^)</string>
-			<key>name</key>
-			<string>keyword.operator.bitwise.vex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(\.)(?=[A-Za-z_]\w*)</string>
-			<key>name</key>
-			<string>keyword.operator.dereference.vex</string>
+			<string>storage.type.struct.vex</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -125,7 +93,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|struct|bsdf|light|material)\b</string>
+			<string>\b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\b</string>
 			<key>name</key>
 			<string>storage.type.vex</string>
 		</dict>
@@ -149,14 +117,14 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(\w*)\b(?=\s*\()</string>
+			<string>\b(accel|backtrack|Cd|center|density|dPd[xyz]|force|Frame|group_[\w-]*|i[xyz]|id|instance|name|nextid|num(pt|vtx|prim)|N|OpInput[1-4]|orient|P|pstate|(pt|vtx|prim)num|res[xyzt]|rot|scale|Time([iI]nc)?|torque|up|uv|v)\b</string>
 			<key>name</key>
-			<string>entity.name.function.vex</string>
+			<string>support.variable.common.vex</string>
 		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>attribute-access</key>
+		<key>access</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -279,7 +247,7 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>entity.name.macro.vex</string>
+									<string>entity.name.macro-function.vex</string>
 								</dict>
 								<key>2</key>
 								<dict>
@@ -339,7 +307,7 @@
 									<key>match</key>
 									<string>\#\#</string>
 									<key>name</key>
-									<string>keyword.control.concatenation.vex</string>
+									<string>variable.parameter.concat.vex</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -484,6 +452,24 @@
 				<dict>
 					<key>include</key>
 					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b\w+\b(?=\s*\((?:int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s*\w)</string>
+					<key>name</key>
+					<string>entity.name.function.definition.vex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface)\s*\b\w*\b(?=\s*\()</string>
+					<key>name</key>
+					<string>entity.name.function.definition.vex</string>
 				</dict>
 			</array>
 		</dict>
@@ -661,7 +647,7 @@
 			<key>match</key>
 			<string>\b(defined|environment|access|access|strcmp)\b</string>
 			<key>name</key>
-			<string>entity.name.function.vex</string>
+			<string>entity.name.preprocessor-function.vex</string>
 		</dict>
 		<key>string</key>
 		<dict>
