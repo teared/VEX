@@ -1,0 +1,78 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: HScript
+scopeName: source.hscript
+fileTypes: [cmd]
+uuid: 45978e5e-4539-4215-8837-b4d08604a061
+
+patterns:
+- include: '#string'
+- include: '#backtick'
+- include: '#variable'
+- name: comment.hscript
+  match: \#.*
+
+- name: keyword.operator.assignment.hscript
+  match: (\-|\+|\*|\/|%|&|\||\^)?=
+
+- name: keyword.operator.comparison.hscript
+  match: (==|!=|<=|>=|<>|<|>)
+
+- name: keyword.operator.increment-decrement.hscript
+  match: (\-\-|\+\+)
+
+- name: keyword.operator.arithmetic.hscript
+  match: (\-|\+|\*|\/|%)
+
+- name: keyword.operator.logical.hscript
+  match: (!|&&|\|\|)
+
+- name: keyword.control.hscript
+  match: \b(if(?=\s+)|then|else|endif|for|foreach|while|end|break|continue)\b
+
+- name: entity.name.function.hscript
+  match: \b(abs|acos|angvel|arclen|arg|argc|asin|atan|atan2|atof|bbox|bezier|boneangle|ceil|centroid|ch|chexist|chf|chgroup|chop|chopcf|chopci|chopct|chope|chopf|chopi|chopl|chopn|chopr|chops|chopstr|chopt|chramp|chrampf|chrampt|chs|chsop|chsraw|cht|clamp|clamptosphere|constant|cos|cosh|cross|cubic|curvature|cycle|cycleoffset|cycleoffsett|cyclet|deg|degree|detail|detailattribsize|detailattribtype|details|detailsmap|detailsnummap|determinant|dihedral|distance|dopallfields|dopcontextgeo|dopcountslices|dopfield|dopfieldname|dopfields|dopfieldtype|dopframe|dopframetost|dopgrouphasobject|dopgrouplist|dophasfield|dophassubdata|dopnodeobjs|dopnumfields|dopnumobjects|dopnumrecords|dopnumrecordtypes|dopnumsubdata|dopobjectlist|dopobjectsareaffectors|dopobjscreatedby|dopoption|dopoptions|doprecordtypename|dopsolvedopnet|dopsolvenewobject|dopsolvenumnewobjects|dopsolvenumobjects|dopsolveobject|dopsolvetimestep|dopsttoframe|dopsttot|dopsubdataname|doptime|doptransform|dopttost|dopvelatpos|dot|ease|easein|easeinp|easeout|easeoutp|easep|edgegrouplist|edgegroupmask|eval|evals|execute|executeb|executee|exp|explodematrix|explodematrixp|findfile|findfiles|fit|fit01|fit10|fit11|floor|frac|ftoa|groupbyval|groupbyvals|hasdetailattrib|haspoint|haspointattrib|hasprim|hasprimattrib|hasvertexattrib|hextoint|hsv|ic|ice|icl|icmax|icmin|icn|icr|ics|identity|if|ifs|imgbounds|index|instancepoint|int|inttohex|invert|iprquery|iprquerys|isclosed|iscollided|ishvariable|isspline|isstuck|isvariable|iswrapu|iswrapv|length|linear|listbyval|listbyvals|lock|log|log10|match|matchin|matchout|matrix|matrixtoquat|max|mcols|metaweight|min|mindist|mlookat|mlookatup|mobjlookat|modblend|morient|mousepane|mousepath|mrows|mzero|nearpoint|noise|normal|normalize|npoints|npointsgroup|nprims|nprimsgroup|nuniquevals|objkinoverride|objlightmask|objlookat|objpretransform|oc|oldrand|opblist|opcreator|opdigits|opexist|opflag|opfullpath|opfullpathfrom|opid|opinput|opinputpath|opisloading|opisquitting|oplightmask|opname|opnchildren|opninputs|opnoutputs|opoutput|opoutputpath|oppinput|oppwd|oppwf|oprelativepath|opselect|opselectpath|opselectrecurse|opselectrecursepath|opstreamname|opsubpath|optransform|optype|optypeinfo|origin|originoffset|padzero|param|parmisstring|pic|picni|pluralize|point|pointattribsize|pointattribtype|pointavg|pointdist|pointgrouplist|pointgroupmask|pointlist|pointneighbours|pointpattern|points|pointsmap|pointsnummap|popcontextgeo|popevent|popeventtime|poppoint|poppointid|poppointnum|poppoints|poppointsid|pow|prim|primattribsize|primattribtype|primdist|primduv|primgrouplist|primgroupmask|primlist|primneighbours|prims|primsmap|primsnummap|primuv|print|property|propertyf|propertyf|propertys|propertysop|propertysraw|propertyt|propertyt|pulse|pythonexprf|pythonexprs|qlinear|quattomatrix|quintic|rad|rand|realuv|repeat|repeatt|res|rgb|rindex|rint|rotate|rotaxis|round|run|runb|rune|scale|seqanim|seqend|seqlength|seqstart|shopstring|sign|sin|sinh|smooth|snoise|spknot|spline|sqrt|stamp|stamps|strcasecmp|strcasematch|strcat|strcmp|strdup|stripmatrix|strlen|strmatch|strreplace|sturb|substr|surflen|system|systemES|systemRAW|tan|tanh|tex|texni|tolower|toupper|translate|transpose|trunc|turb|uniqueval|uniquevals|unituv|uvdist|vangle|vector|vector3|vector4|vertex|vertexattribsize|vertexattribtype|vertexs|vertexsmap|vertexsnummap|vlength|vlength2|vmatch|vmatchin|vmatchout|volumeaverage|volumegradient|volumeindex|volumeindextopos|volumemax|volumemin|volumepostoindex|volumeres|volumesample|volumevoxeldiameter|vorigin|vpname|vrorigin|vscale|vset|vsize|vtorigin|wrap|xyzdist)\b
+
+- name: keyword.control.command.hscript
+  match: \b(alias|animeditor|appendseq|atjob|audiopanel|autosave|bonealigncapture|boneconvert|bonefixchops|bonemoveend|bookmark|bundlelist|chadd|chalias|chanlist|chautoscope|chblockbegin|chblockend|chcommit|chcp|chgadd|chgls|chgop|chgpopulate|chgrm|chhold|chkey|chkeyget|chkeyls|chkeymv|chkeyrm|chlayout|chlock|chls|chopexportmap|chopls|chopscope|chopview|chread|chrefit|chrename|chreverse|chrm|chround|chscope|chstretch|chwrite|clear|closeport|cmdread|colladaimport|colorsettings|commandecho|compfree|compopts|compproject|cplane|cuadd|cucd|cueventcontrol|cuexport|cuimport|culs|cuparm|cupwd|curm|cuset|cussaveopt|desk|dopdatahint|dopdatatypealias|dopdatatypes|dopsave|dopsavedata|dopsolveadddata|dopsolvecopydata|dopsolveremovedata|dopsolvesetoption|doublebuffer|dsedit|dsoinfo|dsreload|echo|excat|exedit|exhelp|exit|exls|exread|exrm|fbximport|fbximportanim|fcur|fdependadd|fdependhide|fdependls|fdependrm|filechooser|fplayback|fps|frange|fset|ftimecode|geocache|glcache|help|helpbrowser|history|imgdispopt|imgview|imgview2d|imgviewhist|imgviewls|imgviewtime|imgviewtool|iprview|java|job|kinconvert|linker|listchooser|loadaudio|loadseq|matrman|matupdateref|memory|menurefresh|message|mnew|mplayfit|mplayhome|mplayprofile|mread|mwrite|nbadd|nbcolor|nbcp|nbget|nbglob|nblocate|nbls|nblsop|nbname|nbop|nbrm|nbset|nbsize|netcolumns|neteditor|netviewdep|nextkey|objcache|objcleantransform|objextractpretransform|objkinoverride|objlightlink|objmaterial|objparent|objpretransform|objresetpretransform|ombind|ombindinfo|omls|omparm|omsbind|omsbindinfo|omsls|omsunbind|omswhere|omunbind|omwhere|omwrite|opadd|opalias|opautoplace|opbadd|opbfilters|opbls|opbname|opbop|opbrm|opcf|opchange|opchangetype|opchmod|opcollapse|opcolor|opcomment|opcook|opcopy|opcp|opdelscript|opdepend|openport|opeventscriptcache|opexclude|opexprlanguage|opextern|opextract|opfind|opgadd|opget|opgetinput|opglob|opgls|opgop|opgrm|ophelp|ophide|opinfo|oplayout|oplegacyinputs|oplocate|opls|opmenu|opmultiparm|opname|oporder|oppane|opparm|oppaste|oppresetload|oppresetloadfile|oppresetls|oppresetrm|oppresetsave|oppresetsavefile|opproperty|oppwf|opramp|opread|oprename|oprm|oprmtype|opsave|opscale|opscript|opset|opspare|opspareds|opstat|optype|optypeinstall|optyperead|optypeuninstall|opunhide|opunload|opunwire|opupdate|opwire|opwrite|otcollapse|otcomment|otconfig|otcontentadd|otcontentdelete|otcontentls|otcontentsave|otcopy|otcreatecompiledtypefrom|otcreatetypefrom|otdelete|otedit|otexpand|otgetotl|otglob|otinuse|otload|otls|otmerge|otprefer|otrefresh|otrenamesource|otsync|ottouch|otunload|otunsync|otversion|otwrite|pane|panepath|parmeditor|parmlist|parmsheet|pathmap|perfmon|performance|pilist|play|pomadd|pomattach|pomclear|pomdetach|pomls|pomparm|pomremove|pomrename|pomscript|pomset|preference|prependseq|prompt|propertyedit|python|pythonpanel|quit|read|render|rexport|rkill|ropview|rps|seqls|set|setcomp|setenv|setplane|shelfdock|shift|shopconvert|shoppromote|shopthumb|shopvisible|sopcache|sopcreateedit|source|stampdirty|takeadd|takeautomode|takeinclude|takelist|takeload|takels|takemerge|takemove|takename|takerm|takesave|takescript|takeset|tcl|tcur|texcache|time|timeslice|tk|tmgadd|tmgls|tmgname|tmgop|tmgrm|tmgshift|toolbar|treechooser|treecontrol|tset|ucd|uls|umkdir|undoctrl|unitlength|unitmass|unix|updateui|upwd|urm|varchange|version|vexinfo|vexprofile|viewagentopts|viewbackground|viewcamera|viewcolor|viewcopy|viewdisplay|viewdispopts|viewdispset|viewergrouplist|viewerinspect|vieweroption|viewerstow|viewhome|viewinfotext|viewlayout|viewls|viewmaskoverlay|viewname|viewoptadd|viewoptenable|viewoptls|viewoptname|viewoptrm|viewoptset|vieworthogrid|viewprojection|viewroto|viewsnapshot|viewsnapshotoption|viewtool|viewtransform|viewtype|viewupdate|viewuvgrid|viewwrite|vopforcecompile|vopwritevfl)\b
+
+repository:
+  string:
+    patterns:
+    - name: string.quoted.single.hscript
+      begin: (')
+      beginCaptures:
+        '0': {name: punctuation.definition.string.begin.hscript}
+      end: (')
+      endCaptures:
+        '1': {name: punctuation.definition.string.end.hscript}
+
+    - name: meta.string.quoted.double.hscript
+      begin: (")
+      end: (")
+      captures:
+        '1': {name: string.quoted.begin-end.hscript}
+      patterns:
+      - name: constant.character.escape.hscript
+        match: \\(\d+|[nrt\\"])
+      - include: '#backtick'
+      - include: '#variable'
+      - name: string.quoted.double.hscript
+        comment: Match all other symbols in string.
+        match: (.)
+
+  backtick:
+    begin: (`)
+    end: (`)
+    captures:
+      '0': {name: punctuation.definition.backtick.hscript}
+    patterns:
+    - include: '$self'
+
+  variable:
+    name: meta.variable.hscript
+    match: (\$\w+(\:[hterulga]|\:s/.+/.*/)?|\${\w+(\:[hterulga]|\:s/.+/.*/)?})
+    captures:
+      '1': {name: constant.language.variable.hscript}
+      '2': {name: variable.parameter.hscript}
+...
