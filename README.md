@@ -11,7 +11,7 @@ No Package Control distribution. Sorry.
 #### Usage and tips
 Currently, nothing special, simply install and code. From my point, good color schemes are [1337](https://github.com/MarkMichos/1337-Scheme) and SpaceCadet, which is one of the default schemes. [SublimeAStyleFormatter](https://github.com/timonwong/SublimeAStyleFormatter) add-on is useful to make standard Houdini libraries more readble. [My settings.](https://gist.github.com/teared/cfcf27705954fcf741b7#file-sublimeastyleformatter-sublime-settings)
 
-![alt tag](http://i.imgur.com/st2NX12.png)
+![alt tag](http://i.imgur.com/k9HHUYz.png)
 
 
 #### License
