@@ -1,11 +1,17 @@
-#### VEX
-Houdini VEX language definition, syntax highlighting and autocompletions for Sublime Text editor.
+### Houdini add-on for Sublime Text
+Language definitions, syntax highlighting and autocompletions for VEX and HScript.
 
 
 #### Installation
 Drop [`VEX.sublime-package`](https://github.com/teared/vex/raw/master/VEX.sublime-package) into [Data](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory)/Installed Packages
 
 No Package Control distribution. Sorry.
+
+
+#### Usage and tips
+Currently, nothing special, simply install and code. From my point, good color schemes are [1337](https://github.com/MarkMichos/1337-Scheme) and SpaceCadet, which is one of the default schemes. [SublimeAStyleFormatter](https://github.com/timonwong/SublimeAStyleFormatter) add-on is useful to make standard Houdini libraries more readble. [My settings.](https://gist.github.com/teared/cfcf27705954fcf741b7#file-sublimeastyleformatter-sublime-settings)
+
+![alt tag](http://i.imgur.com/st2NX12.png)
 
 
 #### License
