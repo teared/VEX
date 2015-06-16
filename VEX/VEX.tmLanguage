@@ -486,7 +486,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b\w+\b(?=\s*\((?:int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s*\w)</string>
+					<string>\b(?!for|foreach)(\w+)\b(?=\s*\((?:int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s*\w)</string>
 					<key>name</key>
 					<string>entity.name.function.definition.vex</string>
 				</dict>
@@ -686,7 +686,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.string.begin.vex</string>
+							<string>string.quoted.double.begin.vex</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -696,7 +696,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.string.end.vex</string>
+							<string>string.quoted.double.end.vex</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -709,12 +709,20 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>include</key>
-							<string>#string-escape</string>
+							<key>match</key>
+							<string>\\(\d+|[nrt\\"]|x[a-fA-F0-9]{1,8}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})</string>
+							<key>name</key>
+							<string>constant.character.escape.vex</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\%(\%|[\d+]?[cdfgpsx])</string>
+							<key>name</key>
+							<string>constant.other.placeholder.vex</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#string-placeholder</string>
+							<string>#backticks</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -730,7 +738,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.string.begin.vex</string>
+							<string>string.quoted.single.begin.vex</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -740,7 +748,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.string.end.vex</string>
+							<string>string.quoted.single.end.vex</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -759,20 +767,6 @@
 					</array>
 				</dict>
 			</array>
-		</dict>
-		<key>string-escape</key>
-		<dict>
-			<key>match</key>
-			<string>\\(\d+|[nrt\\"]|x[a-fA-F0-9]{1,8}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})</string>
-			<key>name</key>
-			<string>constant.character.escape.vex</string>
-		</dict>
-		<key>string-placeholder</key>
-		<dict>
-			<key>match</key>
-			<string>\%(\%|[\d+]?[cdfgpsx])</string>
-			<key>name</key>
-			<string>constant.other.placeholder.vex</string>
 		</dict>
 		<key>todo</key>
 		<dict>

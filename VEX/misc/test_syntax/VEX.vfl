@@ -99,6 +99,10 @@ int stable(float TABLE_SIZE)
     find(table, 1);
     {
         asdasd;
+        for (int i = idx; i < len(points); i++)
+        {
+            removepoint(geo, points[i]);
+        }
         return 0;
     }
     // Test      \
