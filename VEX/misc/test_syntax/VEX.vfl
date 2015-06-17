@@ -136,3 +136,8 @@ x = 0.1;
 "\uDEAD";
 "\u951232321123";
 "\n \b \" \\ \r ";
+
+// HScript in backticks support.
+"Value is `if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))`"
+"Truth in `if(1, 1, 0)` expression."
+`if(1, 1, 0)`

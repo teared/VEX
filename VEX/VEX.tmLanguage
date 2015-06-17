@@ -49,7 +49,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\.[0-9]+\b</string>
+			<string>(?!\d)\.[0-9]+\b</string>
 			<key>name</key>
 			<string>constant.numeric.floating.left.vex</string>
 		</dict>
@@ -148,22 +148,25 @@
 		</dict>
 		<key>backticks</key>
 		<dict>
+			<key>begin</key>
+			<string>(`)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.backticks.vex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(`)</string>
+			<key>name</key>
+			<string>source.hscript</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(`)</string>
-					<key>end</key>
-					<string>(`)</string>
-					<key>name</key>
+					<key>include</key>
 					<string>source.hscript</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>source.hscript</string>
-						</dict>
-					</array>
 				</dict>
 			</array>
 		</dict>
@@ -681,31 +684,23 @@
 				<dict>
 					<key>begin</key>
 					<string>(")</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>string.quoted.double.begin.vex</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(")|(?&lt;=^|[^\\])(\n)</string>
-					<key>endCaptures</key>
+					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.double.end.vex</string>
+							<string>string.quoted.double.vex</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.mismatched-quotation.vex</string>
+							<string>invalid.illegal.misquot.vex</string>
 						</dict>
 					</dict>
+					<key>end</key>
+					<string>(")|(?&lt;=^|[^\\])(\n)</string>
 					<key>name</key>
-					<string>string.quoted.double.vex</string>
+					<string>meta.string.double.vex</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -722,40 +717,35 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#backticks</string>
+							<string>#continuation</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#continuation</string>
+							<string>#backticks</string>
+						</dict>
+						<dict>
+							<key>comment</key>
+							<string>Match all symbols in string outside possible backticks</string>
+							<key>match</key>
+							<string>(.)</string>
+							<key>name</key>
+							<string>string.quoted.double.vex</string>
 						</dict>
 					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
 					<string>(')</string>
-					<key>beginCaptures</key>
+					<key>captures</key>
 					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>string.quoted.single.begin.vex</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(')|(?&lt;=^|[^\\])(\n)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.quoted.single.end.vex</string>
-						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
 							<string>invalid.illegal.mismatched-quotation.vex</string>
 						</dict>
 					</dict>
+					<key>end</key>
+					<string>(')|(?&lt;=^|[^\\])(\n)</string>
 					<key>name</key>
 					<string>string.quoted.single.vex</string>
 					<key>patterns</key>
