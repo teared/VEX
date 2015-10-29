@@ -1,13 +1,13 @@
 #include <voplib.h>
-#include "hair.h"
+#include "mylib.h"
 
 #ifndef TEST
-    #if 0 access("testing.h") && environment(TESTING)
+    #if access("testing.h") && environment(TESTING)
         #include "testing.h"
     #endif
 #elif !strcmp(__vex_major, TEST)
     #define TEST 100
-#elif !strcmp(100, TEST)
+#elif 0
     #define TEST NaN
 #else
     #define TEST 100
@@ -26,7 +26,8 @@
     }                                \
     while (false)
 
-_Pragma("label parm \"Parameter Label\"");
+_Pragma("label parm \"Parameter \ Label\"");
+
 
 #pragma opname v_supermat
 #pragma oplabel "Super Material"
@@ -45,97 +46,149 @@ _Pragma("label parm \"Parameter Label\"");
                         1   "Intrinsic Object Space"   \
                         2   "Compute from UV"
 
+
+// Constants.
+1.f
+1.0_f
+.1f
+1.3
+.3
+1.
+1_1.3_3
+.3_3
+1_1.
+1.1_
+1_000
+1000_
+0b0
+0b1000
+0b10_10_10 // 42!
+017
+0_17
+00_07
+0007
+0xA1
+0xA_1
+0xA_1_
+1e2
+1e-2
+1e+2
+1e10
+1_0.1e-2
+true
+
+// Illegal ones.
+1.1.1
+1_.1 // Truncates fractional part.
+._1
+1._1
+_1000
+00_08
+0008
+019 // Illegal octal.
+0_19 // Legal and decimal.
+0x_A1
+
+"asd\"fgh\t\\t\f%se\nd"
+'asd\"fgh\t\\t\f%se\nd'
+"%a%s%d%%f%fk%dfgh"
+"\\t\td"
+"\x41a"
+"\595"
+"\101"
+"\895"
+"\795"
+"\uDEADBEEF"
+"\u0123456789"
+"\n \b \" \\ \r"
+
 import shader;
 import(something);
 import_test();
 
-vector Cf;
-Cf = 0;
+vector Cf = 0
+superfoo.x = x
+f@orient = {0, 0, 1, 1}
+@orient = .3
+3[]@test
+x = 0 ? x : 1
+a0a0a_a_0
 
-f@orient = {0, 0, 1, 1};
-@orient = .3;
-3[]@test;
 
-cvex
-vop_fbmNoiseFV(vector pos; float rough; int maxoctaves; string noisetype)
-{
-    float   blur = sqrt(AREA(pos));
-    vector  pp = pos;
-    float   nval;
-    VOP_FBMNOISE_FUNC( float )
-    float inner_function(vector pos; float rough)
-    {
-        return nval;
-    }
-    return nval;
-}
-
-float function(vector pos)
+float function(vector temp)
 {
     return 8;
 }
 
-vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+float eight = function(P)
 
-vop_fbmNoiseFV(
+float some_function_def(
+    vector pos;
+    float rough;
+    int maxoctaves;
+    string noisetype
+)
+{
+    float blur = sqrt(AREA(pos));
+    MACRO_FUNC(blur)
+    sometype inner_function(int a)
+    {
+        inner_function(pos, rough)
+        return 0.0;
+    }
+    float nval = inner_function(pos, rough);
+    return nval;
+}
+
+some_function_call(
     pos,
     rough,
     maxoctaves,
     noisetype
-);
+)
 
-float x;
-x = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
-float y = vop_fbmNoiseFV(pos, rough, maxoctaves, noisetype);
+float x
+x = some_function_call(pos, rough, maxoctaves, noisetype)
+float x = some_function_call(pos, rough, maxoctaves, noisetype)
+
+foreach (int i; array)
+{
+    0;
+}
+void for_each(int i; array)
+{
+    0;
+}
+sometype for_each(int i; array)
+{
+    return (sometype) 0;
+}
+
+
 
 /*
  * Test block comment.
  * Test TODO.
  */
-int stable(float TABLE_SIZE)
+int func(float TABLE_SIZE)
 {
     // Test line comment.
     int table[TABLE_SIZE];
-    find(table, 1);
     {
-        asdasd;
+        // Continued \
+           comment   \
+           test.
         for (int i = idx; i < len(points); i++)
         {
-            removepoint(geo, points[i]);
+            if (intqwert && true)
+            {
+                removepoint(geo, points[i]);
+            }
         }
         return 0;
     }
-    // Test      \
-       continued \
-       comment.
     find(table, 1);
 }
-
-x = 0 ? x : 1;
-superfoo.x = x;
-
-sad012sad13;
-
-x = 0.1;
-7.7e+13;
-09e13;
-0x71;
-14e-2;
-1.;
-0x123;
-
-"sad\"asdg\taf\f%s\nd";
-'sad\"asdg\taf\f%s\nd';
-"s%afsd%%gf%y%f%sk%ddsfa";
-"\\d\sd";
-"\x41a";
-"\595";
-"\101";
-"\895";
-"\795";
-"\uDEAD";
-"\u951232321123";
-"\n \b \" \\ \r ";
 
 // HScript in backticks support.
 "Value is `if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))`"

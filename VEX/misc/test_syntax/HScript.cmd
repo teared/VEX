@@ -1,6 +1,18 @@
-3.0e-5
-0.000032
-
+# Constants.
+1.3
+.3
+1.
+1_1.3_3
+.3_3
+1_1.
+1.1_
+1_000
+1000_
+1e2
+1e-2
+1e+2
+1e10
+1_0.1e-2
 
 # Patterns.
 geo*
@@ -15,7 +27,6 @@ geo*
 
 
 # HScript Expressions.
-
 if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))
 
 {
@@ -122,7 +133,6 @@ string opdisplay()
 
 
 # Scripts.
-
 foreach i (a b c)
     echo $i
 end

@@ -1,4 +1,4 @@
-#! python3.4
+#! python3.5
 
 import collections
 import itertools
@@ -8,14 +8,17 @@ import pickle
 import re
 import subprocess
 
-
-HFS = "C:\Program Files\Side Effects Software\Houdini 14.0.335"
+HFS = 'C:\Program Files\Side Effects Software\Houdini 15.0.273'
 
 def vcc_sigs(vcc_path):
-    """Collect functions from vcc output into a dictionary"""
+    '''
+    Collect functions from vcc output into a dictionary
+
+    TODO: use a new --list-context-json instead. Why, if all works? Because!
+    '''
     # Get a list of all VEX contexts.
     contexts = subprocess.check_output(
-        [vcc_path, "--list-context"],
+        [vcc_path, '--list-context'],
         universal_newlines=True
     )
     contexts = contexts.split()
@@ -25,20 +28,20 @@ def vcc_sigs(vcc_path):
     for context in contexts:
         # Get the full vcc output for this context.
         output = subprocess.check_output(
-            [vcc_path, "--list-context", context],
+            [vcc_path, '--list-context', context],
             universal_newlines=True
         )
         # Skip lines to the beginning of the functions list.
-        output = output.partition("Functions:\n")[2]
+        output = output.partition('Functions:\n')[2]
 
-        for line in output.split("\n"):
-            pattern = r"\s*(.+?) (.+)\( (.*) \)"
+        for line in output.split('\n'):
+            pattern = r'\s*(.+?) (.+)\( (.*) \)'
             match = re.match(pattern, line)
             if not match:
                 continue
 
             type, name, args = match.group(1, 2, 3)
-            args = args.split(";")
+            args = args.split(';')
             args = [arg.strip() for arg in args]
             args = tuple(args)
             sig = (type, name, args)
@@ -53,94 +56,96 @@ def vcc_sigs(vcc_path):
 
 
 def parse_sigs(docfiles_path, overrides_path):
-    """Parse all function signatures from Houdini docs and overrides file."""
-
-    def vex_type(string):
-        """Return True if string is a valid VEX type name."""
-        return string.strip("[]& ") in [
-            "void", "int", "float", "string", "vector2", "vector", "vector4",
-            "matrix2", "matrix3", "matrix", "bsdf", "light", "material"
+    '''Parse function signatures from docs overrides file.'''
+    def is_vex_type(string):
+        '''Answer if string is a valid VEX type.'''
+        return string.strip('[]& ') in [
+            'void', 'int', 'float', 'string', 'vector2', 'vector', 'vector4',
+            'matrix2', 'matrix3', 'matrix', 'bsdf', 'light', 'material'
         ]
 
     def parse_single_sig(string):
-        """Parse a function's type, name, do the same for the arguments."""
+        '''Parse function's type and name, it's arguments's types and names.'''
         # Replace all substrings using a dictionary mapping.
-        mapping = {
-            ";"       : ",",
-            "'"       : '"',
-            "matrix4" : "matrix",
-            "vector3" : "vector"
-        }
-        for item in mapping:
-            if item in string:
-                string = string.replace(item, mapping[item])
+        string = string.replace(';', ',')
+        string = string.replace("'", '"')
+        string = string.replace('matrix4', 'matrix')
+        string = string.replace('vector3', 'vector')
+        string = string.replace(', ...', '')
 
-        # Lots of documented functions skips possible vararg arguments.
-        # Therefore we always can reveal its presence from the VCC output.
-        # And since "void" arguments is possible only with zero-argument
-        # signatures, skip parsing "void"-arguments definitions too. On the
-        # filling stage we can easily fill sigs with "(void)", "(...)" or
-        # append "..." to arguments if varargs present.
-
-        pattern = r"\(\s*(void|\.\.\.)?\s*\)"
+        # Lot of help functions have undocumented possible varargs. Therefore
+        # we always can reveal its presence from the VCC output. On the names
+        # filling stage we can easily fill sigs with "(...)" or append "..."
+        # to arguments if varargs are presented.
+        pattern = r'\(\s*(\.\.\.)?\s*\)'
         match = re.search(pattern, string)
         if match:
             return
 
-        # Check if function arguments is useless list of unnamed types.
-        pattern = r"\(\s*(.+)\s*\)"
+        # Check if function arguments is a useless list of unnamed types.
+        pattern = r'\(\s*(.+)\s*\)'
         args = re.search(pattern, string)
         args = args.group(1)
-        args = args.split(",")
-        args = [x.strip("&[] ") for x in args]
-        if all(vex_type(x) for x in args):
+        args = args.split(',')
+        args = [x.strip('&[] ') for x in args]
+        if all(is_vex_type(x) for x in args):
             return
 
-        pattern = r"(\w+(?:\s?\[\])?)?\s*(\b\w+\b)\(\s*(.+)\s*\)"
+        pattern = r'(\w+(?:\s?\[\])?)?\s*(\b\w+\b)\(\s*(.+)\s*\)'
         match = re.match(pattern, string)
-        if not match:
-            return
-        type, name, args = match.group(1,2,3)
+
+        # In theory, it should always match.
+        try:
+            type, name, args = match.group(1,2,3)
+        except:
+            print('Erroneus signature: ', string)
+            raise
 
         if type == None:
-            type = "void"
-        elif not vex_type(type):
+            type = 'void'
+        elif not is_vex_type(type):
             return
 
-        # Parse the arguments types and names.
+        # Parse argument's types and names.
         parsed_args = []
-        for arg in args.split(","):
-            if "..." not in arg:
-                modifier = ""
-                if "[]" in arg:
-                    modifier += "[]"
-                if "&" in arg:
-                    modifier += " &"
+        for arg in args.split(','):
+            # Modifier is used to define array and export arguments.
+            modifier = ''
+            if '[]' in arg:
+                modifier += '[]'
+            if '&' in arg:
+                modifier += ' &'
 
-                arg = arg.replace("const ", " ")
-                arg = arg.replace("&", " ")
-                arg = arg.replace("[]", " ")
-                arg = [x.strip() for x in arg.split()]
-                if len(arg) != 2:
-                    return
+            arg = arg.replace('const ', ' ')
+            arg = arg.replace('&', ' ')
+            arg = arg.replace('[]', ' ')
+            arg = [x.strip() for x in arg.split()]
 
-                atype = arg[0]
-                atype += modifier
-                if not vex_type(atype):
-                    return
+            if len(arg) != 2:
+                return
 
-                aname = arg[1]
-                pattern = r"(\w+)(=(?:'|\")\w*?(?:'|\")|=[\d.]+)?$"
-                match = re.match(pattern, aname)
-                if not match:
-                    return
+            atype = arg[0]
+            atype += modifier
+            if not is_vex_type(atype):
+                return
 
-                parsed_args.append((atype, aname))
+            aname = arg[1]
+            pattern = r'(\w+)(=(?:\'|")\w*?(?:\'|")|=[\d.]+)?$'
+            match = re.match(pattern, aname)
+            if not match:
+                return
+
+            parsed_args.append((atype, aname))
 
         return type, name, parsed_args
 
     def parser(strings):
-        """Run parse_single_sig() function on each string."""
+        '''
+        Run parse_single_sig() function on each string.
+
+        This function is also called for manual overrides file for simplicity,
+        although absolute correctness should be ensured explicitly every time.
+        '''
         sigs = {}
         for string in strings:
             sig = parse_single_sig(string)
@@ -152,7 +157,7 @@ def parse_sigs(docfiles_path, overrides_path):
             sigs[(type, name, atypes)] = anames
 
             # "Default value" creates a second signature without an argument.
-            if "=" in anames[-1]:
+            if '=' in anames[-1]:
                 atypes, anames = zip(*args[:-1])
                 sigs[(type, name, atypes)] = anames
 
@@ -162,12 +167,12 @@ def parse_sigs(docfiles_path, overrides_path):
     sigs = []
     for docfile in os.listdir(docfiles_path):
         base, ext = os.path.splitext(docfile)
-        if ext != ".txt":
+        if ext != '.txt':
             continue
         path = os.path.join(docfiles_path, docfile)
-        with open(path, "r") as f:
+        with open(path, 'r') as f:
             for line in f:
-                pattern = r"# `((?:\w+\s*(?:\[\])?)?\s*(?:\b\w+\b)\(.*\))`"
+                pattern = r'# `((?:\w+\s*(?:\[\])?)?\s*(?:\b\w+\b)\(.*\))`'
                 match = re.search(pattern, line)
                 if not match:
                     continue
@@ -177,9 +182,9 @@ def parse_sigs(docfiles_path, overrides_path):
 
     # Parse all stings from overrides, then update sigs dictionary.
     overrides = []
-    with open(overrides_path, "r") as f:
+    with open(overrides_path, 'r') as f:
         for line in f:
-            pattern = r"^\s*\w+(?:\[\])?\s+\b\w+\b\(.+\)\s*$"
+            pattern = r'^\s*\w+(?:\[\])?\s+\b\w+\b\(.+\)\s*$'
             match = re.match(pattern, line)
             if not match:
                 continue
@@ -190,37 +195,35 @@ def parse_sigs(docfiles_path, overrides_path):
 
 
 def fill_sigs(sigs, docsigs):
-    """Generate plain list of signatures, fill argument names."""
-
+    '''Generate plain list of signatures, fill argument names.'''
     def fill_single_sig(inputsig, docsigs):
-        """Complete signature definition with argument names."""
-
+        '''Complete signature definition with argument names.'''
         def filler(info, anames=[]):
-            """Return resulting signature with argument names."""
-            args = itertools.zip_longest(inputsig[2], anames, fillvalue="")
+            '''Return resulting signature with argument names.'''
+            args = itertools.zip_longest(inputsig[2], anames, fillvalue='')
             args = list(args)
             return inputsig[0], inputsig[1], args, info
 
         sig = (
             inputsig[0],
             inputsig[1],
-            tuple(x for x in inputsig[2] if x not in ("...", "void"))
+            tuple(x for x in inputsig[2] if x not in ('...', 'void'))
         )
         _, name, atypes = sig
 
         # No arguments - no need to guess.
         if len(atypes) == 0:
-            return filler("+ NOARG")
+            return filler('+ NOARG')
 
         # No help function parsed - nothing to guess.
         if name not in docsigs:
-            return filler("- NODOC")
+            return filler('- NODOC')
 
         docsigs = docsigs[name]
 
         # Full match.
         if sig in docsigs:
-            return filler("+ EXACT", docsigs[sig])
+            return filler('+ EXACT', docsigs[sig])
 
         # Guess for return type changes.
         # Docs:   int foo(string bar)
@@ -229,7 +232,7 @@ def fill_sigs(sigs, docsigs):
         for docsig in docsigs:
             doctypes = docsig[2]
             if atypes == doctypes:
-                return filler("? RETRN", docsigs[docsig])
+                return filler('? RETRN', docsigs[docsig])
 
         # Guess for one of the arguments type changes.
         # Docs:   string foo(int bar)
@@ -244,7 +247,7 @@ def fill_sigs(sigs, docsigs):
             pairs = zip(atypes, doctypes)
             diffs = [True for x, y in pairs if x != y]
             if len(diffs) == 1:
-                return filler("? ARGMT", docsigs[docsig])
+                return filler('? ARGMT', docsigs[docsig])
 
         # Guess for a combination of return and argument type changes.
         # Docs:   int foo(int bar)
@@ -258,7 +261,7 @@ def fill_sigs(sigs, docsigs):
             pairs = zip(atypes, doctypes)
             diffs = [(x, y) for x, y in pairs if x != y]
             if len(diffs) == 1:
-                return filler("? REARG", docsigs[docsig])
+                return filler('? REARG', docsigs[docsig])
 
         # Guess for an array functions with type and two arguments changing.
         # Docs:   void foo(int value, int[] array)
@@ -266,10 +269,10 @@ def fill_sigs(sigs, docsigs):
         # Result: float foo(float value, float[] array)
         for docsig in docsigs:
             names_scope = [
-                "append", "find",
-                "insert", "push",
-                "removevalue", "select",
-                "setcomp", "upush"
+                'append', 'find',
+                'insert', 'push',
+                'removevalue', 'select',
+                'setcomp', 'upush'
             ]
             if sig[1] not in names_scope:
                 continue
@@ -284,12 +287,14 @@ def fill_sigs(sigs, docsigs):
                 continue
 
             pairs = zip(*diffs)
-            pairs = [(x.strip("[]& "), y.strip("[]& ")) for x, y in pairs]
+            pairs = [(x.strip('[]& '), y.strip('[]& ')) for x, y in pairs]
             diffs = [True for x, y in pairs if x != y]
             if not diffs:
-                return filler("? ARRAY", docsigs[docsig])
+                return filler('? ARRAY', docsigs[docsig])
 
-        return filler("- ERROR")
+        # Although a lot more infering may be done, it just not worth to do it
+        # to get 5-10 extra functions fully defined. Overrides file is better.
+        return filler('- ERROR')
 
     # Group by name to reduce iterations.
     gdocsigs = docsigs.items()
@@ -305,37 +310,36 @@ def fill_sigs(sigs, docsigs):
 
 
 def write_sigs(out_path, sigs):
-    """Write sigs to disc as a readable file."""
-    with open(out_path, "w") as f:
+    '''Write sigs to disc as a readable file for detailed inspection.'''
+    with open(out_path, 'w') as f:
         for type, name, args, info in sigs:
-            args = ", ".join([" ".join(arg).strip() for arg in args])
-            line = "{}{:>10} {}({})\n".format(info, type, name, args)
+            args = ', '.join([' '.join(arg).strip() for arg in args])
+            line = '{}{:>10} {}({})\n'.format(info, type, name, args)
             if info in [
-                "- ERROR",
-                "- NODOC",
-                "+ EXACT",
-                "+ NOARG",
-                "? ARGMT",
-                "? ARRAY",
-                "? REARG",
-                "? RETRN",
+                '- ERROR',
+                '- NODOC',
+                '+ EXACT',
+                '+ NOARG',
+                '? ARGMT',
+                '? ARRAY',
+                '? REARG',
+                '? RETRN',
             ]: f.write(line)
 
 
 def write_comps(out_path, sigs):
-    """Generate sublime-completions file for unique signatures."""
-
+    '''Generate sublime-completions file for unique signatures.'''
     # Accumulate a unique argument names sets per function.
     comps_dict = dict()
     for type, name, args, info in sigs:
-        trigger = [t if t in ("...", "void") else n for t, n in args]
+        trigger = [t if t in ('...', 'void') else n for t, n in args]
         contents = []
         for i, arg in enumerate(trigger, 1):
-            string = "${{{}:{}}}".format(i, arg)
+            string = '${{{}:{}}}'.format(i, arg)
             contents.append(string)
 
-        key = "{}({})".format(name, ", ".join(trigger))
-        val = "{}({})".format(name, ", ".join(contents))
+        key = '{}({})'.format(name, ', '.join(trigger))
+        val = '{}({})'.format(name, ', '.join(contents))
 
         if key not in comps_dict:
             comps_dict[key] = val
@@ -344,47 +348,46 @@ def write_comps(out_path, sigs):
     comps_list = []
     for trigger, contents in comps_dict.items():
         comp = collections.OrderedDict()
-        comp["trigger"] = trigger
-        comp["contents"] = contents
+        comp['trigger'] = trigger
+        comp['contents'] = contents
         comps_list.append(comp)
 
     # Replace void signatures with empty parentheses.
     for i, comp in enumerate(comps_list):
-        if "(void)" in comp["trigger"]:
-            trigger = comp["trigger"].replace("void", "")
-            contents = comp["contents"].replace("${1:void}", "")
-            comps_list[i]["trigger"] = trigger
-            comps_list[i]["contents"] = contents
+        if '(void)' in comp['trigger']:
+            trigger = comp['trigger'].replace('void', '')
+            contents = comp['contents'].replace('${1:void}', '')
+            comps_list[i]['trigger'] = trigger
+            comps_list[i]['contents'] = contents
 
-    comps_list.sort(key=lambda x: x["trigger"].lower())
+    comps_list.sort(key=lambda x: x['trigger'].lower())
     comps = collections.OrderedDict()
-    comps["scope"] = "source.vex"
-    comps["completions"] = comps_list
+    comps['scope'] = 'source.vex'
+    comps['completions'] = comps_list
 
-    with open(out_path, "w") as f:
+    with open(out_path, 'w') as f:
         json.dump(comps, f, indent=4)
 
 
 if __name__ == '__main__':
-    """The main function."""
     data_dir = os.path.join(os.path.dirname(__file__))
 
     # Query VCC for all real functions from all contexts.
-    vcc_path = os.path.join(HFS, "bin", "vcc")
+    vcc_path = os.path.join(HFS, 'bin', 'vcc')
     sigs = vcc_sigs(vcc_path)
 
     # Get signatures with argument names from help and overrides file.
-    docfiles_path  = os.path.join(HFS, "houdini", "help", "vex", "functions")
-    overrides_path = os.path.join(data_dir, "overrides.vfl")
+    docfiles_path  = os.path.join(HFS, 'houdini', 'help', 'vex', 'functions')
+    overrides_path = os.path.join(data_dir, 'overrides.vfl')
     docsigs = parse_sigs(docfiles_path, overrides_path)
 
     # Fill real functions with argument names.
     sigs = fill_sigs(sigs, docsigs)
 
     # Write sigs to disc.
-    sigs_out_path = os.path.join(data_dir, "signatures.vfl")
+    sigs_out_path = os.path.join(data_dir, 'signatures.vfl')
     write_sigs(sigs_out_path, sigs)
 
     # Generate completions file.
-    comps_out_path = os.path.join(data_dir, "functions.sublime-completions")
+    comps_out_path = os.path.join(data_dir, 'functions.sublime-completions')
     write_comps(comps_out_path, sigs)

@@ -86,6 +86,10 @@
             "contents": "addvertexattrib(${1:geohandle}, ${2:name}, ${3:defvalue}, ${4:typeinfo=\"\"})"
         },
         {
+            "trigger": "addvisualizer(geohandle, visualizer)",
+            "contents": "addvisualizer(${1:geohandle}, ${2:visualizer})"
+        },
+        {
             "trigger": "agentaddclip(geohandle, prim, clipname, clippath, keepref)",
             "contents": "agentaddclip(${1:geohandle}, ${2:prim}, ${3:clipname}, ${4:clippath}, ${5:keepref})"
         },
@@ -178,12 +182,12 @@
             "contents": "agentcurrentlayer(${1:opinput}, ${2:prim})"
         },
         {
-            "trigger": "agentlayerbindings(geometry, prim, layername, shapelist)",
-            "contents": "agentlayerbindings(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapelist})"
+            "trigger": "agentlayerbindings(geometry, prim, layername, shapetype)",
+            "contents": "agentlayerbindings(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapetype})"
         },
         {
-            "trigger": "agentlayerbindings(opinput, prim, layername, shapelist)",
-            "contents": "agentlayerbindings(${1:opinput}, ${2:prim}, ${3:layername}, ${4:shapelist})"
+            "trigger": "agentlayerbindings(opinput, prim, layername, shapetype)",
+            "contents": "agentlayerbindings(${1:opinput}, ${2:prim}, ${3:layername}, ${4:shapetype})"
         },
         {
             "trigger": "agentlayers(geometry, prim)",
@@ -194,12 +198,20 @@
             "contents": "agentlayers(${1:opinput}, ${2:prim})"
         },
         {
-            "trigger": "agentlayershapes(geometry, prim, layername, shapelist)",
-            "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapelist})"
+            "trigger": "agentlayershapes(geometry, prim, layername, shapetype)",
+            "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapetype})"
         },
         {
-            "trigger": "agentlayershapes(opinput, prim, layername, shapelist)",
-            "contents": "agentlayershapes(${1:opinput}, ${2:prim}, ${3:layername}, ${4:shapelist})"
+            "trigger": "agentlayershapes(geometry, prim, layername, transform)",
+            "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layername}, ${4:transform})"
+        },
+        {
+            "trigger": "agentlayershapes(opinput, prim, layername, shapetype)",
+            "contents": "agentlayershapes(${1:opinput}, ${2:prim}, ${3:layername}, ${4:shapetype})"
+        },
+        {
+            "trigger": "agentlayershapes(opinput, prim, layername, transform)",
+            "contents": "agentlayershapes(${1:opinput}, ${2:prim}, ${3:layername}, ${4:transform})"
         },
         {
             "trigger": "agentlocaltransform(geometry, prim, transform)",
@@ -350,6 +362,10 @@
             "contents": "asin(${1:value})"
         },
         {
+            "trigger": "assert_enabled()",
+            "contents": "assert_enabled()"
+        },
+        {
             "trigger": "assign(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, source)",
             "contents": "assign(${1:c1}, ${2:c2}, ${3:c3}, ${4:c4}, ${5:c5}, ${6:c6}, ${7:c7}, ${8:c8}, ${9:c9}, ${10:c10}, ${11:c11}, ${12:c12}, ${13:c13}, ${14:c14}, ${15:c15}, ${16:c16}, ${17:source})"
         },
@@ -394,6 +410,22 @@
             "contents": "atten(${1:attenuation}, ${2:distance})"
         },
         {
+            "trigger": "attrib(geometry, attribclass, name, elemnum)",
+            "contents": "attrib(${1:geometry}, ${2:attribclass}, ${3:name}, ${4:elemnum})"
+        },
+        {
+            "trigger": "attrib(input, attribclass, name, elemnum)",
+            "contents": "attrib(${1:input}, ${2:attribclass}, ${3:name}, ${4:elemnum})"
+        },
+        {
+            "trigger": "attribclass(geometry, attribute_name)",
+            "contents": "attribclass(${1:geometry}, ${2:attribute_name})"
+        },
+        {
+            "trigger": "attribclass(opinput, attribute_name)",
+            "contents": "attribclass(${1:opinput}, ${2:attribute_name})"
+        },
+        {
             "trigger": "attribsize(geometry, attribute_class, attribute_name)",
             "contents": "attribsize(${1:geometry}, ${2:attribute_class}, ${3:attribute_name})"
         },
@@ -420,10 +452,6 @@
         {
             "trigger": "avg(a, b, ...)",
             "contents": "avg(${1:a}, ${2:b}, ${3:...})"
-        },
-        {
-            "trigger": "avg(arr)",
-            "contents": "avg(${1:arr})"
         },
         {
             "trigger": "avg(v)",
@@ -1018,6 +1046,10 @@
             "contents": "exp(${1:value})"
         },
         {
+            "trigger": "expand_udim(u, v, path, ...)",
+            "contents": "expand_udim(${1:u}, ${2:v}, ${3:path}, ${4:...})"
+        },
+        {
             "trigger": "expandpointgroup(filename, groupname)",
             "contents": "expandpointgroup(${1:filename}, ${2:groupname})"
         },
@@ -1202,8 +1234,52 @@
             "contents": "frontface(${1:N}, ${2:I}, ${3:Nref})"
         },
         {
+            "trigger": "fuzzify(ramp_basis, ramp_values, ramp_positions, crisp_value, min_value, max_value)",
+            "contents": "fuzzify(${1:ramp_basis}, ${2:ramp_values}, ${3:ramp_positions}, ${4:crisp_value}, ${5:min_value}, ${6:max_value})"
+        },
+        {
+            "trigger": "fuzzy_and(v1, v2, ...)",
+            "contents": "fuzzy_and(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
+            "trigger": "fuzzy_defuzz_centroid(aggregated_membership, min_value, max_value)",
+            "contents": "fuzzy_defuzz_centroid(${1:aggregated_membership}, ${2:min_value}, ${3:max_value})"
+        },
+        {
+            "trigger": "fuzzy_nand(v1, v2, ...)",
+            "contents": "fuzzy_nand(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
+            "trigger": "fuzzy_nor(v1, v2, ...)",
+            "contents": "fuzzy_nor(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
+            "trigger": "fuzzy_not(v)",
+            "contents": "fuzzy_not(${1:v})"
+        },
+        {
+            "trigger": "fuzzy_nxor(v1, v2, ...)",
+            "contents": "fuzzy_nxor(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
+            "trigger": "fuzzy_or(v1, v2, ...)",
+            "contents": "fuzzy_or(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
+            "trigger": "fuzzy_xor(v1, v2, ...)",
+            "contents": "fuzzy_xor(${1:v1}, ${2:v2}, ${3:...})"
+        },
+        {
             "trigger": "geoself()",
             "contents": "geoself()"
+        },
+        {
+            "trigger": "getattrib(geometry, attribclass, name, elemnum, success)",
+            "contents": "getattrib(${1:geometry}, ${2:attribclass}, ${3:name}, ${4:elemnum}, ${5:success})"
+        },
+        {
+            "trigger": "getattrib(input, attribclass, name, elemnum, success)",
+            "contents": "getattrib(${1:input}, ${2:attribclass}, ${3:name}, ${4:elemnum}, ${5:success})"
         },
         {
             "trigger": "getattribute(geometry, value, attribute_class, attribute_name, number, vertex_number)",
@@ -1346,6 +1422,14 @@
             "contents": "getscope(${1:mat}, ${2:raystyle}, ${3:scope}, ${4:categories})"
         },
         {
+            "trigger": "getsmoothP(...)",
+            "contents": "getsmoothP(${1:...})"
+        },
+        {
+            "trigger": "getsmoothP(smoothP, foo, ...)",
+            "contents": "getsmoothP(${1:smoothP}, ${2:foo}, ${3:...})"
+        },
+        {
             "trigger": "getspace(fromspace, tospace)",
             "contents": "getspace(${1:fromspace}, ${2:tospace})"
         },
@@ -1370,8 +1454,20 @@
             "contents": "hair(${1:N}, ${2:tip}, ${3:lobe_shift}, ${4:lobe_width_lon}, ${5:lobe_with_azi}, ${6:glint_shift}, ${7:glint_intensity}, ${8:...})"
         },
         {
+            "trigger": "hasattrib(geometry, attribute_class, attribute_name)",
+            "contents": "hasattrib(${1:geometry}, ${2:attribute_class}, ${3:attribute_name})"
+        },
+        {
+            "trigger": "hasattrib(opinput, attribute_class, attribute_name)",
+            "contents": "hasattrib(${1:opinput}, ${2:attribute_class}, ${3:attribute_name})"
+        },
+        {
             "trigger": "hasdetailattrib(geometry, attribute_name)",
             "contents": "hasdetailattrib(${1:geometry}, ${2:attribute_name})"
+        },
+        {
+            "trigger": "hasdetailattrib(opinput, attribute_name)",
+            "contents": "hasdetailattrib(${1:opinput}, ${2:attribute_name})"
         },
         {
             "trigger": "haslight(mat, P, light, ...)",
@@ -1582,6 +1678,22 @@
             "contents": "ident()"
         },
         {
+            "trigger": "idtopoint(file, id)",
+            "contents": "idtopoint(${1:file}, ${2:id})"
+        },
+        {
+            "trigger": "idtopoint(opinput, id)",
+            "contents": "idtopoint(${1:opinput}, ${2:id})"
+        },
+        {
+            "trigger": "idtoprim(file, id)",
+            "contents": "idtoprim(${1:file}, ${2:id})"
+        },
+        {
+            "trigger": "idtoprim(opinput, id)",
+            "contents": "idtoprim(${1:opinput}, ${2:id})"
+        },
+        {
             "trigger": "iend(input_number)",
             "contents": "iend(${1:input_number})"
         },
@@ -1724,6 +1836,14 @@
         {
             "trigger": "invert(mat)",
             "contents": "invert(${1:mat})"
+        },
+        {
+            "trigger": "invertexgroup(filename, groupname, vertexnum)",
+            "contents": "invertexgroup(${1:filename}, ${2:groupname}, ${3:vertexnum})"
+        },
+        {
+            "trigger": "invertexgroup(input, groupname, vertexnum)",
+            "contents": "invertexgroup(${1:input}, ${2:groupname}, ${3:vertexnum})"
         },
         {
             "trigger": "iplaneindex(input_number, planename)",
@@ -1974,10 +2094,6 @@
             "contents": "max(${1:a}, ${2:b}, ${3:...})"
         },
         {
-            "trigger": "max(arr)",
-            "contents": "max(${1:arr})"
-        },
-        {
             "trigger": "max(value1, value2, ...)",
             "contents": "max(${1:value1}, ${2:value2}, ${3:...})"
         },
@@ -2018,10 +2134,6 @@
             "contents": "min(${1:a}, ${2:b}, ${3:...})"
         },
         {
-            "trigger": "min(arr)",
-            "contents": "min(${1:arr})"
-        },
-        {
             "trigger": "min(value1, value2, ...)",
             "contents": "min(${1:value1}, ${2:value2}, ${3:...})"
         },
@@ -2048,6 +2160,22 @@
         {
             "trigger": "mspace(P)",
             "contents": "mspace(${1:P})"
+        },
+        {
+            "trigger": "nametopoint(file, name)",
+            "contents": "nametopoint(${1:file}, ${2:name})"
+        },
+        {
+            "trigger": "nametopoint(opinput, name)",
+            "contents": "nametopoint(${1:opinput}, ${2:name})"
+        },
+        {
+            "trigger": "nametoprim(file, name)",
+            "contents": "nametoprim(${1:file}, ${2:name})"
+        },
+        {
+            "trigger": "nametoprim(opinput, name)",
+            "contents": "nametoprim(${1:opinput}, ${2:name})"
         },
         {
             "trigger": "nbouncetypes()",
@@ -2198,12 +2326,12 @@
             "contents": "nprimitives(${1:filename})"
         },
         {
-            "trigger": "nprimitives(input)",
-            "contents": "nprimitives(${1:input})"
+            "trigger": "nprimitives(input_number)",
+            "contents": "nprimitives(${1:input_number})"
         },
         {
-            "trigger": "nprimitivesgroup(filename, groupname)",
-            "contents": "nprimitivesgroup(${1:filename}, ${2:groupname})"
+            "trigger": "nprimitivesgroup(geometry, groupname)",
+            "contents": "nprimitivesgroup(${1:geometry}, ${2:groupname})"
         },
         {
             "trigger": "nprimitivesgroup(input, groupname)",
@@ -2238,6 +2366,22 @@
             "contents": "nuniqueval(${1:opinput}, ${2:class}, ${3:attribute_name})"
         },
         {
+            "trigger": "nvertices(filename)",
+            "contents": "nvertices(${1:filename})"
+        },
+        {
+            "trigger": "nvertices(input_number)",
+            "contents": "nvertices(${1:input_number})"
+        },
+        {
+            "trigger": "nverticesgroup(filename, groupname)",
+            "contents": "nverticesgroup(${1:filename}, ${2:groupname})"
+        },
+        {
+            "trigger": "nverticesgroup(input, groupname)",
+            "contents": "nverticesgroup(${1:input}, ${2:groupname})"
+        },
+        {
             "trigger": "occlusion(coverage, missed_direction, P, N, ...)",
             "contents": "occlusion(${1:coverage}, ${2:missed_direction}, ${3:P}, ${4:N}, ${5:...})"
         },
@@ -2254,8 +2398,20 @@
             "contents": "onoise(${1:pos}, ${2:turbulence}, ${3:rough}, ${4:atten})"
         },
         {
+            "trigger": "opdigits()",
+            "contents": "opdigits()"
+        },
+        {
+            "trigger": "opdigits(str)",
+            "contents": "opdigits(${1:str})"
+        },
+        {
             "trigger": "opend(operation_id)",
             "contents": "opend(${1:operation_id})"
+        },
+        {
+            "trigger": "opfullpath(relative_path)",
+            "contents": "opfullpath(${1:relative_path})"
         },
         {
             "trigger": "opstart(message)",
@@ -2464,6 +2620,22 @@
         {
             "trigger": "pcwrite(filename, ...)",
             "contents": "pcwrite(${1:filename}, ${2:...})"
+        },
+        {
+            "trigger": "pgfind(filename, P, radius, maxpoints, divsize)",
+            "contents": "pgfind(${1:filename}, ${2:P}, ${3:radius}, ${4:maxpoints}, ${5:divsize})"
+        },
+        {
+            "trigger": "pgfind(filename, ptgroup, P, radius, maxpoints, divsize)",
+            "contents": "pgfind(${1:filename}, ${2:ptgroup}, ${3:P}, ${4:radius}, ${5:maxpoints}, ${6:divsize})"
+        },
+        {
+            "trigger": "pgfind(inputnum, P, radius, maxpoints, divsize)",
+            "contents": "pgfind(${1:inputnum}, ${2:P}, ${3:radius}, ${4:maxpoints}, ${5:divsize})"
+        },
+        {
+            "trigger": "pgfind(inputnum, ptgroup, P, radius, maxpoints, divsize)",
+            "contents": "pgfind(${1:inputnum}, ${2:ptgroup}, ${3:P}, ${4:radius}, ${5:maxpoints}, ${6:divsize})"
         },
         {
             "trigger": "phong(exponent, ...)",
@@ -2774,8 +2946,16 @@
             "contents": "primvertices(${1:opinput}, ${2:primnum})"
         },
         {
+            "trigger": "print_once(msg, ...)",
+            "contents": "print_once(${1:msg}, ${2:...})"
+        },
+        {
             "trigger": "printf(format, ...)",
             "contents": "printf(${1:format}, ${2:...})"
+        },
+        {
+            "trigger": "product(v)",
+            "contents": "product(${1:v})"
         },
         {
             "trigger": "ptexture(map, face_id, ...)",
@@ -3050,6 +3230,10 @@
             "contents": "refractlight(${1:cf}, ${2:of}, ${3:af}, ${4:P}, ${5:N}, ${6:I}, ${7:eta}, ${8:bias}, ${9:max_contrib}, ${10:...})"
         },
         {
+            "trigger": "relativepath(src, dest)",
+            "contents": "relativepath(${1:src}, ${2:dest})"
+        },
+        {
             "trigger": "relbbox(filename, position)",
             "contents": "relbbox(${1:filename}, ${2:position})"
         },
@@ -3108,6 +3292,10 @@
         {
             "trigger": "reorder(value, indices)",
             "contents": "reorder(${1:value}, ${2:indices})"
+        },
+        {
+            "trigger": "resample_linear(input, new_length)",
+            "contents": "resample_linear(${1:input}, ${2:new_length})"
         },
         {
             "trigger": "resize(array, size)",
@@ -3172,6 +3360,10 @@
         {
             "trigger": "sample_bsdf(b, viewer, out_vector, eval, type, sx, sy, mask, ...)",
             "contents": "sample_bsdf(${1:b}, ${2:viewer}, ${3:out_vector}, ${4:eval}, ${5:type}, ${6:sx}, ${7:sy}, ${8:mask}, ${9:...})"
+        },
+        {
+            "trigger": "sample_cauchy(foo, bar)",
+            "contents": "sample_cauchy(${1:foo}, ${2:bar})"
         },
         {
             "trigger": "sample_cauchy(origscale, minvalue, maxvalue, u)",
@@ -3418,8 +3610,8 @@
             "contents": "setagentworldtransforms(${1:geohandle}, ${2:prim}, ${3:transforms})"
         },
         {
-            "trigger": "setattrib(geohandle, attribtype, name, primorpt, vtx, value, mode)",
-            "contents": "setattrib(${1:geohandle}, ${2:attribtype}, ${3:name}, ${4:primorpt}, ${5:vtx}, ${6:value}, ${7:mode})"
+            "trigger": "setattrib(geohandle, attribclass, name, elemnum, vtxofprim, value, mode)",
+            "contents": "setattrib(${1:geohandle}, ${2:attribclass}, ${3:name}, ${4:elemnum}, ${5:vtxofprim}, ${6:value}, ${7:mode})"
         },
         {
             "trigger": "setattribtypeinfo(geohandle, attribtype, name, typeinfo)",
@@ -3496,6 +3688,14 @@
         {
             "trigger": "setvertexattrib(geohandle, name, prim, vtx, value, mode=\"set\")",
             "contents": "setvertexattrib(${1:geohandle}, ${2:name}, ${3:prim}, ${4:vtx}, ${5:value}, ${6:mode=\"set\"})"
+        },
+        {
+            "trigger": "setvertexgroup(geohandle, name, prim, vtx, value, mode)",
+            "contents": "setvertexgroup(${1:geohandle}, ${2:name}, ${3:prim}, ${4:vtx}, ${5:value}, ${6:mode})"
+        },
+        {
+            "trigger": "setvertexgroup(geohandle, name, vtx, value, mode=\"set\")",
+            "contents": "setvertexgroup(${1:geohandle}, ${2:name}, ${3:vtx}, ${4:value}, ${5:mode=\"set\"})"
         },
         {
             "trigger": "shadow(Cl)",
@@ -3578,6 +3778,10 @@
             "contents": "smooth(${1:value1}, ${2:value2}, ${3:amount}, ${4:rolloff})"
         },
         {
+            "trigger": "smoothrotation(order, r, r_reference)",
+            "contents": "smoothrotation(${1:order}, ${2:r}, ${3:r_reference})"
+        },
+        {
             "trigger": "snoise(pos)",
             "contents": "snoise(${1:pos})"
         },
@@ -3634,6 +3838,10 @@
             "contents": "spline(${1:basis}, ${2:t}, ${3:v0}, ${4:...})"
         },
         {
+            "trigger": "split(bsdf_undocumented)",
+            "contents": "split(${1:bsdf_undocumented})"
+        },
+        {
             "trigger": "split(s)",
             "contents": "split(${1:s})"
         },
@@ -3646,6 +3854,10 @@
             "contents": "split(${1:s}, ${2:separators}, ${3:maxsplits})"
         },
         {
+            "trigger": "splitpath(fullpath, dir, name)",
+            "contents": "splitpath(${1:fullpath}, ${2:dir}, ${3:name})"
+        },
+        {
             "trigger": "sprintf(format, ...)",
             "contents": "sprintf(${1:format}, ${2:...})"
         },
@@ -3654,8 +3866,8 @@
             "contents": "sqrt(${1:value})"
         },
         {
-            "trigger": "startswith(str, endswith)",
-            "contents": "startswith(${1:str}, ${2:endswith})"
+            "trigger": "startswith(str, startswith)",
+            "contents": "startswith(${1:str}, ${2:startswith})"
         },
         {
             "trigger": "storelightexport(lightname, exportname, value)",
@@ -3672,6 +3884,10 @@
         {
             "trigger": "strlen(string)",
             "contents": "strlen(${1:string})"
+        },
+        {
+            "trigger": "sum(v)",
+            "contents": "sum(${1:v})"
         },
         {
             "trigger": "switch(direct, indirect)",
@@ -3816,6 +4032,10 @@
         {
             "trigger": "upush(array, value)",
             "contents": "upush(${1:array}, ${2:value})"
+        },
+        {
+            "trigger": "uvunwrap(u, v, time, P, I)",
+            "contents": "uvunwrap(${1:u}, ${2:v}, ${3:time}, ${4:P}, ${5:I})"
         },
         {
             "trigger": "variance(variable, mean, sample_size)",

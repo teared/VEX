@@ -1166,6 +1166,10 @@
             "contents": "quintic()"
         },
         {
+            "trigger": "raw()",
+            "contents": "raw()"
+        },
+        {
             "trigger": "rad(number)",
             "contents": "rad(${1:float number})"
         },
@@ -1228,6 +1232,10 @@
         {
             "trigger": "scale(sx, sy, sz)",
             "contents": "scale(${1:float sx}, ${2:float sy}, ${3:float sz})"
+        },
+        {
+            "trigger": "seampoints(surface_node, whichside)",
+            "contents": "seampoints(${1:string surface_node}, ${2:float whichside})"
         },
         {
             "trigger": "seqanim(compositing_node)",

@@ -14,14 +14,17 @@ patterns:
 - include: '#function'
 - include: '#backticks'
 
-- name: constant.numeric.floating.left.vex
-  match: (?!\d)\.[0-9]+\b
+- name: constant.numeric.dec.vex
+  match: (?<!\w|\.)((\.[0-9][0-9_]*|[0-9][0-9_]*\.|([0-9]+|[0-9][0-9_]*[0-9])\.[0-9][0-9_]*)f?|([1-9]|0_)[0-9_]*|0)([eE][\+-]?[0-9]+)?(?!\w|\.)
 
-- name: constant.numeric.floating.right.vex
-  match: \b[0-9]\.(?!\d)
+- name: constant.numeric.bin.vex
+  match: \b(0b[01][01_]*)\b
 
-- name: constant.numeric.vex
-  match: \b(0[xX][0-9a-fA-F]+|([0-9]+\.?[0-9]*|\.[0-9]+)([eE][\+-]?[0-9]+)?)\b
+- name: constant.numeric.oct.vex
+  match: \b(0+[0-7][0-7_]*)\b
+
+- name: constant.numeric.hex.vex
+  match: \b(0[xX][0-9a-fA-F][0-9a-fA-F_]*)\b
 
 - name: constant.language.vex
   match: \b(false|true)\b
@@ -29,11 +32,6 @@ patterns:
 - name: keyword.control.vex
   match: \b(break|continue|do|else|foreach|forpoints|for|gather|if|illuminance|import(?!\s*\()|return|while)\b
 
-- name: keyword.ternary.vex
-  match: (\?|:)
-
-# - name: keyword.operator.dereference.vex
-#   match: (\.)(?=[A-Za-z_]\w*)
 # - name: keyword.operator.assignment.vex
 #   match: (\-|\+|\*|\/|%|&|\||\^)?=
 # - name: keyword.operator.comparison.vex
@@ -46,31 +44,23 @@ patterns:
 #   match: (!|&&|\|\|)
 # - name: keyword.operator.bitwise.vex
 #   match: (~|&|\||\^)
-
-- name: storage.type.struct.vex
-  match: \b(struct)\b
+- name: keyword.operator.ternary.vex
+  match: (\?|:)
 
 - name: storage.modifier.vex
   match: \b(const|export)\b
 
 - name: storage.type.vex
-  match: \b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\b
+  match: \b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface|struct)\b
+
+- name: support.function.lib.vex
+  match: \b(abs|accessframe|acos|addattribute|addattrib|adddetailattrib|addgroup|addpointattrib|addpoint|addprimattrib|addprim|addvariablename|addvertexattrib|addvertex|addvisualizer|agentaddclip|agentclipcatalog|agentcliplength|agentclipnames|agentclipsamplelocal|agentclipsampleworld|agentcliptimes|agentclipweights|agentcollisionlayer|agentcurrentlayer|agentlayerbindings|agentlayershapes|agentlayers|agentlocaltransforms|agentlocaltransform|agentrigchildren|agentrigfind|agentrigparent|agenttransformcount|agenttransformnames|agenttransformtolocal|agenttransformtoworld|agentworldtransforms|agentworldtransform|albedo|alphaname|ambient|anoise|append|area|argsort|arraylength|array|ashikhmin|asin|assert_enabled|assign|atan2|atan|atof|atoi|atten|attribclass|attribsize|attribtypeinfo|attribtype|attrib|avg|binput|blackbody|blinnBRDF|blinn|bouncelabel|bouncemask|bumpmapA|bumpmapB|bumpmapG|bumpmapL|bumpmapR|bumpmap|bumpname|cbrt|ceil|ch3|ch4|chendf|chendt|chend|chf|chinput|chi|chname|chnumchan|chp|chramp|chrate|chr|chsraw|chstartf|chstartt|chstart|chs|chv|ch|cinput|ckspline|clamp|clip|colormap|colorname|computenormal|concat|cone|cosh|cos|cracktransform|cross|cspline|ctransform|curlnoise2d|curlnoise|curlxnoise2d|curlxnoise|cvex_bsdf|degrees|depthmap|depthname|detailattribsize|detailattribtypeinfo|detailattribtype|detailattrib|detailintrinsic|detail|determinant|diffuseBRDF|diffuse|dihedral|dimport|distance2|distance|dot|dsmpixel|Du|Dv|Dw|eigenvalues|emission_bsdf|endswith|environment|erf_inv|erfc|erf|eulertoquaternion|eval_bsdf|expand_udim|expandpointgroup|expandprimgroup|exp|fastshadow|filamentsample|file_eof|file_flush|file_open|file_readlines|file_readline|file_read|file_seek|file_size|file_stat|file_tell|file_writelines|file_writeline|file_write|filtershadow|filterstep|findattribvalcount|findattribval|find|finput|fit01|fit10|fit11|fit|floor|flownoise|flowpnoise|foreach|forpoints|frac|fresnel|fromNDC|frontface|fuzzify|fuzzy_and|fuzzy_defuzz_centroid|fuzzy_nand|fuzzy_nor|fuzzy_not|fuzzy_nxor|fuzzy_or|fuzzy_xor|gather|geoself|getattribute|getattrib|getbbox|getblurP|getbounces|getbounds|getcomponents|getcomp|getfogname|getglobalraylevel|getlightid|getlightname|getlightscope|getlights|getlight|getmaterial|getobjectname|getphotonlight|getpointbbox|getprimid|getptextureid|getraylevel|getrayweight|getscope|getsmoothP|getspace|gradient3d|gradient|hair|hasattrib|hasdetailattrib|haslight|hasplane|haspointattrib|hasprimattrib|hasvertexattrib|hedge_dstpoint|hedge_dstvertex|hedge_equivcount|hedge_isequiv|hedge_isprimary|hedge_isvalid|hedge_nextequiv|hedge_next|hedge_postdstpoint|hedge_postdstvertex|hedge_presrcpoint|hedge_presrcvertex|hedge_prev|hedge_primary|hedge_prim|hedge_srcpoint|hedge_srcvertex|henyeygreenstein|hscript_noise|hscript_rand|hscript_snoise|hscript_sturb|hscript_turb|hsvtorgb|iaspect|ichname|ident|idtopoint|idtoprim|iendtime|iend|ihasplane|illuminance|importance_light|import|ingroup|inpointgroup|inprimgroup|insert|instance|integrate3dClip|integrate3d|interpolate|intersect3d|intersect_all|intersect_lights|intersect|inumplanes|invertexgroup|invert|iplaneindex|iplanename|iplanesize|irate|irradiance|isalpha|isbound|isconnected|isdigit|isfinite|isfogray|isframes|isnan|isotropic|israytracing|issamples|isseconds|isshadowray|istarttime|istart|istracing|isuvrendering|isvalidindex|isvarying|itoa|ixres|iyres|join|kspline|length2|length|len|lerp|lightid|limit_sample_space|limport|lkspline|log10|log|lookat|lspline|lstrip|luminance|lumname|makebasis|maketransform|maskname|matchvex_blinn|matchvex_specular|match|mattrib|max|mdensity|metaimport|metamarch|metanext|metastart|metaweight|minpos|min|mspace|nametopoint|nametoprim|nbouncetypes|nearpoints|nearpoint|neighbourcount|neighbours|neighbour|newgroup|newsampler|nextsample|ninput|noised|noise|normal_bsdf|normalize|normalname|npointsgroup|npoints|nprimitivesgroup|nprimitives|nrandom|ntransform|nuniqueval|nverticesgroup|nvertices|occlusion|onoise|opdigits|opdigits|opend|opstart|optransform|ord|osd_facecount|osd_firstpatch|osd_limitsurfacevertex|osd_limitsurface|osd_patchcount|osd_patches|outerproduct|ow_nspace|ow_space|ow_vspace|pack_inttosafefloat|pathtrace|pcclose|pcconvex|pcexport|pcfarthest|pcfilter|pcfind_radius|pcfind|pcgenerate|pcimportbyidx3|pcimportbyidx4|pcimportbyidxf|pcimportbyidxi|pcimportbyidxp|pcimportbyidxs|pcimportbyidxv|pcimport|pciterate|pcnumfound|pcopenlod|pcopen|pcsampleleaf|pcsize|pcunshaded|pcwrite|pgfind|phongBRDF|phonglobe|phong|photonmap|planeindex|planename|planesize|pluralize|pnoise|pointattribsize|pointattribtypeinfo|pointattribtype|pointattrib|pointedge|pointhedgenext|pointhedge|pointname|pointprims|pointvertex|pointvertices|point|polardecomp|pop|pow|prim_attribute|prim_normal|primattribsize|primattribtypeinfo|primattribtype|primattrib|primhedge|primintrinsic|primpoints|primpoint|primuv|primvertexcount|primvertex|primvertices|prim|print_once|printf|product|ptexture|ptlined|ptransform|push|qconvert|qdistance|qinvert|qmultiply|qrotate|quaternion|radians|random_fhash|random_ihash|random_shash|random_sobol|random|rand|rawbumpmapA|rawbumpmapB|rawbumpmapG|rawbumpmapL|rawbumpmapR|rawbumpmap|rawcolormap|rayhittest|rayimport|re_findall|re_find|re_match|re_replace|re_split|reflectlight|reflect|refractlight|refract|relativepath|relbbox|relpointbbox|removegroup|removeindex|removepoint|removeprim|removevalue|renderstate|reorder|resample_linear|resize|resolvemissedray|reverse|rgbtohsv|rgbtoxyz|rint|rotate_x_to|rotate|rstrip|sample_bsdf|sample_cauchy|sample_circle_arc|sample_circle_edge_uniform|sample_circle_slice|sample_circle_uniform|sample_direction_cone|sample_direction_uniform|sample_discrete|sample_exponential|sample_geometry|sample_hemisphere|sample_hypersphere_cone|sample_hypersphere_uniform|sample_light|sample_lognormal_by_median|sample_lognormal|sample_normal|sample_orientation_cone|sample_orientation_uniform|sample_photon|sample_sphere_cone|sample_sphere_uniform|sampledisk|scale|select|sensor_panorama_create|sensor_panorama_getcolor|sensor_panorama_getcone|sensor_panorama_getdepth|sensor_save|serialize|setagentclipnames|setagentcliptimes|setagentclipweights|setagentcollisionlayer|setagentcurrentlayer|setagentlocaltransforms|setagentlocaltransform|setagentworldtransforms|setagentworldtransform|setattribtypeinfo|setattrib|setcomp|setcurrentlight|setdetailattrib|setpointattrib|setpointgroup|setprimattrib|setprimgroup|setprimintrinsic|setprimvertex|setvertexattrib|setvertexgroup|set|shadow_light|shadowmap|shadow|shimport|shl|shrz|shr|sign|simport|sinh|sin|sleep|slerp|slice|smoothrotation|smooth|snoise|solvecubic|solvepoly|solvequadratic|sort|specularBRDF|specular|spline|splitpath|split|sprintf|sqrt|startswith|storelightexport|strip|strlen|sum|switch|swizzle|tanh|tan|tet_adjacent|tet_faceindex|teximport|texprintf|texture3dBox|texture3d|texture|titlecase|tolower|toNDC|toupper|trace|translate|translucent|transpose|trunc|tw_nspace|tw_space|tw_vspace|uniqueval|unpack_intfromsafefloat|unserialize|upush|uvunwrap|variance|velocityname|vertexattribsize|vertexattribtypeinfo|vertexattribtype|vertexattrib|vertexhedge|vertexindex|vertexnext|vertexpoint|vertexprev|vertexprimindex|vertexprim|vertex|vnoise|volumegradient|volumeindexorigin|volumeindextopos|volumeindexv|volumeindex|volumepostoindex|volumeres|volumesamplev|volumesample|volume|vtransform|wireblinn|wirediffuse|wnoise|wo_nspace|wo_space|wo_vspace|writepixel|wt_nspace|wt_space|wt_vspace|xnoised|xnoise|xyzdist|xyztorgb)\b(?=\s*\()
 
 - name: support.constant.vex
   match: \b(__vex|__vex_major|__vex_minor|__vex_build|__vex_patch|__LINE__|__FILE__|__DATE__|__TIME__)\b
 
-- name: support.type.vex
-  match: \b(chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface)\b
-
-- name: support.function.lib.vex
-  match: \b(abs|accessframe|acos|addattrib|addattribute|adddetailattrib|addgroup|addpoint|addpointattrib|addprim|addprimattrib|addvariablename|addvertex|addvertexattrib|agentclipcatalog|agentaddclip|agentcliplength|agentclipnames|agentclipsamplelocal|agentclipsampleworld|agentcliptimes|agentclipweights|agentcollisionlayer|agentcurrentlayer|agentlayerbindings|agentlayers|agentlayershapes|agentlocaltransform|agentlocaltransforms|agentrigchildren|agentrigfind|agentrigparent|agenttransformcount|agenttransformnames|agenttransformtolocal|agenttransformtoworld|agentworldtransform|agentworldtransforms|albedo|alphaname|ambient|anoise|append|area|argsort|array|arraylength|ashikhmin|asin|assign|atan|atan2|atof|atoi|atten|attribsize|attribtype|attribtypeinfo|avg|binput|blackbody|blinn|blinnBRDF|bouncelabel|bouncemask|bumpmap|bumpmapA|bumpmapB|bumpmapG|bumpmapL|bumpmapR|bumpname|cbrt|ceil|ch|ch3|ch4|chend|chendf|chendt|chf|chi|chinput|chname|chnumchan|chp|chr|chramp|chrate|chs|chsraw|chstart|chstartf|chstartt|chv|cinput|ckspline|clamp|clip|colormap|colorname|computenormal|concat|cone|cos|cosh|cracktransform|cross|cspline|ctransform|curlnoise|curlnoise2d|curlxnoise|curlxnoise2d|cvex_bsdf|degrees|depthmap|depthname|detail|detailattrib|detailattribsize|detailattribtype|detailattribtypeinfo|detailintrinsic|determinant|diffuse|diffuseBRDF|dihedral|dimport|distance|distance2|dot|dsmpixel|Du|Dv|Dw|eigenvalues|emission_bsdf|endswith|environment|erf|erf_inv|erfc|eulertoquaternion|eval_bsdf|exp|expandpointgroup|expandprimgroup|fastshadow|filamentsample|file_eof|file_flush|file_open|file_read|file_readline|file_readlines|file_seek|file_size|file_stat|file_tell|file_write|file_writeline|file_writelines|filtershadow|filterstep|find|findattribval|findattribvalcount|finput|fit|fit01|fit10|fit11|floor|flownoise|flowpnoise|foreach|forpoints|frac|fresnel|fromNDC|frontface|gather|geoself|getattribute|getbbox|getblurP|getbounces|getbounds|getcomp|getcomponents|getfogname|getglobalraylevel|getlight|getlightid|getlightname|getlights|getlightscope|getmaterial|getobjectname|getphotonlight|getpointbbox|getprimid|getptextureid|getraylevel|getrayweight|getscope|getspace|gradient|gradient3d|hair|hasdetailattrib|haslight|hasplane|haspointattrib|hasprimattrib|hasvertexattrib|hedge_dstpoint|hedge_dstvertex|hedge_equivcount|hedge_isequiv|hedge_isprimary|hedge_isvalid|hedge_next|hedge_nextequiv|hedge_postdstpoint|hedge_postdstvertex|hedge_presrcpoint|hedge_presrcvertex|hedge_prev|hedge_prim|hedge_primary|hedge_srcpoint|hedge_srcvertex|henyeygreenstein|hscript_noise|hscript_rand|hscript_snoise|hscript_sturb|hscript_turb|hsvtorgb|iaspect|ichname|ident|iend|iendtime|ihasplane|illuminance|import|importance_light|ingroup|inpointgroup|inprimgroup|insert|instance|integrate3d|integrate3dClip|interpolate|intersect|intersect3d|intersect_all|intersect_lights|inumplanes|invert|iplaneindex|iplanename|iplanesize|irate|irradiance|isalpha|isbound|isconnected|isdigit|isfinite|isfogray|isframes|isnan|isotropic|israytracing|issamples|isseconds|isshadowray|istart|istarttime|istracing|isuvrendering|isvalidindex|isvarying|itoa|ixres|iyres|join|kspline|len|length|length2|lerp|lightid|limit_sample_space|limport|lkspline|log|log10|lookat|lspline|lstrip|luminance|lumname|makebasis|maketransform|maskname|match|matchvex_blinn|matchvex_specular|mattrib|max|mdensity|metaimport|metamarch|metanext|metastart|metaweight|min|minpos|mspace|nbouncetypes|nearpoint|nearpoints|neighbour|neighbourcount|neighbours|newgroup|newsampler|nextsample|ninput|noise|noised|normal_bsdf|normalize|normalname|npoints|npointsgroup|nprimitives|nprimitivesgroup|nrandom|ntransform|nuniqueval|occlusion|onoise|opend|opstart|optransform|ord|osd_facecount|osd_firstpatch|osd_limitsurface|osd_limitsurfacevertex|osd_patchcount|osd_patches|outerproduct|ow_nspace|ow_space|ow_vspace|pack_inttosafefloat|pathtrace|pcclose|pcconvex|pcexport|pcfarthest|pcfilter|pcfind|pcfind_radius|pcgenerate|pcimport|pcimportbyidx3|pcimportbyidx4|pcimportbyidxf|pcimportbyidxi|pcimportbyidxp|pcimportbyidxs|pcimportbyidxv|pciterate|pcnumfound|pcopen|pcopenlod|pcsampleleaf|pcsize|pcunshaded|pcwrite|phong|phongBRDF|phonglobe|photonmap|planeindex|planename|planesize|pluralize|pnoise|point|pointattrib|pointattribsize|pointattribtype|pointattribtypeinfo|pointedge|pointhedge|pointhedgenext|pointname|pointprims|pointvertex|pointvertices|polardecomp|pop|pow|prim|prim_attribute|prim_normal|primattrib|primattribsize|primattribtype|primattribtypeinfo|primhedge|primintrinsic|primpoint|primpoints|primuv|primvertex|primvertexcount|primvertices|printf|ptexture|ptlined|ptransform|push|qconvert|qdistance|qinvert|qmultiply|qrotate|quaternion|radians|rand|random|random_fhash|random_ihash|random_shash|random_sobol|rawbumpmap|rawbumpmapA|rawbumpmapB|rawbumpmapG|rawbumpmapL|rawbumpmapR|rawcolormap|rayhittest|rayimport|re_find|re_findall|re_match|re_replace|re_split|reflect|reflectlight|refract|refractlight|relbbox|relpointbbox|removegroup|removeindex|removepoint|removeprim|removevalue|renderstate|reorder|resize|resolvemissedray|reverse|rgbtohsv|rgbtoxyz|rint|rotate|rotate_x_to|rstrip|sample_bsdf|sample_cauchy|sample_circle_arc|sample_circle_edge_uniform|sample_circle_slice|sample_circle_uniform|sample_direction_cone|sample_direction_uniform|sample_discrete|sample_exponential|sample_geometry|sample_hemisphere|sample_hypersphere_cone|sample_hypersphere_uniform|sample_light|sample_lognormal|sample_lognormal_by_median|sample_normal|sample_orientation_cone|sample_orientation_uniform|sample_photon|sample_sphere_cone|sample_sphere_uniform|sampledisk|scale|select|sensor_panorama_create|sensor_panorama_getcolor|sensor_panorama_getcone|sensor_panorama_getdepth|sensor_save|serialize|set|setagentclipnames|setagentcliptimes|setagentclipweights|setagentcollisionlayer|setagentcurrentlayer|setagentlocaltransform|setagentlocaltransforms|setagentworldtransform|setagentworldtransforms|setattrib|setattribtypeinfo|setcomp|setcurrentlight|setdetailattrib|setpointattrib|setpointgroup|setprimattrib|setprimgroup|setprimintrinsic|setprimvertex|setvertexattrib|shadow|shadow_light|shadowmap|shimport|shl|shr|shrz|sign|simport|sin|sinh|sleep|slerp|slice|smooth|snoise|solvecubic|solvepoly|solvequadratic|sort|specular|specularBRDF|spline|split|sprintf|sqrt|startswith|storelightexport|strip|strlen|switch|swizzle|tan|tanh|tet_adjacent|tet_faceindex|teximport|texprintf|texture|texture3d|texture3dBox|titlecase|tolower|toNDC|toupper|trace|translate|translucent|transpose|trunc|tw_nspace|tw_space|tw_vspace|uniqueval|unpack_intfromsafefloat|unserialize|upush|variadicarguments|variance|velocityname|vertex|vertexattrib|vertexattribsize|vertexattribtype|vertexattribtypeinfo|vertexhedge|vertexindex|vertexnext|vertexpoint|vertexprev|vertexprim|vertexprimindex|vnoise|volume|volumegradient|volumeindex|volumeindexorigin|volumeindextopos|volumeindexv|volumepostoindex|volumeres|volumesample|volumesamplev|vtransform|wireblinn|wirediffuse|wnoise|wo_nspace|wo_space|wo_vspace|writepixel|wt_nspace|wt_space|wt_vspace|xnoise|xnoised|xyzdist|xyztorgb)\b(?=\s*\()
-
 - name: support.variable.common.vex
   match: \b(accel|backtrack|Cd|center|density|dPd[xyz]|force|Frame|group_[\w-]*|i[xyz]|id|instance|name|nextid|num(pt|vtx|prim)|N|OpInput[1-4]|orient|P|pstate|(pt|vtx|prim)num|res[xyzt]|rot|scale|Time([iI]nc)?|torque|up|uv|v)\b
-
-# - name: support.other.vex
-#   match: \b(char|color|hpoint|integer|normal|point|typedef|union)\b
-#   comment: Officially Useless Words.
 
 # - name: support.variable.sop.vex
 #   match: \b(accel|age|Cd|Frame|id|life|Npt|N|pstate|ptnum|Pw|P|TimeInc|Time|v)\b
@@ -92,6 +82,10 @@ patterns:
 #   match: \b(AI|AR|AS|A|B|C4|Cb|Cg|Cr|EF|FR|F|G|H|IX|IY|I|NI|NP|PL|PNAME|PS|PXSC|R|SF|S|TIME|TINC|V|XRES|X|YRES|Y)\b
 # - name: support.variable.pop.vex
 #   match: \b(accel|age|Cd|Frame|id|life|Npt|N|pstate|ptnum|Pw|P|TimeInc|Time|v)\b
+
+# - name: support.other.vex
+#   match: \b(char|color|hpoint|integer|normal|point|typedef|union)\b
+#   comment: Officially Useless Words.
 
 repository:
   include:
@@ -200,7 +194,7 @@ repository:
 
   disabled:
     name: meta.preprocessor.disabled.vex
-    begin: (?<=#if|#elif)\s+(0+)\b
+    begin: (?<=#if|#elif)\s+(0+)\s*$
     beginCaptures:
       '1': {name: constant.numeric.vex}
     end: (?=#elif|#else|#endif)
@@ -215,7 +209,7 @@ repository:
     - include: '#eat-nested-ifs'
 
   preprocessor-function:
-    name: entity.name.preprocessor-function.vex
+    name: support.function.preprocessor.vex
     match: \b(defined|environment|access|access|strcmp)\b
 
   pragma:
@@ -299,10 +293,12 @@ repository:
 
   function:
     patterns:
-    - name: entity.name.function.definition.vex
-      match: \b(?!for|foreach)(\w+)\b(?=\s*\((?:int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s*\w)
-    - name: entity.name.function.definition.vex
-      match: (?<=void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface)\s*\b\w*\b(?=\s*\()
+    - name: entity.name.function.definition.args.vex
+      match: \b(?!for|foreach)(\w+)\b(?=\s*\(\s*(const|export|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s+\w)
+    - match: (void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface|struct)\s*(?:\[\])?\s*\b(\w*)\b(?=\s*\()
+      captures:
+        '1': {name: storage.type.vex}
+        '2': {name: entity.name.function.definition.type.vex}
 
   backticks:
     name: source.hscript
