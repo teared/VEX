@@ -14,3 +14,6 @@ Currently, nothing special, simply install and do code. From my point, good colo
 
 #### HScript Expression Example
 ![alt tag](http://i.imgur.com/Mz4x0S5.png)
+
+#### License
+Public domain.
