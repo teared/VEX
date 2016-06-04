@@ -102,6 +102,14 @@
             "contents": "agentclipcatalog(${1:geometry}, ${2:prim})"
         },
         {
+            "trigger": "agentclipchannel(opinput, prim, clipname, channel)",
+            "contents": "agentclipchannel(${1:opinput}, ${2:prim}, ${3:clipname}, ${4:channel})"
+        },
+        {
+            "trigger": "agentclipchannel(geometry, prim, clipname, channel)",
+            "contents": "agentclipchannel(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:channel})"
+        },
+        {
             "trigger": "agentcliplength(opinput, prim, clipname)",
             "contents": "agentcliplength(${1:opinput}, ${2:prim}, ${3:clipname})"
         },
@@ -118,6 +126,22 @@
             "contents": "agentclipnames(${1:geometry}, ${2:prim})"
         },
         {
+            "trigger": "agentclipsample(opinput, prim, clipname, time, channel_index)",
+            "contents": "agentclipsample(${1:opinput}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:channel_index})"
+        },
+        {
+            "trigger": "agentclipsample(opinput, prim, clipname, time, channel)",
+            "contents": "agentclipsample(${1:opinput}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:channel})"
+        },
+        {
+            "trigger": "agentclipsample(geometry, prim, clipname, time, channel_index)",
+            "contents": "agentclipsample(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:channel_index})"
+        },
+        {
+            "trigger": "agentclipsample(geometry, prim, clipname, time, channel)",
+            "contents": "agentclipsample(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:channel})"
+        },
+        {
             "trigger": "agentclipsamplelocal(opinput, prim, clipname, time, transform)",
             "contents": "agentclipsamplelocal(${1:opinput}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:transform})"
         },
@@ -132,6 +156,14 @@
         {
             "trigger": "agentclipsamplelocal(geometry, prim, clipname, time)",
             "contents": "agentclipsamplelocal(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time})"
+        },
+        {
+            "trigger": "agentclipsamplerate(opinput, prim, clipname)",
+            "contents": "agentclipsamplerate(${1:opinput}, ${2:prim}, ${3:clipname})"
+        },
+        {
+            "trigger": "agentclipsamplerate(geometry, prim, clipname)",
+            "contents": "agentclipsamplerate(${1:geometry}, ${2:prim}, ${3:clipname})"
         },
         {
             "trigger": "agentclipsampleworld(opinput, prim, clipname, time, transform)",
@@ -1336,6 +1368,10 @@
         {
             "trigger": "getcomponents()",
             "contents": "getcomponents()"
+        },
+        {
+            "trigger": "getderiv(attr, attrName, isAttrVertex, s, t, du, dv, ...)",
+            "contents": "getderiv(${1:attr}, ${2:attrName}, ${3:isAttrVertex}, ${4:s}, ${5:t}, ${6:du}, ${7:dv}${8:, ...})"
         },
         {
             "trigger": "getfogname()",
@@ -3880,6 +3916,10 @@
         {
             "trigger": "slice(s, hasstart, start, hasend, end, hasstep, step)",
             "contents": "slice(${1:s}, ${2:hasstart}, ${3:start}, ${4:hasend}, ${5:end}, ${6:hasstep}, ${7:step})"
+        },
+        {
+            "trigger": "slideframe(x0, t0, n0, x1, t1)",
+            "contents": "slideframe(${1:x0}, ${2:t0}, ${3:n0}, ${4:x1}, ${5:t1})"
         },
         {
             "trigger": "smooth(value1, value2, amount)",

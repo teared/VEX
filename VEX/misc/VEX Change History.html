@@ -7,7 +7,162 @@
         <h3>Generated through diffing help pages.</h1>
         <div>
             <hr>
+            <h2>New in Houdini 15.5</h2>
+            <h3>Added:</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.5/vex/functions/agentclipchannel">agentclipchannel</a></td>
+                        <td>Finds the index of a channel in an agent’s animation clip.
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.5/vex/functions/agentclipsample">agentclipsample</a></td>
+                        <td>Samples a channel of an agent’s clip at a specific time.
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.5/vex/functions/agentclipsamplerate">agentclipsamplerate</a></td>
+                        <td>Returns the sample rate of an agent’s animation clip.
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.5/vex/functions/getderiv">getderiv</a></td>
+                        <td>Evaluates surface derivatives of an attribute.
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.5/vex/functions/slideframe">slideframe</a></td>
+                        <td>Finds the normal component of frame slid along a curve.
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <hr>
             <h2>New in Houdini 15</h2>
+            <h3>Deleted:</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/addattribute">addattribute</a></td>
+                        <td>Adds or changes a point attribute.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/addgroup">addgroup</a></td>
+                        <td>Adds the particle specified by point_number to the group specified.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmap">bumpmap</a></td>
+                        <td>Bump maps will return the color gradient of the image in the du/dv parameters.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmapA">bumpmapA</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmapB">bumpmapB</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmapG">bumpmapG</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmapL">bumpmapL</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/bumpmapR">bumpmapR</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_eof">file_eof</a></td>
+                        <td>Returns 1 if the handle given is at the end of file.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_flush">file_flush</a></td>
+                        <td>Flushes the given file handle.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_open">file_open</a></td>
+                        <td>Opens a file on disk for reading or writing.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_read">file_read</a></td>
+                        <td>Reads up to maxbytes from file handle given.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_readline">file_readline</a></td>
+                        <td>Reads a single line of input. The newline charactor is stripped from the string.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_readlines">file_readlines</a></td>
+                        <td>Reads the file into an array of strings, one string per line. The newline charactors are stripped from the strings.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_seek">file_seek</a></td>
+                        <td>Seeks the file in direction given. Only valid for read handles.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_size">file_size</a></td>
+                        <td>Returns the current file size.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_tell">file_tell</a></td>
+                        <td>Returns the current file offset. Only valid for read handles.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_write">file_write</a></td>
+                        <td>Writes the given string to file.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_writeline">file_writeline</a></td>
+                        <td>Writes the given string to file appending a newline charactor.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/file_writelines">file_writelines</a></td>
+                        <td>Writes the given array of strings to file, appending a newline to each.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/import">import</a></td>
+                        <td>Imports attribute data from the SOP or POP connected to the specified input.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/ingroup">ingroup</a></td>
+                        <td>Returns 1 if the particle specified by the point number is in the group specified by the string.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/newgroup">newgroup</a></td>
+                        <td>Creates a new group in which to put particles.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmap">rawbumpmap</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmapA">rawbumpmapA</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmapB">rawbumpmapB</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmapG">rawbumpmapG</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmapL">rawbumpmapL</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/rawbumpmapR">rawbumpmapR</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini14.0/vex/functions/removegroup">removegroup</a></td>
+                        <td>Removes the particle specified by point_number from the group specified.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Added:</h3>
             <table>
                 <tbody>
                     <tr>
@@ -21,6 +176,10 @@
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/attribclass">attribclass</a></td>
                         <td>Returns the class of a geometry attribute.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/error">error</a></td>
+                        <td>Reports a custom runtime VEX error.</td>
                     </tr>
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/fuzzify">fuzzify</a></td>
@@ -91,22 +250,6 @@
                         <td>Looks up a primitive number by a name attribute.</td>
                     </tr>
                     <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/npoints">npoints</a></td>
-                        <td>Returns the number of points in the input or geometry file.</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/npointsgroup">npointsgroup</a></td>
-                        <td>Returns the number of points in the group.</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/nprimitives">nprimitives</a></td>
-                        <td>Returns the number of primitives in the input or geometry file.</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/nprimitivesgroup">nprimitivesgroup</a></td>
-                        <td>Returns the number of primitives in the group.</td>
-                    </tr>
-                    <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/nvertices">nvertices</a></td>
                         <td>Returns the number of vertices in the input or geometry file.</td>
                     </tr>
@@ -116,11 +259,11 @@
                     </tr>
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/opdigits">opdigits</a></td>
-                        <td>Returns the full path for the given relative path</td>
+                        <td>Returns the integer value of the last sequence of digits of a string</td>
                     </tr>
                     <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/opdigits">opdigits</a></td>
-                        <td>Returns the integer value of the last sequence of digits of a string</td>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/opfullpath">opfullpath</a></td>
+                        <td>Returns the full path for the given relative path</td>
                     </tr>
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/pgfind">pgfind</a></td>
@@ -139,16 +282,12 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/reverse">reverse</a></td>
-                        <td>Returns an array or string in reverse order.</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/setattrib">setattrib</a></td>
-                        <td>Writes an attribute value to geometry.</td>
-                    </tr>
-                    <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/setvertexgroup">setvertexgroup</a></td>
                         <td>Sets vertex group membership in a geometry.</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/setvertexpoint">setvertexpoint</a></td>
+                        <td>Rewires a vertex in the geometry to a different point.</td>
                     </tr>
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/smoothrotation">smoothrotation</a></td>
@@ -165,6 +304,10 @@
                     <tr>
                         <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/uvunwrap">uvunwrap</a></td>
                         <td>Computes the position and normal of an object given a (u, v) coordinate</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.sidefx.com/docs/houdini15.0/vex/functions/warning">warning</a></td>
+                        <td>Reports a custom runtime VEX warning.</td>
                     </tr>
                 </tbody>
             </table>

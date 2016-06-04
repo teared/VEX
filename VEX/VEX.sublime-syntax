@@ -1,0 +1,264 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: VEX
+file_extensions:
+  - vfl
+  - h
+scope: source.vex
+contexts:
+  main:
+    - include: include
+    - include: define
+    - include: if
+    - include: pragma
+    - include: comment
+    - include: string
+    - include: access
+    - include: function
+    - include: backticks
+    - match: '(?<!\w|\.)((\.[0-9][0-9_]*|[0-9][0-9_]*\.|([0-9]+|[0-9][0-9_]*[0-9])\.[0-9][0-9_]*)f?|([1-9]|0_)[0-9_]*|0)([eE][\+-]?[0-9]+)?(?!\w|\.)'
+      scope: constant.numeric.dec.vex
+    - match: '\b(0b[01][01_]*)\b'
+      scope: constant.numeric.bin.vex
+    - match: '\b(0+[0-7][0-7_]*)\b'
+      scope: constant.numeric.oct.vex
+    - match: '\b(0[xX][0-9a-fA-F][0-9a-fA-F_]*)\b'
+      scope: constant.numeric.hex.vex
+    - match: \b(false|true)\b
+      scope: constant.language.vex
+    - match: \b(break|continue|do|else|foreach|forpoints|for|gather|if|illuminance|import(?!\s*\()|return|while)\b
+      scope: keyword.control.vex
+    - match: (\?|:)
+      scope: keyword.operator.ternary.vex
+    - match: \b(const|export)\b
+      scope: storage.modifier.vex
+    - match: \b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface|struct)\b
+      scope: storage.type.vex
+    - match: \b(abs|accessframe|acos|addattrib|adddetailattrib|addpoint|addpointattrib|addprim|addprimattrib|addvariablename|addvertex|addvertexattrib|addvisualizer|agentaddclip|agentclipcatalog|agentclipchannel|agentcliplength|agentclipnames|agentclipsample|agentclipsamplelocal|agentclipsamplerate|agentclipsampleworld|agentcliptimes|agentclipweights|agentcollisionlayer|agentcurrentlayer|agentlayerbindings|agentlayers|agentlayershapes|agentlocaltransform|agentlocaltransforms|agentrigchildren|agentrigfind|agentrigparent|agenttransformcount|agenttransformnames|agenttransformtolocal|agenttransformtoworld|agentworldtransform|agentworldtransforms|albedo|alphaname|ambient|anoise|append|area|argsort|array|arraylength|ashikhmin|asin|assert_enabled|assign|atan|atan2|atof|atoi|atten|attrib|attribclass|attribsize|attribtype|attribtypeinfo|avg|binput|blackbody|blinn|blinnBRDF|bouncelabel|bouncemask|bumpname|cbrt|ceil|ch|ch3|ch4|chend|chendf|chendt|chf|chi|chinput|chname|chnumchan|chp|chr|chramp|chrate|chs|chsraw|chstart|chstartf|chstartt|chv|cinput|ckspline|clamp|clip|colormap|colorname|computenormal|concat|cone|cos|cosh|cracktransform|cross|cspline|ctransform|curlnoise|curlnoise2d|curlxnoise|curlxnoise2d|cvex_bsdf|degrees|depthmap|depthname|detail|detailattrib|detailattribsize|detailattribtype|detailattribtypeinfo|detailintrinsic|determinant|diffuse|diffuseBRDF|dihedral|dimport|distance|distance2|dot|dsmpixel|Du|Dv|Dw|eigenvalues|emission_bsdf|endswith|environment|erf|erf_inv|erfc|error|eulertoquaternion|eval_bsdf|exp|expand_udim|expandpointgroup|expandprimgroup|fastshadow|filamentsample|file_stat|filtershadow|filterstep|find|findattribval|findattribvalcount|finput|fit|fit01|fit10|fit11|floor|flownoise|flowpnoise|frac|fresnel|fromNDC|frontface|fuzzify|fuzzy_and|fuzzy_defuzz_centroid|fuzzy_nand|fuzzy_nor|fuzzy_not|fuzzy_nxor|fuzzy_or|fuzzy_xor|geoself|getattrib|getattribute|getbbox|getblurP|getbounces|getbounds|getcomp|getcomponents|getderiv|getfogname|getglobalraylevel|getlight|getlightid|getlightname|getlights|getlightscope|getmaterial|getobjectname|getphotonlight|getpointbbox|getprimid|getptextureid|getraylevel|getrayweight|getscope|getsmoothP|getspace|gradient|gradient3d|hair|hasattrib|hasdetailattrib|haslight|hasplane|haspointattrib|hasprimattrib|hasvertexattrib|hedge_dstpoint|hedge_dstvertex|hedge_equivcount|hedge_isequiv|hedge_isprimary|hedge_isvalid|hedge_next|hedge_nextequiv|hedge_postdstpoint|hedge_postdstvertex|hedge_presrcpoint|hedge_presrcvertex|hedge_prev|hedge_prim|hedge_primary|hedge_srcpoint|hedge_srcvertex|henyeygreenstein|hscript_noise|hscript_rand|hscript_snoise|hscript_sturb|hscript_turb|hsvtorgb|iaspect|ichname|ident|idtopoint|idtoprim|iend|iendtime|ihasplane|importance_light|inpointgroup|inprimgroup|insert|instance|integrate3d|integrate3dClip|interpolate|intersect|intersect3d|intersect_all|intersect_lights|inumplanes|invert|invertexgroup|iplaneindex|iplanename|iplanesize|irate|irradiance|isalpha|isbound|isconnected|isdigit|isfinite|isfogray|isframes|isnan|isotropic|israytracing|issamples|isseconds|isshadowray|istart|istarttime|istracing|isuvrendering|isvalidindex|isvarying|itoa|ixres|iyres|join|kspline|len|length|length2|lerp|lightid|limit_sample_space|limport|lkspline|log|log10|lookat|lspline|lstrip|luminance|lumname|makebasis|maketransform|maskname|match|matchvex_blinn|matchvex_specular|mattrib|max|mdensity|metaimport|metamarch|metanext|metastart|metaweight|min|minpos|mspace|nametopoint|nametoprim|nbouncetypes|nearpoint|nearpoints|neighbour|neighbourcount|neighbours|newsampler|nextsample|ninput|noise|noised|normal_bsdf|normalize|normalname|npoints|npointsgroup|nprimitives|nprimitivesgroup|nrandom|ntransform|nuniqueval|nvertices|nverticesgroup|occlusion|onoise|opdigits|opend|opfullpath|opstart|optransform|ord|osd_facecount|osd_firstpatch|osd_limitsurface|osd_limitsurfacevertex|osd_patchcount|osd_patches|outerproduct|ow_nspace|ow_space|ow_vspace|pack_inttosafefloat|pathtrace|pcclose|pcconvex|pcexport|pcfarthest|pcfilter|pcfind|pcfind_radius|pcgenerate|pcimport|pcimportbyidx3|pcimportbyidx4|pcimportbyidxf|pcimportbyidxi|pcimportbyidxp|pcimportbyidxs|pcimportbyidxv|pciterate|pcnumfound|pcopen|pcopenlod|pcsampleleaf|pcsize|pcunshaded|pcwrite|pgfind|phong|phongBRDF|phonglobe|photonmap|planeindex|planename|planesize|pluralize|pnoise|point|pointattrib|pointattribsize|pointattribtype|pointattribtypeinfo|pointedge|pointhedge|pointhedgenext|pointname|pointprims|pointvertex|pointvertices|polardecomp|pop|pow|prim|prim_attribute|prim_normal|primattrib|primattribsize|primattribtype|primattribtypeinfo|primhedge|primintrinsic|primpoint|primpoints|primuv|primvertex|primvertexcount|primvertices|print_once|printf|product|ptexture|ptlined|ptransform|push|qconvert|qdistance|qinvert|qmultiply|qrotate|quaternion|radians|rand|random|random_fhash|random_ihash|random_shash|random_sobol|rawcolormap|rayhittest|rayimport|re_find|re_findall|re_match|re_replace|re_split|reflect|reflectlight|refract|refractlight|relativepath|relbbox|relpointbbox|removeindex|removepoint|removeprim|removevalue|renderstate|reorder|resample_linear|resize|resolvemissedray|reverse|rgbtohsv|rgbtoxyz|rint|rotate|rotate_x_to|rstrip|sample_bsdf|sample_cauchy|sample_circle_arc|sample_circle_edge_uniform|sample_circle_slice|sample_circle_uniform|sample_direction_cone|sample_direction_uniform|sample_discrete|sample_exponential|sample_geometry|sample_hemisphere|sample_hypersphere_cone|sample_hypersphere_uniform|sample_light|sample_lognormal|sample_lognormal_by_median|sample_normal|sample_orientation_cone|sample_orientation_uniform|sample_photon|sample_sphere_cone|sample_sphere_uniform|sampledisk|scale|select|sensor_panorama_create|sensor_panorama_getcolor|sensor_panorama_getcone|sensor_panorama_getdepth|sensor_save|serialize|set|setagentclipnames|setagentcliptimes|setagentclipweights|setagentcollisionlayer|setagentcurrentlayer|setagentlocaltransform|setagentlocaltransforms|setagentworldtransform|setagentworldtransforms|setattrib|setattribtypeinfo|setcomp|setcurrentlight|setdetailattrib|setpointattrib|setpointgroup|setprimattrib|setprimgroup|setprimintrinsic|setprimvertex|setvertexattrib|setvertexgroup|setvertexpoint|shadow|shadow_light|shadowmap|shimport|shl|shr|shrz|sign|simport|sin|sinh|sleep|slerp|slice|slideframe|smooth|smoothrotation|snoise|solvecubic|solvepoly|solvequadratic|sort|specular|specularBRDF|spline|split|splitpath|sprintf|sqrt|startswith|storelightexport|strip|strlen|sum|switch|swizzle|tan|tanh|tet_adjacent|tet_faceindex|teximport|texprintf|texture|texture3d|texture3dBox|titlecase|tolower|toNDC|toupper|trace|translate|translucent|transpose|trunc|tw_nspace|tw_space|tw_vspace|uniqueval|unpack_intfromsafefloat|unserialize|upush|uvunwrap|variance|velocityname|vertex|vertexattrib|vertexattribsize|vertexattribtype|vertexattribtypeinfo|vertexhedge|vertexindex|vertexnext|vertexpoint|vertexprev|vertexprim|vertexprimindex|vnoise|volume|volumegradient|volumeindex|volumeindexorigin|volumeindextopos|volumeindexv|volumepostoindex|volumeres|volumesample|volumesamplev|vtransform|warning|wireblinn|wirediffuse|wnoise|wo_nspace|wo_space|wo_vspace|writepixel|wt_nspace|wt_space|wt_vspace|xnoise|xnoised|xyzdist|xyztorgb)\b(?=\s*\()
+      scope: support.function.lib.vex
+    - match: \b(__vex|__vex_major|__vex_minor|__vex_build|__vex_patch|__LINE__|__FILE__|__DATE__|__TIME__)\b
+      scope: support.constant.vex
+    - match: '\b(accel|backtrack|Cd|center|density|dPd[xyz]|force|Frame|group_[\w-]*|i[xyz]|id|instance|name|nextid|num(pt|vtx|prim)|N|OpInput[1-4]|orient|P|pstate|(pt|vtx|prim)num|res[xyzt]|rot|scale|Time([iI]nc)?|torque|up|uv|v)\b'
+      scope: support.variable.common.vex
+  comment:
+    - match: /\*
+      captures:
+        0: punctuation.definition.comment.vex
+      push:
+        - meta_scope: comment.block.vex
+        - match: \*/
+          captures:
+            0: punctuation.definition.comment.vex
+          pop: true
+        - include: todo
+    - match: //
+      captures:
+        0: punctuation.definition.comment.vex
+      push:
+        - meta_scope: comment.line.vex
+        - match: '(?<=^|[^\\])\s*(?=\n)$\n?'
+          pop: true
+        - include: todo
+        - include: continuation
+  access:
+    - match: (@)
+      scope: keyword.operator.attribute-access.vex
+    - match: '\b([ifuvp234s](?:\[\])?)?(?=@)'
+      scope: storage.type.attribute-access.vex
+  backticks:
+    - match: (`)
+      captures:
+        1: keyword.other.backticks.vex
+      push:
+        - meta_scope: source.hscript
+        - match: (`)
+          captures:
+            1: keyword.other.backticks.vex
+          pop: true
+        - include: scope:source.hscript
+  continuation:
+    - match: (\\)(\s*)(?=\n$)
+      scope: meta.continuation.vex
+      captures:
+        1: keyword.continuation.vex
+        2: invalid.illegal.continuation-space.vex
+  define:
+    - match: ^\s*(#define)\b
+      captures:
+        1: keyword.other.vex
+      push:
+        - meta_scope: meta.preprocessor.define.vex
+        - match: '(?<=^|[^\\])(?=\n)'
+          pop: true
+        - match: '(?<=#define)\s*([A-Za-z_]\w*)(\()'
+          captures:
+            1: entity.name.macro-function.vex
+            2: punctuation.parameters.vex
+            3: punctuation.definition.vex
+          push:
+            - meta_scope: meta.preprocessor.function.vex
+            - match: '(\))|(?<=^|[^\\])(?=\n)'
+              captures:
+                1: punctuation.parameters.vex
+              pop: true
+            - match: '([A-Za-z_]\w*)'
+              scope: variable.parameter.vex
+            - include: continuation
+        - match: '(?<=#define)\s*([A-Za-z_]\w*)'
+          scope: entity.name.macro.vex
+        - match: (?<=\))\s+(?!$)
+          comment: Matches after the whitespaces following a first closed parentheses.
+          push:
+            - meta_scope: string.quoted.token-string.vex
+            - match: '(?<=^|[^\\])(?=\n)'
+              pop: true
+            - match: '\#\#'
+              scope: variable.parameter.concat.vex
+            - include: continuation
+        - match: (?<=\w)\s+(?!$)
+          comment: Matches after the whitespaces following the end of a first word (macro name).
+          push:
+            - meta_scope: string.quoted.token-string.vex
+            - match: '(?<=^|[^\\])(?=\n)'
+              pop: true
+            - include: continuation
+        - include: continuation
+    - match: ^\s*(#undef)\s+(\w*)\b
+      scope: meta.preprocessor.undef.vex
+      captures:
+        1: keyword.other.vex
+        2: entity.name.macro.vex
+  disabled:
+    - match: (?<=#if|#elif)\s+(0+)\s*$
+      captures:
+        1: constant.numeric.vex
+      push:
+        - meta_scope: meta.preprocessor.disabled.vex
+        - meta_content_scope: comment.line.preprocessor.disabled.vex
+        - match: (?=#elif|#else|#endif)
+          pop: true
+        - include: eat-nested-ifs
+  eat-nested-ifs:
+    - match: ^\s*#if(?:n?def)?\b.*$
+      push:
+        - match: ^\s*#endif\b.*$
+          pop: true
+        - include: eat-nested-ifs
+  elif:
+    - match: (#elif)
+      captures:
+        1: keyword.other.vex
+      push:
+        - meta_scope: meta.preprocessor.elif.vex
+        - match: (?=#elif|#else|#endif)
+          pop: true
+        - include: preprocessor-function
+        - include: disabled
+        - include: main
+  else:
+    - match: (#else)
+      captures:
+        1: keyword.other.vex
+      push:
+        - meta_scope: meta.preprocessor.else.vex
+        - match: (?=#endif)
+          pop: true
+        - include: main
+  function:
+    - match: \b(?!for|foreach)(\w+)\b(?=\s*\(\s*(const|export|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material)\s+\w)
+      scope: entity.name.function.definition.args.vex
+    - match: '\b(void|int|float|vector2|vector|vector4|matrix2|matrix3|matrix|string|bsdf|light|material|chop|cop2|cvex|displacement|fog|image3d|light|pop|shadow|sop|surface|struct)\s*(?:\[\])?\s*\b(\w*)\b(?=\s*\()'
+      captures:
+        1: storage.type.vex
+        2: entity.name.function.definition.type.vex
+  if:
+    - match: ^\s*(#if)\b
+      captures:
+        1: keyword.other.vex
+      push:
+        - meta_scope: meta.preprocessor.if.vex
+        - match: (#endif)
+          captures:
+            1: keyword.other.vex
+          pop: true
+        - include: preprocessor-function
+        - include: disabled
+        - include: elif
+        - include: else
+        - include: main
+    - match: ^\s*(#ifn?def)\s+(\w*)\s*$
+      captures:
+        1: keyword.other.vex
+        2: entity.name.macro.vex
+      push:
+        - meta_scope: meta.preprocessor.ifdef.vex
+        - match: (#endif)
+          captures:
+            1: keyword.other.vex
+            2: entity.name.macro.vex
+          pop: true
+        - include: elif
+        - include: else
+        - include: main
+  include:
+    - match: ^\s*(#include)\s+(".*")\s*$
+      scope: meta.preprocessor.include.quoted.vex
+      captures:
+        1: keyword.other.vex
+        2: string.quoted.vex
+    - match: ^\s*(#include)\s+(<.*>)\s*$
+      scope: meta.preprocessor.include.lt-gt.vex
+      captures:
+        1: keyword.control.vex
+        2: string.quoted.vex
+  pragma:
+    - match: ^\s*(#pragma)\s+(\w*)\b
+      captures:
+        1: keyword.other.vex
+        2: entity.name.pragma.vex
+      push:
+        - meta_scope: meta.preprocessor.pragma.vex
+        - match: '(?<=^|[^\\])(\n)'
+          pop: true
+        - include: main
+        - include: continuation
+    - match: \b(_Pragma)\b(?=\()
+      scope: support.function.pragma.vex
+  preprocessor-function:
+    - match: \b(defined|environment|access|access|strcmp)\b
+      scope: support.function.preprocessor.vex
+  string:
+    - match: (")
+      captures:
+        1: string.quoted.double.vex
+        2: invalid.illegal.misquot.vex
+      push:
+        - meta_scope: meta.string.double.vex
+        - match: '(")|(?<=^|[^\\])(\n)'
+          captures:
+            1: string.quoted.double.vex
+            2: invalid.illegal.misquot.vex
+          pop: true
+        - match: '\\(\d+|[nrt\\"]|x[a-fA-F0-9]{1,8}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})'
+          scope: constant.character.escape.vex
+        - match: '\%(\%|[\d+]?[cdfgpsx])'
+          scope: constant.other.placeholder.vex
+        - include: continuation
+        - include: backticks
+        - match: (.)
+          comment: Match all symbols in string outside possible backticks
+          scope: string.quoted.double.vex
+    - match: (')
+      captures:
+        2: invalid.illegal.mismatched-quotation.vex
+      push:
+        - meta_scope: string.quoted.single.vex
+        - match: '('')|(?<=^|[^\\])(\n)'
+          captures:
+            2: invalid.illegal.mismatched-quotation.vex
+          pop: true
+        - include: continuation
+  todo:
+    - match: \b(TODO)\b
+      scope: invalid.illegal.todo.vex
