@@ -30,13 +30,13 @@ class HelpcardCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         first_sel = self.view.sel()[0].a
         scope = self.view.scope_name(first_sel)
-        lang = scope.split(' ', 1)[0].split('.')[1]
+        lang = 'hscript' if 'hscript' in scope else 'vex'
         word = self.view.substr(self.view.word(first_sel))
 
         if word in self.helpcards[lang]:
             html = '<style>%s</style>%s' % (self.style, self.helpcards[lang][word])
         else:
-            # Not sure if search on google CSE will always work.
+            # Not sure if search on Google CSE will always work. Will see...
             # Last cx parameter was: 001106583893786776783:4dnyszriw9c
             html = '''
             <style>{style}</style>

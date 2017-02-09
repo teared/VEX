@@ -195,3 +195,40 @@ int func(float TABLE_SIZE)
 "Value is `if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))`"
 "Truth in `if(1, 1, 0)` expression."
 `if(1, 1, 0)`
+
+
+// Compute curve u.
+
+addpointattrib(0, "u", 0.0);
+
+float length = primintrinsic(0, "measuredperimeter", 0);
+
+float passed = 0;
+for (int i = 1; i < @numpt; i++)
+{
+    vector a = point(0, "P", i);
+    vector b = point(0, "P", i-1);
+    passed += distance(a, b);
+    setpointattrib(0, "u", i, passed/length);
+}
+
+
+#define PI `$PI`
+
+
+if (i@group_main)
+{
+    int vtx = vertexindex(0, @primnum, 1);
+    int pt = vertexpoint(0, vtx);
+    s@point_pairs = sprintf("%d_%d", @ptnum, pt);
+    i@group_pair`opdigits(oppwd())` = true;
+}
+else
+{
+    // TODO: something.
+    foreach (int i; pointprims(0, @ptnum))
+    {
+        append(i[]@nbprims, i + @ptnum)
+    }
+    removepoint(0, @ptnum);
+}

@@ -93,6 +93,7 @@ contexts:
       push: HScript.sublime-syntax
       with_prototype:
         - match: '`'
+          scope: keyword.other.backticks.vex
           pop: true
 
 
@@ -212,6 +213,8 @@ contexts:
         - match: '.'
           push:
             - meta_content_scope: string.unquoted.token-string.vex
+            - include: backticks
+            - include: comment
             - include: continuation
             - match: '\#\#'
               scope: variable.parameter.concat.vex
