@@ -16,10 +16,12 @@ See [Releases](https://github.com/teared/vex/releases).
 
 #### Completions
 ![alt tag](https://github.com/teared/vex/blob/master/develop/img/completion.gif)
+
 Press `Ctrl + Spacebar` or start typing to open completions list. Choose function you need. Navigate over back and forth using `Tab` and `Shift+Tab`.
 
 #### Popups
 ![alt tag](https://github.com/teared/vex/blob/master/develop/img/helpcard.png)
+
 Starting from Houdini 16 this package now includes helpful popups for VEX and HScript Expression functions. Default shortcut is `Ctrl+Alt+D`, also available as command "VEX: Show Documentation for Function" in Command Pallette.
 
 ### License
