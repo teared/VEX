@@ -146,6 +146,10 @@
             "contents": "chs(${1:string channel})"
         },
         {
+            "trigger": "chsop(path)",
+            "contents": "chsop(${1:string path})"
+        },
+        {
             "trigger": "chsraw(channel)",
             "contents": "chsraw(${1:string channel})"
         },
@@ -910,20 +914,8 @@
             "contents": "opselect(${1:string network})"
         },
         {
-            "trigger": "opselectpath(network)",
-            "contents": "opselectpath(${1:string network})"
-        },
-        {
             "trigger": "opselectrecurse(network, flag)",
             "contents": "opselectrecurse(${1:string network}, ${2:float flag})"
-        },
-        {
-            "trigger": "opselectrecursepath(network, flag)",
-            "contents": "opselectrecursepath(${1:string network}, ${2:float flag})"
-        },
-        {
-            "trigger": "opstreamname(node)",
-            "contents": "opstreamname(${1:string node})"
         },
         {
             "trigger": "opsubpath(node)",
@@ -1166,16 +1158,16 @@
             "contents": "quintic()"
         },
         {
-            "trigger": "raw()",
-            "contents": "raw()"
-        },
-        {
             "trigger": "rad(number)",
             "contents": "rad(${1:float number})"
         },
         {
             "trigger": "rand(value)",
             "contents": "rand(${1:float value})"
+        },
+        {
+            "trigger": "raw()",
+            "contents": "raw()"
         },
         {
             "trigger": "realuv(surface_node, prim_num, uv_unit, D_U|D_V)",
@@ -1232,10 +1224,6 @@
         {
             "trigger": "scale(sx, sy, sz)",
             "contents": "scale(${1:float sx}, ${2:float sy}, ${3:float sz})"
-        },
-        {
-            "trigger": "seampoints(surface_node, whichside)",
-            "contents": "seampoints(${1:string surface_node}, ${2:float whichside})"
         },
         {
             "trigger": "seqanim(compositing_node)",

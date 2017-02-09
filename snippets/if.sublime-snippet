@@ -7,5 +7,5 @@ if ($1)
 }
 ]]></content>
     <tabTrigger>if</tabTrigger>
-    <scope>source.vex</scope>
+    <scope>source.vex -source.hscript</scope>
 </snippet>

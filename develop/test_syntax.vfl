@@ -89,18 +89,19 @@ _1000
 0_19 // Legal and decimal.
 0x_A1
 
-"asd\"fgh\t\\t\f%se\nd"
+r"asd\"fgh\t\\t\f%se\nd\\"
 'asd\"fgh\t\\t\f%se\nd'
 "%a%s%d%%f%fk%dfgh"
 "\\t\td"
 "\x41a"
-"\595"
-"\101"
+"\595 \
+\101"
 "\895"
 "\795"
 "\uDEADBEEF"
 "\u0123456789"
 "\n \b \" \\ \r"
+
 
 import shader;
 import(something);

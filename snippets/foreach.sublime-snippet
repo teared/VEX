@@ -7,5 +7,5 @@ foreach (${1:value}; ${2:array})
 }
 ]]></content>
     <tabTrigger>foreach</tabTrigger>
-    <scope>source.vex</scope>
+    <scope>source.vex -source.hscript</scope>
 </snippet>

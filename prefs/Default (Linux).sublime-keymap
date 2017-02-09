@@ -1,0 +1,6 @@
+[
+    {
+        "command": "helpcard", "keys": ["ctrl+alt+d"],
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.vex, source.hscript"}]
+    }
+]

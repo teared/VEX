@@ -1,0 +1,1 @@
+from .helpcard import HelpcardCommand

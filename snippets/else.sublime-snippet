@@ -7,5 +7,5 @@ else
 }
 ]]></content>
     <tabTrigger>else</tabTrigger>
-    <scope>source.vex</scope>
+    <scope>source.vex -source.hscript</scope>
 </snippet>

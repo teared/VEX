@@ -1,0 +1,56 @@
+[
+    {
+        "caption": "Preferences",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "VEX",
+                        "children":
+                        [
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "$packages/VEX/prefs/VEX (package settings).sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Settings"
+                            },
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "$packages/VEX/prefs/VEX.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "VEX – Syntax Specific"
+                            },
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "$packages/VEX/prefs/HScript.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "HScript – Syntax Specific"
+                            },
+                            { "caption": "-" },
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/VEX/prefs/Default ($platform).sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                },
+                                "caption": "Key Bindings"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

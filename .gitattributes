@@ -1,7 +1,12 @@
 * text=auto
 
-# Fix generated files showing as a main repository language.
+# Fix unwanted files showing as a main repository language.
+*.vfl                   linguist-vendored
 *.cmd                   linguist-vendored
-*.html                  linguist-vendored
+*.json                  linguist-vendored
 *.sublime-completions   linguist-vendored
+*.sublime-keymap        linguist-vendored
+*.sublime-menu          linguist-vendored
 *.sublime-settings      linguist-vendored
+*.sublime-snippet       linguist-vendored
+*.tmPreferences         linguist-vendored

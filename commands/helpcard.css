@@ -1,0 +1,38 @@
+#helpcard {
+    font-family: "Segoe UI" Helvetica sans-serif;
+    line-height: 1em;
+    margin: 0 1em 0 .5em;
+}
+
+h1 {
+    display: inline;
+    font-size: 1.5rem;
+    padding-right: .25rem;
+}
+
+.summary, .related-summary { font-style: italic }
+.summary { font-size: 1.2rem }
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.code-container, code {
+    background-color: color(var(--background) blend(grey 85%));
+    border-radius: .25rem;
+}
+.code-container { padding: 0.5rem }
+code { padding: 0.1rem 0.25rem }
+code.line {
+    background-color: inherit;
+    border-radius: 0;
+    display: block;
+}
+
+.padder { padding: 0 .25rem }
+.pillow {
+    padding: 0 .1rem;
+    background-color: color(var(--background) blend(var(--bluish) 60%));
+    border-radius: .25rem;
+}

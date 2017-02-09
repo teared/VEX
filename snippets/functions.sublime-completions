@@ -1,5 +1,5 @@
 {
-    "scope": "source.vex",
+    "scope": "source.vex -source.hscript",
     "completions": [
         {
             "trigger": "abs(value)",
@@ -1358,20 +1358,28 @@
             "contents": "getbounds(${1:filename}, ${2:min}, ${3:max})"
         },
         {
-            "trigger": "getcomp(v, index)",
-            "contents": "getcomp(${1:v}, ${2:index})"
+            "trigger": "getcomp(array, index)",
+            "contents": "getcomp(${1:array}, ${2:index})"
         },
         {
             "trigger": "getcomp(m, row, column)",
             "contents": "getcomp(${1:m}, ${2:row}, ${3:column})"
         },
         {
+            "trigger": "getcomp(v, index)",
+            "contents": "getcomp(${1:v}, ${2:index})"
+        },
+        {
+            "trigger": "getcomp(vec, index)",
+            "contents": "getcomp(${1:vec}, ${2:index})"
+        },
+        {
             "trigger": "getcomponents()",
             "contents": "getcomponents()"
         },
         {
-            "trigger": "getderiv(attr, attrName, isAttrVertex, s, t, du, dv, ...)",
-            "contents": "getderiv(${1:attr}, ${2:attrName}, ${3:isAttrVertex}, ${4:s}, ${5:t}, ${6:du}, ${7:dv}${8:, ...})"
+            "trigger": "getderiv(attr, attrName, isVertexAttr, s, t, du, dv, ...)",
+            "contents": "getderiv(${1:attr}, ${2:attrName}, ${3:isVertexAttr}, ${4:s}, ${5:t}, ${6:du}, ${7:dv}${8:, ...})"
         },
         {
             "trigger": "getfogname()",
@@ -1458,6 +1466,10 @@
             "contents": "getrayweight()"
         },
         {
+            "trigger": "getsamplestore(channel, P, value)",
+            "contents": "getsamplestore(${1:channel}, ${2:P}, ${3:value})"
+        },
+        {
             "trigger": "getscope(mat, raystyle, scope, categories)",
             "contents": "getscope(${1:mat}, ${2:raystyle}, ${3:scope}, ${4:categories})"
         },
@@ -1472,6 +1484,14 @@
         {
             "trigger": "getspace(fromspace, tospace)",
             "contents": "getspace(${1:fromspace}, ${2:tospace})"
+        },
+        {
+            "trigger": "getuvobjects(uvobj, hiobj)",
+            "contents": "getuvobjects(${1:uvobj}, ${2:hiobj})"
+        },
+        {
+            "trigger": "getuvtangents(objName, P, N, Tu, Tv)",
+            "contents": "getuvtangents(${1:objName}, ${2:P}, ${3:N}, ${4:Tu}, ${5:Tv})"
         },
         {
             "trigger": "gradient(val, ...)",
@@ -2430,8 +2450,8 @@
             "contents": "nprimitivesgroup(${1:input}, ${2:groupname})"
         },
         {
-            "trigger": "nprimitivesgroup(geometry, groupname)",
-            "contents": "nprimitivesgroup(${1:geometry}, ${2:groupname})"
+            "trigger": "nprimitivesgroup(filename, groupname)",
+            "contents": "nprimitivesgroup(${1:filename}, ${2:groupname})"
         },
         {
             "trigger": "nrandom(...)",
@@ -3118,12 +3138,12 @@
             "contents": "ptransform(${1:tospace}, ${2:v})"
         },
         {
-            "trigger": "push(array, values)",
-            "contents": "push(${1:array}, ${2:values})"
-        },
-        {
             "trigger": "push(array, value)",
             "contents": "push(${1:array}, ${2:value})"
+        },
+        {
+            "trigger": "push(array, values)",
+            "contents": "push(${1:array}, ${2:values})"
         },
         {
             "trigger": "qconvert(quaternion)",
@@ -3826,6 +3846,10 @@
             "contents": "setprimvertex(${1:geohandle}, ${2:prim}, ${3:vtxofprim}, ${4:pt})"
         },
         {
+            "trigger": "setsamplestore(channel, P, value)",
+            "contents": "setsamplestore(${1:channel}, ${2:P}, ${3:value})"
+        },
+        {
             "trigger": "setvertexattrib(geohandle, name, elemnum, vtxofprim, value)",
             "contents": "setvertexattrib(${1:geohandle}, ${2:name}, ${3:elemnum}, ${4:vtxofprim}, ${5:value})"
         },
@@ -4272,10 +4296,6 @@
         {
             "trigger": "vertexnext(geometry, linearvertex)",
             "contents": "vertexnext(${1:geometry}, ${2:linearvertex})"
-        },
-        {
-            "trigger": "vertexpoint(opinput, linearvertex)",
-            "contents": "vertexpoint(${1:opinput}, ${2:linearvertex})"
         },
         {
             "trigger": "vertexpoint(geometry, linearvertex)",
