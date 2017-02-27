@@ -25,22 +25,33 @@ geo*
 !3-5
 0-100:2 ^10-20
 
+# HScript Expressions example.
+if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), 0)
 
-# HScript Expressions.
-if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))
-
+# Multi-line style.
 {
     if ($PT % 2 == 0)
     {
-        float pt = point("../mountain_z", $PT + 1, "P", 0);
-        return ($TX - pt) * ch("normMult");
+        return point("../mountain_z", $PT + 1, "P", 0);
     }
     else
     {
-        float pt = point("../mountain_z", $PT - 1, "P", 0);
-        return (pt - $TX) * ch("normMult");
+        return 0;
     }
 }
+
+# Expression function to reverse the order of a string.
+string strreverse(string in)
+{
+    float len = strlen(in);
+    string result = "";
+    for (src = len-1; src >= 0; src--)
+    {
+        result += in[src];
+        return result;
+    }
+}
+
 
 
 {
@@ -149,16 +160,12 @@ echo '$foo='"$foo"
 echo ${afile:e}
 
 
-# Script for a guessing game (guess.cmd)
-# First, get a random seed
+# Script for a guessing game.
 set foo = `system(date)`
 set seed = `substr($foo, 14, 2)``substr($foo, 17, 2)`
-
-# Then, pick a random number
 set num = `int(rand($seed)*100)+1`
 set guess = -1
 echo Guess a random number between 1 and 100.
-
 while ("$guess" != "$num")
     echo "-n Enter guess (q to quit): "
     read guess
@@ -178,5 +185,4 @@ while ("$guess" != "$num")
         echo Spot on!
     endif
 end
-
 echo The number was $num

@@ -243,19 +243,26 @@ for (int i = 1; i < @numpt; i++)
 }
 
 
-#define PI `$PI`
+/*
+Wrangle-style VEX example with @-bindings and backticks.
+*/
+#define PI `$PI` // Use HScript.
 
+int geoself()
+{
+    return 0; // TODO
+}
 
+// Do something.
 if (i@group_main)
 {
     int vtx = vertexindex(0, @primnum, 1);
     int pt = vertexpoint(0, vtx);
-    s@point_pairs = sprintf("%d_%d", @ptnum, pt);
+    s@point_pairs = sprintf;
     i@group_pair`opdigits(oppwd())` = true;
 }
 else
 {
-    // TODO: something.
     foreach (int i; pointprims(0, @ptnum))
     {
         append(i[]@nbprims, i + @ptnum)
@@ -264,18 +271,29 @@ else
 }
 
 
-surface crazy(string maps[] = {"Mandril.rat", "default.pic"}; export float alength = 0)
+/*
+.vfl-style VEX example.
+*/
+#ifndef __Example__
+#define __Example__
+
+#include <math.h>
+#define RED {1,0,0}
+
+surface crazy(string maps[] = {"Mandril.rat", "default.pic"};
+              export float alength = 0)
 {
-    vector texclr, av[];
+    vector texclr = texture(maps[s+t > 1], s, t);
+    vector av[] = array(RED, vector(nrandom()), t, texclr, RED/2);
 
-    texclr = texture(maps[s+t > 1], s, t);
-    av = array( {1,0,0}, vector(nrandom()), t, texclr, {.5,0,0});
-
+    #if 0 // Disabled.
     if (fit(noise(s*8), 0, 1, .3, .7) > t)
-    {
-        av = array(1, {0,1,0}, 0);
-    }
+        av = array(1, RED, 0);
+    #endif
 
     Cf = spline("linear", s, av);
     alength = len(av);
 }
+
+#endif // __Example__
+
