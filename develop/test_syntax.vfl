@@ -101,7 +101,15 @@ r"asd\"fgh\t\\t\f%se\nd\\"
 "\uDEADBEEF"
 "\u0123456789"
 "\n \b \" \\ \r"
-
+R"(Hello world\n)";
+"Hello world\\n";
+r"Line 1\nLine 1 continues"
+R"(Line 1\nLine 1 continues)"
+R"multi(This is a long
+string which has multiple lines.  The string
+also contains an embedded raw string R"(raw string)"
+But since the delimiter doesn't match, the string isn't
+actually ended until here.)multi";
 
 import shader;
 import(something);
@@ -114,6 +122,28 @@ f@orient = {0, 0, 1, 1}
 3[]@test
 x = 0 ? x : 1
 a0a0a_a_0
+
+struct values {
+    int uninitialized;        // Uninitialized member data
+    int ival = 3;
+    float fval = 3.14;
+    float aval[] = { 1, 2, 3, 4.5 };
+}
+
+basis rotate(basis b; vector axis; float amount) {
+    matrix m = 1;
+    rotate(m, amount, axis);
+    basis result = b;
+    result.i *= m;
+    result.j *= m;
+    result.k *= m;
+    return result;
+}
+// Declare struct variables
+basis b0;
+basis b1 = basis({1,0,0}, {0,1,0}, {0,0,1}); // Initialize using constructor
+basis b2 = {{1,0,0}, {0,1,0}, {0,0,1}};         // Initialize as explicit struct
+b1 = rotate(b1, {0,0,1}, M_PI/6);
 
 
 float function(vector temp)
@@ -148,7 +178,7 @@ some_function_call(
     noisetype
 )
 
-float x
+float x * (ige)
 x = some_function_call(pos, rough, maxoctaves, noisetype)
 float x = some_function_call(pos, rough, maxoctaves, noisetype)
 
@@ -231,4 +261,21 @@ else
         append(i[]@nbprims, i + @ptnum)
     }
     removepoint(0, @ptnum);
+}
+
+
+surface crazy(string maps[] = {"Mandril.rat", "default.pic"}; export float alength = 0)
+{
+    vector texclr, av[];
+
+    texclr = texture(maps[s+t > 1], s, t);
+    av = array( {1,0,0}, vector(nrandom()), t, texclr, {.5,0,0});
+
+    if (fit(noise(s*8), 0, 1, .3, .7) > t)
+    {
+        av = array(1, {0,1,0}, 0);
+    }
+
+    Cf = spline("linear", s, av);
+    alength = len(av);
 }

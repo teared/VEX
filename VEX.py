@@ -18,7 +18,6 @@ if __name__ == '__main__':
     allow_exts = (
         '.css',
         '.json',
-        '.md',
         '.py',
         '.sublime-commands',
         '.sublime-completions',

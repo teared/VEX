@@ -150,6 +150,10 @@
             "contents": "chsop(${1:string path})"
         },
         {
+            "trigger": "chsoplist(path)",
+            "contents": "chsoplist(${1:string path})"
+        },
+        {
             "trigger": "chsraw(channel)",
             "contents": "chsraw(${1:string channel})"
         },
@@ -168,6 +172,18 @@
         {
             "trigger": "constant()",
             "contents": "constant()"
+        },
+        {
+            "trigger": "cophasmeta(compositing_node, metadata_name)",
+            "contents": "cophasmeta(${1:string compositing_node}, ${2:string metadata_name})"
+        },
+        {
+            "trigger": "copmeta(compositing_node, metadata_name, index)",
+            "contents": "copmeta(${1:string compositing_node}, ${2:string metadata_name}, ${3:float index})"
+        },
+        {
+            "trigger": "copmetas(compositing_node, metadata_name)",
+            "contents": "copmetas(${1:string compositing_node}, ${2:string metadata_name})"
         },
         {
             "trigger": "cos(number)",
@@ -914,8 +930,16 @@
             "contents": "opselect(${1:string network})"
         },
         {
+            "trigger": "opselectpath(network)",
+            "contents": "opselectpath(${1:string network})"
+        },
+        {
             "trigger": "opselectrecurse(network, flag)",
             "contents": "opselectrecurse(${1:string network}, ${2:float flag})"
+        },
+        {
+            "trigger": "opstreamname(nodepath)",
+            "contents": "opstreamname(${1:string nodepath})"
         },
         {
             "trigger": "opsubpath(node)",
