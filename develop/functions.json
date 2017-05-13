@@ -11087,16 +11087,16 @@
     },
     "chattr": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Reads an attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input.</p><ul><li><code>int chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int input, string attrclass, string attrname, int track, int sample, int &amp;ret)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns an attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input.\nSets <code>ret</code> to 1 if the read succeeded, 0 otherwise.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</p><ul><li><code>int chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns a CHOP attribute value from connected CHOP input node.</p>\n\n<p>\n<code>input</code>\n\n<div class=\"content\">\n<p>The index (starting from 0) of the node input to read from.</p>\n</div>\n</p>\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to read.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to read the channel or channelsample attribute value from. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to read the sample or channelsample attribute value from. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>success</code>\n\n<div class=\"content\">\n<p>If the given attribute exists and can be read, the function sets this variable to <code>1</code>. Otherwise, it sets this variable to <code>0</code>.</p>\n</div>\n</p>\n\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">int success = 0\n</code><code class=\"line\">\n</code><code class=\"line\">int input = 0;\n</code><code class=\"line\">string attrname = \"export\";\n</code><code class=\"line\">string attrclass = \"channel\";\n</code><code class=\"line\">int channel = 0; // Or use C global variable for channel index.\n</code><code class=\"line\">int sample = -1; // Or use I global variable for sample index.\n</code><code class=\"line\">string s = chattr(input, attrname, attrclass, channel, sample, success )\n</code><code class=\"line\">if (success) {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Do something with s\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0printf(\"s=%s\\n\", s);\n</code><code class=\"line\">} else {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Couldn't read attribute, usually because an attribute with that\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// name doesn't exist\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n</div>",
         "sigs": [
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11114,12 +11114,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11137,12 +11137,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11160,12 +11160,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11183,12 +11183,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11206,12 +11206,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11229,12 +11229,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11252,12 +11252,12 @@
             },
             {
                 "argnames": [
-                    "input",
+                    "opinput",
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
-                    "ret"
+                    "success"
                 ],
                 "args": [
                     "const int",
@@ -11874,13 +11874,13 @@
     },
     "chsetattr": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes an attribute value on Channels, Clips, Sample or Channel/Sample.</p><ul><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, int value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, string value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, vector value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, matrix2 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, matrix3 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int track, int sample, matrix value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes an attribute value on Channels, Clips, Sample or Channel/Sample.\nReturns 1 if the write succeeded, 0 otherwise.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample.</p><ul><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, int value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, string value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix2 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix3 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample. Returns 1 if the write succeeded, 0 otherwise.</p>\n\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class and detect the type based on <code>channel</code> and <code>sample</code> argument values.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to write.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to write the channel or channelsample attribute value to. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to write the sample or channelsample attribute value to. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>value</code>\n\n<div class=\"content\">\n<p>The new attribute value. The type of the argment determines the type of the attribute.</p>\n</div>\n</p>\n\n\n</div>",
         "sigs": [
             {
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -11901,7 +11901,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -11922,7 +11922,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -11943,7 +11943,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -11964,7 +11964,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -11985,7 +11985,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -12006,7 +12006,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -12027,7 +12027,7 @@
                 "argnames": [
                     "attrclass",
                     "attrname",
-                    "track",
+                    "channel",
                     "sample",
                     "value"
                 ],
@@ -14344,7 +14344,7 @@
     },
     "detail": {
         "added": "12.5",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/detail\">detail</a></h1><span><span class=\"padder\"><span class=\"pillow\">12.5</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Imports a detail attribute value from a geometry.</p><ul><li><code>int detail(int opinput, string attribute_name)</code></li><li><code>int detail(int opinput, string attribute_name, int ignored)</code></li><li><code>int detail(string geometry, string attribute_name)</code></li><li><code>int detail(string geometry, string attribute_name, int ignored)</code></li><li><code>string detail(int opinput, string attribute_name)</code></li><li><code>string detail(int opinput, string attribute_name, int ignored)</code></li><li><code>string detail(string geometry, string attribute_name)</code></li><li><code>string detail(string geometry, string attribute_name, int ignored)</code></li><li><code>float detail(int opinput, string attribute_name)</code></li><li><code>float detail(int opinput, string attribute_name, int ignored)</code></li><li><code>float detail(string geometry, string attribute_name)</code></li><li><code>float detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector2 detail(int opinput, string attribute_name)</code></li><li><code>vector2 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector2 detail(string geometry, string attribute_name)</code></li><li><code>vector2 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector detail(int opinput, string attribute_name)</code></li><li><code>vector detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector detail(string geometry, string attribute_name)</code></li><li><code>vector detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector4 detail(int opinput, string attribute_name)</code></li><li><code>vector4 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector4 detail(string geometry, string attribute_name)</code></li><li><code>vector4 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix2 detail(int opinput, string attribute_name)</code></li><li><code>matrix2 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix2 detail(string geometry, string attribute_name)</code></li><li><code>matrix2 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix3 detail(int opinput, string attribute_name)</code></li><li><code>matrix3 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix3 detail(string geometry, string attribute_name)</code></li><li><code>matrix3 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix detail(int opinput, string attribute_name)</code></li><li><code>matrix detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix detail(string geometry, string attribute_name)</code></li><li><code>matrix detail(string geometry, string attribute_name, int ignored)</code></li><li><code>int[] detail(int opinput, string attribute_name)</code></li><li><code>int[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>int[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>string[] detail(int opinput, string attribute_name)</code></li><li><code>string[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>string[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>float[] detail(int opinput, string attribute_name)</code></li><li><code>float[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>float[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector2[] detail(int opinput, string attribute_name)</code></li><li><code>vector2[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector2[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector[] detail(int opinput, string attribute_name)</code></li><li><code>vector[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector4[] detail(int opinput, string attribute_name)</code></li><li><code>vector4[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector4[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix2[] detail(int opinput, string attribute_name)</code></li><li><code>matrix2[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix2[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix3[] detail(int opinput, string attribute_name)</code></li><li><code>matrix3[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix3[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix[] detail(int opinput, string attribute_name)</code></li><li><code>matrix[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix[] detail(string geometry, string attribute_name, int ignored)</code></li></ul>\n\n\n\n<p>Returns <code>0</code> if importing the attribute failed, the value of the\nattribute on success.</p>\n<p><code>opinput</code>:\nThe number of the input to the current node, starting with <code>0</code> being the first input.</p>\n<p><code>geometry</code>:\nThe name of the geometry file to reference.  Inside Houdini,\nthis may be \"op:full_path_to_sop\" to reference a SOP.</p>\n<p><code>attribute_name</code>:\nThe name of the attribute (e.g. \"Cd\" or \"P\")</p>\n\n<h2 class=\"label heading\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">vector        uv;\n</code><code class=\"line\">\n</code><code class=\"line\">// Get the value of the \"uv\" attribute for the detail.\n</code><code class=\"line\">uv = detail(\"defgeo.bgeo\", \"uv\");\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattrib\">detailattrib</a><div class=\"related-summary\">Imports a detail attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setdetailattrib\">setdetailattrib</a><div class=\"related-summary\">Sets a detail attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/hasdetailattrib\">hasdetailattrib</a><div class=\"related-summary\">Returns if a geometry detail attribute exists.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribsize\">detailattribsize</a><div class=\"related-summary\">Returns the size of a geometry detail attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribtype\">detailattribtype</a><div class=\"related-summary\">Returns the type of a geometry detail attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribtypeinfo\">detailattribtypeinfo</a><div class=\"related-summary\">Returns the type info of a geometry attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/adddetailattrib\">adddetailattrib</a><div class=\"related-summary\">Adds an attribute to a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/attrib\">attrib</a><div class=\"related-summary\">Reads an attribute value from geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getattrib\">getattrib</a><div class=\"related-summary\">Reads an attribute value from geometry, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/point\">point</a><div class=\"related-summary\">Imports a point attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertex\">vertex</a><div class=\"related-summary\">Imports a vertex attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/prim\">prim</a><div class=\"related-summary\">Imports a primitive attribute value from a geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/detail\">detail</a></h1><span><span class=\"padder\"><span class=\"pillow\">12.5</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Imports a detail attribute value from a geometry.</p><ul><li><code>int detail(int opinput, string attribute_name)</code></li><li><code>int detail(int opinput, string attribute_name, int ignored)</code></li><li><code>int detail(string geometry, string attribute_name)</code></li><li><code>int detail(string geometry, string attribute_name, int ignored)</code></li><li><code>string detail(int opinput, string attribute_name)</code></li><li><code>string detail(int opinput, string attribute_name, int ignored)</code></li><li><code>string detail(string geometry, string attribute_name)</code></li><li><code>string detail(string geometry, string attribute_name, int ignored)</code></li><li><code>float detail(int opinput, string attribute_name)</code></li><li><code>float detail(int opinput, string attribute_name, int ignored)</code></li><li><code>float detail(string geometry, string attribute_name)</code></li><li><code>float detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector2 detail(int opinput, string attribute_name)</code></li><li><code>vector2 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector2 detail(string geometry, string attribute_name)</code></li><li><code>vector2 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector detail(int opinput, string attribute_name)</code></li><li><code>vector detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector detail(string geometry, string attribute_name)</code></li><li><code>vector detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector4 detail(int opinput, string attribute_name)</code></li><li><code>vector4 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector4 detail(string geometry, string attribute_name)</code></li><li><code>vector4 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix2 detail(int opinput, string attribute_name)</code></li><li><code>matrix2 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix2 detail(string geometry, string attribute_name)</code></li><li><code>matrix2 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix3 detail(int opinput, string attribute_name)</code></li><li><code>matrix3 detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix3 detail(string geometry, string attribute_name)</code></li><li><code>matrix3 detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix detail(int opinput, string attribute_name)</code></li><li><code>matrix detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix detail(string geometry, string attribute_name)</code></li><li><code>matrix detail(string geometry, string attribute_name, int ignored)</code></li><li><code>int[] detail(int opinput, string attribute_name)</code></li><li><code>int[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>int[] detail(string geometry, string attribute_name)</code></li><li><code>int[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>string[] detail(int opinput, string attribute_name)</code></li><li><code>string[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>string[] detail(string geometry, string attribute_name)</code></li><li><code>string[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>float[] detail(int opinput, string attribute_name)</code></li><li><code>float[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>float[] detail(string geometry, string attribute_name)</code></li><li><code>float[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector2[] detail(int opinput, string attribute_name)</code></li><li><code>vector2[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector2[] detail(string geometry, string attribute_name)</code></li><li><code>vector2[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector[] detail(int opinput, string attribute_name)</code></li><li><code>vector[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector[] detail(string geometry, string attribute_name)</code></li><li><code>vector[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>vector4[] detail(int opinput, string attribute_name)</code></li><li><code>vector4[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>vector4[] detail(string geometry, string attribute_name)</code></li><li><code>vector4[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix2[] detail(int opinput, string attribute_name)</code></li><li><code>matrix2[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix2[] detail(string geometry, string attribute_name)</code></li><li><code>matrix2[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix3[] detail(int opinput, string attribute_name)</code></li><li><code>matrix3[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix3[] detail(string geometry, string attribute_name)</code></li><li><code>matrix3[] detail(string geometry, string attribute_name, int ignored)</code></li><li><code>matrix[] detail(int opinput, string attribute_name)</code></li><li><code>matrix[] detail(int opinput, string attribute_name, int ignored)</code></li><li><code>matrix[] detail(string geometry, string attribute_name)</code></li><li><code>matrix[] detail(string geometry, string attribute_name, int ignored)</code></li></ul>\n\n\n\n<p>Returns <code>0</code> if importing the attribute failed, the value of the\nattribute on success.</p>\n<p><code>opinput</code>:\nThe number of the input to the current node, starting with <code>0</code> being the first input.</p>\n<p><code>geometry</code>:\nThe name of the geometry file to reference.  Inside Houdini,\nthis may be \"op:full_path_to_sop\" to reference a SOP.</p>\n<p><code>attribute_name</code>:\nThe name of the attribute (e.g. \"Cd\" or \"P\")</p>\n\n<h2 class=\"label heading\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">vector        uv;\n</code><code class=\"line\">\n</code><code class=\"line\">// Get the value of the \"uv\" attribute for the detail.\n</code><code class=\"line\">uv = detail(\"defgeo.bgeo\", \"uv\");\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattrib\">detailattrib</a><div class=\"related-summary\">Imports a detail attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setdetailattrib\">setdetailattrib</a><div class=\"related-summary\">Sets a detail attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/hasdetailattrib\">hasdetailattrib</a><div class=\"related-summary\">Returns if a geometry detail attribute exists.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribsize\">detailattribsize</a><div class=\"related-summary\">Returns the size of a geometry detail attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribtype\">detailattribtype</a><div class=\"related-summary\">Returns the type of a geometry detail attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detailattribtypeinfo\">detailattribtypeinfo</a><div class=\"related-summary\">Returns the type info of a geometry attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/adddetailattrib\">adddetailattrib</a><div class=\"related-summary\">Adds an attribute to a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/attrib\">attrib</a><div class=\"related-summary\">Reads an attribute value from geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getattrib\">getattrib</a><div class=\"related-summary\">Reads an attribute value from geometry, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/point\">point</a><div class=\"related-summary\">Imports a point attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertex\">vertex</a><div class=\"related-summary\">Imports a vertex attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/prim\">prim</a><div class=\"related-summary\">Imports a primitive attribute value from a geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
@@ -15337,6 +15337,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15416,6 +15441,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15495,6 +15545,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15574,6 +15649,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "float[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15653,6 +15753,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "int[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15732,6 +15857,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15811,6 +15961,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "string[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15890,6 +16065,31 @@
             {
                 "argnames": [
                     "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
                     "attribute_name",
                     "ignored"
                 ],
@@ -15949,6 +16149,31 @@
                     "const int",
                     "const string",
                     "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
                 ],
                 "contexts": [
                     "surface",
@@ -20016,6 +20241,62 @@
                 "return": "string",
                 "variadic": true,
                 "variadic_pair": true
+            }
+        ]
+    },
+    "expandedgegroup": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/expandedgegroup\">expandedgegroup</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\"></p><ul><li><code>int[] expandedgegroup(int input, string groupname)</code></li><li><code>int[] expandedgegroup(string filename, string groupname)</code></li></ul>\n\n\n\n<p>Returns a list of point pairs of the edges in the specified group of a geometry file.</p>\n<p>This can use ad-hoc groups, like <code>0</code> or <code>p0-1</code>.  It matches the SOP group naming convention, in particular that an empty string means all edges.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/inedgegroup\">inedgegroup()</a><div class=\"related-summary\">Returns 1 if the edge specified by the point pair is in the group specified by the string.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/nedgesgroup\">nedgesgroup()</a><div class=\"related-summary\">Returns the number of edges in the group.</div></p></div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "input",
+                    "groupname"
+                ],
+                "args": [
+                    "const int",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int[]"
+            },
+            {
+                "argnames": [
+                    "filename",
+                    "groupname"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int[]"
             }
         ]
     },
@@ -27586,12 +27867,12 @@
     },
     "getpointbbox": {
         "added": "14.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a></h1><span><span class=\"padder\"><span class=\"pillow\">14.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</p><ul><li><code>void getpointbbox(int input, string primgroup, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(int input, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(string filename, string primgroup, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(string geometry, vector &amp;min, vector &amp;max)</code></li></ul>\n\n\n\n<p>Sets two vectors to the minimum and maximum corners of the bounding box\nfor the geometry.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all points.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a></h1><span><span class=\"padder\"><span class=\"pillow\">14.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</p><ul><li><code>void getpointbbox(int filename, string pointgroup, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(int geometry, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(string filename, string pointgroup, vector &amp;min, vector &amp;max)</code></li><li><code>void getpointbbox(string geometry, vector &amp;min, vector &amp;max)</code></li></ul>\n\n\n\n<p>Sets two vectors to the minimum and maximum corners of the bounding box\nfor the geometry.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all points.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
-                    "input",
-                    "primgroup",
+                    "filename",
+                    "pointgroup",
                     "min",
                     "max"
                 ],
@@ -27614,12 +27895,12 @@
                     "image3d",
                     "cvex"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "ARGMT",
                 "return": "void"
             },
             {
                 "argnames": [
-                    "input",
+                    "geometry",
                     "min",
                     "max"
                 ],
@@ -27641,13 +27922,13 @@
                     "image3d",
                     "cvex"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "ARGMT",
                 "return": "void"
             },
             {
                 "argnames": [
                     "filename",
-                    "primgroup",
+                    "pointgroup",
                     "min",
                     "max"
                 ],
@@ -27704,11 +27985,11 @@
     },
     "getpointbbox_center": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the center of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_center(int input)</code></li><li><code>vector getpointbbox_center(int input, string primgroup)</code></li><li><code>vector getpointbbox_center(string input)</code></li><li><code>vector getpointbbox_center(string filename, string primgroup)</code></li></ul>\n\n\n\n<p>Computes the center of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the center of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_center(int opinput)</code></li><li><code>vector getpointbbox_center(int opinput, string pointgroup)</code></li><li><code>vector getpointbbox_center(string opinput)</code></li><li><code>vector getpointbbox_center(string filename, string pointgroup)</code></li></ul>\n\n\n\n<p>Computes the center of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const int"
@@ -27731,8 +28012,8 @@
             },
             {
                 "argnames": [
-                    "input",
-                    "primgroup"
+                    "opinput",
+                    "pointgroup"
                 ],
                 "args": [
                     "const int",
@@ -27756,7 +28037,7 @@
             },
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const string"
@@ -27780,7 +28061,7 @@
             {
                 "argnames": [
                     "filename",
-                    "primgroup"
+                    "pointgroup"
                 ],
                 "args": [
                     "const string",
@@ -27806,11 +28087,11 @@
     },
     "getpointbbox_max": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the maximum of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_max(int input)</code></li><li><code>vector getpointbbox_max(int input, string primgroup)</code></li><li><code>vector getpointbbox_max(string input)</code></li><li><code>vector getpointbbox_max(string filename, string primgroup)</code></li></ul>\n\n\n\n<p>Computes the maximum of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the maximum of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_max(int opinput)</code></li><li><code>vector getpointbbox_max(int opinput, string pointgroup)</code></li><li><code>vector getpointbbox_max(string opinput)</code></li><li><code>vector getpointbbox_max(string filename, string pointgroup)</code></li></ul>\n\n\n\n<p>Computes the maximum of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const int"
@@ -27833,8 +28114,8 @@
             },
             {
                 "argnames": [
-                    "input",
-                    "primgroup"
+                    "opinput",
+                    "pointgroup"
                 ],
                 "args": [
                     "const int",
@@ -27858,7 +28139,7 @@
             },
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const string"
@@ -27882,7 +28163,7 @@
             {
                 "argnames": [
                     "filename",
-                    "primgroup"
+                    "pointgroup"
                 ],
                 "args": [
                     "const string",
@@ -27908,11 +28189,11 @@
     },
     "getpointbbox_min": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the minimum of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_min(int input)</code></li><li><code>vector getpointbbox_min(int input, string primgroup)</code></li><li><code>vector getpointbbox_min(string input)</code></li><li><code>vector getpointbbox_min(string filename, string primgroup)</code></li></ul>\n\n\n\n<p>Computes the minimum of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the minimum of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_min(int opinput)</code></li><li><code>vector getpointbbox_min(int opinput, string pointgroup)</code></li><li><code>vector getpointbbox_min(string opinput)</code></li><li><code>vector getpointbbox_min(string filename, string pointgroup)</code></li></ul>\n\n\n\n<p>Computes the minimum of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const int"
@@ -27935,8 +28216,8 @@
             },
             {
                 "argnames": [
-                    "input",
-                    "primgroup"
+                    "opinput",
+                    "pointgroup"
                 ],
                 "args": [
                     "const int",
@@ -27960,7 +28241,7 @@
             },
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const string"
@@ -27984,7 +28265,7 @@
             {
                 "argnames": [
                     "filename",
-                    "primgroup"
+                    "pointgroup"
                 ],
                 "args": [
                     "const string",
@@ -28010,11 +28291,11 @@
     },
     "getpointbbox_size": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the size of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_size(int input)</code></li><li><code>vector getpointbbox_size(int input, string primgroup)</code></li><li><code>vector getpointbbox_size(string input)</code></li><li><code>vector getpointbbox_size(string filename, string primgroup)</code></li></ul>\n\n\n\n<p>Computes the size of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span><span class=\"padder\"><span class=\"pillow\">math</span></span><span class=\"padder\"><span class=\"pillow\">sop</span></span></span><p class=\"summary\">Returns the size of the bounding box for the geometry.</p><ul><li><code>vector getpointbbox_size(int opinput)</code></li><li><code>vector getpointbbox_size(int opinput, string pointgroup)</code></li><li><code>vector getpointbbox_size(string opinput)</code></li><li><code>vector getpointbbox_size(string filename, string pointgroup)</code></li></ul>\n\n\n\n<p>Computes the size of the bounding box for the geometry.  This only\nincludes points, so will not\nbe expanded to include the extents of spheres and volumes.</p>\n<p>If a group is specified, only points in that group will be used.\nThe group field\u2019s behavior matches that in SOPs.  An empty string\nwill include all primitives.  Ad-hoc patterns like <code>0-10</code> and\n<code>@Cd.x&gt;0</code> are also valid.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox\">getpointbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_center\">getpointbbox_center</a><div class=\"related-summary\">Returns the center of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_size\">getpointbbox_size</a><div class=\"related-summary\">Returns the size of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_min\">getpointbbox_min</a><div class=\"related-summary\">Returns the minimum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getpointbbox_max\">getpointbbox_max</a><div class=\"related-summary\">Returns the maximum of the bounding box for the geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getbbox\">getbbox</a><div class=\"related-summary\">Sets two vectors to the minimum and maximum corners of the bounding box for the geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const int"
@@ -28037,8 +28318,8 @@
             },
             {
                 "argnames": [
-                    "input",
-                    "primgroup"
+                    "opinput",
+                    "pointgroup"
                 ],
                 "args": [
                     "const int",
@@ -28062,7 +28343,7 @@
             },
             {
                 "argnames": [
-                    "input"
+                    "opinput"
                 ],
                 "args": [
                     "const string"
@@ -28086,7 +28367,7 @@
             {
                 "argnames": [
                     "filename",
-                    "primgroup"
+                    "pointgroup"
                 ],
                 "args": [
                     "const string",
@@ -28186,7 +28467,7 @@
     },
     "getsamplestore": {
         "added": "15.5",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getsamplestore\">getsamplestore</a></h1><span><span class=\"padder\"><span class=\"pillow\">15.5</span></span><span class=\"padder\"><span class=\"pillow\">properties</span></span><span class=\"padder\"><span class=\"pillow\">shading</span></span></span><p class=\"summary\">Looks up sample data in a channel, referenced by a point.</p><ul><li><code>int getsamplestore(string channel, vector P, int &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, float &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, vector &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, vector4 &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li></ul>\n\n\n\n<p>Looks up a value in a named channel at a specified point.\nReturns a non-zero value and sets <code>value</code> on success, or returns 0\nif the data could not be set.</p>\n<p>The sample store can be thought of as an in-memory point cloud, storing\nshading data at points. This allows data to be accessed across shader\nboundaries, unlike the internal export/import system. For example,\na lens shader could store data to be passed to the surface shader,\nan operation that is not supported using export variables due to the\nlayout of the shading pipeline.</p>\n\n<h2 class=\"label heading\" id=\"example\">\n            \n            Example\n        </h2>\n<div class=\"content\" id=\"example-body\">\n<div class=\"code-container\">\n<code class=\"line\">cvex displacedlens(\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Inputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float x = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float y = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float Time = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofx = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofy = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float aspect = 1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceScale = 1.0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceGain = 0.1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Outputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector P = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector I = 0;\n</code><code class=\"line\">)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0P = {x, y, 0};\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I = {1, 0, 0};\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = noise(P * displaceScale) * displaceGain;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I += displace;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Store the displacement at the eye point, 'P'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = setsamplestore(\"displacedlens_d\", P, displace);\n</code><code class=\"line\">}\n</code><code class=\"line\">\n</code><code class=\"line\">surface mysurface()\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Get the displacement at the eye point, 'Eye'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = getsamplestore(\"displacedlens_d\", Eye, displace);\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0//...\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setsamplestore\">setsamplestore()</a><div class=\"related-summary\">Stores sample data in a channel, referenced by a point.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/getsamplestore\">getsamplestore</a></h1><span><span class=\"padder\"><span class=\"pillow\">15.5</span></span><span class=\"padder\"><span class=\"pillow\">properties</span></span><span class=\"padder\"><span class=\"pillow\">shading</span></span></span><p class=\"summary\">Looks up sample data in a channel, referenced by a point.</p><ul><li><code>int getsamplestore(string channel, vector P, int &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, float &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, vector &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int getsamplestore(string channel, vector P, vector4 &amp;value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li></ul>\n\n\n\n<p>Looks up a value in a named channel at a specified point.\nReturns a non-zero value and sets <code>value</code> on success, or returns 0\nif the data could not be set.</p>\n<p>The sample store can be thought of as an in-memory point cloud, storing\nshading data at points. This allows data to be accessed across shader\nboundaries, unlike the internal export/import system. For example,\na lens shader could store data to be passed to the surface shader,\nan operation that is not supported using export variables due to the\nlayout of the shading pipeline.</p>\n<p>Please note that the stored samples can only be accessed within the same render\ntile.</p>\n\n<h2 class=\"label heading\" id=\"example\">\n            \n            Example\n        </h2>\n<div class=\"content\" id=\"example-body\">\n<div class=\"code-container\">\n<code class=\"line\">cvex displacedlens(\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Inputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float x = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float y = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float Time = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofx = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofy = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float aspect = 1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceScale = 1.0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceGain = 0.1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Outputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector P = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector I = 0;\n</code><code class=\"line\">)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0P = {x, y, 0};\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I = {1, 0, 0};\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = noise(P * displaceScale) * displaceGain;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I += displace;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Store the displacement at the eye point, 'P'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = setsamplestore(\"displacedlens_d\", P, displace);\n</code><code class=\"line\">}\n</code><code class=\"line\">\n</code><code class=\"line\">surface mysurface()\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Get the displacement at the eye point, 'Eye'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = getsamplestore(\"displacedlens_d\", Eye, displace);\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0//...\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setsamplestore\">setsamplestore()</a><div class=\"related-summary\">Stores sample data in a channel, referenced by a point.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
@@ -30708,6 +30989,70 @@
                 "contexts": [
                     "pop",
                     "sop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "inedgegroup": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/inedgegroup\">inedgegroup</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Returns 1 if the edge specified by the point pair is in the group specified by the string.</p><ul><li><code>int inedgegroup(int input, string groupname, int pointnum0, int pointnum1)</code></li><li><code>int inedgegroup(string filename, string groupname, int pointnum0, int pointnum1)</code></li></ul>\n\n\n\n<p>Returns 1 if the edge specified by the point pair is in the group specified by the string. This function returns 0 if the group does not exist or if the edge is not contained in the group.</p>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "input",
+                    "groupname",
+                    "pointnum0",
+                    "pointnum1"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "filename",
+                    "groupname",
+                    "pointnum0",
+                    "pointnum1"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
                 ],
                 "fillstate": "EXACT",
                 "return": "int"
@@ -38230,6 +38575,62 @@
             }
         ]
     },
+    "nedgesgroup": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/nedgesgroup\">nedgesgroup</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Returns the number of edges in the group.</p><ul><li><code>int nedgesgroup(int input, string groupname)</code></li><li><code>int nedgesgroup(string filename, string groupname)</code></li></ul>\n\n\n\n<p>Returns the number of edges in the specified group in the input or geometry file.</p>\n<p>This must refer to an exact group name, not an adhoc group pattern.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/expandedgegroup\">expandedgegroup()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/inedgegroup\">inedgegroup()</a><div class=\"related-summary\">Returns 1 if the edge specified by the point pair is in the group specified by the string.</div></p></div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "input",
+                    "groupname"
+                ],
+                "args": [
+                    "const int",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "filename",
+                    "groupname"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
     "neighbour": {
         "added": "13.0",
         "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/neighbour\">neighbour</a></h1><span><span class=\"padder\"><span class=\"pillow\">13.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Returns the point index of the neighbour of the point.</p><ul><li><code>int neighbour(int inputnum, int ptnum, int neighbournum)</code></li><li><code>int neighbour(string filename, int ptnum, int neighbournum)</code></li></ul>\n\n\n\n<p>Returns the point index of the neighbour of the point. The order is\nundefined, but will be consistent for consistent geometry. Returns -1 if\nthe <code>neighbournum</code> is out of range for that point, or the point is out of\nrange for that input, or the input doesn\u2019t exist.</p>\n\n</div>",
@@ -41769,6 +42170,306 @@
                     "cvex"
                 ],
                 "fillstate": "ARGMT",
+                "return": "int"
+            }
+        ]
+    },
+    "osd_lookupface": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/osd_lookupface\">osd_lookupface</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\"></p><ul><li><code>int osd_lookupface(int opinput, int patch_id, float patch_u, float patch_v, int &amp;face_id, float &amp;face_u, float &amp;face_v)</code></li><li><code>int osd_lookupface(int opinput, int patch_id, float patch_u, float patch_v, int &amp;face_id, float &amp;face_u, float &amp;face_v, string attribute)</code></li><li><code>int osd_lookupface(string geometry, int patch_id, float patch_u, float patch_v, int &amp;face_id, float &amp;face_u, float &amp;face_v)</code></li><li><code>int osd_lookupface(string geometry, int patch_id, float patch_u, float patch_v, int &amp;face_id, float &amp;face_u, float &amp;face_v, string attribute)</code></li></ul>\n\n\n\n<p>Each polygon in a piece of geometry will generate one or more Catmull-Clark subdivision patches.  A quadrilateral will generate a single patch, while a pentagon will generate five patches.  This function helps map between the subdivision patch id and the Houdini polygon (face).</p>\n<p>Given the <code>patch_id</code> and patch interpolants (<code>patch_u</code> and <code>patch_v</code>), this function will return the <code>face_id</code> (Houdini primitive number) and the texture coordinates (<code>face_u</code> and <code>face_v</code>) for the given attribute.</p>\n<p>If no texture attribute is specified, intrinsic polygon interpolants will be used.  The coordinates returned will have values in the range 0 to 1.</p>\n<p>The <code>patch_u</code> and <code>patch_v</code> values should be in the range 0 to 1.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">void\n</code><code class=\"line\">scatterOnLimitSurface(string file, texmap; int npts)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int npatches = osd_patchcount(file);\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0for (int i = 0; i &lt; npts; ++i)\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0int patch_id = nrandom() * npatches;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0float patch_s = nrandom();\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0float patch_t = nrandom();\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0int face_id;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0float face_u, face_v;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0if (osd_lookupface(file, patch_id, patch_s, patch_t, face_id, face_u, face_v, \"uv\"))\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0vector clr = texture(texmap, face_u, face_v);\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0vector P;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0osd_limitsurface(file, \"P\", patch_id, patch_s, patch_t, P);\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0addPoint(P, clr, face_id);        // add a scattered point.\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0}\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0}\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_lookuppatch\">osd_lookuppatch()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_patchcount\">osd_patchcount()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_facecount\">osd_facecount()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_firstpatch\">osd_firstpatch()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_limitsurface\">osd_limitsurface()</a><div class=\"related-summary\">Evaluates an attribute at the subdivision limit surface using Open Subdiv.</div></p></div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "opinput",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "face_id",
+                    "face_u",
+                    "face_v"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "attribute"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "face_id",
+                    "face_u",
+                    "face_v"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "attribute"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "osd_lookuppatch": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/osd_lookuppatch\">osd_lookuppatch</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\"></p><ul><li><code>int osd_lookuppatch(int opinput, int face_id, float face_u, float face_v, int &amp;patch_id, float &amp;patch_u, float &amp;patch_v)</code></li><li><code>int osd_lookuppatch(int opinput, int face_id, float face_u, float face_v, int &amp;patch_id, float &amp;patch_u, float &amp;patch_v, string attribute)</code></li><li><code>int osd_lookuppatch(string geometry, int face_id, float face_u, float face_v, int &amp;patch_id, float &amp;patch_u, float &amp;patch_v)</code></li><li><code>int osd_lookuppatch(string geometry, int face_id, float face_u, float face_v, int &amp;patch_id, float &amp;patch_u, float &amp;patch_v, string attribute)</code></li></ul>\n\n\n\n<p>Each polygon in a piece of geometry will generate one or more Catmull-Clark subdivision patches.  A quadrilateral will generate a single patch, while a pentagon will generate five patches.  This function helps map between the Houdini polygon (face) and the corresponding open subdivision patch id.</p>\n<p>Given the <code>face_id</code> and texture coordinates for a point inside the face (<code>face_u</code> and<code>face_v</code>), this function will return the corresponding <code>patch_id</code> (Catmull-Clark subdivision face) and the patch interpolants (<code>patch_u</code> and <code>patch_v</code>).  The texture coordinates should be specified according to the attribute passed in.</p>\n<p>If no texture attribute is specified, intrinsic polygon interpolants will be used.  The face coordinates should have values in the range 0 to 1.  Not all values are valid for triangles.  If invalid coordinates are passed in, the function will fail (returning 0).</p>\n<p>The <code>patch_id</code> is also the same integer value used to identify the face when performing PTex texture mapping.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">// This function can be used to move points generated by a scatter SOP to the\n</code><code class=\"line\">// subdivision limit surface.  The scatter SOP needs to store the \"sourceprim\"\n</code><code class=\"line\">// (the Output Attributes tab).  Texture coordinates also need to be\n</code><code class=\"line\">// transferred from the source geometry.\n</code><code class=\"line\">void\n</code><code class=\"line\">movePointToLimitSurface(string file; vector P, uv; int sourceprim)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int        patch_id = -1;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float patch_u, patch_v;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0if (osd_lookuppatch(file, sourceprim, uv.x, uv.y,\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0patch_id, patch_u, patch_v, \"uv\"))\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0vector        tmpP;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0if (osd_limitsurface(file, \"P\", patch_id, patch_u, patch_v, tmpP))\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0P = tmpP;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0}\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_lookupface\">osd_lookupface()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_patchcount\">osd_patchcount()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_facecount\">osd_facecount()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_firstpatch\">osd_firstpatch()</a></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/osd_limitsurface\">osd_limitsurface()</a><div class=\"related-summary\">Evaluates an attribute at the subdivision limit surface using Open Subdiv.</div></p></div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "opinput",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "attribute"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "face_id",
+                    "face_u",
+                    "face_v",
+                    "patch_id",
+                    "patch_u",
+                    "patch_v",
+                    "attribute"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const float",
+                    "const float",
+                    "int",
+                    "float",
+                    "float",
+                    "const string"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
                 "return": "int"
             }
         ]
@@ -68830,6 +69531,43 @@
             }
         ]
     },
+    "setedgegroup": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/setedgegroup\">setedgegroup</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Sets edge group membership in a geometry.</p><ul><li><code>int setedgegroup(int geohandle, string name, int pt0, int pt1, int value)</code></li></ul>\n\n\n\n<p>Changes a edge group membership on the given geometry.</p>\n<p>If the group does not exist, it will be created.</p>\n<p><code>geohandle</code> is a handle to the geometry to write to.  <code>geoself()</code> can be used to get a handle to the current geometry.</p>\n<p><code>name</code> is the name of the group to modify.</p>\n<p><code>pt0</code>, <code>pt1</code> are the point pair the edge to change group membership for.</p>\n<p>If the <code>value</code> is anything other than 0, the point will be in the group.</p>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "geohandle",
+                    "name",
+                    "pt0",
+                    "pt1",
+                    "value"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
     "setpointattrib": {
         "added": "13.0",
         "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/setpointattrib\">setpointattrib</a></h1><span><span class=\"padder\"><span class=\"pillow\">13.0</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Sets a point attribute in a geometry.</p><ul><li><code>int setpointattrib(int geohandle, string name, int pt, int value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, int value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, string value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, string value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, float value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, float value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector2 value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector2 value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector4 value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector4 value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix2 value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix2 value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix3 value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix3 value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, int[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, int[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, string[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, string[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, float[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, float[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector2[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector2[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector4[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, vector4[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix2[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix2[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix3[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix3[] value, string mode=\"set\")</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix[] value)</code></li><li><code>int setpointattrib(int geohandle, string name, int pt, matrix[] value, string mode=\"set\")</code></li></ul>\n\n\n\n<p>Changes a point attribute value on the given geometry.\nIt returns the geohandle on success or -1 on failure.</p>\n<div class=\"notices ind-group\">\n<div class=\"notice ind-item note \">\nNote\n<div class=\"content\">\n<p>If the attribute does not exist, this creates the attribute with a default value of zero, empty string, or an empty array.\n    If you want to control the default value of a numeric attribute, use <code>addattrib()</code>.</p>\n</div>\n</div>\n</div>\n<p><code>geohandle</code> is a handle to the geometry to write to.  <code>geoself()</code> can be used to get a handle to the current geometry.</p>\n<p><code>name</code> is the name of the attribute to write to.</p>\n<p><code>pt</code> is the point number to write to.</p>\n<p><code>mode</code> is one of:</p>\n\n<p>\n<code>\"set\"</code>\n\n<div class=\"content\">\n<p>Overwrite the attribute with the given value.</p>\n</div>\n</p>\n<p>\n<code>\"add\"</code>\n\n<div class=\"content\">\n<p>Add to the attribute the value.</p>\n</div>\n</p>\n<p>\n<code>\"min\"</code>, <code>\"minimum\"</code>\n\n<div class=\"content\">\n<p>Set the attribute to the minimum of itself and the value.</p>\n</div>\n</p>\n<p>\n<code>\"max\"</code>, <code>\"maximum\"</code>\n\n<div class=\"content\">\n<p>Set the attribute to the maximum of itself and the value.</p>\n</div>\n</p>\n<p>\n<code>\"mult\"</code>, <code>\"multiply\"</code>\n\n<div class=\"content\">\n<p>Multiply the attribute by the value.  For matrices, this will do matrix multiplication.  For vectors, component-wise.</p>\n</div>\n</p>\n<p>\n<code>\"toggle\"</code>\n\n<div class=\"content\">\n<p>Toggles the attribute, independent of the source value.  Useful for toggling group membership.</p>\n</div>\n</p>\n<p>\n<code>\"append\"</code>\n\n<div class=\"content\">\n<p>Valid for string and array attributes.  Appends the source value to the end of the original value.</p>\n</div>\n</p>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setattrib\">setattrib</a><div class=\"related-summary\">Writes an attribute value to geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setvertexattrib\">setvertexattrib</a><div class=\"related-summary\">Sets a vertex attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setprimattrib\">setprimattrib</a><div class=\"related-summary\">Sets a primitive attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setdetailattrib\">setdetailattrib</a><div class=\"related-summary\">Sets a detail attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/point\">point</a><div class=\"related-summary\">Imports a point attribute value from a geometry.</div></p></div>",
@@ -72257,7 +72995,7 @@
     },
     "setsamplestore": {
         "added": "15.5",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/setsamplestore\">setsamplestore</a></h1><span><span class=\"padder\"><span class=\"pillow\">15.5</span></span><span class=\"padder\"><span class=\"pillow\">properties</span></span><span class=\"padder\"><span class=\"pillow\">shading</span></span></span><p class=\"summary\">Stores sample data in a channel, referenced by a point.</p><ul><li><code>int setsamplestore(string channel, vector P, int value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, float value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, vector value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li></ul>\n\n\n\n<p>Stores a value in a named channel at a specified point.\nReturns a non-zero value on success, or returns 0 if the data could not be set.</p>\n<p>The sample store can be thought of as an in-memory point cloud, storing\nshading data at points. This allows data to be accessed across shader\nboundaries, unlike the internal export/import system. For example,\na lens shader could store data to be passed to the surface shader,\nan operation that is not supported using export variables due to the\nlayout of the shading pipeline.</p>\n\n<h2 class=\"label heading\" id=\"example\">\n            \n            Example\n        </h2>\n<div class=\"content\" id=\"example-body\">\n<div class=\"code-container\">\n<code class=\"line\">cvex displacedlens(\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Inputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float x = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float y = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float Time = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofx = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofy = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float aspect = 1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceScale = 1.0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceGain = 0.1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Outputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector P = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector I = 0;\n</code><code class=\"line\">)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0P = {x, y, 0};\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I = {1, 0, 0};\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = noise(P * displaceScale) * displaceGain;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I += displace;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Store the displacement at the eye point, 'P'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = setsamplestore(\"displacedlens_d\", P, displace);\n</code><code class=\"line\">}\n</code><code class=\"line\">\n</code><code class=\"line\">surface mysurface()\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Get the displacement at the eye point, 'Eye'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = getsamplestore(\"displacedlens_d\", Eye, displace);\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0//...\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getsamplestore\">getsamplestore()</a><div class=\"related-summary\">Looks up sample data in a channel, referenced by a point.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/setsamplestore\">setsamplestore</a></h1><span><span class=\"padder\"><span class=\"pillow\">15.5</span></span><span class=\"padder\"><span class=\"pillow\">properties</span></span><span class=\"padder\"><span class=\"pillow\">shading</span></span></span><p class=\"summary\">Stores sample data in a channel, referenced by a point.</p><ul><li><code>int setsamplestore(string channel, vector P, int value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, float value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, vector value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li><li><code>int setsamplestore(string channel, vector P, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">shading contexts</span></span></li></ul>\n\n\n\n<p>Stores a value in a named channel at a specified point.\nReturns a non-zero value on success, or returns 0 if the data could not be set.</p>\n<p>The sample store can be thought of as an in-memory point cloud, storing\nshading data at points. This allows data to be accessed across shader\nboundaries, unlike the internal export/import system. For example,\na lens shader could store data to be passed to the surface shader,\nan operation that is not supported using export variables due to the\nlayout of the shading pipeline.</p>\n<p>Please note that the stored samples can only be accessed within the same render\ntile.</p>\n\n<h2 class=\"label heading\" id=\"example\">\n            \n            Example\n        </h2>\n<div class=\"content\" id=\"example-body\">\n<div class=\"code-container\">\n<code class=\"line\">cvex displacedlens(\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Inputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float x = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float y = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float Time = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofx = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float dofy = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float aspect = 1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceScale = 1.0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0float displaceGain = 0.1;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Outputs\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector P = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0export vector I = 0;\n</code><code class=\"line\">)\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0P = {x, y, 0};\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I = {1, 0, 0};\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = noise(P * displaceScale) * displaceGain;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0I += displace;\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Store the displacement at the eye point, 'P'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = setsamplestore(\"displacedlens_d\", P, displace);\n</code><code class=\"line\">}\n</code><code class=\"line\">\n</code><code class=\"line\">surface mysurface()\n</code><code class=\"line\">{\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Get the displacement at the eye point, 'Eye'\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0vector displace = 0;\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0int status = getsamplestore(\"displacedlens_d\", Eye, displace);\n</code><code class=\"line\">\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0//...\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getsamplestore\">getsamplestore()</a><div class=\"related-summary\">Looks up sample data in a channel, referenced by a point.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
@@ -81002,7 +81740,7 @@
     },
     "vertex": {
         "added": "12.5",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/vertex\">vertex</a></h1><span><span class=\"padder\"><span class=\"pillow\">12.5</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Imports a vertex attribute value from a geometry.</p><ul><li><code>int vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>int vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>int vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>int vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>string vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>string vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>string vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>string vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>float vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>float vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>float vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>float vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector2 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector2 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector2 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector2 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector4 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector4 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector4 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector4 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix2 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix2 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix3 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix3 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>int[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>int[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>int[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>string[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>string[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>string[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>float[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>float[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>float[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector2[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector2[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector2[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector4[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector4[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector4[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix2[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix2[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix3[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix3[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix[] vertex(string geometry, string attribute_name, int linearvertex)</code></li></ul>\n\n\n\n<p>Returns <code>0</code> if importing the attribute failed, the value of the attribute on success.</p>\n<p><code>opinput</code>:\nThe number of the input to the current node, starting with <code>0</code> being the first input.</p>\n\n<p>\n<code>geometry</code>\n\n<div class=\"content\">\n<p>The name of the geometry file to reference.  Inside Houdini, this may be <code>op:full_path_to_sop</code> to reference a SOP.</p>\n</div>\n</p>\n<p>\n<code>attribute_name</code>\n\n<div class=\"content\">\n<p>The name of the attribute (e.g. <code>Cd</code> or <code>P</code>).</p>\n</div>\n</p>\n<p>\n<code>linearvertex</code>\n\n<div class=\"content\">\n<p>The linear vertex number.  The <code>vertexindex</code> function can be used to compute a linear vertex from a primitive number and vertex number pair.</p>\n</div>\n</p>\n<p>\n<code>prim</code>\n\n<div class=\"content\">\n<p>The primitive number.</p>\n</div>\n</p>\n<p>\n<code>vertex</code>\n\n<div class=\"content\">\n<p>The vertex number inside of a primitive.</p>\n</div>\n</p>\n\n\n<h2 class=\"label heading\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">vector        uv;\n</code><code class=\"line\">\n</code><code class=\"line\">// Get the value of the \"uv\" attribute for vertex 2 of primitive\n</code><code class=\"line\">// number 3 in the file defgeo.bgeo\n</code><code class=\"line\">uv = vertex(\"defgeo.bgeo\", \"uv\", 3, 2);\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattrib\">vertexattrib</a><div class=\"related-summary\">Imports a vertex attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setvertexattrib\">setvertexattrib</a><div class=\"related-summary\">Sets a vertex attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/hasvertexattrib\">hasvertexattrib</a><div class=\"related-summary\">Returns if a geometry vertex attribute exists.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribsize\">vertexattribsize</a><div class=\"related-summary\">Returns the size of a geometry vertex attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribtype\">vertexattribtype</a><div class=\"related-summary\">Returns the type of a geometry vertex attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribtypeinfo\">vertexattribtypeinfo</a><div class=\"related-summary\">Returns the type info of a geometry attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/addvertexattrib\">addvertexattrib</a><div class=\"related-summary\">Adds an attribute to a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/attrib\">attrib</a><div class=\"related-summary\">Reads an attribute value from geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getattrib\">getattrib</a><div class=\"related-summary\">Reads an attribute value from geometry, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/point\">point</a><div class=\"related-summary\">Imports a point attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/prim\">prim</a><div class=\"related-summary\">Imports a primitive attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detail\">detail</a><div class=\"related-summary\">Imports a detail attribute value from a geometry.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/vertex\">vertex</a></h1><span><span class=\"padder\"><span class=\"pillow\">12.5</span></span><span class=\"padder\"><span class=\"pillow\">geo</span></span></span><p class=\"summary\">Imports a vertex attribute value from a geometry.</p><ul><li><code>int vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>int vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>int vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>int vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>string vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>string vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>string vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>string vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>float vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>float vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>float vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>float vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector2 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector2 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector2 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector2 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector4 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector4 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector4 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector4 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix2 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix2 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3 vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix3 vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3 vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix3 vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>int[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>int[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>int[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>int[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>string[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>string[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>string[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>string[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>float[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>float[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>float[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>float[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector2[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector2[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector2[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector2[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>vector4[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>vector4[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>vector4[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>vector4[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix2[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix2[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix2[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix3[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix3[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix3[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li><li><code>matrix[] vertex(int opinput, string attribute_name, int linearvertex)</code></li><li><code>matrix[] vertex(int opinput, string attribute_name, int prim, int vertex)</code></li><li><code>matrix[] vertex(string geometry, string attribute_name, int linearvertex)</code></li><li><code>matrix[] vertex(string geometry, string attribute_name, int prim, int vertex)</code></li></ul>\n\n\n\n<p>Returns <code>0</code> if importing the attribute failed, the value of the attribute on success.</p>\n<p><code>opinput</code>:\nThe number of the input to the current node, starting with <code>0</code> being the first input.</p>\n\n<p>\n<code>geometry</code>\n\n<div class=\"content\">\n<p>The name of the geometry file to reference.  Inside Houdini, this may be <code>op:full_path_to_sop</code> to reference a SOP.</p>\n</div>\n</p>\n<p>\n<code>attribute_name</code>\n\n<div class=\"content\">\n<p>The name of the attribute (e.g. <code>Cd</code> or <code>P</code>).</p>\n</div>\n</p>\n<p>\n<code>linearvertex</code>\n\n<div class=\"content\">\n<p>The linear vertex number.  The <code>vertexindex</code> function can be used to compute a linear vertex from a primitive number and vertex number pair.</p>\n</div>\n</p>\n<p>\n<code>prim</code>\n\n<div class=\"content\">\n<p>The primitive number.</p>\n</div>\n</p>\n<p>\n<code>vertex</code>\n\n<div class=\"content\">\n<p>The vertex number inside of a primitive.</p>\n</div>\n</p>\n\n\n<h2 class=\"label heading\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">vector        uv;\n</code><code class=\"line\">\n</code><code class=\"line\">// Get the value of the \"uv\" attribute for vertex 2 of primitive\n</code><code class=\"line\">// number 3 in the file defgeo.bgeo\n</code><code class=\"line\">uv = vertex(\"defgeo.bgeo\", \"uv\", 3, 2);\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattrib\">vertexattrib</a><div class=\"related-summary\">Imports a vertex attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/setvertexattrib\">setvertexattrib</a><div class=\"related-summary\">Sets a vertex attribute in a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/hasvertexattrib\">hasvertexattrib</a><div class=\"related-summary\">Returns if a geometry vertex attribute exists.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribsize\">vertexattribsize</a><div class=\"related-summary\">Returns the size of a geometry vertex attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribtype\">vertexattribtype</a><div class=\"related-summary\">Returns the type of a geometry vertex attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/vertexattribtypeinfo\">vertexattribtypeinfo</a><div class=\"related-summary\">Returns the type info of a geometry attribute.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/addvertexattrib\">addvertexattrib</a><div class=\"related-summary\">Adds an attribute to a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/attrib\">attrib</a><div class=\"related-summary\">Reads an attribute value from geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/getattrib\">getattrib</a><div class=\"related-summary\">Reads an attribute value from geometry, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/point\">point</a><div class=\"related-summary\">Imports a point attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/prim\">prim</a><div class=\"related-summary\">Imports a primitive attribute value from a geometry.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/detail\">detail</a><div class=\"related-summary\">Imports a detail attribute value from a geometry.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
@@ -82097,6 +82835,35 @@
             },
             {
                 "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2[]"
+            },
+            {
+                "argnames": [
                     "opinput",
                     "attribute_name",
                     "linearvertex"
@@ -82180,6 +82947,35 @@
             },
             {
                 "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3[]"
+            },
+            {
+                "argnames": [
                     "opinput",
                     "attribute_name",
                     "linearvertex"
@@ -82243,6 +83039,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82326,6 +83151,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "float[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82409,6 +83263,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "int[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82492,6 +83375,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82575,6 +83487,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "string[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82658,6 +83599,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [
@@ -82741,6 +83711,35 @@
                 "args": [
                     "const string",
                     "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "surface",
+                    "displace",
+                    "light",
+                    "shadow",
+                    "fog",
+                    "chop",
+                    "pop",
+                    "sop",
+                    "cop2",
+                    "image3d",
+                    "cvex"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector[]"
+            },
+            {
+                "argnames": [
+                    "geometry",
+                    "attribute_name",
+                    "prim",
+                    "vertex"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
                     "const int"
                 ],
                 "contexts": [

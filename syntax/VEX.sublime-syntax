@@ -166,10 +166,15 @@ contexts:
 
 
   function:
-    - match: \b(?!for(?:each)?)(\w+)\b(?=\s*\(\s*(const|export|{{type}})\s+\w)
+    - match: \b(?!for(?:each)?)(\w+)\b(?=\s*\(\s*(const|export|{{type}}|\w+)\s+\w)
       scope: entity.name.function.definition.vex
 
-    - match: \b(void|{{type}}|{{context}}|\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\()
+    - match: \b(\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\(\s*$)
+      captures:
+        1: storage.type.vex
+        2: entity.name.function.definition.vex
+
+    - match: \b(\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\(\s*\w+\s+\w+)
       captures:
         1: storage.type.vex
         2: entity.name.function.definition.vex

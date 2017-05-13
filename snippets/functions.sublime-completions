@@ -1,5 +1,5 @@
 {
-    "scope": "source.vex -source.hscript",
+    "scope": "source.vex -source.hscript -string",
     "completions": [
         {
             "trigger": "abs(value)",
@@ -694,8 +694,8 @@
             "contents": "ch4(${1:channel}, ${2:time})"
         },
         {
-            "trigger": "chattr(input, attrclass, attrname, track, sample, ret)",
-            "contents": "chattr(${1:input}, ${2:attrclass}, ${3:attrname}, ${4:track}, ${5:sample}, ${6:ret})"
+            "trigger": "chattr(opinput, attrclass, attrname, channel, sample, success)",
+            "contents": "chattr(${1:opinput}, ${2:attrclass}, ${3:attrname}, ${4:channel}, ${5:sample}, ${6:success})"
         },
         {
             "trigger": "chend(input)",
@@ -782,8 +782,8 @@
             "contents": "chs(${1:channel}, ${2:time})"
         },
         {
-            "trigger": "chsetattr(attrclass, attrname, track, sample, value)",
-            "contents": "chsetattr(${1:attrclass}, ${2:attrname}, ${3:track}, ${4:sample}, ${5:value})"
+            "trigger": "chsetattr(attrclass, attrname, channel, sample, value)",
+            "contents": "chsetattr(${1:attrclass}, ${2:attrname}, ${3:channel}, ${4:sample}, ${5:value})"
         },
         {
             "trigger": "chsraw(channel)",
@@ -1188,6 +1188,14 @@
         {
             "trigger": "expand_udim(u, v, path, ...)",
             "contents": "expand_udim(${1:u}, ${2:v}, ${3:path}${4:, ...})"
+        },
+        {
+            "trigger": "expandedgegroup(input, groupname)",
+            "contents": "expandedgegroup(${1:input}, ${2:groupname})"
+        },
+        {
+            "trigger": "expandedgegroup(filename, groupname)",
+            "contents": "expandedgegroup(${1:filename}, ${2:groupname})"
         },
         {
             "trigger": "expandpointgroup(input, groupname)",
@@ -1610,68 +1618,60 @@
             "contents": "getphotonlight()"
         },
         {
-            "trigger": "getpointbbox(input, primgroup, min, max)",
-            "contents": "getpointbbox(${1:input}, ${2:primgroup}, ${3:min}, ${4:max})"
-        },
-        {
-            "trigger": "getpointbbox(input, min, max)",
-            "contents": "getpointbbox(${1:input}, ${2:min}, ${3:max})"
-        },
-        {
-            "trigger": "getpointbbox(filename, primgroup, min, max)",
-            "contents": "getpointbbox(${1:filename}, ${2:primgroup}, ${3:min}, ${4:max})"
+            "trigger": "getpointbbox(filename, pointgroup, min, max)",
+            "contents": "getpointbbox(${1:filename}, ${2:pointgroup}, ${3:min}, ${4:max})"
         },
         {
             "trigger": "getpointbbox(geometry, min, max)",
             "contents": "getpointbbox(${1:geometry}, ${2:min}, ${3:max})"
         },
         {
-            "trigger": "getpointbbox_center(input)",
-            "contents": "getpointbbox_center(${1:input})"
+            "trigger": "getpointbbox_center(opinput)",
+            "contents": "getpointbbox_center(${1:opinput})"
         },
         {
-            "trigger": "getpointbbox_center(input, primgroup)",
-            "contents": "getpointbbox_center(${1:input}, ${2:primgroup})"
+            "trigger": "getpointbbox_center(opinput, pointgroup)",
+            "contents": "getpointbbox_center(${1:opinput}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_center(filename, primgroup)",
-            "contents": "getpointbbox_center(${1:filename}, ${2:primgroup})"
+            "trigger": "getpointbbox_center(filename, pointgroup)",
+            "contents": "getpointbbox_center(${1:filename}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_max(input)",
-            "contents": "getpointbbox_max(${1:input})"
+            "trigger": "getpointbbox_max(opinput)",
+            "contents": "getpointbbox_max(${1:opinput})"
         },
         {
-            "trigger": "getpointbbox_max(input, primgroup)",
-            "contents": "getpointbbox_max(${1:input}, ${2:primgroup})"
+            "trigger": "getpointbbox_max(opinput, pointgroup)",
+            "contents": "getpointbbox_max(${1:opinput}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_max(filename, primgroup)",
-            "contents": "getpointbbox_max(${1:filename}, ${2:primgroup})"
+            "trigger": "getpointbbox_max(filename, pointgroup)",
+            "contents": "getpointbbox_max(${1:filename}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_min(input)",
-            "contents": "getpointbbox_min(${1:input})"
+            "trigger": "getpointbbox_min(opinput)",
+            "contents": "getpointbbox_min(${1:opinput})"
         },
         {
-            "trigger": "getpointbbox_min(input, primgroup)",
-            "contents": "getpointbbox_min(${1:input}, ${2:primgroup})"
+            "trigger": "getpointbbox_min(opinput, pointgroup)",
+            "contents": "getpointbbox_min(${1:opinput}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_min(filename, primgroup)",
-            "contents": "getpointbbox_min(${1:filename}, ${2:primgroup})"
+            "trigger": "getpointbbox_min(filename, pointgroup)",
+            "contents": "getpointbbox_min(${1:filename}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_size(input)",
-            "contents": "getpointbbox_size(${1:input})"
+            "trigger": "getpointbbox_size(opinput)",
+            "contents": "getpointbbox_size(${1:opinput})"
         },
         {
-            "trigger": "getpointbbox_size(input, primgroup)",
-            "contents": "getpointbbox_size(${1:input}, ${2:primgroup})"
+            "trigger": "getpointbbox_size(opinput, pointgroup)",
+            "contents": "getpointbbox_size(${1:opinput}, ${2:pointgroup})"
         },
         {
-            "trigger": "getpointbbox_size(filename, primgroup)",
-            "contents": "getpointbbox_size(${1:filename}, ${2:primgroup})"
+            "trigger": "getpointbbox_size(filename, pointgroup)",
+            "contents": "getpointbbox_size(${1:filename}, ${2:pointgroup})"
         },
         {
             "trigger": "getprimid()",
@@ -2004,6 +2004,14 @@
         {
             "trigger": "import(attrib_name, values, input, pt_num)",
             "contents": "import(${1:attrib_name}, ${2:values}, ${3:input}, ${4:pt_num})"
+        },
+        {
+            "trigger": "inedgegroup(input, groupname, pointnum0, pointnum1)",
+            "contents": "inedgegroup(${1:input}, ${2:groupname}, ${3:pointnum0}, ${4:pointnum1})"
+        },
+        {
+            "trigger": "inedgegroup(filename, groupname, pointnum0, pointnum1)",
+            "contents": "inedgegroup(${1:filename}, ${2:groupname}, ${3:pointnum0}, ${4:pointnum1})"
         },
         {
             "trigger": "ingroup(group_name, point_number)",
@@ -2578,6 +2586,14 @@
             "contents": "nearpoints(${1:geometry}, ${2:pt}, ${3:maxdist}, ${4:maxpts})"
         },
         {
+            "trigger": "nedgesgroup(input, groupname)",
+            "contents": "nedgesgroup(${1:input}, ${2:groupname})"
+        },
+        {
+            "trigger": "nedgesgroup(filename, groupname)",
+            "contents": "nedgesgroup(${1:filename}, ${2:groupname})"
+        },
+        {
             "trigger": "neighbour(inputnum, ptnum, neighbournum)",
             "contents": "neighbour(${1:inputnum}, ${2:ptnum}, ${3:neighbournum})"
         },
@@ -2888,6 +2904,38 @@
         {
             "trigger": "osd_limitsurfacevertex(geometry, attribute_name, face_id, u, v, result)",
             "contents": "osd_limitsurfacevertex(${1:geometry}, ${2:attribute_name}, ${3:face_id}, ${4:u}, ${5:v}, ${6:result})"
+        },
+        {
+            "trigger": "osd_lookupface(opinput, patch_id, patch_u, patch_v, face_id, face_u, face_v)",
+            "contents": "osd_lookupface(${1:opinput}, ${2:patch_id}, ${3:patch_u}, ${4:patch_v}, ${5:face_id}, ${6:face_u}, ${7:face_v})"
+        },
+        {
+            "trigger": "osd_lookupface(opinput, patch_id, patch_u, patch_v, face_id, face_u, face_v, attribute)",
+            "contents": "osd_lookupface(${1:opinput}, ${2:patch_id}, ${3:patch_u}, ${4:patch_v}, ${5:face_id}, ${6:face_u}, ${7:face_v}, ${8:attribute})"
+        },
+        {
+            "trigger": "osd_lookupface(geometry, patch_id, patch_u, patch_v, face_id, face_u, face_v)",
+            "contents": "osd_lookupface(${1:geometry}, ${2:patch_id}, ${3:patch_u}, ${4:patch_v}, ${5:face_id}, ${6:face_u}, ${7:face_v})"
+        },
+        {
+            "trigger": "osd_lookupface(geometry, patch_id, patch_u, patch_v, face_id, face_u, face_v, attribute)",
+            "contents": "osd_lookupface(${1:geometry}, ${2:patch_id}, ${3:patch_u}, ${4:patch_v}, ${5:face_id}, ${6:face_u}, ${7:face_v}, ${8:attribute})"
+        },
+        {
+            "trigger": "osd_lookuppatch(opinput, face_id, face_u, face_v, patch_id, patch_u, patch_v)",
+            "contents": "osd_lookuppatch(${1:opinput}, ${2:face_id}, ${3:face_u}, ${4:face_v}, ${5:patch_id}, ${6:patch_u}, ${7:patch_v})"
+        },
+        {
+            "trigger": "osd_lookuppatch(opinput, face_id, face_u, face_v, patch_id, patch_u, patch_v, attribute)",
+            "contents": "osd_lookuppatch(${1:opinput}, ${2:face_id}, ${3:face_u}, ${4:face_v}, ${5:patch_id}, ${6:patch_u}, ${7:patch_v}, ${8:attribute})"
+        },
+        {
+            "trigger": "osd_lookuppatch(geometry, face_id, face_u, face_v, patch_id, patch_u, patch_v)",
+            "contents": "osd_lookuppatch(${1:geometry}, ${2:face_id}, ${3:face_u}, ${4:face_v}, ${5:patch_id}, ${6:patch_u}, ${7:patch_v})"
+        },
+        {
+            "trigger": "osd_lookuppatch(geometry, face_id, face_u, face_v, patch_id, patch_u, patch_v, attribute)",
+            "contents": "osd_lookuppatch(${1:geometry}, ${2:face_id}, ${3:face_u}, ${4:face_v}, ${5:patch_id}, ${6:patch_u}, ${7:patch_v}, ${8:attribute})"
         },
         {
             "trigger": "osd_patchcount(opinput)",
@@ -4204,6 +4252,10 @@
         {
             "trigger": "setdetailattrib(geohandle, name, value, mode=\"set\")",
             "contents": "setdetailattrib(${1:geohandle}, ${2:name}, ${3:value}, ${4:mode=\"set\"})"
+        },
+        {
+            "trigger": "setedgegroup(geohandle, name, pt0, pt1, value)",
+            "contents": "setedgegroup(${1:geohandle}, ${2:name}, ${3:pt0}, ${4:pt1}, ${5:value})"
         },
         {
             "trigger": "setpointattrib(geohandle, name, pt, value)",
