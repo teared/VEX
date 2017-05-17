@@ -1,4 +1,5 @@
 {
     "popup_max_width": 640,
-    "popup_max_height": 360
+    "popup_max_height": 360,
+    "show_generated_code_on_build": false
 }

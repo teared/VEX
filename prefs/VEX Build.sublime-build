@@ -1,0 +1,11 @@
+{
+    "selector": "source.vex",
+    "target": "vex_build",
+    "compile_as_snippet": true,
+    "variants": [
+        {
+            "name": "As Shader",
+            "compile_as_snippet": false,
+        }
+    ]
+}

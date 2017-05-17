@@ -1,6 +1,3 @@
-if __name__ != '__main__':
-    from .commands import *
-
 if __name__ == '__main__':
     # Collect package if runned as script.
     import os.path as op
@@ -19,6 +16,7 @@ if __name__ == '__main__':
         '.css',
         '.json',
         '.py',
+        '.sublime-build',
         '.sublime-commands',
         '.sublime-completions',
         '.sublime-keymap',
@@ -37,3 +35,7 @@ if __name__ == '__main__':
                     ext = op.splitext(f)[-1]
                     if ext in allow_exts:
                         z.write(op.join(folder, f))
+
+else:
+    from .commands.vex_build import VexBuildCommand
+    from .commands.helpcard import HelpcardCommand

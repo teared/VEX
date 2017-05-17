@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+scope: source.vexbuild
+hidden: true
+
+contexts:
+  main:
+    - match: '^File "(.+?)", line (\d+), columns? (\d+(?:-\d+)?): (.*)$'
+      captures:
+        1: string.other.vexbuild
+        2: constant.numeric.vexbuild
+        3: constant.numeric.vexbuild
+
+    - match: ^\s{4}
+      push: VEX.sublime-syntax
+      with_prototype:
+        - match: $
+          pop: true
+
+    - match: ^Generated code:$
+      push: VEX.sublime-syntax
