@@ -2094,7 +2094,7 @@
         "args": [
             "string"
         ],
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/matrix\">matrix</a></h1><p class=\"summary\">Converts a string specification into a matrix.</p><p><code>matrix matrix(string pattern)</code></p>\n\n\n\n<p>The string should start with a square bracket,\nfollowed by a series of rows (specified as vector\npatterns - see the <a class=\"link Exp\" href=\"https://www.sidefx.com/docs/houdini/expressions/vector\" title=\"Converts a string specification into a vector.\">vector()</a> function), followed by a trailing square\nbracket.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nmatrix(\"[[1,2,3][2,3,5][-3,2,-3]]\")\n\n</div>\n</div>\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/matrix\">matrix</a></h1><p class=\"summary\">Converts a string specification into a matrix.</p><p><code>matrix matrix(string pattern)</code></p>\n\n\n\n<p>The string should start with a square bracket,\nfollowed by a series of rows (specified as vector\npatterns - see the <a class=\"link Exp\" href=\"https://www.sidefx.com/docs/houdini/expressions/vector\" title=\"Converts a string specification into a vector.\">vector()</a> function), followed by a trailing square\nbracket.</p>\n<p>To access a row out of the matrix, use the square bracket operator.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nmatrix m = matrix(\"[[1,2,3][2,3,5][-3,2,-3]]\");\nvector v = m[0];    # v is [1,2,3]\nfloat  f = m[0][2]; # f is 3\n\n</div>\n</div>\n\n\n</div>",
         "return": "matrix"
     },
     "matrixtoquat": {
@@ -2701,6 +2701,18 @@
             "float"
         ],
         "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/opselectrecurse\">opselectrecurse</a></h1><p class=\"summary\">Returns a recursive list of the selected nodes.</p><p><code>string opselectrecurse(string network, float flag)</code></p>\n\n\n\n<p>Returns a string with a space separated list of the selected nodes\nin the given network, including selected children according to the context.</p>\n<ul class=\"bullets\">\n<li class=\"bullet \">\n<code>flag</code> = 0: Do not keep the context. Every selected node will be\n  returned.\n</li>\n<li class=\"bullet \">\n<code>flag</code> = 1: Keep the context. It will return only selected nodes\n  belonging to the same context as the \"network\" argument.\n</li>\n</ul>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\necho `opselectrecurse(\"/obj/model\",1)`\n\n</div>\n<p>Returns \"edgecusp1 subnet1 subnet1/sphere2\"</p>\n<div class=\"code-container\">\necho `opselectrecurse(\"/obj/model\",0)`\n\n</div>\n<p>Returns \"edgecusp1 shopnet1 subnet1 subnet1/sphere2\".</p>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselect\">opselect()</a><div class=\"related-summary\">Returns a list of the selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselectpath\">opselectpath()</a><div class=\"related-summary\">Returns a list of the full paths of selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselectrecursepath\">opselectrecursepath()</a><div class=\"related-summary\">Returns a recursive list of the full paths of selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opflag\">opflag()</a><div class=\"related-summary\">Returns a list nodes with a particular flag set.</div></p></div>",
+        "return": "string"
+    },
+    "opselectrecursepath": {
+        "argnames": [
+            "network",
+            "flag"
+        ],
+        "args": [
+            "string",
+            "float"
+        ],
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/opselectrecursepath\">opselectrecursepath</a></h1><p class=\"summary\">Returns a recursive list of the full paths of selected nodes.</p><p><code>string opselectrecursepath(string network, float flag)</code></p>\n\n\n\n<p>Returns a string with a space separated list of the full paths of selected\nnodes in the given network, including selected children according to the\ncontext.</p>\n<ul class=\"bullets\">\n<li class=\"bullet \">\n<code>flag</code> = 0: Do not keep the context. Every selected node will be\n  returned.\n</li>\n<li class=\"bullet \">\n<code>flag</code> = 1: Keep the context. It will return only selected nodes\n  belonging to the same context as the \"network\" argument.\n</li>\n</ul>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\necho `opselectrecursepath(\"/obj/model\",1)`\n\n</div>\n<p>Returns \"/obj/model/edgecusp1 /obj/model/subnet1 /obj/model/subnet1/sphere2\"</p>\n<div class=\"code-container\">\necho `opselectrecursepath(\"/obj/model\",0)`\n\n</div>\n<p>Returns \"/obj/model/edgecusp1 /obj/model/shopnet1 /obj/model/subnet1 /obj/model/subnet1/sphere2\".</p>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselect\">opselect()</a><div class=\"related-summary\">Returns a list of the selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselectpath\">opselectpath()</a><div class=\"related-summary\">Returns a list of the full paths of selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opselectrecurse\">opselectrecurse()</a><div class=\"related-summary\">Returns a recursive list of the selected nodes.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/expressions/https://www.sidefx.com/docs/houdini/expressions/opflag\">opflag()</a><div class=\"related-summary\">Returns a list nodes with a particular flag set.</div></p></div>",
         "return": "string"
     },
     "opstreamname": {
@@ -3489,10 +3501,6 @@
         "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/rand\">rand</a></h1><p class=\"summary\">Returns a pseudo-random number from 0 to 1.</p><p><code>float rand(float value)</code></p>\n\n\n\n<p>Using the same <code>value</code> always gives the same result. To vary the\nresult, base the <code>value</code> on a changing number (usually the current\nframe <code>$F</code>).</p>\n<div class=\"code-container\">\nrand($F)\n</div>\n<p>When you're randomizing component values (such as X, Y, and Z),\nchange the <code>value</code> for each component so they don\u2019t all get the\nsame number:</p>\n\n<p>\nX\n        \n<div class=\"content\">\n<p><code>rand($F)</code></p>\n</div>\n</p>\n<p>\nY\n        \n<div class=\"content\">\n<p><code>rand($F * 0.1)</code></p>\n</div>\n</p>\n<p>\nZ\n        \n<div class=\"content\">\n<p><code>rand($F * 0.01)</code></p>\n</div>\n</p>\n\n<div class=\"notices ind-group\">\n<div class=\"notice ind-item note \">\nNote\n<div class=\"content\">\n<p>It is a good idea to use non-integer values as the argument to\n    rand().</p>\n</div>\n</div>\n</div>\n\n</div>",
         "return": "float"
     },
-    "raw": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/raw\">raw</a></h1><p class=\"summary\">Channel segment function.</p><p><code>float raw()</code></p>\n\n\n\n\n</div>",
-        "return": "float"
-    },
     "realuv": {
         "argnames": [
             "surface_node",
@@ -4228,7 +4236,7 @@
         "args": [
             "string"
         ],
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector\">vector</a></h1><p class=\"summary\">Converts a string specification into a vector.</p><p><code>vector vector(string pattern)</code></p>\n\n\n\n<p>The pattern should\nconsist of a leading square bracket followed by a comma-separated list\nof values and a closing square bracket.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nvector(\"[1,2,3,4,5]\")\n\n</div>\n</div>\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector\">vector</a></h1><p class=\"summary\">Converts a string specification into a vector.</p><p><code>vector vector(string pattern)</code></p>\n\n\n\n<p>The pattern should\nconsist of a leading square bracket followed by a comma-separated list\nof values and a closing square bracket.</p>\n<p>To access a value out of the vector, use the square bracket operator.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nvector v = vector(\"[1,2,3,4,5]\");\nfloat  f = v[0]; # f is 1\n\n</div>\n</div>\n\n\n</div>",
         "return": "vector"
     },
     "vector3": {
@@ -4242,7 +4250,7 @@
             "float",
             "float"
         ],
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector3\">vector3</a></h1><p class=\"summary\">Converts three values into a 3-component vector.</p><p><code>vector vector3(float x, float y, float z)</code></p>\n\n\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector3\">vector3</a></h1><p class=\"summary\">Converts three values into a 3-component vector.</p><p><code>vector vector3(float x, float y, float z)</code></p>\n\n\n\n<p>The pattern should\nconsist of a leading square bracket followed by a comma-separated list\nof values and a closing square bracket.</p>\n<p>To access a value out of the vector, use the square bracket operator.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nvector v = vector3(3,2,1);\nfloat  f = v[0]; # f is 3\n\n</div>\n</div>\n\n\n</div>",
         "return": "vector"
     },
     "vector4": {
@@ -4258,7 +4266,7 @@
             "float",
             "float"
         ],
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector4\">vector4</a></h1><p class=\"summary\">Converts four values into a 4-component vector.</p><p><code>vector vector4(float x, float y, float z, float w)</code></p>\n\n\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/expressions/vector4\">vector4</a></h1><p class=\"summary\">Converts four values into a 4-component vector.</p><p><code>vector vector4(float x, float y, float z, float w)</code></p>\n\n\n\n<p>To access a value out of the vector, use the square bracket operator.</p>\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\nvector v = vector4(3,2,1,0);\nfloat  f = v[0]; # f is 3\n\n</div>\n</div>\n\n\n</div>",
         "return": "vector"
     },
     "vertex": {

@@ -249,7 +249,8 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             if file == self.tempfile:
                 # Fix row and columns numbers.
                 row = row - 2
-                srcline = self.src.split('\n')[row-1]
+                srclines = self.src.split('\n')
+                srcline = srclines[min(row-1, len(srclines)-1)]  # Temp fix for Index errors.
                 cols = self.match_columns(cols, self.generated_code.split('\n')[row+1], srcline)
                 file = self.file
             else:

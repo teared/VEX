@@ -694,16 +694,64 @@
             "contents": "ch4(${1:channel}, ${2:time})"
         },
         {
+            "trigger": "chadd(channel_names)",
+            "contents": "chadd(${1:channel_names})"
+        },
+        {
+            "trigger": "chattr(opinput, attrname, success)",
+            "contents": "chattr(${1:opinput}, ${2:attrname}, ${3:success})"
+        },
+        {
+            "trigger": "chattr(opinput, attrname, channel, success)",
+            "contents": "chattr(${1:opinput}, ${2:attrname}, ${3:channel}, ${4:success})"
+        },
+        {
+            "trigger": "chattr(opinput, attrname, channel, sample, success)",
+            "contents": "chattr(${1:opinput}, ${2:attrname}, ${3:channel}, ${4:sample}, ${5:success})"
+        },
+        {
             "trigger": "chattr(opinput, attrclass, attrname, channel, sample, success)",
             "contents": "chattr(${1:opinput}, ${2:attrclass}, ${3:attrname}, ${4:channel}, ${5:sample}, ${6:success})"
+        },
+        {
+            "trigger": "chattr(attrname, success)",
+            "contents": "chattr(${1:attrname}, ${2:success})"
+        },
+        {
+            "trigger": "chattr(attrname, channel, success)",
+            "contents": "chattr(${1:attrname}, ${2:channel}, ${3:success})"
+        },
+        {
+            "trigger": "chattr(attrname, channel, sample, success)",
+            "contents": "chattr(${1:attrname}, ${2:channel}, ${3:sample}, ${4:success})"
+        },
+        {
+            "trigger": "chattrnames(opinput, attribclass)",
+            "contents": "chattrnames(${1:opinput}, ${2:attribclass})"
+        },
+        {
+            "trigger": "chattrnames(attrclass)",
+            "contents": "chattrnames(${1:attrclass})"
+        },
+        {
+            "trigger": "chend()",
+            "contents": "chend()"
         },
         {
             "trigger": "chend(input)",
             "contents": "chend(${1:input})"
         },
         {
+            "trigger": "chendf()",
+            "contents": "chendf()"
+        },
+        {
             "trigger": "chendf(input)",
             "contents": "chendf(${1:input})"
+        },
+        {
+            "trigger": "chendt()",
+            "contents": "chendt()"
         },
         {
             "trigger": "chendt(input)",
@@ -730,12 +778,48 @@
             "contents": "chindex(${1:input}, ${2:name})"
         },
         {
+            "trigger": "chindex(name)",
+            "contents": "chindex(${1:name})"
+        },
+        {
+            "trigger": "chindex(names)",
+            "contents": "chindex(${1:names})"
+        },
+        {
+            "trigger": "chinput(input, sample)",
+            "contents": "chinput(${1:input}, ${2:sample})"
+        },
+        {
+            "trigger": "chinput(channel, sample)",
+            "contents": "chinput(${1:channel}, ${2:sample})"
+        },
+        {
             "trigger": "chinput(input, channel, sample)",
             "contents": "chinput(${1:input}, ${2:channel}, ${3:sample})"
         },
         {
+            "trigger": "chinputlimits(opinput, channel, channel_min, channel_max)",
+            "contents": "chinputlimits(${1:opinput}, ${2:channel}, ${3:channel_min}, ${4:channel_max})"
+        },
+        {
+            "trigger": "chname(planeindex)",
+            "contents": "chname(${1:planeindex})"
+        },
+        {
             "trigger": "chname(planeindex, chindex)",
             "contents": "chname(${1:planeindex}, ${2:chindex})"
+        },
+        {
+            "trigger": "chnames()",
+            "contents": "chnames()"
+        },
+        {
+            "trigger": "chnames(opinput)",
+            "contents": "chnames(${1:opinput})"
+        },
+        {
+            "trigger": "chnumchan()",
+            "contents": "chnumchan()"
         },
         {
             "trigger": "chnumchan(input)",
@@ -762,12 +846,52 @@
             "contents": "chramp(${1:channel}, ${2:ramppos}, ${3:time})"
         },
         {
+            "trigger": "chrate()",
+            "contents": "chrate()"
+        },
+        {
             "trigger": "chrate(input)",
             "contents": "chrate(${1:input})"
         },
         {
             "trigger": "chreadbuf(index)",
             "contents": "chreadbuf(${1:index})"
+        },
+        {
+            "trigger": "chremove(channel_index)",
+            "contents": "chremove(${1:channel_index})"
+        },
+        {
+            "trigger": "chremove(channel_name)",
+            "contents": "chremove(${1:channel_name})"
+        },
+        {
+            "trigger": "chremove(channel_indices)",
+            "contents": "chremove(${1:channel_indices})"
+        },
+        {
+            "trigger": "chremove(channel_names)",
+            "contents": "chremove(${1:channel_names})"
+        },
+        {
+            "trigger": "chremoveattr(attrname)",
+            "contents": "chremoveattr(${1:attrname})"
+        },
+        {
+            "trigger": "chremoveattr(attrclass, attrname)",
+            "contents": "chremoveattr(${1:attrclass}, ${2:attrname})"
+        },
+        {
+            "trigger": "chremoveattr(attrclass, attrnames)",
+            "contents": "chremoveattr(${1:attrclass}, ${2:attrnames})"
+        },
+        {
+            "trigger": "chremoveattr(attrnames)",
+            "contents": "chremoveattr(${1:attrnames})"
+        },
+        {
+            "trigger": "chrename(channel_name, new_name)",
+            "contents": "chrename(${1:channel_name}, ${2:new_name})"
         },
         {
             "trigger": "chresizebuf(size)",
@@ -782,20 +906,48 @@
             "contents": "chs(${1:channel}, ${2:time})"
         },
         {
+            "trigger": "chsetattr(attrname, channel, sample, success)",
+            "contents": "chsetattr(${1:attrname}, ${2:channel}, ${3:sample}, ${4:success})"
+        },
+        {
             "trigger": "chsetattr(attrclass, attrname, channel, sample, value)",
             "contents": "chsetattr(${1:attrclass}, ${2:attrname}, ${3:channel}, ${4:sample}, ${5:value})"
+        },
+        {
+            "trigger": "chsetlength(clip_length)",
+            "contents": "chsetlength(${1:clip_length})"
+        },
+        {
+            "trigger": "chsetrate(clip_rate)",
+            "contents": "chsetrate(${1:clip_rate})"
+        },
+        {
+            "trigger": "chsetstart(start)",
+            "contents": "chsetstart(${1:start})"
         },
         {
             "trigger": "chsraw(channel)",
             "contents": "chsraw(${1:channel})"
         },
         {
+            "trigger": "chstart()",
+            "contents": "chstart()"
+        },
+        {
             "trigger": "chstart(input)",
             "contents": "chstart(${1:input})"
         },
         {
+            "trigger": "chstartf()",
+            "contents": "chstartf()"
+        },
+        {
             "trigger": "chstartf(input)",
             "contents": "chstartf(${1:input})"
+        },
+        {
+            "trigger": "chstartt()",
+            "contents": "chstartt()"
         },
         {
             "trigger": "chstartt(input)",

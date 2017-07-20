@@ -938,6 +938,10 @@
             "contents": "opselectrecurse(${1:string network}, ${2:float flag})"
         },
         {
+            "trigger": "opselectrecursepath(network, flag)",
+            "contents": "opselectrecursepath(${1:string network}, ${2:float flag})"
+        },
+        {
             "trigger": "opstreamname(nodepath)",
             "contents": "opstreamname(${1:string nodepath})"
         },
@@ -1188,10 +1192,6 @@
         {
             "trigger": "rand(value)",
             "contents": "rand(${1:float value})"
-        },
-        {
-            "trigger": "raw()",
-            "contents": "raw()"
         },
         {
             "trigger": "realuv(surface_node, prim_num, uv_unit, D_U|D_V)",

@@ -11085,14 +11085,81 @@
             }
         ]
     },
+    "chadd": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chadd\">chadd</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Adds new channels to a CHOP node.</p><ul><li><code>int chadd(string channel_names)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chadd(string[] channel_names)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>This function adds new channels to a CHOP node. It works only when iterating over Clip, Channel or Samples, not when iterating over ChannelSample. You can\u2019t control the default channel values when adding channels using this function. You need to add another <code>Channel Wrangle</code> and compute the channel data inside it.</p>\n<p>Returns 1 on success, 0 otherwise.</p>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"channel_names\" id=\"channel_names_arg\">\n<div class=\"label\">\n<code>channel_names</code>\n</div>\n<div class=\"content\">\n<p>The names of the attributes to add. Can be an array or a space separated list of channel names.</p>\n</div>\n</li>\n</div>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "channel_names"
+                ],
+                "args": [
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "channel_names"
+                ],
+                "args": [
+                    "const string[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
     "chattr": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</p><ul><li><code>int chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns a CHOP attribute value from connected CHOP input node.</p>\n\n<p>\n<code>input</code>\n\n<div class=\"content\">\n<p>The index (starting from 0) of the node input to read from.</p>\n</div>\n</p>\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to read.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to read the channel or channelsample attribute value from. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to read the sample or channelsample attribute value from. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>success</code>\n\n<div class=\"content\">\n<p>If the given attribute exists and can be read, the function sets this variable to <code>1</code>. Otherwise, it sets this variable to <code>0</code>.</p>\n</div>\n</p>\n\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">int success = 0\n</code><code class=\"line\">\n</code><code class=\"line\">int input = 0;\n</code><code class=\"line\">string attrname = \"export\";\n</code><code class=\"line\">string attrclass = \"channel\";\n</code><code class=\"line\">int channel = 0; // Or use C global variable for channel index.\n</code><code class=\"line\">int sample = -1; // Or use I global variable for sample index.\n</code><code class=\"line\">string s = chattr(input, attrname, attrclass, channel, sample, success )\n</code><code class=\"line\">if (success) {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Do something with s\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0printf(\"s=%s\\n\", s);\n</code><code class=\"line\">} else {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Couldn't read attribute, usually because an attribute with that\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// name doesn't exist\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</p><ul><li><code>int chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(int opinput, string attrclass, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(string attrname, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(string attrname, int channel, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chattr(string opinput, string attrname, int channel, int sample, int &amp;success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns a CHOP attribute value from connected CHOP input node.</p>\n\n<p>\n<code>input</code>\n\n<div class=\"content\">\n<p>The index (starting from 0) of the node input to read from.</p>\n</div>\n</p>\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to read.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to read the channel or channelsample attribute value from. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to read the sample or channelsample attribute value from. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>success</code>\n\n<div class=\"content\">\n<p>If the given attribute exists and can be read, the function sets this variable to <code>1</code>. Otherwise, it sets this variable to <code>0</code>.</p>\n</div>\n</p>\n\n\n<h2 class=\"label section\" id=\"examples\">\n            \n            Examples\n        </h2>\n<div class=\"content\" id=\"examples-body\">\n<div class=\"code-container\">\n<code class=\"line\">int success = 0\n</code><code class=\"line\">\n</code><code class=\"line\">int input = 0;\n</code><code class=\"line\">string attrname = \"export\";\n</code><code class=\"line\">string attrclass = \"channel\";\n</code><code class=\"line\">int channel = 0; // Or use C global variable for channel index.\n</code><code class=\"line\">int sample = -1; // Or use I global variable for sample index.\n</code><code class=\"line\">string s = chattr(input, attrname, attrclass, channel, sample, success )\n</code><code class=\"line\">if (success) {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Do something with s\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0printf(\"s=%s\\n\", s);\n</code><code class=\"line\">} else {\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// Couldn't read attribute, usually because an attribute with that\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0// name doesn't exist\n</code><code class=\"line\">}\n</code>\n</div>\n</div>\n\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr()</a><div class=\"related-summary\">Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chattrnames\">chattrnames()</a><div class=\"related-summary\">Reads CHOP attribute names of a given attribute class from a CHOP input.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
                     "opinput",
-                    "attrclass",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "opinput",
                     "attrname",
                     "channel",
                     "sample",
@@ -11100,7 +11167,6 @@
                 ],
                 "args": [
                     "const int",
-                    "const string",
                     "const string",
                     "const int",
                     "const int",
@@ -11132,8 +11198,289 @@
                 "contexts": [
                     "chop"
                 ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrclass",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
                 "fillstate": "EXACT",
                 "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
             },
             {
                 "argnames": [
@@ -11160,15 +11507,64 @@
             },
             {
                 "argnames": [
-                    "opinput",
-                    "attrclass",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
                     "attrname",
                     "channel",
                     "sample",
                     "success"
                 ],
                 "args": [
+                    "const string",
                     "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
                     "const string",
                     "const string",
                     "const int",
@@ -11178,7 +11574,64 @@
                 "contexts": [
                     "chop"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "REARG",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
                 "return": "float"
             },
             {
@@ -11202,7 +11655,288 @@
                     "chop"
                 ],
                 "fillstate": "EXACT",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
                 "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrclass",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
             },
             {
                 "argnames": [
@@ -11229,15 +11963,64 @@
             },
             {
                 "argnames": [
-                    "opinput",
-                    "attrclass",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
                     "attrname",
                     "channel",
                     "sample",
                     "success"
                 ],
                 "args": [
+                    "const string",
                     "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
                     "const string",
                     "const string",
                     "const int",
@@ -11247,7 +12030,64 @@
                 "contexts": [
                     "chop"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "REARG",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
                 "return": "string"
             },
             {
@@ -11271,13 +12111,432 @@
                     "chop"
                 ],
                 "fillstate": "EXACT",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "string"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrclass",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrclass",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "opinput",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
+                    "int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
                 "return": "vector"
             }
         ]
     },
-    "chend": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chend\">chend</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the end sample of the input specified.</p><ul><li><code>int chend(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the end sample of the input specified.</p>\n\n</div>",
+    "chattrnames": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chattrnames\">chattrnames</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Reads CHOP attribute names of a given attribute class from a CHOP input.</p><ul><li><code>string[] chattrnames(int opinput, string attribclass)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string[] chattrnames(string attrclass)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns all the CHOP attribute names of a given attribute class from a CHOP input.</p>\n<div class=\"box \">\n<div class=\"content\">\n<p>CHOP attributes store metadata on clips, channels, samples, or channel/sample pairs.</p>\n</div>\n</div>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"attribclass\" id=\"attribclass_arg\">\n<div class=\"label\">\n            \n            attribclass\n        </div>\n<div class=\"content\">\n<p>The \"level\" of the attribute:</p>\n\n<p>\n<code>\"clip\"</code>\n\n<div class=\"content\">\n<p>An attribute on a whole clip.</p>\n</div>\n</p>\n<p>\n<code>\"channel\"</code>\n\n<div class=\"content\">\n<p>An attribute on a whole channel.</p>\n</div>\n</p>\n<p>\n<code>\"sample\"</code>\n\n<div class=\"content\">\n<p>An attribute on a sample (across all channels).</p>\n</div>\n</p>\n<p>\n<code>\"channelsample\"</code>\n\n<div class=\"content\">\n<p>An attribute on a specific channel/sample pair.</p>\n</div>\n</p>\n<p>\n<code>\"\"</code>\n\n<div class=\"content\">\n<p>Pass an empty string to have the function figure out the class based on the other arguments.</p>\n</div>\n</p>\n\n</div>\n</li>\n</div>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr()</a><div class=\"related-summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr()</a><div class=\"related-summary\">Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample.</div></p></div>",
         "sigs": [
+            {
+                "argnames": [
+                    "opinput",
+                    "attribclass"
+                ],
+                "args": [
+                    "const int",
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "string[]"
+            },
+            {
+                "argnames": [
+                    "attrclass"
+                ],
+                "args": [
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "string[]"
+            }
+        ]
+    },
+    "chend": {
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chend\">chend</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the end sample of the input specified.</p><ul><li><code>int chend()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chend(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the end sample of the input specified.</p>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "int"
+            },
             {
                 "argnames": [
                     "input"
@@ -11294,8 +12553,17 @@
         ]
     },
     "chendf": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chendf\">chendf</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the frame corresponding to the last sample of the input specified.</p><ul><li><code>float chendf(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the frame corresponding to the last sample of the input specified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chendf\">chendf</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the frame corresponding to the last sample of the input specified.</p><ul><li><code>float chendf()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chendf(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the frame corresponding to the last sample of the input specified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "float"
+            },
             {
                 "argnames": [
                     "input"
@@ -11312,8 +12580,17 @@
         ]
     },
     "chendt": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chendt\">chendt</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the time corresponding to the last sample of the input\nspecified.</p><ul><li><code>float chendt(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the time corresponding to the last sample of the input\nspecified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chendt\">chendt</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the time corresponding to the last sample of the input\nspecified.</p><ul><li><code>float chendt()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chendt(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the time corresponding to the last sample of the input\nspecified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "float"
+            },
             {
                 "argnames": [
                     "input"
@@ -11439,7 +12716,7 @@
     },
     "chindex": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chindex\">chindex</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the channel index from a input given a channel name.</p><ul><li><code>int chindex(int input, string name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the channel index from a input given a channel name or -1 on failure.</p>\n\n<p>\n<code>input</code>\n\n<div class=\"content\">\n<p>CHOP Input index.</p>\n</div>\n</p>\n<p>\n<code>name</code>\n\n<div class=\"content\">\n<p>Channel name to lookup.</p>\n</div>\n</p>\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chindex\">chindex</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the channel index from a input given a channel name.</p><ul><li><code>int chindex(int input, string name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chindex(string name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int[] chindex(string[] names)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the channel index from a input given a channel name or -1 on failure.</p>\n\n<p>\n<code>input</code>\n\n<div class=\"content\">\n<p>CHOP Input index or -1 if ommitted.</p>\n</div>\n</p>\n<p>\n<code>name</code>\n\n<div class=\"content\">\n<p>Channel name to lookup.</p>\n</div>\n</p>\n<p>\n<code>names</code>\n\n<div class=\"content\">\n<p>Array of Channel names to lookup.</p>\n</div>\n</p>\n\n\n</div>",
         "sigs": [
             {
                 "argnames": [
@@ -11455,15 +12732,455 @@
                 ],
                 "fillstate": "EXACT",
                 "return": "int"
+            },
+            {
+                "argnames": [
+                    "name"
+                ],
+                "args": [
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "names"
+                ],
+                "args": [
+                    "const string[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int[]"
             }
         ]
     },
     "chinput": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chinput\">chinput</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the value of a channel at the specified sample in an\ninput.</p><ul><li><code>float chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the value of a channel at the specified sample in an input. If\nthe sample is fractional, the value is linearly interpolated from the\ntwo nearest points. The channel can be given as an index or as a name.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chinput\">chinput</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the value of a channel at the specified sample in an\ninput.</p><ul><li><code>float chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector2 chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>vector4 chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix2 chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix3 chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int input, int channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int input, int channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int input, string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int input, string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(int input, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(string channel, int sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>matrix chinput(string channel, float sample)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the value of a channel at the specified sample in an input. If\nthe sample is fractional, the value is linearly interpolated from the\ntwo nearest points. The channel can be given as an index or as a name.</p>\n\n</div>",
         "sigs": [
             {
                 "argnames": [
                     "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix3"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "matrix"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "input",
                     "channel",
                     "sample"
                 ],
@@ -11528,12 +13245,464 @@
                 ],
                 "fillstate": "EXACT",
                 "return": "float"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "float"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector4"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector2"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "input",
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const int",
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "REARG",
+                "return": "vector"
+            },
+            {
+                "argnames": [
+                    "channel",
+                    "sample"
+                ],
+                "args": [
+                    "const string",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "RETRN",
+                "return": "vector"
+            }
+        ]
+    },
+    "chinputlimits": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chinputlimits\">chinputlimits</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Computes the minimum and maximum value of samples in an input channel.</p><ul><li><code>int chinputlimits(int opinput, int channel, float &amp;channel_min, float &amp;channel_max)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns 1 on success or 0 on failure.</p>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"opinput\" id=\"opinput\">\n<div class=\"label\">\n<code>opinput</code>\n</div>\n<div class=\"content\">\n<p>CHOP Input index or -1 if ommitted.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_min\" id=\"channel_min\">\n<div class=\"label\">\n<code>channel_min</code>\n</div>\n<div class=\"content\">\n<p>Computed minimum channel value;</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_max\" id=\"channel_max\">\n<div class=\"label\">\n<code>channel_max</code>\n</div>\n<div class=\"content\">\n<p>Computed maximum channel value;</p>\n</div>\n</li>\n</div>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "opinput",
+                    "channel",
+                    "channel_min",
+                    "channel_max"
+                ],
+                "args": [
+                    "const int",
+                    "const int",
+                    "float",
+                    "float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
             }
         ]
     },
     "chname": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chname\">chname</a></h1><span><span class=\"padder\"><span class=\"pillow\">output_plane</span></span></span><p class=\"summary\">Returns the channel name of the indexed plane.</p><ul><li><code>string chname(int planeindex, int chindex)</code><span class=\"padder\"><span class=\"pillow\">cop2</span></span></li></ul>\n\n\n\n<p>Returns the channel name of the indexed plane. (e.g. \"r\", \"x\").</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chname\">chname</a></h1><span><span class=\"padder\"><span class=\"pillow\">output_plane</span></span></span><p class=\"summary\">Returns the channel name of the indexed plane.</p><ul><li><code>string chname(int planeindex)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string chname(int planeindex, int chindex)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span><span class=\"padder\"><span class=\"pillow\">cop2</span></span></li></ul>\n\n\n\n<p>Returns the channel name of the indexed plane. (e.g. \"r\", \"x\").</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [
+                    "planeindex"
+                ],
+                "args": [
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "string"
+            },
             {
                 "argnames": [
                     "planeindex",
@@ -11544,6 +13713,7 @@
                     "const int"
                 ],
                 "contexts": [
+                    "chop",
                     "cop2"
                 ],
                 "fillstate": "EXACT",
@@ -11551,9 +13721,46 @@
             }
         ]
     },
-    "chnumchan": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chnumchan\">chnumchan</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the number of channels in the input specified.</p><ul><li><code>int chnumchan(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the number of channels in the input specified.</p>\n\n</div>",
+    "chnames": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chnames\">chnames</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns all the CHOP channel names of a given CHOP input.</p><ul><li><code>string[] chnames()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>string[] chnames(int opinput)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns all the CHOP channel names of a given CHOP input.</p>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chname\">chname()</a><div class=\"related-summary\">Returns the channel name of the indexed plane.</div></p></div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "string[]"
+            },
+            {
+                "argnames": [
+                    "opinput"
+                ],
+                "args": [
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "string[]"
+            }
+        ]
+    },
+    "chnumchan": {
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chnumchan\">chnumchan</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the number of channels in the input specified.</p><ul><li><code>int chnumchan()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chnumchan(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the number of channels in the input specified.</p>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "int"
+            },
             {
                 "argnames": [
                     "input"
@@ -11763,8 +13970,17 @@
         ]
     },
     "chrate": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chrate\">chrate</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the sample rate of the input specified.</p><ul><li><code>float chrate(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the sample rate of the input specified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chrate\">chrate</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the sample rate of the input specified.</p><ul><li><code>float chrate()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chrate(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the sample rate of the input specified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "float"
+            },
             {
                 "argnames": [
                     "input"
@@ -11796,6 +14012,162 @@
                 ],
                 "fillstate": "EXACT",
                 "return": "float"
+            }
+        ]
+    },
+    "chremove": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chremove\">chremove</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Removes channels from a CHOP node.</p><ul><li><code>int chremove(int channel_index)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremove(string channel_name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremove(int[] channel_indices)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremove(string[] channel_names)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>This function removes  channels from a CHOP node. It works only when iterating over Clip, Channel or Samples, not when iterating over ChannelSample.</p>\n<p>Returns 1 if all channels were removed or 0 otherwise. </p>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"channel_index\" id=\"channel_index_arg\">\n<div class=\"label\">\n<code>channel_index</code>\n</div>\n<div class=\"content\">\n<p>The channel index to remove.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_indices\" id=\"channel_indices_arg\">\n<div class=\"label\">\n<code>channel_indices</code>\n</div>\n<div class=\"content\">\n<p>The array of channel indices to remove.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_name\" id=\"channel_name_arg\">\n<div class=\"label\">\n<code>channel_name</code>\n</div>\n<div class=\"content\">\n<p>The channel name to remove.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_names\" id=\"channel_names_arg\">\n<div class=\"label\">\n<code>channel_names</code>\n</div>\n<div class=\"content\">\n<p>The array of channel names to remove.</p>\n</div>\n</li>\n</div>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "channel_index"
+                ],
+                "args": [
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "channel_name"
+                ],
+                "args": [
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "channel_indices"
+                ],
+                "args": [
+                    "const int[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "channel_names"
+                ],
+                "args": [
+                    "const string[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "chremoveattr": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chremoveattr\">chremoveattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Removes a CHOP attribute.</p><ul><li><code>int chremoveattr(string attrname)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremoveattr(string attrclass, string attrname)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremoveattr(string attrclass, string[] attrnames)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chremoveattr(string[] attrnames)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>This function removes CHOP attribute.</p>\n<p>Returns <code>1</code> if the operation succeeded, or <code>0</code> otherwise.</p>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"attrname\" id=\"attrname\">\n<div class=\"label\">\n<code>attrname</code>\n</div>\n<div class=\"content\">\n<p>The name of the attribute to remove.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"attrnames\" id=\"attrnames\">\n<div class=\"label\">\n<code>attrnames</code>\n</div>\n<div class=\"content\">\n<p>The names of the attributes to remove.</p>\n</div>\n</li>\n</div>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr()</a><div class=\"related-summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</div></p></div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "attrname"
+                ],
+                "args": [
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrclass",
+                    "attrname"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrclass",
+                    "attrnames"
+                ],
+                "args": [
+                    "const string",
+                    "const string[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrnames"
+                ],
+                "args": [
+                    "const string[]"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "chrename": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chrename\">chrename</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Renames a CHOP channel.</p><ul><li><code>int chrename(int channel_name, string new_name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chrename(string channel_name, string new_name)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>This function renames a CHOP channel . It works only when iterating over Clip, Channel or Samples, not when iterating over ChannelSample.</p>\n<p>Returns 1 if channel was renamed or 0 otherwise.</p>\n<div class=\"arg_group item_group\">\n<li class=\"item arg \" data-title=\"channel_index\" id=\"channel_index_arg\">\n<div class=\"label\">\n<code>channel_index</code>\n</div>\n<div class=\"content\">\n<p>The channel index to rename.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"channel_name\" id=\"channel_name_arg\">\n<div class=\"label\">\n<code>channel_name</code>\n</div>\n<div class=\"content\">\n<p>The channel to rename.</p>\n</div>\n</li>\n<li class=\"item arg \" data-title=\"new_name\" id=\"new_name_arg\">\n<div class=\"label\">\n<code>new_name</code>\n</div>\n<div class=\"content\">\n<p>The new name.</p>\n</div>\n</li>\n</div>\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "channel_name",
+                    "new_name"
+                ],
+                "args": [
+                    "const int",
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "channel_name",
+                    "new_name"
+                ],
+                "args": [
+                    "const string",
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
             }
         ]
     },
@@ -11874,8 +14246,179 @@
     },
     "chsetattr": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample.</p><ul><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, int value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, string value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix2 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix3 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample. Returns 1 if the write succeeded, 0 otherwise.</p>\n\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class and detect the type based on <code>channel</code> and <code>sample</code> argument values.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to write.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to write the channel or channelsample attribute value to. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to write the sample or channelsample attribute value to. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>value</code>\n\n<div class=\"content\">\n<p>The new attribute value. The type of the argment determines the type of the attribute.</p>\n</div>\n</p>\n\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetattr\">chsetattr</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample.</p><ul><li><code>int chsetattr(string attrname, int channel, int sample, int success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, string success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, float success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, vector2 success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, vector success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, vector4 success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, matrix2 success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, matrix3 success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrname, int channel, int sample, matrix success)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, int value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, string value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector2 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, vector4 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix2 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix3 value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetattr(string attrclass, string attrname, int channel, int sample, matrix value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes a CHOP attribute value on Channels, Clips, Sample or Channel/Sample. Returns 1 if the write succeeded, 0 otherwise.</p>\n\n<p>\n<code>attrclass</code>\n\n<div class=\"content\">\n<p>Which type of channel attribute to read from, one of <code>\"\"</code>, <code>\"clip\"</code>, <code>\"channel\"</code>, <code>\"sample\"</code>, or <code>\"channelsample\"</code>.</p>\n<p>You can use an empty string to avoid the filtering based on attribute class and detect the type based on <code>channel</code> and <code>sample</code> argument values.</p>\n</div>\n</p>\n<p>\n<code>attrname</code>\n\n<div class=\"content\">\n<p>The name of the attribute to write.</p>\n</div>\n</p>\n<p>\n<code>channel</code>\n\n<div class=\"content\">\n<p>The channel index to write the channel or channelsample attribute value to. For clip or sample attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>sample</code>\n\n<div class=\"content\">\n<p>The sample index to write the sample or channelsample attribute value to. For clip or channel attributes, use <code>-1</code> here.</p>\n</div>\n</p>\n<p>\n<code>value</code>\n\n<div class=\"content\">\n<p>The new attribute value. The type of the argment determines the type of the attribute.</p>\n</div>\n</p>\n\n<div class=\"returns_group item_group\">\n<li class=\"item returns \" data-title=\"\" id=\"id143717a858L\">\n<div class=\"label\">\n</div>\n<div class=\"content\">\n<p>Returns <code>1</code> if the write succeeded, or <code>0</code> otherwise.</p>\n</div>\n</li>\n</div>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chattr\">chattr()</a><div class=\"related-summary\">Reads a CHOP attribute value on Channels, Clips, Sample or Channel/Sample from a connected CHOP input, with validity check.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/chattrnames\">chattrnames()</a><div class=\"related-summary\">Reads CHOP attribute names of a given attribute class from a CHOP input.</div></p></div>",
         "sigs": [
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const matrix2"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const matrix3"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const matrix"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const vector4"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const string"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const vector2"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "success"
+                ],
+                "args": [
+                    "const string",
+                    "const int",
+                    "const int",
+                    "const vector"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "ARGMT",
+                "return": "int"
+            },
             {
                 "argnames": [
                     "attrclass",
@@ -12036,7 +14579,111 @@
                     "const string",
                     "const int",
                     "const int",
+                    "const vector2"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "attrclass",
+                    "attrname",
+                    "channel",
+                    "sample",
+                    "value"
+                ],
+                "args": [
+                    "const string",
+                    "const string",
+                    "const int",
+                    "const int",
                     "const vector"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "chsetlength": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetlength\">chsetlength</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Sets the length of the CHOP channel data.</p><ul><li><code>int chsetlength(int clip_length)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "clip_length"
+                ],
+                "args": [
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "chsetrate": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetrate\">chsetrate</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Sets the sampling rate of the CHOP channel data.</p><ul><li><code>int chsetrate(int clip_rate)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetrate(float clip_rate)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "clip_rate"
+                ],
+                "args": [
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "clip_rate"
+                ],
+                "args": [
+                    "const int"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            }
+        ]
+    },
+    "chsetstart": {
+        "added": "16.0",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chsetstart\">chsetstart</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Sets the CHOP start sample in the channel data.</p><ul><li><code>int chsetstart(int start)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chsetstart(float start)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n\n</div>",
+        "sigs": [
+            {
+                "argnames": [
+                    "start"
+                ],
+                "args": [
+                    "const float"
+                ],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "EXACT",
+                "return": "int"
+            },
+            {
+                "argnames": [
+                    "start"
+                ],
+                "args": [
+                    "const int"
                 ],
                 "contexts": [
                     "chop"
@@ -12076,8 +14723,17 @@
         ]
     },
     "chstart": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstart\">chstart</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the start sample of the input specified.</p><ul><li><code>int chstart(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the start sample of the input specified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstart\">chstart</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the start sample of the input specified.</p><ul><li><code>int chstart()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>int chstart(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the start sample of the input specified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "int"
+            },
             {
                 "argnames": [
                     "input"
@@ -12094,8 +14750,17 @@
         ]
     },
     "chstartf": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstartf\">chstartf</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the frame corresponding to the first sample of the input\nspecified.</p><ul><li><code>float chstartf(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the frame corresponding to the first sample of the input\nspecified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstartf\">chstartf</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the frame corresponding to the first sample of the input\nspecified.</p><ul><li><code>float chstartf()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chstartf(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the frame corresponding to the first sample of the input\nspecified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "float"
+            },
             {
                 "argnames": [
                     "input"
@@ -12112,8 +14777,17 @@
         ]
     },
     "chstartt": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstartt\">chstartt</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the time corresponding to the first sample of the input\nspecified.</p><ul><li><code>float chstartt(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the time corresponding to the first sample of the input\nspecified.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chstartt\">chstartt</a></h1><span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Returns the time corresponding to the first sample of the input\nspecified.</p><ul><li><code>float chstartt()</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li><li><code>float chstartt(int input)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Returns the time corresponding to the first sample of the input\nspecified.</p>\n\n</div>",
         "sigs": [
+            {
+                "argnames": [],
+                "args": [],
+                "contexts": [
+                    "chop"
+                ],
+                "fillstate": "NOARG",
+                "return": "float"
+            },
             {
                 "argnames": [
                     "input"
@@ -12185,7 +14859,7 @@
     },
     "chwritebuf": {
         "added": "16.0",
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chwritebuf\">chwritebuf</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes a value of CHOP context temporary buffer at the specified index.</p><ul><li><code>int chwritebuf(int index, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes a value of a CHOP context temporary buffer at the specified index.\nReturn 1 if the write succeeded, 0 otherwise.</p>\n\n</div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/chwritebuf\">chwritebuf</a></h1><span><span class=\"padder\"><span class=\"pillow\">16.0</span></span><span class=\"padder\"><span class=\"pillow\">chop</span></span></span><p class=\"summary\">Writes a value of CHOP context temporary buffer at the specified index.</p><ul><li><code>int chwritebuf(int index, float value)</code><span class=\"padder\"><span class=\"pillow\">chop</span></span></li></ul>\n\n\n\n<p>Writes a value of a CHOP context temporary buffer at the specified index.</p>\n<p>Return 1 if the write succeeded, 0 otherwise.</p>\n\n</div>",
         "sigs": [
             {
                 "argnames": [
@@ -19916,7 +22590,7 @@
         ]
     },
     "eval_bsdf": {
-        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/eval_bsdf\">eval_bsdf</a></h1><span><span class=\"padder\"><span class=\"pillow\">bsdf</span></span><span class=\"padder\"><span class=\"pillow\">pbr</span></span></span><p class=\"summary\">Evaluates a bsdf given two vectors.</p><ul><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, float pdf, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector pdf, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector normal, float &amp;pdf, int mask, ...)</code></li></ul>\n\n\n\n<p><code>viewer</code>:\nVector toward viewer.\n<code>light</code>:\nVector toward light.\n<code>normal</code>:\nSurface normal.\n<code>mask</code>:\nA bitmask indicating which types of bounces to evaluate.\n<code>pdf</code>:\nThe sampling pdf for the given directions, scaled by the albedo.</p>\n<p>The <code>eval_bsdf</code> function passes keyword arguments to the BSDF being\nevaluated.  For custom BSDFs these keyword arguments are bound to shader\narguments (e.g. indicating whether the BSDF is being evaluated for direct or\nindirect illumination).  It\u2019s also possible for a BSDF to pass information back\nto <code>eval_bsdf</code>.  To indicate that a keyword argument value should be imported\nfrom the BSDF prefix the keyword with \"import:\".  For example:</p>\n<div class=\"code-container\">\n<code class=\"line\">v = eval_bsdf(F, inI, dir,\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\"direct\", 0,                        // Specify indirect illumination\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\"import:sssmfp\", sssmfp,        // Read the exported sssmfp parameter\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0...\n</code><code class=\"line\">);\n</code>\n</div>\n<p>The following bitmask constants are defined in  \n<code>pbr.h</code>:  </p>\n<ul class=\"bullets\">\n<li class=\"bullet \">\n<code>PBR_DIFFUSE_MASK</code> - diffuse component  \n</li>\n<li class=\"bullet \">\n<code>PBR_GLOSSY_MASK</code> - glossy component  \n</li>\n<li class=\"bullet \">\n<code>PBR_SPECULAR_MASK</code> - mirror specular component  \n</li>\n<li class=\"bullet \">\n<code>PBR_VOLUME_MASK</code> - volume component\n</li>\n</ul>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/albedo\">albedo()</a><div class=\"related-summary\">Returns the albedo (percentage of reflected light) for a bsdf given the outgoing light direction.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/sample_bsdf\">sample_bsdf()</a><div class=\"related-summary\">Samples a bsdf.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/emission_bsdf\">emission_bsdf()</a><div class=\"related-summary\">Returns the emissive component of a bsdf.</div></p></div>",
+        "help": "<div id=\"helpcard\"><h1><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/eval_bsdf\">eval_bsdf</a></h1><span><span class=\"padder\"><span class=\"pillow\">bsdf</span></span><span class=\"padder\"><span class=\"pillow\">pbr</span></span></span><p class=\"summary\">Evaluates a bsdf given two vectors.</p><ul><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, float &amp;pdf, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector pdf, int mask, ...)</code></li><li><code>vector eval_bsdf(bsdf b, vector viewer, vector light, vector normal, float &amp;pdf, int mask, ...)</code></li></ul>\n\n\n\n<p><code>viewer</code>:\nVector toward viewer.\n<code>light</code>:\nVector toward light.\n<code>normal</code>:\nSurface normal.\n<code>mask</code>:\nA bitmask indicating which types of bounces to evaluate.\n<code>pdf</code>:\nThe sampling pdf for the given directions, scaled by the albedo.</p>\n<p>The <code>eval_bsdf</code> function passes keyword arguments to the BSDF being\nevaluated.  For custom BSDFs these keyword arguments are bound to shader\narguments (e.g. indicating whether the BSDF is being evaluated for direct or\nindirect illumination).  It\u2019s also possible for a BSDF to pass information back\nto <code>eval_bsdf</code>.  To indicate that a keyword argument value should be imported\nfrom the BSDF prefix the keyword with \"import:\".  For example:</p>\n<div class=\"code-container\">\n<code class=\"line\">v = eval_bsdf(F, inI, dir,\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\"direct\", 0,                        // Specify indirect illumination\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0\"import:sssmfp\", sssmfp,        // Read the exported sssmfp parameter\n</code><code class=\"line\">\u00a0\u00a0\u00a0\u00a0...\n</code><code class=\"line\">);\n</code>\n</div>\n<p>The following bitmask constants are defined in  \n<code>pbr.h</code>:  </p>\n<ul class=\"bullets\">\n<li class=\"bullet \">\n<code>PBR_DIFFUSE_MASK</code> - diffuse component  \n</li>\n<li class=\"bullet \">\n<code>PBR_GLOSSY_MASK</code> - glossy component  \n</li>\n<li class=\"bullet \">\n<code>PBR_SPECULAR_MASK</code> - mirror specular component  \n</li>\n<li class=\"bullet \">\n<code>PBR_VOLUME_MASK</code> - volume component\n</li>\n</ul>\n\n<h2>See also</h2><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/albedo\">albedo()</a><div class=\"related-summary\">Returns the albedo (percentage of reflected light) for a bsdf given the outgoing light direction.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/sample_bsdf\">sample_bsdf()</a><div class=\"related-summary\">Samples a bsdf.</div></p><p><a href=\"https://www.sidefx.com/docs/houdini/vex/functions/https://www.sidefx.com/docs/houdini/vex/functions/emission_bsdf\">emission_bsdf()</a><div class=\"related-summary\">Returns the emissive component of a bsdf.</div></p></div>",
         "sigs": [
             {
                 "argnames": [
@@ -19930,7 +22604,7 @@
                     "const bsdf",
                     "const vector",
                     "const vector",
-                    "const float",
+                    "float",
                     "const int"
                 ],
                 "contexts": [
@@ -62090,7 +64764,7 @@
                     "image3d",
                     "cvex"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "RETRN",
                 "return": "int"
             },
             {
@@ -77498,7 +80172,7 @@
                     "image3d",
                     "cvex"
                 ],
-                "fillstate": "EXACT",
+                "fillstate": "RETRN",
                 "return": "void"
             }
         ]
