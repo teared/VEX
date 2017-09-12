@@ -294,7 +294,7 @@ contexts:
       scope: keyword.control.import.vex
       push:
         - meta_scope: meta.preprocessor.elif.vex
-        - match: \b(0+)\b
+        - match: (?<=#elif)\s+(0+)\b
           scope: constant.numeric.vex
           push: if0
         - match: (?=#elif|#else|#endif)
