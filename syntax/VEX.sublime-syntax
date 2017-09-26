@@ -174,7 +174,7 @@ contexts:
         1: storage.type.vex
         2: entity.name.function.definition.vex
 
-    - match: \b(\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\(\s*\w+\s+\w+)
+    - match: \b(\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\((?:\s*\w+\s+\w+)?)
       captures:
         1: storage.type.vex
         2: entity.name.function.definition.vex

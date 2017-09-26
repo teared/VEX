@@ -153,6 +153,11 @@ float function(vector temp)
 
 float eight = function(P)
 
+int some_function_def()
+{
+    return 3;
+}
+
 float some_function_def(
     vector pos;
     float rough;
@@ -167,6 +172,7 @@ float some_function_def(
         inner_function(pos, rough)
         return 0.0;
     }
+
     float nval = inner_function(pos, rough);
     return nval;
 }
