@@ -158,6 +158,11 @@ int some_function_def()
     return 3;
 }
 
+int some_function_def(int blabla)
+{
+    return some_fun(blabla);
+}
+
 float some_function_def(
     vector pos;
     float rough;

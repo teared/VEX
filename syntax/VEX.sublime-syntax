@@ -23,7 +23,7 @@ contexts:
     - include: pragma
 
     # Operators.
-    - match: \b(break|continue|do|else|foreach|forpoints|for|gather|if|illuminance|import(?!\s*\()|return|while)\b
+    - match: \b(break|continue|do|else|foreach|forpoints|for|function|gather|if|illuminance|import(?!\s*\()|return|while)\b
       scope: keyword.control.vex
     - match: (\-|\+|\*|\/|%|&|\||\^)?=
       scope: keyword.operator.assignment.vex
@@ -174,7 +174,7 @@ contexts:
         1: storage.type.vex
         2: entity.name.function.definition.vex
 
-    - match: \b(\w+)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\((?:\s*\w+\s+\w+)?)
+    - match: \b(\w+)(?<!return)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\((?:\s*\w+\s+\w+)?)
       captures:
         1: storage.type.vex
         2: entity.name.function.definition.vex
