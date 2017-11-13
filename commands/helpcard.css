@@ -1,38 +1,49 @@
-#helpcard {
+body {
     font-family: "Segoe UI" Helvetica sans-serif;
-    line-height: 1em;
-    margin: 0 1em 0 .5em;
+    margin: .25rem .5rem .5rem, .5rem;
+    --codecolor: color(var(--background) blend(grey 70%));
+    --radius: 0.25rem;
 }
-
+p { margin: 0 0 0.5rem 0 }
 h1 {
     display: inline;
     font-size: 1.5rem;
     padding-right: .25rem;
 }
-
-.summary, .related-summary { font-style: italic }
-.summary { font-size: 1.2rem }
-
-ul {
-    padding: 0;
-    margin: 0;
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
-
-.code-container, code {
-    background-color: color(var(--background) blend(grey 85%));
-    border-radius: .25rem;
+.summary {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    font-style: italic;
 }
-.code-container { padding: 0.5rem }
-code { padding: 0.1rem 0.25rem }
-code.line {
+.usage { margin: .5rem 0 }
+.argument {
+    display:inline;
+    padding: 0 .15rem;
+}
+code {
+    background-color: var(--codecolor);
+    border-radius: var(--radius);
+    padding: 0.1rem 0.25rem;
+}
+.codeblock {
+    background-color: var(--codecolor);
+    border-radius: var(--radius);
+    padding: .5rem;
+}
+.codeline {
     background-color: inherit;
     border-radius: 0;
     display: block;
 }
-
-.padder { padding: 0 .25rem }
+.padder {
+    padding: 0 .25rem;
+}
 .pillow {
-    padding: 0 .1rem;
+    padding: 0 .15rem;
     background-color: color(var(--background) blend(var(--bluish) 60%));
-    border-radius: .25rem;
+    border-radius: var(--radius);
 }

@@ -274,7 +274,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         output = '\n'.join(messages)
 
-        s = sublime.load_settings('VEX (package settings).sublime-settings')
+        s = sublime.load_settings('VEX.sublime-settings')
         if s.get('show_generated_code_on_build', False):
             output = '{}\nGenerated code:\n{}'.format(output, self.generated_code)
 

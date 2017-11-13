@@ -2,7 +2,7 @@
 <plist version="1.0">
 <dict>
 	<key>scope</key>
-	<string>source.vex, source.hscript</string>
+	<string>source.vex</string>
 	<key>settings</key>
 	<dict>
 		<key>cancelCompletion</key>

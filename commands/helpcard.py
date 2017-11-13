@@ -1,47 +1,32 @@
+import json
+import webbrowser
+
 import sublime
 import sublime_plugin
-import json
-import os.path as op
-import webbrowser
-import zipfile
 
 
-class HelpcardCommand(sublime_plugin.TextCommand):
+class VexHelpcardCommand(sublime_plugin.TextCommand):
+    '''Show documentation for function under cursor.'''
 
     def __init__(self, *args, **kwargs):
+        self.css = sublime.load_resource('Packages/VEX/commands/helpcard.css')
+        self.helpcards = json.loads(sublime.load_resource('Packages/VEX/commands/helpcards.json'))
         super().__init__(*args, **kwargs)
 
-        # Load helpcards and CSS files.
-        here = op.dirname(__file__)
-        root = op.dirname(here)
-
-        if op.basename(root) == 'VEX.sublime-package':
-            with zipfile.ZipFile(root) as z:
-                with z.open('commands/helpcard.css') as f:
-                    self.style = f.read().decode()
-                with z.open('commands/helpcards.json') as f:
-                    self.helpcards = json.loads(f.read().decode())
-        else:
-            with open(op.join(here, 'helpcard.css')) as f:
-                self.style = f.read()
-            with open(op.join(here, 'helpcards.json')) as f:
-                self.helpcards = json.load(f)
-
     def run(self, edit):
+        # Expand to full token under cursor.
         first_sel = self.view.sel()[0].a
-        scope = self.view.scope_name(first_sel)
-        lang = 'hscript' if 'hscript' in scope else 'vex'
         word = self.view.substr(self.view.word(first_sel))
 
-        if word in self.helpcards[lang]:
-            html = '<style>%s</style>%s' % (self.style, self.helpcards[lang][word])
+        if word in self.helpcards:
+            html = '<style>%s</style>%s' % (self.css, self.helpcards[word])
         else:
             # Not sure if search on Google CSE will always work. Will see...
             # Last cx parameter was: 001106583893786776783:4dnyszriw9c
             html = '''
             <style>{style}</style>
 
-            <div id="helpcard">
+            <body>
                 <h1>{term}</h1>
                 <p class="summary">
                 No popup help available for "{term}".
@@ -49,12 +34,12 @@ class HelpcardCommand(sublime_plugin.TextCommand):
                 <p>Search online:
                     <a href="https://cse.google.com/cse?cx=001106583893786776783%3A4dnyszriw9c&q={term}">Docs</a> |
                     <a href="https://encrypted.google.com/search?&q=site%3Asidefx.com+OR+site%3Aodforce.net+{term}">Community</a> |
-                    <a href="https://encrypted.google.com/search?&q={term}">Google</a>
+                    <a href="https://encrypted.google.com/search?&q={term}">Internet</a>
                 </p>
-            </div>
-            '''.format(term=word, style=self.style)
+            </body>
+            '''.format(term=word, style=self.css)
 
-        s = sublime.load_settings('VEX (package settings).sublime-settings')
+        s = sublime.load_settings('VEX.sublime-settings')
         self.view.show_popup(html, on_navigate=webbrowser.open,
                              max_width=s.get('popup_max_width'),
                              max_height=s.get('popup_max_height'))

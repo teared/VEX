@@ -109,11 +109,11 @@ contexts:
 
   comment:
     - match: /\*
-      scope: punctuation.definition.comment.vex
+      scope: punctuation.definition.comment.begin.vex
       push:
         - meta_scope: comment.block.vex
         - match: \*/
-          scope: punctuation.definition.comment.vex
+          scope: punctuation.definition.comment.end.vex
           pop: true
         - match: \b(TODO)\b
           scope: invalid.illegal.todo.vex
@@ -134,7 +134,7 @@ contexts:
   string:
     - match: (\bR)("(\w+)?\()
       captures:
-        1: storage.type.string.vex
+        1: storage.type.string.raw.vex
         2: punctuation.definition.string.begin.vex
         3: variable.parameter.cppstring-delimiter.vex
       push:
@@ -147,7 +147,7 @@ contexts:
 
     - match: (\br)?("|')
       captures:
-        1: storage.type.string.vex
+        1: storage.type.string.raw.vex
         2: punctuation.definition.string.begin.vex
       push:
         - meta_scope: string.quoted.vex
@@ -174,7 +174,7 @@ contexts:
         1: storage.type.vex
         2: entity.name.function.definition.vex
 
-    - match: \b(\w+)(?<!return)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\((?:\s*\w+\s+\w+)?)
+    - match: \b(\w+)(?<!return|else)\s*(?:\[\])?\s*\b(\w+)\b(?=\s*\((?:\s*\w+\s+\w+)?)
       captures:
         1: storage.type.vex
         2: entity.name.function.definition.vex
@@ -290,7 +290,7 @@ contexts:
         - include: if0-recursion
 
   elif:
-    - match: ^\s*(#elif)\b
+    - match: (#elif)\b
       scope: keyword.control.import.vex
       push:
         - meta_scope: meta.preprocessor.elif.vex
@@ -304,7 +304,7 @@ contexts:
         - include: main
 
   else:
-    - match: ^\s*(#else)\b
+    - match: (#else)\b
       scope: keyword.control.import.vex
       push:
         - meta_scope: meta.preprocessor.else.vex

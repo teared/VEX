@@ -1,0 +1,494 @@
+// SYNTAX TEST "Packages/VEX/syntax/VEX.sublime-syntax"
+
+
+
+Comments.
+
+
+// foo
+//^^^^ comment.line
+// <- punctuation.definition.comment
+
+// Continued \
+//           ^ punctuation.separator.continuation
+
+// Continued \
+   comment
+//^^^^^^^^ comment.line
+
+/* foo */
+//^^^^^ comment.block -punctuation.definition
+// <- punctuation.definition.comment.begin
+//     ^^ punctuation.definition.comment.end
+
+/*
+// <- punctuation.definition.comment.begin
+    foo
+//  ^^^ comment.block -punctuation.definition
+*/
+// <-  punctuation.definition.comment.end
+
+// Test TODO.
+//      ^^^^ invalid.illegal.todo
+
+
+
+Numeric constants.
+
+
+  1.f 1.0_f .1f 1.3 .3 1. 1_1.3_3 .3_3 1_1. 1.1_
+//^^^ constant.numeric
+//    ^^^^^ constant.numeric
+//          ^^^ constant.numeric
+//              ^^^ constant.numeric
+//                  ^^ constant.numeric
+//                     ^^ constant.numeric
+//                        ^^^^^^^ constant.numeric
+//                                ^^^^ constant.numeric
+//                                     ^^^^ constant.numeric
+//                                          ^^^^ constant.numeric
+  1_000 1000_
+//^^^^^ constant.numeric
+//      ^^^^^ constant.numeric
+  0b0 0b1000 0b10_10_10 // 42!
+//^^^ constant.numeric
+//    ^^^^^^ constant.numeric
+//           ^^^^^^^^^^ constant.numeric
+  017 0_17 00_07 0007
+//^^^ constant.numeric
+//    ^^^^ constant.numeric
+//         ^^^^^ constant.numeric
+//               ^^^^ constant.numeric
+  0xA1 0xA_1 0xA_1_
+//^^^^ constant.numeric
+//     ^^^^^ constant.numeric
+//           ^^^^^^ constant.numeric
+  1e2 1e-2 1e+2 1e10 1_0.1e-2
+//^^^ constant.numeric
+//    ^^^^ constant.numeric
+//         ^^^^ constant.numeric
+//              ^^^^ constant.numeric
+//                   ^^^^^^^^ constant.numeric
+  true
+//^^^^ constant.language
+
+  {1, 2, 3}
+//^ punctuation.braces.begin
+// ^ constant.numeric
+//  ^ punctuation.separator
+//       ^ constant.numeric
+
+  1.1.1 ._1 1._1
+//^^^^^ -constant.numeric
+//      ^^^ -constant.numeric
+//          ^^^^ -constant.numeric
+  1_.1 // Truncates fractional part.
+//^^^^ -constant.numeric
+  _1000 00_08 0008
+//^^^^^ -constant.numeric
+//      ^^^^^ -constant.numeric
+//            ^^^^ -constant.numeric
+  019 // Illegal octal.
+//^^^ -constant.numeric
+  0_19 // Legal and decimal.
+//^^^^ constant.numeric
+  0x_A1
+//^^^^^ -constant.numeric
+
+
+
+String literals.
+
+
+"asd\"fgh\t\\t\f%se\nd\\"
+//  ^^ constant.character.escape
+//           ^ -constant.character.escape
+//            ^^ -constant.character.escape
+//              ^^ constant.other.placeholder
+//                      ^ punctuation.definition.string.end
+//^^^^^^^^^^^^^^^^^^^^^^^ string.quoted
+
+"fff \
+fff"
+// <- string.quoted
+
+r'asd\"fgh\t\\t\f%se\nd'
+// <- storage.type.string.raw
+
+"\x41a" "\795" "\uDEADBEEF" "\u0123456789"
+//^^^^ constant.character.escape
+//       ^^^^ constant.character.escape
+//              ^^^^^^ constant.character.escape
+//                    ^ -constant.character.escape
+//                           ^^^^^ constant.character.escape
+
+"\n \b \" \\ \r"
+//^ constant.character.escape
+//  ^^ -constant.character.escape
+//    ^ -constant.character.escape
+//     ^^ constant.character.escape
+//       ^ -constant.character.escape
+//           ^^ constant.character.escape
+
+R"(Hello world\n)" "Hello world\n"
+// <- storage.type.string.raw
+//            ^^ -constant.character.escape
+//                             ^^ constant.character.escape
+
+R"multi(This is a long
+// <- storage.type.string.raw
+//^^^^^ variable.parameter.cppstring-delimiter
+actually ended until here.)multi"
+//                         ^^^^^ variable.parameter.cppstring-delimiter
+//                              ^ punctuation.definition.string.end
+
+
+
+Variables and types.
+
+
+vector color
+// <- storage.type
+
+something color
+// <- -storage.type
+
+struct values {
+// <- storage.type
+    float aval[] = { 1, 2, 3, 4.5 };
+//  ^^^^^ storage.type
+//            ^^ punctuation.brackets
+//                 ^ punctuation.braces.begin
+//                                ^ punctuation.braces.end
+//                                 ^ punctuation.separator
+    int uninitialized; // Uninitialized member data
+//                     ^ comment.line
+}
+// <- punctuation.braces.end
+
+
+
+Operators.
+
+
+superfoo.x = 0
+//      ^ punctuation.accessor
+//         ^ keyword.operator.assignment
+
+@orient = 0
+// <- keyword.operator.attribute
+
+   3[]@test
+// ^^^ storage.type.attribute
+//    ^ keyword.operator.attribute
+
+x = 0 ? x : 1
+//^ keyword.operator.assignment
+//    ^ keyword.operator.ternary
+//        ^ keyword.operator.ternary
+
+
+
+Flow control.
+
+
+if (1) { foo; }
+// <- keyword.control
+
+else if (0) { foo; }
+// <- keyword.control
+//   ^^ keyword.control
+
+else { foo; }
+// <- keyword.control
+
+for (int i = 0; i < count; i++) { foo; }
+// <- keyword.control
+
+foreach (int value; array)
+// <- keyword.control
+//       ^^^ storage.type
+
+return foo(int(3.5));
+// <- keyword.control
+//     ^^^ -entity.name.function.definition
+
+
+
+Functions.
+
+
+import shader;
+import(something);
+import_test();
+
+
+float fun(vector temp)
+//<- storage.type
+//    ^^^ entity.name.function.definition
+{
+    return 8;
+}
+
+float blur = sqrt(AREA(pos));
+//<- storage.type
+//    ^^^^ -entity.name.function.definition
+//           ^^^^ support.function.lib
+//                ^^^^ variable.function -entity.name.function.definition
+
+type def()
+//<- storage.type
+//   ^^^ entity.name.function.definition
+{
+    return 3;
+}
+
+type def(int blabla)
+//<- storage.type
+//   ^^^ entity.name.function.definition
+{
+    return some_fun(blabla);
+}
+
+type outer_def(
+//<- storage.type
+//   ^^^^^^^^^ entity.name.function.definition
+    vector pos;
+)
+{
+    float blur = sqrt(AREA(pos));
+//  ^^^^^ storage.type
+//        ^^^^ -entity.name.function.definition
+//               ^^^^ support.function.lib
+//                    ^^^^ variable.function -entity.name.function.definition
+    MACRO_FUNC(blur)
+//  ^^^^^^^^^^ variable.function -entity.name.function.definition
+    type inner_def(int foo)
+//  ^^^^ storage.type
+//       ^^^^^^^^^ entity.name.function.definition
+//                 ^^^ storage.type
+    {
+        inner_call(pos, rough)
+//      ^^^^^^^^^^ variable.function -entity.name.function.definition
+        return 0.0;
+    }
+
+    float nval = inner_function(pos, rough);
+//  ^^^^^ storage.type
+//               ^^^^^^^^^^^^^^ variable.function -entity.name.function.definition
+
+    return nval(float(bar));
+//  ^^^^^^ -storage.type
+//         ^^^^ variable.function -entity.name.function.definition
+//              ^^^^^ storage.type
+
+}
+
+call(
+// <- variable.function -entity.name.function.definition
+    pos
+);
+
+
+
+Preprocessor includes.
+
+
+#include <voplib.h>
+// <- meta.preprocessor.include
+//^^^^^^ keyword.control.import
+//       ^ punctuation.definition.string.begin
+//       ^^^^^^^^^^ string.unquoted
+//                ^ punctuation.definition.string.end
+//^^^^^^^^^^^^^^^^^ meta.preprocessor.include
+
+#include "mylib.h"
+//       ^ punctuation.definition.string.begin
+//       ^^^^^^^^^ string.quoted
+//               ^ punctuation.definition.string.end
+
+
+
+Preprocessor defines.
+
+
+#define TEST "NaN"
+// <- keyword.control.import
+//      ^^^^ entity.name.macro
+//           ^^^^ string.unquoted.token-string
+//^^^^^^^^^^^^^^^ meta.preprocessor.define
+
+#define SWAP(a, b) ((b), (a));
+//          ^ punctuation.section.group.begin
+//           ^ variable.parameter
+//            ^ punctuation.separator
+//           ^^^^ meta.preprocessor.macro.parameters
+//              ^ variable.parameter
+//               ^ punctuation.section.group.end
+//                 ^^^^^^^^^^^ string.unquoted.token-string
+
+#define GREET(EXP, name)             \
+        if (##EXP)                   \
+//          ^^ variable.parameter.concat
+//                                   ^ punctuation.separator.continuation
+
+
+
+Preprocessor ifs.
+
+
+#ifndef TEST
+// <- keyword.control.import
+//      ^^^^ entity.name.macro
+
+// <- meta.preprocessor.ifdef
+
+// <- meta.preprocessor.ifdef
+#endif
+// <- meta.preprocessor.ifdef
+//^^^^ meta.preprocessor.ifdef
+//    ^ -meta.preprocessor.ifdef
+
+#if defined(__FILE__)
+// <- keyword.control.import
+//  ^^^^^^^ support.function.preprocessor
+//         ^ punctuation.parens.begin
+//                  ^ punctuation.parens.end
+    #include "foo.h"
+#elif 0
+// <- meta.preprocessor.elif
+    #include "bar.h"
+// <- comment.disabled
+#elif !strcmp(__vex_major, TEST) && environment(TESTING)
+//    ^ keyword.operator.logical
+//     ^^^^^^ support.function.preprocessor
+//           ^ punctuation.parens.begin
+//                             ^ punctuation.parens.end
+//                               ^^ keyword.operator.logical
+//                                  ^^^^^^^^^^^ support.function.preprocessor
+    #if defined(__FILE__)
+//  ^^^ keyword.control.import
+//      ^^^^^^^ support.function.preprocessor
+//             ^ punctuation.parens.begin
+//                      ^ punctuation.parens.end
+        #include "foo.h"
+    #endif
+#else
+    #define BAR FOO
+// <- meta.preprocessor.else
+#endif
+// <- meta.preprocessor.if
+//    ^ -meta.preprocessor.if
+
+
+
+VCC pragmas.
+
+
+#pragma opname v_supermat
+// <- keyword.control.import
+//      ^^^^^^ entity.name.pragma
+//^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.pragma
+
+_Pragma("label parm \"Parameter \ Label\"");
+// <- support.function.pragma
+
+#pragma choice foo 8 "Bar"    \
+// <- keyword.control.import
+//                            ^ punctuation.separator.continuation
+
+#pragma choice foo 8 "Bar" \
+                   3 "Baz"
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.pragma
+
+
+
+HScript in backticks support.
+
+
+"Value is `if($PT % 2 == 0, ($TX - point("../mountain_z", ($PT + 1), "P", 0)), (point("../mountain_z", ($PT - 1), "P", 0) - $TX)))`"
+//        ^ keyword.other.backticks
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.hscript
+"Truth in `if($PI, 1, 0)` expression."
+//        ^ keyword.other.backticks
+//        ^ -source.hscript
+//         ^^ support.function.hscript
+//            ^^ constant.language.variable.hscript
+//         ^^^^^^^^^^^^^ source.hscript
+//                      ^ keyword.other.backticks
+//                      ^ -source.hscript
+
+
+
+Demos.
+
+
+// Compute curve u.
+
+addpointattrib(0, "u", 0.0);
+
+float length = primintrinsic(0, "measuredperimeter", 0);
+
+float passed = 0;
+for (int i = 1; i < @numpt; i++)
+{
+    vector a = point(0, "P", i);
+    vector b = point(0, "P", i-1);
+    passed += distance(a, b);
+    setpointattrib(0, "u", i, passed/length);
+}
+
+
+/*
+Wrangle-style VEX example with @-bindings and backticks.
+*/
+#define PI `$PI` // Use HScript.
+
+int geoself()
+{
+    return 0; // TODO
+}
+
+// Do something.
+if (i@group_main)
+{
+    int vtx = vertexindex(0, @primnum, 1);
+    int pt = vertexpoint(0, vtx);
+    s@point_pairs = sprintf;
+    i@group_pair`opdigits(oppwd())` = true;
+}
+else
+{
+    foreach (int i; pointprims(0, @ptnum))
+    {
+        append(i[]@nbprims, i + @ptnum)
+    }
+    removepoint(0, @ptnum);
+}
+
+
+/*
+.vfl-style VEX example.
+*/
+#ifndef __Example__
+#define __Example__
+
+#include <math.h>
+#define RED {1,0,0}
+
+surface crazy(string maps[] = {"Mandril.rat", "default.pic"};
+              export float alength = 0)
+{
+    vector texclr = texture(maps[s+t > 1], s, t);
+    vector av[] = array(RED, vector(nrandom()), t, texclr, RED/2);
+
+    #if 0 // Disabled.
+    if (fit(noise(s*8), 0, 1, .3, .7) > t)
+        av = array(1, RED, 0);
+    #endif
+
+    Cf = spline("linear", s, av);
+    alength = len(av);
+}
+
+#endif // __Example__

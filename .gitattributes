@@ -5,8 +5,5 @@
 *.cmd                   linguist-vendored
 *.json                  linguist-vendored
 *.sublime-completions   linguist-vendored
-*.sublime-keymap        linguist-vendored
-*.sublime-menu          linguist-vendored
-*.sublime-settings      linguist-vendored
-*.sublime-snippet       linguist-vendored
-*.tmPreferences         linguist-vendored
+
+/.gitattributes export-ignore
