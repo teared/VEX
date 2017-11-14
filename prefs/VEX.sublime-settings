@@ -1,5 +1,10 @@
 {
+    // Size of documentation popups.
     "popup_max_width": 640,
     "popup_max_height": 360,
-    "show_generated_code_on_build": false
+
+    // This will use vcc command available in system's environment.
+    // File path can be used instead:
+    // "vcc_executable": "C:/Program Files/Side Effects Software/Houdini 16.5.258/bin/vcc.exe",
+    "vcc_executable": "vcc",
 }

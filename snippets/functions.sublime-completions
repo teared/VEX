@@ -1,5 +1,5 @@
 {
-    "scope": "source.vex -source.hscript -string",
+    "scope": "source.vex -string -comment -source.hscript",
     "completions": [
         {
             "trigger": "abs(n)",

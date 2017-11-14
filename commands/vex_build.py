@@ -13,45 +13,63 @@ import sublime_plugin
 
 class VexBuildCommand(sublime_plugin.WindowCommand):
     '''
-    Compile VEX.
+    Compile VEX code in different ways.
 
-    This command allows to run VCC over VEX code outside context function.
-    Internally, it parses all attribute bindings and wraps the code into a
-    function using attributes as arguments. Same what Snippet node does.
+    Note:
+        Currently, this build command used only for syntax checking, with no
+        compiled VEX output, since it is the most obvious motivation to use
+        this command, and to avoid feature bloat.
 
-    Since most Houdini coding is just editing wrangles with 5-10 lines of
-    code, this provides convenient way to fix typos and compile errors without
-    need to return to Houdini.
+    Supported customizations:
+        special_mode == None (default)
+            Run VCC on the current file and do only output formatting.
 
-    When compile_as_snippet parameter set to False, this just calls vcc and
-    do some formatting over output.
+        special_mode == 'snippet'
+            Parse attribute bindings and wrap the code into a "Snippet-style"
+            function. Similar to what Snippet node does. Then run VCC over
+            generated code.
+
+            Since most Houdini coding is just editing wrangles with 5-10 lines
+            of code, this provides convenient way to fix typos and compile
+            errors without need to go back and forth between Houdini and
+            Sublime.
+
+        special_mode == 'library'
+            Run VCC on the current file within CVEX context and do only output
+            formatting. Best for arbitrary VEX code.
     '''
 
+    # Track if VCC not finished or the command is broken. Mostly if broken.
     running = False
 
-    def run(self, compile_as_snippet=False):
+    def run(self, special_mode=None):
+        if not self.window.active_view().file_name():
+            sublime.status_message('Please, save the file before building')
+            return
+
         if self.running:
-            print('VCC is currently running...')
+            sublime.status_message('VCC is currently running...')
             return
 
         # Setup main variables.
+        self.special_mode = special_mode
         view = self.window.active_view()
         self.src = view.substr(sublime.Region(0, view.size()))
         self.file = view.file_name()
-        self.dir = op.dirname(self.file)
-        self.compile_as_snippet = compile_as_snippet
 
         # Create and show output panel.
         self.output = self.window.create_output_panel('exec')
         self.output.assign_syntax('Packages/VEX/syntax/VEX Build.sublime-syntax')
-        sets = self.output.settings()
-        sets.set('result_base_dir', self.dir)
-        sets.set('result_file_regex', r'^File "(.+)", line (\d+), columns? (\d+(?:-\d+)?): (.*)$')
-        sets.set('line_numbers', False)
-        sets.set('gutter', False)
-        sets.set('scroll_past_end', False)
+        prefs = self.output.settings()
+        prefs.set('result_base_dir', op.dirname(self.file))
+        prefs.set('result_file_regex', r'^File "(.+)", line (\d+), columns? (\d+(?:-\d+)?): (.*)$')
+        prefs.set('line_numbers', False)
+        prefs.set('gutter', False)
+        prefs.set('scroll_past_end', False)
 
-        if sublime.load_settings('Preferences.sublime-settings').get('show_panel_on_build', True):
+        # Respect generic user preference about build window.
+        prefs = sublime.load_settings('Preferences.sublime-settings')
+        if prefs.get('show_panel_on_build', True):
             self.window.run_command('show_panel', {'panel': 'output.exec'})
 
         # Run VCC in other thread.
@@ -59,44 +77,51 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
         t.start()
 
     def worker(self):
-        self.running = True
+        self.running = True  # Track running VCC instances.
         self.started = time.time()
         sublime.status_message('Compiling VEX...')
 
         # Write generated code to temporary file.
         with tempfile.NamedTemporaryFile('w', encoding='utf-8', delete=False) as f:
             self.tempfile = f.name
-            self.generated_code = self.decorate_source(self.src) if self.compile_as_snippet else self.src
+
+            self.generated_code = self.src
+            if self.special_mode == 'snippet':
+                self.generated_code = self.decorate_source(self.generated_code)
+
             f.write(self.generated_code)
 
         # Call VCC and check output.
-        if self.compile_as_snippet:
-            cmd = [
-                'vcc', '--compile-all',
-                '--context', 'cvex',
-                '--vex-output', 'stdout',
-                '--include-dir', self.dir,
-                '--include-dir', op.join(self.dir, 'include'),
-                self.tempfile
-            ]
+        prefs = sublime.load_settings('VEX.sublime-settings')
+        vcc_executable = prefs.get('vcc_executable', 'vcc')
+
+        cmd = [
+            vcc_executable, '--compile-all',
+            '--vex-output', 'stdout',
+            '--include-dir', op.dirname(self.file),
+            '--include-dir', op.join(op.dirname(self.file), 'include'),
+        ]
+
+        if self.special_mode:
+            cmd.extend(['--context', 'cvex'])
+
+        # Specify input file.
+        if self.special_mode == 'snippet':
+            cmd.append(self.tempfile)
         else:
-            cmd = [
-                'vcc',
-                '--vex-output', 'stdout',
-                '--include-dir', self.dir,
-                '--include-dir', op.join(self.dir, 'include'),
-                self.file
-            ]
-        proc = subprocess.Popen(cmd, shell=True,
-                                stderr=subprocess.PIPE,
-                                universal_newlines=True)
+            cmd.append(self.file)
+
+        proc = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True)
         proc.wait()
         vcc = proc.stderr.read()
 
-        self.output.run_command('append', {'characters': self.format_output(vcc),
-                                           'force': True, 'scroll_to_end': True})
+        self.output.run_command('append', {
+            'characters': self.format_output(vcc),
+            'force': True,
+            'scroll_to_end': True
+        })
 
-        # Manually delete wrapper file.
+        # Delete generated code file.
         if op.exists(self.tempfile):
             os.remove(self.tempfile)
 
@@ -108,8 +133,8 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
         '''
         Wrap code into a function.
 
-        This allow to compile small VEX snippets, without need to manually
-        wrap it into function converting all attributes to argument bindings.
+        This allow to compile small VEX snippets without need to manually wrap
+        them into functions and convert all attributes into argument bindings.
         '''
         bound = set()  # Keeping track of bound attribute names.
         args = []
@@ -198,14 +223,16 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
     @staticmethod
     def match_columns(cols, genline, srcline):
         '''
-        Fix column numbers by comparing two lines.
+        Error lines and columns generated by wrapped code make no sense with
+        actual, non-wrapped code.
 
-        Split corresponding lines into lists with same structure:
+        This function will fix columns comparing two lines and splitting them
+        into lists with similar structure:
 
             _bound_|foo = 4.2; |_bound_|bar = {4, 2};
                   @|foo = 4.2; |   i[]@|bar = {4, 2};
 
-        Then use two simple counters to match column numbers.
+        Then two simple counters will be used to match column numbers.
         '''
         parts = zip(re.split(r'((?:\b[\w\d](?:\[\])?)?@)(?=[\w\d_]+)', srcline),
                     re.split(r'(\b_bound_)', genline))
@@ -223,7 +250,11 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             return cols
 
     def format_output(self, output):
-        '''Beautify output and fix issues caused by code wrapping.'''
+        '''
+        Beautify output and fix issues caused by code wrapping.
+
+        TODO: fix splitting the whole file inside for loop.
+        '''
 
         output = output.strip()
         if not output:
@@ -231,11 +262,14 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         parsed = []
         for line in output.split('\n'):
-            match = re.match(r'^(.*?):(\d+):(\d+(?:-\d+)?):\s*(.+?):\s*(.*)$', line)
+            print(line)
+            match = re.match(r'^(.+?):(?:(\d+):(\d+(?:-\d+)?):)?\s+(.+?):\s+(.+)$', line)
             file, row, cols, err, msg = match.groups()
             file = op.normpath(file)
-            row = int(row)
-            cols = [int(n) for n in cols.split('-')]
+
+            # Sometimes VCC don't output lines and columns.
+            row = int(row) if row else 1
+            cols = [int(n) for n in cols.split('-')] if cols else [0]
             parsed.append([file, row, cols, err, msg])
 
         messages = []
@@ -274,8 +308,8 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         output = '\n'.join(messages)
 
-        s = sublime.load_settings('VEX.sublime-settings')
-        if s.get('show_generated_code_on_build', False):
+        show_generated_code_on_build = False  # Former user preference.
+        if show_generated_code_on_build:
             output = '{}\nGenerated code:\n{}'.format(output, self.generated_code)
 
         return output

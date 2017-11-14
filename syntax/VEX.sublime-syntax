@@ -123,7 +123,7 @@ contexts:
       scope: punctuation.definition.comment.vex
       push:
         - meta_scope: comment.line.vex
-        - match: (?<=^|[^\\])\s*(?=\n)
+        - match: (?<=^|[^\\])\s*\n
           pop: true
         - match: \b(TODO)\b
           scope: invalid.illegal.todo.vex
