@@ -1,10 +1,24 @@
 {
-    // Size of documentation popups.
+    // This is default VEX package preferences file. Don't change it.
+
+    // If you opened settings from Sublime Text, correct file for user
+    // overrides should be in the next column of split window, called
+    // "VEX.sublime-settings — User".
+
+    // This "VEX.sublime-settings — User" is also a syntax-specific file
+    // (package has same name as a syntax it defines). So you will also see it
+    // if you opened it via: Preferences → Syntax Specific. But instead of
+    // this default VEX package preferences, you will see default Preferences
+    // of Sublime Text itself.
+
+    // Feel free to override any of Package settings below, as well as
+    // Sublime's Preferences.
+
+    // First candidate from the Preferences is "extensions" setting, which
+    // will force .h files to open with VEX syntax instead of C:
+    // "extensions": ["vfl", "h"],
+
+    // Size of documentation popups, in pixels.
     "popup_max_width": 640,
     "popup_max_height": 360,
-
-    // This will use vcc command available in system's environment.
-    // File path can be used instead:
-    // "vcc_executable": "C:/Program Files/Side Effects Software/Houdini 16.5.258/bin/vcc.exe",
-    "vcc_executable": "vcc",
 }

@@ -1,14 +1,24 @@
 {
     "selector": "source.vex",
     "target": "vex_build",
+    "executable": "vcc",
+    "context": null,
+    "compile_all": true,
+    "include_dirs": [
+        "$file_path",
+        "$file_path/include"
+    ],
+    "vex_output": "stdout",
+    "snippet": false,
     "variants": [
         {
             "name": "As a Snippet",
-            "special_mode": "snippet"
+            "snippet": true,
+            "context": "cvex"
         },
         {
             "name": "As a Library",
-            "special_mode": "library"
+            "context": "cvex"
         }
     ]
 }
