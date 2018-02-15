@@ -107,7 +107,7 @@ contexts:
         2: invalid.illegal.continuation-space.vex
 
 
-  comment:
+  comment-block:
     - match: /\*
       scope: punctuation.definition.comment.begin.vex
       push:
@@ -119,6 +119,8 @@ contexts:
           scope: invalid.illegal.todo.vex
         - include: backticks
 
+  comment:
+    - include: comment-block
     - match: //
       scope: punctuation.definition.comment.vex
       push:
@@ -128,6 +130,20 @@ contexts:
         - match: \b(TODO)\b
           scope: invalid.illegal.todo.vex
         - include: continuation
+        - include: backticks
+
+  comment-define:
+    - include: comment-block
+
+    # Line comment without continuation capabilities.
+    - match: //
+      scope: punctuation.definition.comment.vex
+      push:
+        - meta_scope: comment.line.vex
+        - match: (?=\n)
+          pop: true
+        - match: \b(TODO)\b
+          scope: invalid.illegal.todo.vex
         - include: backticks
 
 
@@ -226,7 +242,7 @@ contexts:
           push:
             - meta_content_scope: string.unquoted.token-string.vex
             - include: backticks
-            - include: comment
+            - include: comment-define
             - include: continuation
             - match: '##'
               scope: variable.parameter.concat.vex
