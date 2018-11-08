@@ -230,6 +230,14 @@
             "contents": "agentrigparent(${1:geometry}, ${2:prim}, ${3:transform})"
         },
         {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters})"
+        },
+        {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxformattrib, constrainedxformattrib, jointlimitsattrib)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths}, ${13:goalxformattrib}, ${14:constrainedxformattrib}, ${15:jointlimitsattrib})"
+        },
+        {
             "trigger": "agenttransformcount(geometry, prim)",
             "contents": "agenttransformcount(${1:geometry}, ${2:prim})"
         },
@@ -300,6 +308,14 @@
         {
             "trigger": "anoise(pos, turbulence, rough, atten)",
             "contents": "anoise(${1:pos}, ${2:turbulence}, ${3:rough}, ${4:atten})"
+        },
+        {
+            "trigger": "anoise(pos, periodX, periodY, periodZ)",
+            "contents": "anoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ})"
+        },
+        {
+            "trigger": "anoise(pos, periodX, periodY, periodZ, turbulence, rough, atten)",
+            "contents": "anoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ}, ${5:turbulence}, ${6:rough}, ${7:atten})"
         },
         {
             "trigger": "append(array, value)",
@@ -392,6 +408,10 @@
         {
             "trigger": "attribclass(geometry, attribute_name)",
             "contents": "attribclass(${1:geometry}, ${2:attribute_name})"
+        },
+        {
+            "trigger": "attribdataid(geometry, attribclass, attribute_name)",
+            "contents": "attribdataid(${1:geometry}, ${2:attribclass}, ${3:attribute_name})"
         },
         {
             "trigger": "attribsize(geometry, attribclass, attribute_name)",
@@ -638,6 +658,22 @@
             "contents": "chinput(${1:opinput}, ${2:channel_name}, ${3:sample})"
         },
         {
+            "trigger": "chinput(channel_index, sample, t, r, s)",
+            "contents": "chinput(${1:channel_index}, ${2:sample}, ${3:t}, ${4:r}, ${5:s})"
+        },
+        {
+            "trigger": "chinput(opinput, channel_index, sample, t, r, s)",
+            "contents": "chinput(${1:opinput}, ${2:channel_index}, ${3:sample}, ${4:t}, ${5:r}, ${6:s})"
+        },
+        {
+            "trigger": "chinput(channel_name, sample, t, r, s)",
+            "contents": "chinput(${1:channel_name}, ${2:sample}, ${3:t}, ${4:r}, ${5:s})"
+        },
+        {
+            "trigger": "chinput(opinput, channel_name, sample, t, r, s)",
+            "contents": "chinput(${1:opinput}, ${2:channel_name}, ${3:sample}, ${4:t}, ${5:r}, ${6:s})"
+        },
+        {
             "trigger": "chinputlimits(opinput, channel, channel_min, channel_max)",
             "contents": "chinputlimits(${1:opinput}, ${2:channel}, ${3:channel_min}, ${4:channel_max})"
         },
@@ -668,6 +704,14 @@
         {
             "trigger": "chnumchan(opinput)",
             "contents": "chnumchan(${1:opinput})"
+        },
+        {
+            "trigger": "chop(filename, channel, sample)",
+            "contents": "chop(${1:filename}, ${2:channel}, ${3:sample})"
+        },
+        {
+            "trigger": "chopt(filename, channel, sample, time)",
+            "contents": "chopt(${1:filename}, ${2:channel}, ${3:sample}, ${4:time})"
         },
         {
             "trigger": "chp(channel)",
@@ -822,6 +866,10 @@
             "contents": "chwritebuf(${1:index}, ${2:value})"
         },
         {
+            "trigger": "chwritebuf(index, t, r, s)",
+            "contents": "chwritebuf(${1:index}, ${2:t}, ${3:r}, ${4:s})"
+        },
+        {
             "trigger": "cinput(u, v, ...)",
             "contents": "cinput(${1:u}, ${2:v}, ${3:...})"
         },
@@ -934,6 +982,14 @@
             "contents": "cracktransform(${1:trs}, ${2:xyz}, ${3:c}, ${4:pivot}, ${5:xform})"
         },
         {
+            "trigger": "cracktransform(trs, xyz, pivot, pivot_rotate, xform, t, r, s, shears)",
+            "contents": "cracktransform(${1:trs}, ${2:xyz}, ${3:pivot}, ${4:pivot_rotate}, ${5:xform}, ${6:t}, ${7:r}, ${8:s}, ${9:shears})"
+        },
+        {
+            "trigger": "cracktransform(trs, xyz, pivot, xform, t, r, s)",
+            "contents": "cracktransform(${1:trs}, ${2:xyz}, ${3:pivot}, ${4:xform}, ${5:t}, ${6:r}, ${7:s})"
+        },
+        {
             "trigger": "create_cdf(pdf)",
             "contents": "create_cdf(${1:pdf})"
         },
@@ -1026,6 +1082,14 @@
             "contents": "cwnoise(${1:posx}, ${2:posy}, ${3:seed}, ${4:f1}, ${5:f2}, ${6:f3}, ${7:f4}, ${8:periodx}, ${9:periody})"
         },
         {
+            "trigger": "cwnoise(position, seed, f1, f2, periodx, periody)",
+            "contents": "cwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody})"
+        },
+        {
+            "trigger": "cwnoise(position, seed, f1, f2, f3, f4, periodx, periody)",
+            "contents": "cwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:f3}, ${6:f4}, ${7:periodx}, ${8:periody})"
+        },
+        {
             "trigger": "cwnoise(position, seed, f1, f2, periodx, periody, periodx)",
             "contents": "cwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody}, ${7:periodx})"
         },
@@ -1088,6 +1152,10 @@
         {
             "trigger": "determinant(m)",
             "contents": "determinant(${1:m})"
+        },
+        {
+            "trigger": "diagonalizesymmetric(symmat, diag)",
+            "contents": "diagonalizesymmetric(${1:symmat}, ${2:diag})"
         },
         {
             "trigger": "diffuse(...)",
@@ -1250,6 +1318,10 @@
             "contents": "expandprimgroup(${1:geometry}, ${2:groupname})"
         },
         {
+            "trigger": "expandvertexgroup(geometry, groupname)",
+            "contents": "expandvertexgroup(${1:geometry}, ${2:groupname})"
+        },
+        {
             "trigger": "expand_udim(u, v, path, ...)",
             "contents": "expand_udim(${1:u}, ${2:v}, ${3:path}, ${4:...})"
         },
@@ -1306,8 +1378,12 @@
             "contents": "findattribval(${1:geometry}, ${2:attribclass}, ${3:attribute_name}, ${4:value}, ${5:which})"
         },
         {
-            "trigger": "findattribvalcount(geometry, class, attribute_name, value)",
-            "contents": "findattribvalcount(${1:geometry}, ${2:class}, ${3:attribute_name}, ${4:value})"
+            "trigger": "findattribval(geometry, attribclass, attribute_name, value)",
+            "contents": "findattribval(${1:geometry}, ${2:attribclass}, ${3:attribute_name}, ${4:value})"
+        },
+        {
+            "trigger": "findattribvalcount(geometry, attribclass, attribute_name, value)",
+            "contents": "findattribvalcount(${1:geometry}, ${2:attribclass}, ${3:attribute_name}, ${4:value})"
         },
         {
             "trigger": "finput(u, v, ...)",
@@ -1620,6 +1696,10 @@
         {
             "trigger": "getobjectname()",
             "contents": "getobjectname()"
+        },
+        {
+            "trigger": "getpackedtransform(input, primnum)",
+            "contents": "getpackedtransform(${1:input}, ${2:primnum})"
         },
         {
             "trigger": "getphotonlight()",
@@ -1962,6 +2042,10 @@
             "contents": "intersect(${1:geometry}, ${2:orig}, ${3:dir}, ${4:p}, ${5:u}, ${6:v})"
         },
         {
+            "trigger": "intersect(geometry, orig, dir, p, u, v, ...)",
+            "contents": "intersect(${1:geometry}, ${2:orig}, ${3:dir}, ${4:p}, ${5:u}, ${6:v}, ${7:...})"
+        },
+        {
             "trigger": "intersect(geometry, orig, dir, p, uvw)",
             "contents": "intersect(${1:geometry}, ${2:orig}, ${3:dir}, ${4:p}, ${5:uvw})"
         },
@@ -2040,6 +2124,10 @@
         {
             "trigger": "isframes()",
             "contents": "isframes()"
+        },
+        {
+            "trigger": "islpeactive()",
+            "contents": "islpeactive()"
         },
         {
             "trigger": "isnan(x)",
@@ -2406,6 +2494,14 @@
             "contents": "mwnoise(${1:posx}, ${2:posy}, ${3:seed}, ${4:f1}, ${5:f2}, ${6:f3}, ${7:f4}, ${8:periodx}, ${9:periody})"
         },
         {
+            "trigger": "mwnoise(position, seed, f1, f2, periodx, periody)",
+            "contents": "mwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody})"
+        },
+        {
+            "trigger": "mwnoise(position, seed, f1, f2, f3, f4, periodx, periody)",
+            "contents": "mwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:f3}, ${6:f4}, ${7:periodx}, ${8:periody})"
+        },
+        {
             "trigger": "mwnoise(position, seed, f1, f2, periodx, periody, periodx)",
             "contents": "mwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody}, ${7:periodx})"
         },
@@ -2646,6 +2742,14 @@
             "contents": "onoise(${1:pos}, ${2:turbulence}, ${3:rough}, ${4:atten})"
         },
         {
+            "trigger": "onoise(pos, periodX, periodY, periodZ)",
+            "contents": "onoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ})"
+        },
+        {
+            "trigger": "onoise(pos, periodX, periodY, periodZ, turbulence, rough, atten)",
+            "contents": "onoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ}, ${5:turbulence}, ${6:rough}, ${7:atten})"
+        },
+        {
             "trigger": "opdigits(str)",
             "contents": "opdigits(${1:str})"
         },
@@ -2726,8 +2830,8 @@
             "contents": "osd_firstpatch(${1:geometry}, ${2:face_id})"
         },
         {
-            "trigger": "osd_limitsurface(geometry, attrib_name, face_id, u, v, result)",
-            "contents": "osd_limitsurface(${1:geometry}, ${2:attrib_name}, ${3:face_id}, ${4:u}, ${5:v}, ${6:result})"
+            "trigger": "osd_limitsurface(geometry, attrib_name, patch_id, u, v, result)",
+            "contents": "osd_limitsurface(${1:geometry}, ${2:attrib_name}, ${3:patch_id}, ${4:u}, ${5:v}, ${6:result})"
         },
         {
             "trigger": "osd_limitsurfacevertex(geometry, attrib_name, face_id, u, v, result)",
@@ -2780,6 +2884,10 @@
         {
             "trigger": "ow_vspace(v)",
             "contents": "ow_vspace(${1:v})"
+        },
+        {
+            "trigger": "packedtransform(input, primnum, transform)",
+            "contents": "packedtransform(${1:input}, ${2:primnum}, ${3:transform})"
         },
         {
             "trigger": "pack_inttosafefloat(i)",
@@ -3062,6 +3170,10 @@
             "contents": "polardecomp(${1:transform})"
         },
         {
+            "trigger": "polyneighbours(geometry, primnum)",
+            "contents": "polyneighbours(${1:geometry}, ${2:primnum})"
+        },
+        {
             "trigger": "pop(array)",
             "contents": "pop(${1:array})"
         },
@@ -3100,6 +3212,10 @@
         {
             "trigger": "primarclen(geometry, uv1, uv2, prim_num)",
             "contents": "primarclen(${1:geometry}, ${2:uv1}, ${3:uv2}, ${4:prim_num})"
+        },
+        {
+            "trigger": "primarclen(geometry, uv1, uv2, prim_num, divs)",
+            "contents": "primarclen(${1:geometry}, ${2:uv1}, ${3:uv2}, ${4:prim_num}, ${5:divs})"
         },
         {
             "trigger": "primattrib(geometry, attribute_name, prim, success)",
@@ -3152,6 +3268,10 @@
         {
             "trigger": "primuvconvert(filename, uv, prim_num, mode)",
             "contents": "primuvconvert(${1:filename}, ${2:uv}, ${3:prim_num}, ${4:mode})"
+        },
+        {
+            "trigger": "primuvconvert(filename, uv, prim_num, mode, tolerance)",
+            "contents": "primuvconvert(${1:filename}, ${2:uv}, ${3:prim_num}, ${4:mode}, ${5:tolerance})"
         },
         {
             "trigger": "primvertex(geometry, primnum, vertex)",
@@ -3238,6 +3358,38 @@
             "contents": "push(${1:array}, ${2:values})"
         },
         {
+            "trigger": "pxnoise(x, xp)",
+            "contents": "pxnoise(${1:x}, ${2:xp})"
+        },
+        {
+            "trigger": "pxnoise(x, y, xp, yp)",
+            "contents": "pxnoise(${1:x}, ${2:y}, ${3:xp}, ${4:yp})"
+        },
+        {
+            "trigger": "pxnoise(xyz, xp, yp, zp)",
+            "contents": "pxnoise(${1:xyz}, ${2:xp}, ${3:yp}, ${4:zp})"
+        },
+        {
+            "trigger": "pxnoise(xyzt, xp, yp, zp, wp)",
+            "contents": "pxnoise(${1:xyzt}, ${2:xp}, ${3:yp}, ${4:zp}, ${5:wp})"
+        },
+        {
+            "trigger": "pxnoised(x, px, v, dvdx)",
+            "contents": "pxnoised(${1:x}, ${2:px}, ${3:v}, ${4:dvdx})"
+        },
+        {
+            "trigger": "pxnoised(x, y, px, py, v, dvdx, dvdy)",
+            "contents": "pxnoised(${1:x}, ${2:y}, ${3:px}, ${4:py}, ${5:v}, ${6:dvdx}, ${7:dvdy})"
+        },
+        {
+            "trigger": "pxnoised(xyz, px, py, pz, v, dvdx, dvdy, dvdz)",
+            "contents": "pxnoised(${1:xyz}, ${2:px}, ${3:py}, ${4:pz}, ${5:v}, ${6:dvdx}, ${7:dvdy}, ${8:dvdz})"
+        },
+        {
+            "trigger": "pxnoised(xyzw, px, py, pz, pw, v, dvdx, dvdy, dvdz, dvdw)",
+            "contents": "pxnoised(${1:xyzw}, ${2:px}, ${3:py}, ${4:pz}, ${5:pw}, ${6:v}, ${7:dvdx}, ${8:dvdy}, ${9:dvdz}, ${10:dvdw})"
+        },
+        {
             "trigger": "qconvert(quaternion)",
             "contents": "qconvert(${1:quaternion})"
         },
@@ -3304,6 +3456,14 @@
         {
             "trigger": "random_ihash(seed)",
             "contents": "random_ihash(${1:seed})"
+        },
+        {
+            "trigger": "random_poisson(seed, mean)",
+            "contents": "random_poisson(${1:seed}, ${2:mean})"
+        },
+        {
+            "trigger": "random_poisson(seed, mean, minvalue, maxvalue)",
+            "contents": "random_poisson(${1:seed}, ${2:mean}, ${3:minvalue}, ${4:maxvalue})"
         },
         {
             "trigger": "random_shash(seed)",
@@ -3408,6 +3568,10 @@
         {
             "trigger": "removepoint(geohandle, point_number)",
             "contents": "removepoint(${1:geohandle}, ${2:point_number})"
+        },
+        {
+            "trigger": "removepoint(geohandle, point_number, and_prims)",
+            "contents": "removepoint(${1:geohandle}, ${2:point_number}, ${3:and_prims})"
         },
         {
             "trigger": "removeprim(geohandle, prim_number, andpoints)",
@@ -3562,8 +3726,8 @@
             "contents": "sample_bsdf(${1:F}, ${2:viewer_u}, ${3:dir}, ${4:eval}, ${5:pdf}, ${6:type}, ${7:sx}, ${8:sy}, ${9:mask}, ${10:...})"
         },
         {
-            "trigger": "sample_bsdf(b, viewer_u, normal_v, mask, dir, eval, pdf, type, sx, sy, bounces, ...)",
-            "contents": "sample_bsdf(${1:b}, ${2:viewer_u}, ${3:normal_v}, ${4:mask}, ${5:dir}, ${6:eval}, ${7:pdf}, ${8:type}, ${9:sx}, ${10:sy}, ${11:bounces}, ${12:...})"
+            "trigger": "sample_bsdf(b, viewer_u, normal_v, flags, dir, eval, pdf, type, sx, sy, mask, ...)",
+            "contents": "sample_bsdf(${1:b}, ${2:viewer_u}, ${3:normal_v}, ${4:flags}, ${5:dir}, ${6:eval}, ${7:pdf}, ${8:type}, ${9:sx}, ${10:sy}, ${11:mask}, ${12:...})"
         },
         {
             "trigger": "sample_cauchy(u)",
@@ -3596,6 +3760,10 @@
         {
             "trigger": "sample_circle_edge_uniform(u)",
             "contents": "sample_circle_edge_uniform(${1:u})"
+        },
+        {
+            "trigger": "sample_circle_ring_uniform(u, alpha)",
+            "contents": "sample_circle_ring_uniform(${1:u}, ${2:alpha})"
         },
         {
             "trigger": "sample_circle_slice(center, maxangle, u)",
@@ -3708,6 +3876,10 @@
         {
             "trigger": "sample_sphere_cone(center, maxangle, u)",
             "contents": "sample_sphere_cone(${1:center}, ${2:maxangle}, ${3:u})"
+        },
+        {
+            "trigger": "sample_sphere_shell_uniform(u, alpha)",
+            "contents": "sample_sphere_shell_uniform(${1:u}, ${2:alpha})"
         },
         {
             "trigger": "sample_sphere_uniform(u)",
@@ -3882,6 +4054,10 @@
             "contents": "setedgegroup(${1:geohandle}, ${2:name}, ${3:pt0}, ${4:pt1}, ${5:value})"
         },
         {
+            "trigger": "setpackedtransform(input, primnum, transform)",
+            "contents": "setpackedtransform(${1:input}, ${2:primnum}, ${3:transform})"
+        },
+        {
             "trigger": "setpointattrib(geohandle, name, point_num, value, mode)",
             "contents": "setpointattrib(${1:geohandle}, ${2:name}, ${3:point_num}, ${4:value}, ${5:mode})"
         },
@@ -4034,12 +4210,36 @@
             "contents": "snoise(${1:pos}, ${2:turbulence}, ${3:rough}, ${4:atten})"
         },
         {
+            "trigger": "snoise(pos, periodX, periodY, periodZ)",
+            "contents": "snoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ})"
+        },
+        {
+            "trigger": "snoise(pos, periodX, periodY, periodZ, turbulence, rough, atten)",
+            "contents": "snoise(${1:pos}, ${2:periodX}, ${3:periodY}, ${4:periodZ}, ${5:turbulence}, ${6:rough}, ${7:atten})"
+        },
+        {
             "trigger": "solid_angle(b, mask)",
             "contents": "solid_angle(${1:b}, ${2:mask})"
         },
         {
             "trigger": "solvecubic(a, b, c, d, t1, t2, t3)",
             "contents": "solvecubic(${1:a}, ${2:b}, ${3:c}, ${4:d}, ${5:t1}, ${6:t2}, ${7:t3})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxforms, constrainedxforms, jointlimits)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths}, ${11:goalxforms}, ${12:constrainedxforms}, ${13:jointlimits})"
         },
         {
             "trigger": "solvepoly(coef, roots, maxiter)",
@@ -4164,6 +4364,10 @@
         {
             "trigger": "sum(arr)",
             "contents": "sum(${1:arr})"
+        },
+        {
+            "trigger": "surfacedist(geometry, ptgroup, P_attribute, search_pt, max_radius, closest_pt, distance_metric)",
+            "contents": "surfacedist(${1:geometry}, ${2:ptgroup}, ${3:P_attribute}, ${4:search_pt}, ${5:max_radius}, ${6:closest_pt}, ${7:distance_metric})"
         },
         {
             "trigger": "switch(direct, indirect)",
@@ -4296,6 +4500,10 @@
         {
             "trigger": "uniqueval(geometry, attribclass, attribute_name, which)",
             "contents": "uniqueval(${1:geometry}, ${2:attribclass}, ${3:attribute_name}, ${4:which})"
+        },
+        {
+            "trigger": "uniquevals(geometry, attribclass, attribute_name)",
+            "contents": "uniquevals(${1:geometry}, ${2:attribclass}, ${3:attribute_name})"
         },
         {
             "trigger": "unpack_intfromsafefloat(f)",
@@ -4558,6 +4766,14 @@
             "contents": "wnoise(${1:posx}, ${2:posy}, ${3:seed}, ${4:f1}, ${5:f2}, ${6:f3}, ${7:f4}, ${8:periodx}, ${9:periody})"
         },
         {
+            "trigger": "wnoise(position, seed, f1, f2, periodx, periody)",
+            "contents": "wnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody})"
+        },
+        {
+            "trigger": "wnoise(position, seed, f1, f2, f3, f4, periodx, periody)",
+            "contents": "wnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:f3}, ${6:f4}, ${7:periodx}, ${8:periody})"
+        },
+        {
             "trigger": "wnoise(position, seed, f1, f2, periodx, periody, periodx)",
             "contents": "wnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:periodx}, ${6:periody}, ${7:periodx})"
         },
@@ -4614,16 +4830,16 @@
             "contents": "xnoise(${1:x})"
         },
         {
+            "trigger": "xnoise(x, y)",
+            "contents": "xnoise(${1:x}, ${2:y})"
+        },
+        {
             "trigger": "xnoise(xyz)",
             "contents": "xnoise(${1:xyz})"
         },
         {
             "trigger": "xnoise(xyzt)",
             "contents": "xnoise(${1:xyzt})"
-        },
-        {
-            "trigger": "xnoise(x, y)",
-            "contents": "xnoise(${1:x}, ${2:y})"
         },
         {
             "trigger": "xnoised(x, v, dvdx)",

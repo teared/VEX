@@ -1,0 +1,32 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.0
+
+
+1. Updated for Houdini 17.0.
+    VEX changes: https://www.sidefx.com/docs/houdini17.0/news/17/vex.html
+
+2. New VEX functions added:
+
+    agentsolvefbik
+    attribdataid
+    chop
+    chopt
+    diagonalizesymmetric
+    expandvertexgroup
+    getpackedtransform
+    islpeactive
+    packedtransform
+    pxnoised
+    random_poisson
+    sample_circle_ring_uniform
+    sample_sphere_shell_uniform
+    setpackedtransform
+    solvefbik
+    surfacedist
+    uniquevals
+
+    Tip: to read about new functions quickly, copy the list in empty
+    Sublime Text document, set VEX syntax and check documentation helpcards.
