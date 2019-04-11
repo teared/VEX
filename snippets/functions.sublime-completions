@@ -134,6 +134,10 @@
             "contents": "agentclipchannel(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:channel})"
         },
         {
+            "trigger": "agentclipchannelnames(geometry, prim, clipname)",
+            "contents": "agentclipchannelnames(${1:geometry}, ${2:prim}, ${3:clipname})"
+        },
+        {
             "trigger": "agentcliplength(geometry, prim, clipname)",
             "contents": "agentcliplength(${1:geometry}, ${2:prim}, ${3:clipname})"
         },
@@ -232,6 +236,14 @@
         {
             "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters)",
             "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters})"
+        },
+        {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot})"
+        },
+        {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths})"
         },
         {
             "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxformattrib, constrainedxformattrib, jointlimitsattrib)",
@@ -522,6 +534,14 @@
             "contents": "ch(${1:channel}, ${2:time_in_sec})"
         },
         {
+            "trigger": "ch(op_id, parm_index, vector_index)",
+            "contents": "ch(${1:op_id}, ${2:parm_index}, ${3:vector_index})"
+        },
+        {
+            "trigger": "ch(op_id, parm_index, vector_index, time_in_sec)",
+            "contents": "ch(${1:op_id}, ${2:parm_index}, ${3:vector_index}, ${4:time_in_sec})"
+        },
+        {
             "trigger": "ch2(channel)",
             "contents": "ch2(${1:channel})"
         },
@@ -622,12 +642,32 @@
             "contents": "chf(${1:channel}, ${2:time_in_sec})"
         },
         {
+            "trigger": "chf(op_id, parm_index, vector_index)",
+            "contents": "chf(${1:op_id}, ${2:parm_index}, ${3:vector_index})"
+        },
+        {
+            "trigger": "chf(op_id, parm_index, vector_index, time_in_sec)",
+            "contents": "chf(${1:op_id}, ${2:parm_index}, ${3:vector_index}, ${4:time_in_sec})"
+        },
+        {
             "trigger": "chi(channel)",
             "contents": "chi(${1:channel})"
         },
         {
             "trigger": "chi(channel, time)",
             "contents": "chi(${1:channel}, ${2:time})"
+        },
+        {
+            "trigger": "chid(channel_path, op_id, parm_index, vector_index)",
+            "contents": "chid(${1:channel_path}, ${2:op_id}, ${3:parm_index}, ${4:vector_index})"
+        },
+        {
+            "trigger": "chid(op_path, channel_name, op_id, parm_index, vector_index)",
+            "contents": "chid(${1:op_path}, ${2:channel_name}, ${3:op_id}, ${4:parm_index}, ${5:vector_index})"
+        },
+        {
+            "trigger": "chid(op_id, parm_index, vector_index)",
+            "contents": "chid(${1:op_id}, ${2:parm_index}, ${3:vector_index})"
         },
         {
             "trigger": "chindex(opinput, name)",
@@ -708,6 +748,14 @@
         {
             "trigger": "chop(filename, channel, sample)",
             "contents": "chop(${1:filename}, ${2:channel}, ${3:sample})"
+        },
+        {
+            "trigger": "choplocal(filename, channel, sample)",
+            "contents": "choplocal(${1:filename}, ${2:channel}, ${3:sample})"
+        },
+        {
+            "trigger": "choplocalt(filename, channel, sample, time)",
+            "contents": "choplocalt(${1:filename}, ${2:channel}, ${3:sample}, ${4:time})"
         },
         {
             "trigger": "chopt(filename, channel, sample, time)",
@@ -860,6 +908,14 @@
         {
             "trigger": "chv(channel, time)",
             "contents": "chv(${1:channel}, ${2:time})"
+        },
+        {
+            "trigger": "chv(opid, pid)",
+            "contents": "chv(${1:opid}, ${2:pid})"
+        },
+        {
+            "trigger": "chv(opid, pid, time)",
+            "contents": "chv(${1:opid}, ${2:pid}, ${3:time})"
         },
         {
             "trigger": "chwritebuf(index, value)",
@@ -1106,6 +1162,10 @@
             "contents": "cwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:f3}, ${6:f4}, ${7:periodx}, ${8:periody}, ${9:periodz}, ${10:periodw})"
         },
         {
+            "trigger": "decode(str)",
+            "contents": "decode(${1:str})"
+        },
+        {
             "trigger": "degrees(num_in_rads)",
             "contents": "degrees(${1:num_in_rads})"
         },
@@ -1238,20 +1298,24 @@
             "contents": "eigenvalues(${1:nroot}, ${2:mat}, ${3:real}, ${4:imaginary})"
         },
         {
+            "trigger": "encode(str)",
+            "contents": "encode(${1:str})"
+        },
+        {
             "trigger": "endswith(haystack, needle)",
             "contents": "endswith(${1:haystack}, ${2:needle})"
         },
         {
-            "trigger": "environment(texture_filename, relect_dir, ...)",
-            "contents": "environment(${1:texture_filename}, ${2:relect_dir}, ${3:...})"
+            "trigger": "environment(texture_filename, reflect_dir, ...)",
+            "contents": "environment(${1:texture_filename}, ${2:reflect_dir}, ${3:...})"
         },
         {
-            "trigger": "environment(texture_filename, relect_dir0, relect_dir1, relect_dir2, relect_dir3, ...)",
-            "contents": "environment(${1:texture_filename}, ${2:relect_dir0}, ${3:relect_dir1}, ${4:relect_dir2}, ${5:relect_dir3}, ${6:...})"
+            "trigger": "environment(texture_filename, reflect_dir0, reflect_dir1, reflect_dir2, reflect_dir3, ...)",
+            "contents": "environment(${1:texture_filename}, ${2:reflect_dir0}, ${3:reflect_dir1}, ${4:reflect_dir2}, ${5:reflect_dir3}, ${6:...})"
         },
         {
-            "trigger": "environment(texture_filename, relect_dir, filter_angle, ...)",
-            "contents": "environment(${1:texture_filename}, ${2:relect_dir}, ${3:filter_angle}, ${4:...})"
+            "trigger": "environment(texture_filename, reflect_dir, filter_angle, ...)",
+            "contents": "environment(${1:texture_filename}, ${2:reflect_dir}, ${3:filter_angle}, ${4:...})"
         },
         {
             "trigger": "erf(v)",
@@ -1842,6 +1906,10 @@
             "contents": "hasvertexattrib(${1:geometry}, ${2:attribute_name})"
         },
         {
+            "trigger": "has_udim(path)",
+            "contents": "has_udim(${1:path})"
+        },
+        {
             "trigger": "hedge_dstpoint(geometry, hedge)",
             "contents": "hedge_dstpoint(${1:geometry}, ${2:hedge})"
         },
@@ -2326,6 +2394,10 @@
             "contents": "maketransform(${1:zaxis}, ${2:yaxis})"
         },
         {
+            "trigger": "maketransform(xyz, angles)",
+            "contents": "maketransform(${1:xyz}, ${2:angles})"
+        },
+        {
             "trigger": "maketransform(zaxis, yaxis, translate)",
             "contents": "maketransform(${1:zaxis}, ${2:yaxis}, ${3:translate})"
         },
@@ -2766,6 +2838,14 @@
             "contents": "opfullpath(${1:relative_path})"
         },
         {
+            "trigger": "opid(op_path)",
+            "contents": "opid(${1:op_path})"
+        },
+        {
+            "trigger": "opid(op_id)",
+            "contents": "opid(${1:op_id})"
+        },
+        {
             "trigger": "opparentbonetransform(path)",
             "contents": "opparentbonetransform(${1:path})"
         },
@@ -2818,8 +2898,20 @@
             "contents": "optransform(${1:path}, ${2:time})"
         },
         {
+            "trigger": "optransform(op_id)",
+            "contents": "optransform(${1:op_id})"
+        },
+        {
             "trigger": "ord(value)",
             "contents": "ord(${1:value})"
+        },
+        {
+            "trigger": "orthographic(zoom, orthowidth, image_aspect, pixel_aspect, clip_near, clip_far)",
+            "contents": "orthographic(${1:zoom}, ${2:orthowidth}, ${3:image_aspect}, ${4:pixel_aspect}, ${5:clip_near}, ${6:clip_far})"
+        },
+        {
+            "trigger": "orthographic(zoom, orthowidth, image_aspect, pixel_aspect, clip_near, clip_far, window)",
+            "contents": "orthographic(${1:zoom}, ${2:orthowidth}, ${3:image_aspect}, ${4:pixel_aspect}, ${5:clip_near}, ${6:clip_far}, ${7:window})"
         },
         {
             "trigger": "osd_facecount(geometry)",
@@ -3018,6 +3110,14 @@
             "contents": "pcwrite(${1:filename}, ${2:...})"
         },
         {
+            "trigger": "perspective(zoom, image_aspect, pixel_aspect, clip_near, clip_far)",
+            "contents": "perspective(${1:zoom}, ${2:image_aspect}, ${3:pixel_aspect}, ${4:clip_near}, ${5:clip_far})"
+        },
+        {
+            "trigger": "perspective(zoom, image_aspect, pixel_aspect, clip_near, clip_far, window)",
+            "contents": "perspective(${1:zoom}, ${2:image_aspect}, ${3:pixel_aspect}, ${4:clip_near}, ${5:clip_far}, ${6:window})"
+        },
+        {
             "trigger": "pgfind(geometry, P, radius, maxpoints, divsize)",
             "contents": "pgfind(${1:geometry}, ${2:P}, ${3:radius}, ${4:maxpoints}, ${5:divsize})"
         },
@@ -3204,6 +3304,22 @@
         {
             "trigger": "predicate_orient3d(a, b, c, d)",
             "contents": "predicate_orient3d(${1:a}, ${2:b}, ${3:c}, ${4:d})"
+        },
+        {
+            "trigger": "prerotate(m, amount, axis)",
+            "contents": "prerotate(${1:m}, ${2:amount}, ${3:axis})"
+        },
+        {
+            "trigger": "prerotate(m, angles, xyz)",
+            "contents": "prerotate(${1:m}, ${2:angles}, ${3:xyz})"
+        },
+        {
+            "trigger": "prescale(m, scale_vector)",
+            "contents": "prescale(${1:m}, ${2:scale_vector})"
+        },
+        {
+            "trigger": "pretranslate(m, amount)",
+            "contents": "pretranslate(${1:m}, ${2:amount})"
         },
         {
             "trigger": "prim(geometry, attribute_name, primnumber)",
@@ -3420,6 +3536,10 @@
         {
             "trigger": "quaternion(angleaxis)",
             "contents": "quaternion(${1:angleaxis})"
+        },
+        {
+            "trigger": "quaterniontoeuler(orient, order)",
+            "contents": "quaterniontoeuler(${1:orient}, ${2:order})"
         },
         {
             "trigger": "radians(num_in_degs)",
@@ -3692,6 +3812,10 @@
         {
             "trigger": "rotate(m, amount, axis)",
             "contents": "rotate(${1:m}, ${2:amount}, ${3:axis})"
+        },
+        {
+            "trigger": "rotate(m, angles, xyz)",
+            "contents": "rotate(${1:m}, ${2:angles}, ${3:xyz})"
         },
         {
             "trigger": "rotate_x_to(direction, v)",
@@ -4222,8 +4346,20 @@
             "contents": "solid_angle(${1:b}, ${2:mask})"
         },
         {
+            "trigger": "solveconstraint(lengths, targetpos, tolerance, relmat, constraints)",
+            "contents": "solveconstraint(${1:lengths}, ${2:targetpos}, ${3:tolerance}, ${4:relmat}, ${5:constraints})"
+        },
+        {
             "trigger": "solvecubic(a, b, c, d, t1, t2, t3)",
             "contents": "solvecubic(${1:a}, ${2:b}, ${3:c}, ${4:d}, ${5:t1}, ${6:t2}, ${7:t3})"
+        },
+        {
+            "trigger": "solvecurve(lengths, closed, orienttonormal, tangent, points, normals)",
+            "contents": "solvecurve(${1:lengths}, ${2:closed}, ${3:orienttonormal}, ${4:tangent}, ${5:points}, ${6:normals})"
+        },
+        {
+            "trigger": "solvecurve(op, lengths, closed, orienttonormal, tangent, normalcalcmethod, relmat)",
+            "contents": "solvecurve(${1:op}, ${2:lengths}, ${3:closed}, ${4:orienttonormal}, ${5:tangent}, ${6:normalcalcmethod}, ${7:relmat})"
         },
         {
             "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters)",
@@ -4240,6 +4376,10 @@
         {
             "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxforms, constrainedxforms, jointlimits)",
             "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths}, ${11:goalxforms}, ${12:constrainedxforms}, ${13:jointlimits})"
+        },
+        {
+            "trigger": "solveik(lengths, targetpos, twistpos, twist, twistflag, dampen, resiststraight, trackingthres, relmat, constraints)",
+            "contents": "solveik(${1:lengths}, ${2:targetpos}, ${3:twistpos}, ${4:twist}, ${5:twistflag}, ${6:dampen}, ${7:resiststraight}, ${8:trackingthres}, ${9:relmat}, ${10:constraints})"
         },
         {
             "trigger": "solvepoly(coef, roots, maxiter)",
@@ -4526,12 +4666,28 @@
             "contents": "uvdist(${1:geometry}, ${2:uvname}, ${3:uv}, ${4:prim}, ${5:primuv}, ${6:maxdist})"
         },
         {
+            "trigger": "uvdist(geometry, primgroup, uvname, uv, prim, primuv)",
+            "contents": "uvdist(${1:geometry}, ${2:primgroup}, ${3:uvname}, ${4:uv}, ${5:prim}, ${6:primuv})"
+        },
+        {
+            "trigger": "uvdist(geometry, primgroup, uvname, uv, prim, primuv, maxdist)",
+            "contents": "uvdist(${1:geometry}, ${2:primgroup}, ${3:uvname}, ${4:uv}, ${5:prim}, ${6:primuv}, ${7:maxdist})"
+        },
+        {
             "trigger": "uvintersect(geometry, uvname, orig, dir, pos, primuv)",
             "contents": "uvintersect(${1:geometry}, ${2:uvname}, ${3:orig}, ${4:dir}, ${5:pos}, ${6:primuv})"
         },
         {
+            "trigger": "uvintersect(geometry, primgroup, uvname, orig, dir, pos, primuv)",
+            "contents": "uvintersect(${1:geometry}, ${2:primgroup}, ${3:uvname}, ${4:orig}, ${5:dir}, ${6:pos}, ${7:primuv})"
+        },
+        {
             "trigger": "uvsample(geometry, attr_name, uv_attr_name, uvw)",
             "contents": "uvsample(${1:geometry}, ${2:attr_name}, ${3:uv_attr_name}, ${4:uvw})"
+        },
+        {
+            "trigger": "uvsample(geometry, primgroup, attr_name, uv_attr_name, uvw)",
+            "contents": "uvsample(${1:geometry}, ${2:primgroup}, ${3:attr_name}, ${4:uv_attr_name}, ${5:uvw})"
         },
         {
             "trigger": "uvunwrap(object_path, u, v, time, P, I)",
@@ -4644,6 +4800,14 @@
         {
             "trigger": "volumeindex(geometry, volumename, voxel)",
             "contents": "volumeindex(${1:geometry}, ${2:volumename}, ${3:voxel})"
+        },
+        {
+            "trigger": "volumeindexactive(geometry, primnum, voxel)",
+            "contents": "volumeindexactive(${1:geometry}, ${2:primnum}, ${3:voxel})"
+        },
+        {
+            "trigger": "volumeindexactive(geometry, volumename, voxel)",
+            "contents": "volumeindexactive(${1:geometry}, ${2:volumename}, ${3:voxel})"
         },
         {
             "trigger": "volumeindexorigin(geometry, primnum)",

@@ -1,0 +1,53 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.1
+
+
+1. Updated for Houdini 17.5.
+
+2. New VEX functions added:
+
+    agentclipchannelnames
+    chid
+    choplocal
+    choplocalt
+    decode
+    encode
+    has_udim
+    opid
+    orthographic
+    perspective
+    prerotate
+    prescale
+    pretranslate
+    quaterniontoeuler
+    solveconstraint
+    solvecurve
+    solveik
+    volumeindexactive
+
+    Tip: to read about new functions quickly, copy the list in empty
+    Sublime Text document, set VEX syntax and check documentation helpcards.
+
+3. Existing VEX functions' new signatures:
+
+    agentsolvefbik(geometry, outgeo, prim, targets, targetxforms,
+                   xformgroup, iters, tolerance, pinroot)
+    agentsolvefbik(geometry, outgeo, prim, targets, targetxforms,
+                   xformgroup, iters, tolerance, pinroot,
+                   targetweights, targetpriorities, targetdepths)
+    ch(op_id, parm_index, vector_index)
+    ch(op_id, parm_index, vector_index, time_in_sec)
+    chf(op_id, parm_index, vector_index)
+    chf(op_id, parm_index, vector_index, time_in_sec)
+    chv(op_id, parm_index)
+    chv(op_id, parm_index, time_in_sec)
+    maketransform(xyz, angles)
+    optransform(op_id)
+    rotate(m, angles, xyz)
+    uvdist(geometry, primgroup, uvname, uv, prim, primuv)
+    uvdist(geometry, primgroup, uvname, uv, prim, primuv, maxdist)
+    uvintersect(geometry, primgroup, uvname, orig, dir, pos, primuv)
+    uvsample(geometry, primgroup, attr_name, uv_attr_name, uvw)
