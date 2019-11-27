@@ -10,6 +10,10 @@
             "contents": "abs(${1:v})"
         },
         {
+            "trigger": "abspath(relpath)",
+            "contents": "abspath(${1:relpath})"
+        },
+        {
             "trigger": "accessframe(frame)",
             "contents": "accessframe(${1:frame})"
         },
@@ -126,6 +130,18 @@
             "contents": "agentaddclip(${1:geohandle}, ${2:prim}, ${3:clipname}, ${4:clippath}, ${5:keepref})"
         },
         {
+            "trigger": "agentchannelnames(geometry, prim)",
+            "contents": "agentchannelnames(${1:geometry}, ${2:prim})"
+        },
+        {
+            "trigger": "agentchannelvalue(geometry, prim, channel)",
+            "contents": "agentchannelvalue(${1:geometry}, ${2:prim}, ${3:channel})"
+        },
+        {
+            "trigger": "agentchannelvalues(geometry, prim)",
+            "contents": "agentchannelvalues(${1:geometry}, ${2:prim})"
+        },
+        {
             "trigger": "agentclipcatalog(geometry, prim)",
             "contents": "agentclipcatalog(${1:geometry}, ${2:prim})"
         },
@@ -172,6 +188,10 @@
         {
             "trigger": "agentclipsampleworld(geometry, prim, clipname, time, transform)",
             "contents": "agentclipsampleworld(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:transform})"
+        },
+        {
+            "trigger": "agentclipstarttime(geometry, prim, clipname)",
+            "contents": "agentclipstarttime(${1:geometry}, ${2:prim}, ${3:clipname})"
         },
         {
             "trigger": "agentcliptimes(geometry, prim)",
@@ -230,6 +250,10 @@
             "contents": "agentrigfind(${1:geometry}, ${2:prim}, ${3:transformname})"
         },
         {
+            "trigger": "agentrigfindchannel(geometry, prim, channelname)",
+            "contents": "agentrigfindchannel(${1:geometry}, ${2:prim}, ${3:channelname})"
+        },
+        {
             "trigger": "agentrigparent(geometry, prim, transform)",
             "contents": "agentrigparent(${1:geometry}, ${2:prim}, ${3:transform})"
         },
@@ -260,6 +284,10 @@
         {
             "trigger": "agenttransformgroupmember(geometry, prim, transformgroupidx, transform)",
             "contents": "agenttransformgroupmember(${1:geometry}, ${2:prim}, ${3:transformgroupidx}, ${4:transform})"
+        },
+        {
+            "trigger": "agenttransformgroupmemberchannel(geometry, prim, transformgroupidx, channel)",
+            "contents": "agenttransformgroupmemberchannel(${1:geometry}, ${2:prim}, ${3:transformgroupidx}, ${4:channel})"
         },
         {
             "trigger": "agenttransformgroups(geometry, prim)",
@@ -408,6 +436,10 @@
         {
             "trigger": "atoi(str)",
             "contents": "atoi(${1:str})"
+        },
+        {
+            "trigger": "atoi(str, base)",
+            "contents": "atoi(${1:str}, ${2:base})"
         },
         {
             "trigger": "atten(attenuation, distance)",
@@ -782,6 +814,14 @@
             "contents": "chramp(${1:channel}, ${2:ramppos}, ${3:time})"
         },
         {
+            "trigger": "chrampderiv(channel, ramppos)",
+            "contents": "chrampderiv(${1:channel}, ${2:ramppos})"
+        },
+        {
+            "trigger": "chrampderiv(channel, ramppos, time)",
+            "contents": "chrampderiv(${1:channel}, ${2:ramppos}, ${3:time})"
+        },
+        {
             "trigger": "chrate()",
             "contents": "chrate()"
         },
@@ -864,6 +904,14 @@
         {
             "trigger": "chsetstart(start)",
             "contents": "chsetstart(${1:start})"
+        },
+        {
+            "trigger": "chsop(channel)",
+            "contents": "chsop(${1:channel})"
+        },
+        {
+            "trigger": "chsop(channel, time)",
+            "contents": "chsop(${1:channel}, ${2:time})"
         },
         {
             "trigger": "chsraw(channel)",
@@ -994,6 +1042,10 @@
             "contents": "colorname()"
         },
         {
+            "trigger": "combinelocaltransform(local, parent_world, parent_local, mode)",
+            "contents": "combinelocaltransform(${1:local}, ${2:parent_world}, ${3:parent_local}, ${4:mode})"
+        },
+        {
             "trigger": "computenormal(P, ...)",
             "contents": "computenormal(${1:P}, ${2:...})"
         },
@@ -1052,6 +1104,54 @@
         {
             "trigger": "create_pdf(values)",
             "contents": "create_pdf(${1:values})"
+        },
+        {
+            "trigger": "cregioncapturetransform(path)",
+            "contents": "cregioncapturetransform(${1:path})"
+        },
+        {
+            "trigger": "cregioncapturetransform(path, time)",
+            "contents": "cregioncapturetransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "cregioncapturetransform(op_id)",
+            "contents": "cregioncapturetransform(${1:op_id})"
+        },
+        {
+            "trigger": "cregioncapturetransform(op_id, time)",
+            "contents": "cregioncapturetransform(${1:op_id}, ${2:time})"
+        },
+        {
+            "trigger": "cregiondeformtransform(path)",
+            "contents": "cregiondeformtransform(${1:path})"
+        },
+        {
+            "trigger": "cregiondeformtransform(path, time)",
+            "contents": "cregiondeformtransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "cregiondeformtransform(op_id)",
+            "contents": "cregiondeformtransform(${1:op_id})"
+        },
+        {
+            "trigger": "cregiondeformtransform(op_id, time)",
+            "contents": "cregiondeformtransform(${1:op_id}, ${2:time})"
+        },
+        {
+            "trigger": "cregionoverridetransform(path)",
+            "contents": "cregionoverridetransform(${1:path})"
+        },
+        {
+            "trigger": "cregionoverridetransform(path, time)",
+            "contents": "cregionoverridetransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "cregionoverridetransform(op_id)",
+            "contents": "cregionoverridetransform(${1:op_id})"
+        },
+        {
+            "trigger": "cregionoverridetransform(op_id, time)",
+            "contents": "cregionoverridetransform(${1:op_id}, ${2:time})"
         },
         {
             "trigger": "cross(a, b)",
@@ -1164,6 +1264,14 @@
         {
             "trigger": "decode(str)",
             "contents": "decode(${1:str})"
+        },
+        {
+            "trigger": "decodeattrib(str)",
+            "contents": "decodeattrib(${1:str})"
+        },
+        {
+            "trigger": "decodeparm(str)",
+            "contents": "decodeparm(${1:str})"
         },
         {
             "trigger": "degrees(num_in_rads)",
@@ -1302,6 +1410,14 @@
             "contents": "encode(${1:str})"
         },
         {
+            "trigger": "encodeattrib(str)",
+            "contents": "encodeattrib(${1:str})"
+        },
+        {
+            "trigger": "encodeparm(str)",
+            "contents": "encodeparm(${1:str})"
+        },
+        {
             "trigger": "endswith(haystack, needle)",
             "contents": "endswith(${1:haystack}, ${2:needle})"
         },
@@ -1388,6 +1504,10 @@
         {
             "trigger": "expand_udim(u, v, path, ...)",
             "contents": "expand_udim(${1:u}, ${2:v}, ${3:path}, ${4:...})"
+        },
+        {
+            "trigger": "extractlocaltransform(world, parent_world, parent_local, mode)",
+            "contents": "extractlocaltransform(${1:world}, ${2:parent_world}, ${3:parent_local}, ${4:mode})"
         },
         {
             "trigger": "fastshadow(P, D, bias, ...)",
@@ -1854,6 +1974,10 @@
             "contents": "getuvtangents(${1:objName}, ${2:P}, ${3:dir}, ${4:Tu}, ${5:Tv}, ${6:Tn})"
         },
         {
+            "trigger": "ggx(ng, nn, xg, yg, F0, F90, alphax, alphay, masking, fresblend, eta, reflect, refract, reflectmask, refractmask, dispersion, ...)",
+            "contents": "ggx(${1:ng}, ${2:nn}, ${3:xg}, ${4:yg}, ${5:F0}, ${6:F90}, ${7:alphax}, ${8:alphay}, ${9:masking}, ${10:fresblend}, ${11:eta}, ${12:reflect}, ${13:refract}, ${14:reflectmask}, ${15:refractmask}, ${16:dispersion}, ${17:...})"
+        },
+        {
             "trigger": "gradient(val, ...)",
             "contents": "gradient(${1:val}, ${2:...})"
         },
@@ -2310,6 +2434,10 @@
             "contents": "lightid(${1:lp})"
         },
         {
+            "trigger": "lightstate(query, value)",
+            "contents": "lightstate(${1:query}, ${2:value})"
+        },
+        {
             "trigger": "limit_sample_space(minu, maxu, u)",
             "contents": "limit_sample_space(${1:minu}, ${2:maxu}, ${3:u})"
         },
@@ -2400,6 +2528,10 @@
         {
             "trigger": "maketransform(zaxis, yaxis, translate)",
             "contents": "maketransform(${1:zaxis}, ${2:yaxis}, ${3:translate})"
+        },
+        {
+            "trigger": "maketransform(trs, xyz, t, r)",
+            "contents": "maketransform(${1:trs}, ${2:xyz}, ${3:t}, ${4:r})"
         },
         {
             "trigger": "maketransform(trs, xyz, t, r, s)",
@@ -2762,6 +2894,10 @@
             "contents": "nverticesgroup(${1:geometry}, ${2:groupname})"
         },
         {
+            "trigger": "objectstate(query, value)",
+            "contents": "objectstate(${1:query}, ${2:value})"
+        },
+        {
             "trigger": "occlusion(P, N, ...)",
             "contents": "occlusion(${1:P}, ${2:N}, ${3:...})"
         },
@@ -2854,12 +2990,28 @@
             "contents": "opparentbonetransform(${1:path}, ${2:time})"
         },
         {
+            "trigger": "opparentbonetransform(opid)",
+            "contents": "opparentbonetransform(${1:opid})"
+        },
+        {
+            "trigger": "opparentbonetransform(opid, time)",
+            "contents": "opparentbonetransform(${1:opid}, ${2:time})"
+        },
+        {
             "trigger": "opparenttransform(path)",
             "contents": "opparenttransform(${1:path})"
         },
         {
             "trigger": "opparenttransform(path, time)",
             "contents": "opparenttransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "opparenttransform(opid)",
+            "contents": "opparenttransform(${1:opid})"
+        },
+        {
+            "trigger": "opparenttransform(opid, time)",
+            "contents": "opparenttransform(${1:opid}, ${2:time})"
         },
         {
             "trigger": "opparmtransform(path)",
@@ -2870,6 +3022,14 @@
             "contents": "opparmtransform(${1:path}, ${2:time})"
         },
         {
+            "trigger": "opparmtransform(opid)",
+            "contents": "opparmtransform(${1:opid})"
+        },
+        {
+            "trigger": "opparmtransform(opid, time)",
+            "contents": "opparmtransform(${1:opid}, ${2:time})"
+        },
+        {
             "trigger": "oppreconstrainttransform(path)",
             "contents": "oppreconstrainttransform(${1:path})"
         },
@@ -2878,12 +3038,84 @@
             "contents": "oppreconstrainttransform(${1:path}, ${2:time})"
         },
         {
+            "trigger": "oppreconstrainttransform(opid)",
+            "contents": "oppreconstrainttransform(${1:opid})"
+        },
+        {
+            "trigger": "oppreconstrainttransform(opid, time)",
+            "contents": "oppreconstrainttransform(${1:opid}, ${2:time})"
+        },
+        {
+            "trigger": "oppreparmtransform(path)",
+            "contents": "oppreparmtransform(${1:path})"
+        },
+        {
+            "trigger": "oppreparmtransform(path, time)",
+            "contents": "oppreparmtransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "oppreparmtransform(opid)",
+            "contents": "oppreparmtransform(${1:opid})"
+        },
+        {
+            "trigger": "oppreparmtransform(opid, time)",
+            "contents": "oppreparmtransform(${1:opid}, ${2:time})"
+        },
+        {
+            "trigger": "opprerawparmtransform(path)",
+            "contents": "opprerawparmtransform(${1:path})"
+        },
+        {
+            "trigger": "opprerawparmtransform(path, time)",
+            "contents": "opprerawparmtransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "opprerawparmtransform(opid)",
+            "contents": "opprerawparmtransform(${1:opid})"
+        },
+        {
+            "trigger": "opprerawparmtransform(opid, time)",
+            "contents": "opprerawparmtransform(${1:opid}, ${2:time})"
+        },
+        {
+            "trigger": "opprerawparmtransform(opid, trsorder, xyzorder, mask)",
+            "contents": "opprerawparmtransform(${1:opid}, ${2:trsorder}, ${3:xyzorder}, ${4:mask})"
+        },
+        {
             "trigger": "oppretransform(path)",
             "contents": "oppretransform(${1:path})"
         },
         {
             "trigger": "oppretransform(path, time)",
             "contents": "oppretransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "oppretransform(opid)",
+            "contents": "oppretransform(${1:opid})"
+        },
+        {
+            "trigger": "oppretransform(opid, time)",
+            "contents": "oppretransform(${1:opid}, ${2:time})"
+        },
+        {
+            "trigger": "oprawparmtransform(path)",
+            "contents": "oprawparmtransform(${1:path})"
+        },
+        {
+            "trigger": "oprawparmtransform(path, time)",
+            "contents": "oprawparmtransform(${1:path}, ${2:time})"
+        },
+        {
+            "trigger": "oprawparmtransform(opid)",
+            "contents": "oprawparmtransform(${1:opid})"
+        },
+        {
+            "trigger": "oprawparmtransform(opid, time)",
+            "contents": "oprawparmtransform(${1:opid}, ${2:time})"
+        },
+        {
+            "trigger": "oprawparmtransform(opid, trsorder, xyzorder, mask)",
+            "contents": "oprawparmtransform(${1:opid}, ${2:trsorder}, ${3:xyzorder}, ${4:mask})"
         },
         {
             "trigger": "opstart(message)",
@@ -2900,6 +3132,10 @@
         {
             "trigger": "optransform(op_id)",
             "contents": "optransform(${1:op_id})"
+        },
+        {
+            "trigger": "optransform(op_id, time)",
+            "contents": "optransform(${1:op_id}, ${2:time})"
         },
         {
             "trigger": "ord(value)",
@@ -2994,6 +3230,22 @@
             "contents": "pcclose(${1:handle})"
         },
         {
+            "trigger": "pccone(geometry, PChannel, P, dir, angle, max_distance, maxpoints)",
+            "contents": "pccone(${1:geometry}, ${2:PChannel}, ${3:P}, ${4:dir}, ${5:angle}, ${6:max_distance}, ${7:maxpoints})"
+        },
+        {
+            "trigger": "pccone(geometry, ptgroup, PChannel, P, dir, angle, max_distance, maxpoints)",
+            "contents": "pccone(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:P}, ${5:dir}, ${6:angle}, ${7:max_distance}, ${8:maxpoints})"
+        },
+        {
+            "trigger": "pccone_radius(geometry, PChannel, RadChannel, radscale, P, dir, angle, max_distance, maxpoints)",
+            "contents": "pccone_radius(${1:geometry}, ${2:PChannel}, ${3:RadChannel}, ${4:radscale}, ${5:P}, ${6:dir}, ${7:angle}, ${8:max_distance}, ${9:maxpoints})"
+        },
+        {
+            "trigger": "pccone_radius(geometry, ptgroup, PChannel, RadChannel, radscale, P, dir, angle, max_distance, maxpoints)",
+            "contents": "pccone_radius(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:RadChannel}, ${5:radscale}, ${6:P}, ${7:dir}, ${8:angle}, ${9:max_distance}, ${10:maxpoints})"
+        },
+        {
             "trigger": "pcconvex(handle, channel, N)",
             "contents": "pcconvex(${1:handle}, ${2:channel}, ${3:N})"
         },
@@ -3022,12 +3274,28 @@
             "contents": "pcfind(${1:geometry}, ${2:ptgroup}, ${3:Pchannel}, ${4:P}, ${5:radius}, ${6:maxpoints})"
         },
         {
+            "trigger": "pcfind(geometry, Pchannel, P, radius, maxpoints, distances)",
+            "contents": "pcfind(${1:geometry}, ${2:Pchannel}, ${3:P}, ${4:radius}, ${5:maxpoints}, ${6:distances})"
+        },
+        {
+            "trigger": "pcfind(geometry, ptgroup, Pchannel, P, radius, maxpoints, distances)",
+            "contents": "pcfind(${1:geometry}, ${2:ptgroup}, ${3:Pchannel}, ${4:P}, ${5:radius}, ${6:maxpoints}, ${7:distances})"
+        },
+        {
             "trigger": "pcfind_radius(geometry, Pchannel, RadChannel, radscale, P, radius, maxpoints)",
             "contents": "pcfind_radius(${1:geometry}, ${2:Pchannel}, ${3:RadChannel}, ${4:radscale}, ${5:P}, ${6:radius}, ${7:maxpoints})"
         },
         {
             "trigger": "pcfind_radius(geometry, ptgroup, Pchannel, RadChannel, radscale, P, radius, maxpoints)",
             "contents": "pcfind_radius(${1:geometry}, ${2:ptgroup}, ${3:Pchannel}, ${4:RadChannel}, ${5:radscale}, ${6:P}, ${7:radius}, ${8:maxpoints})"
+        },
+        {
+            "trigger": "pcfind_radius(geometry, Pchannel, RadChannel, radscale, P, radius, maxpoints, distances)",
+            "contents": "pcfind_radius(${1:geometry}, ${2:Pchannel}, ${3:RadChannel}, ${4:radscale}, ${5:P}, ${6:radius}, ${7:maxpoints}, ${8:distances})"
+        },
+        {
+            "trigger": "pcfind_radius(geometry, ptgroup, Pchannel, RadChannel, radscale, P, radius, maxpoints, distances)",
+            "contents": "pcfind_radius(${1:geometry}, ${2:ptgroup}, ${3:Pchannel}, ${4:RadChannel}, ${5:radscale}, ${6:P}, ${7:radius}, ${8:maxpoints}, ${9:distances})"
         },
         {
             "trigger": "pcgenerate(filename, npoints)",
@@ -3070,6 +3338,22 @@
             "contents": "pciterate(${1:handle})"
         },
         {
+            "trigger": "pcline(geometry, PChannel, P, dir, max_distance, maxpoints)",
+            "contents": "pcline(${1:geometry}, ${2:PChannel}, ${3:P}, ${4:dir}, ${5:max_distance}, ${6:maxpoints})"
+        },
+        {
+            "trigger": "pcline(geometry, ptgroup, PChannel, P, dir, max_distance, maxpoints)",
+            "contents": "pcline(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:P}, ${5:dir}, ${6:max_distance}, ${7:maxpoints})"
+        },
+        {
+            "trigger": "pcline_radius(geometry, PChannel, RadChannel, radscale, P, dir, max_distance, maxpoints)",
+            "contents": "pcline_radius(${1:geometry}, ${2:PChannel}, ${3:RadChannel}, ${4:radscale}, ${5:P}, ${6:dir}, ${7:max_distance}, ${8:maxpoints})"
+        },
+        {
+            "trigger": "pcline_radius(geometry, ptgroup, PChannel, RadChannel, radscale, P, dir, max_distance, maxpoints)",
+            "contents": "pcline_radius(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:RadChannel}, ${5:radscale}, ${6:P}, ${7:dir}, ${8:max_distance}, ${9:maxpoints})"
+        },
+        {
             "trigger": "pcnumfound(handle)",
             "contents": "pcnumfound(${1:handle})"
         },
@@ -3096,6 +3380,38 @@
         {
             "trigger": "pcsampleleaf(handle, sample)",
             "contents": "pcsampleleaf(${1:handle}, ${2:sample})"
+        },
+        {
+            "trigger": "pcsegment(geometry, PChannel, P0, P1, max_distance, maxpoints)",
+            "contents": "pcsegment(${1:geometry}, ${2:PChannel}, ${3:P0}, ${4:P1}, ${5:max_distance}, ${6:maxpoints})"
+        },
+        {
+            "trigger": "pcsegment(geometry, ptgroup, PChannel, P0, P1, max_distance, maxpoints)",
+            "contents": "pcsegment(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:P0}, ${5:P1}, ${6:max_distance}, ${7:maxpoints})"
+        },
+        {
+            "trigger": "pcsegment(geometry, PChannel, P0, P1, max_distance, maxpoints, distances)",
+            "contents": "pcsegment(${1:geometry}, ${2:PChannel}, ${3:P0}, ${4:P1}, ${5:max_distance}, ${6:maxpoints}, ${7:distances})"
+        },
+        {
+            "trigger": "pcsegment(geometry, ptgroup, PChannel, P0, P1, max_distance, maxpoints, distances)",
+            "contents": "pcsegment(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:P0}, ${5:P1}, ${6:max_distance}, ${7:maxpoints}, ${8:distances})"
+        },
+        {
+            "trigger": "pcsegment_radius(geometry, PChannel, RadChannel, radscale, P0, P1, max_distance, maxpoints)",
+            "contents": "pcsegment_radius(${1:geometry}, ${2:PChannel}, ${3:RadChannel}, ${4:radscale}, ${5:P0}, ${6:P1}, ${7:max_distance}, ${8:maxpoints})"
+        },
+        {
+            "trigger": "pcsegment_radius(geometry, ptgroup, PChannel, RadChannel, radscale, P0, P1, max_distance, maxpoints)",
+            "contents": "pcsegment_radius(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:RadChannel}, ${5:radscale}, ${6:P0}, ${7:P1}, ${8:max_distance}, ${9:maxpoints})"
+        },
+        {
+            "trigger": "pcsegment_radius(geometry, PChannel, RadChannel, radscale, P0, P1, max_distance, maxpoints, distances)",
+            "contents": "pcsegment_radius(${1:geometry}, ${2:PChannel}, ${3:RadChannel}, ${4:radscale}, ${5:P0}, ${6:P1}, ${7:max_distance}, ${8:maxpoints}, ${9:distances})"
+        },
+        {
+            "trigger": "pcsegment_radius(geometry, ptgroup, PChannel, RadChannel, radscale, P0, P1, max_distance, maxpoints, distances)",
+            "contents": "pcsegment_radius(${1:geometry}, ${2:ptgroup}, ${3:PChannel}, ${4:RadChannel}, ${5:radscale}, ${6:P0}, ${7:P1}, ${8:max_distance}, ${9:maxpoints}, ${10:distances})"
         },
         {
             "trigger": "pcsize(handle)",
@@ -3306,12 +3622,24 @@
             "contents": "predicate_orient3d(${1:a}, ${2:b}, ${3:c}, ${4:d})"
         },
         {
+            "trigger": "premul(a, b)",
+            "contents": "premul(${1:a}, ${2:b})"
+        },
+        {
+            "trigger": "premul(m, a, b)",
+            "contents": "premul(${1:m}, ${2:a}, ${3:b})"
+        },
+        {
             "trigger": "prerotate(m, amount, axis)",
             "contents": "prerotate(${1:m}, ${2:amount}, ${3:axis})"
         },
         {
             "trigger": "prerotate(m, angles, xyz)",
             "contents": "prerotate(${1:m}, ${2:angles}, ${3:xyz})"
+        },
+        {
+            "trigger": "prerotate(m, angle, axis)",
+            "contents": "prerotate(${1:m}, ${2:angle}, ${3:axis})"
         },
         {
             "trigger": "prescale(m, scale_vector)",
@@ -3510,6 +3838,10 @@
             "contents": "qconvert(${1:quaternion})"
         },
         {
+            "trigger": "qconvert(quaternion, offset)",
+            "contents": "qconvert(${1:quaternion}, ${2:offset})"
+        },
+        {
             "trigger": "qdistance(q1, q2)",
             "contents": "qdistance(${1:q1}, ${2:q2})"
         },
@@ -3674,6 +4006,10 @@
             "contents": "relbbox(${1:position})"
         },
         {
+            "trigger": "relpath(abspath)",
+            "contents": "relpath(${1:abspath})"
+        },
+        {
             "trigger": "relpointbbox(geometry, position)",
             "contents": "relpointbbox(${1:geometry}, ${2:position})"
         },
@@ -3700,6 +4036,10 @@
         {
             "trigger": "removevalue(array, value)",
             "contents": "removevalue(${1:array}, ${2:value})"
+        },
+        {
+            "trigger": "removevertex(geohandle, linear_vertex_index)",
+            "contents": "removevertex(${1:geohandle}, ${2:linear_vertex_index})"
         },
         {
             "trigger": "renderstate(query, value)",
@@ -3816,6 +4156,10 @@
         {
             "trigger": "rotate(m, angles, xyz)",
             "contents": "rotate(${1:m}, ${2:angles}, ${3:xyz})"
+        },
+        {
+            "trigger": "rotate(m, angle, axis)",
+            "contents": "rotate(${1:m}, ${2:angle}, ${3:axis})"
         },
         {
             "trigger": "rotate_x_to(direction, v)",
@@ -4106,6 +4450,14 @@
             "contents": "set(${1:num})"
         },
         {
+            "trigger": "setagentchannelvalue(geohandle, prim, value, channel)",
+            "contents": "setagentchannelvalue(${1:geohandle}, ${2:prim}, ${3:value}, ${4:channel})"
+        },
+        {
+            "trigger": "setagentchannelvalues(geohandle, prim, values)",
+            "contents": "setagentchannelvalues(${1:geohandle}, ${2:prim}, ${3:values})"
+        },
+        {
             "trigger": "setagentclipnames(geohandle, prim, clipnames)",
             "contents": "setagentclipnames(${1:geohandle}, ${2:prim}, ${3:clipnames})"
         },
@@ -4172,6 +4524,10 @@
         {
             "trigger": "setdetailattrib(geohandle, name, value, mode)",
             "contents": "setdetailattrib(${1:geohandle}, ${2:name}, ${3:value}, ${4:mode})"
+        },
+        {
+            "trigger": "setdetailintrinsic(geohandle, name, value, mode)",
+            "contents": "setdetailintrinsic(${1:geohandle}, ${2:name}, ${3:value}, ${4:mode})"
         },
         {
             "trigger": "setedgegroup(geohandle, name, pt0, pt1, value)",
@@ -4294,6 +4650,14 @@
             "contents": "slerp(${1:qs}, ${2:weights})"
         },
         {
+            "trigger": "slerp(m1, m2, bias)",
+            "contents": "slerp(${1:m1}, ${2:m2}, ${3:bias})"
+        },
+        {
+            "trigger": "slerp(ms, weights)",
+            "contents": "slerp(${1:ms}, ${2:weights})"
+        },
+        {
             "trigger": "slice(s, start, end)",
             "contents": "slice(${1:s}, ${2:start}, ${3:end})"
         },
@@ -4310,8 +4674,12 @@
             "contents": "slice(${1:array}, ${2:hasstart}, ${3:start}, ${4:hasend}, ${5:end}, ${6:hasstep}, ${7:step})"
         },
         {
-            "trigger": "slideframe(x0, t0, n0, x1, t1)",
-            "contents": "slideframe(${1:x0}, ${2:t0}, ${3:n0}, ${4:x1}, ${5:t1})"
+            "trigger": "slideframe(t0, t1, v0)",
+            "contents": "slideframe(${1:t0}, ${2:t1}, ${3:v0})"
+        },
+        {
+            "trigger": "slideframe(x0, t0, v0, x1, t1)",
+            "contents": "slideframe(${1:x0}, ${2:t0}, ${3:v0}, ${4:x1}, ${5:t1})"
         },
         {
             "trigger": "smooth(value1, value2, amount)",
@@ -4374,8 +4742,16 @@
             "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths})"
         },
         {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, targettypes, targetoffsets)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths}, ${11:targettypes}, ${12:targetoffsets})"
+        },
+        {
             "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxforms, constrainedxforms, jointlimits)",
             "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths}, ${11:goalxforms}, ${12:constrainedxforms}, ${13:jointlimits})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, targettypes, targetoffsets, goalxforms, constrainedxforms, jointlimits)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:targets}, ${4:targetxforms}, ${5:iters}, ${6:tolerance}, ${7:pinroot}, ${8:targetweights}, ${9:targetpriorities}, ${10:targetdepths}, ${11:targettypes}, ${12:targetoffsets}, ${13:goalxforms}, ${14:constrainedxforms}, ${15:jointlimits})"
         },
         {
             "trigger": "solveik(lengths, targetpos, twistpos, twist, twistflag, dampen, resiststraight, trackingthres, relmat, constraints)",
@@ -4388,6 +4764,14 @@
         {
             "trigger": "solvequadratic(a, b, c, t1, t2)",
             "contents": "solvequadratic(${1:a}, ${2:b}, ${3:c}, ${4:t1}, ${5:t2})"
+        },
+        {
+            "trigger": "solvetriangleSSS(sides)",
+            "contents": "solvetriangleSSS(${1:sides})"
+        },
+        {
+            "trigger": "solvetriangleSSS(a, b, c)",
+            "contents": "solvetriangleSSS(${1:a}, ${2:b}, ${3:c})"
         },
         {
             "trigger": "sort(values)",
@@ -4504,6 +4888,10 @@
         {
             "trigger": "sum(arr)",
             "contents": "sum(${1:arr})"
+        },
+        {
+            "trigger": "surfacedist(geometry, ptgroup, P_attribute, search_pt, closest_pt, distance_metric)",
+            "contents": "surfacedist(${1:geometry}, ${2:ptgroup}, ${3:P_attribute}, ${4:search_pt}, ${5:closest_pt}, ${6:distance_metric})"
         },
         {
             "trigger": "surfacedist(geometry, ptgroup, P_attribute, search_pt, max_radius, closest_pt, distance_metric)",
@@ -4656,6 +5044,594 @@
         {
             "trigger": "upush(array, value)",
             "contents": "upush(${1:array}, ${2:value})"
+        },
+        {
+            "trigger": "usd_addattrib(stagehandle, primpath, name, typename)",
+            "contents": "usd_addattrib(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:typename})"
+        },
+        {
+            "trigger": "usd_addcollectionexclude(stagehandle, collectionpath, path)",
+            "contents": "usd_addcollectionexclude(${1:stagehandle}, ${2:collectionpath}, ${3:path})"
+        },
+        {
+            "trigger": "usd_addcollectioninclude(stagehandle, collectionpath, path)",
+            "contents": "usd_addcollectioninclude(${1:stagehandle}, ${2:collectionpath}, ${3:path})"
+        },
+        {
+            "trigger": "usd_addinversetotransformorder(stagehandle, primpath, name)",
+            "contents": "usd_addinversetotransformorder(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_addorient(stagehandle, primpath, suffix, orient)",
+            "contents": "usd_addorient(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:orient})"
+        },
+        {
+            "trigger": "usd_addprim(stagehandle, primpath, typename)",
+            "contents": "usd_addprim(${1:stagehandle}, ${2:primpath}, ${3:typename})"
+        },
+        {
+            "trigger": "usd_addprimvar(stagehandle, primpath, name, typename)",
+            "contents": "usd_addprimvar(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:typename})"
+        },
+        {
+            "trigger": "usd_addprimvar(stagehandle, primpath, name, typename, interpolation)",
+            "contents": "usd_addprimvar(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:typename}, ${5:interpolation})"
+        },
+        {
+            "trigger": "usd_addrelationshiptarget(stagehandle, primpath, name, target)",
+            "contents": "usd_addrelationshiptarget(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:target})"
+        },
+        {
+            "trigger": "usd_addrotate(stagehandle, primpath, suffix, axis, angle)",
+            "contents": "usd_addrotate(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:axis}, ${5:angle})"
+        },
+        {
+            "trigger": "usd_addrotate(stagehandle, primpath, suffix, xyz, angles)",
+            "contents": "usd_addrotate(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:xyz}, ${5:angles})"
+        },
+        {
+            "trigger": "usd_addscale(stagehandle, primpath, suffix, scale)",
+            "contents": "usd_addscale(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:scale})"
+        },
+        {
+            "trigger": "usd_addtotransformorder(stagehandle, primpath, name)",
+            "contents": "usd_addtotransformorder(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_addtransform(stagehandle, primpath, suffix, xform)",
+            "contents": "usd_addtransform(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:xform})"
+        },
+        {
+            "trigger": "usd_addtranslate(stagehandle, primpath, suffix, amount)",
+            "contents": "usd_addtranslate(${1:stagehandle}, ${2:primpath}, ${3:suffix}, ${4:amount})"
+        },
+        {
+            "trigger": "usd_attrib(stage, primpath, name)",
+            "contents": "usd_attrib(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_attrib(stage, primpath, name, timecode)",
+            "contents": "usd_attrib(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_attribelement(stage, primpath, name, index)",
+            "contents": "usd_attribelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_attribelement(stage, primpath, name, index, timecode)",
+            "contents": "usd_attribelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index}, ${5:timecode})"
+        },
+        {
+            "trigger": "usd_attriblen(stage, primpath, name)",
+            "contents": "usd_attriblen(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_attriblen(stage, primpath, name, timecode)",
+            "contents": "usd_attriblen(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_attribnames(stage, primpath)",
+            "contents": "usd_attribnames(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_attribsize(stage, primpath, name)",
+            "contents": "usd_attribsize(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_attribtimesamples(stage, primpath, name)",
+            "contents": "usd_attribtimesamples(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_attribtypename(stage, primpath, name)",
+            "contents": "usd_attribtypename(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_blockattrib(stagehandle, primpath, name)",
+            "contents": "usd_blockattrib(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_blockprimvar(stagehandle, primpath, name)",
+            "contents": "usd_blockprimvar(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_blockprimvarindices(stagehandle, primpath, name)",
+            "contents": "usd_blockprimvarindices(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_blockrelationship(stagehandle, primpath, name)",
+            "contents": "usd_blockrelationship(${1:stagehandle}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_boundmaterialpath(stage, primpath)",
+            "contents": "usd_boundmaterialpath(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_clearmetadata(stagehandle, path, name)",
+            "contents": "usd_clearmetadata(${1:stagehandle}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_cleartransformorder(stagehandle, primpath)",
+            "contents": "usd_cleartransformorder(${1:stagehandle}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_collectioncomputedpaths(stage, collectionpath)",
+            "contents": "usd_collectioncomputedpaths(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_collectioncontains(stage, collectionpath, path)",
+            "contents": "usd_collectioncontains(${1:stage}, ${2:collectionpath}, ${3:path})"
+        },
+        {
+            "trigger": "usd_collectionexcludes(stage, collectionpath)",
+            "contents": "usd_collectionexcludes(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_collectionexpansionrule(stage, collectionpath)",
+            "contents": "usd_collectionexpansionrule(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_collectionincludes(stage, collectionpath)",
+            "contents": "usd_collectionincludes(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_drawmode(stage, primpath)",
+            "contents": "usd_drawmode(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_findtransformname(stage, primpath, suffix)",
+            "contents": "usd_findtransformname(${1:stage}, ${2:primpath}, ${3:suffix})"
+        },
+        {
+            "trigger": "usd_flattenedprimvar(stage, primpath, name)",
+            "contents": "usd_flattenedprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_flattenedprimvar(stage, primpath, name, timecode)",
+            "contents": "usd_flattenedprimvar(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_flattenedprimvarelement(stage, primpath, name, index)",
+            "contents": "usd_flattenedprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_flattenedprimvarelement(stage, primpath, name, index, timecode)",
+            "contents": "usd_flattenedprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index}, ${5:timecode})"
+        },
+        {
+            "trigger": "usd_getbbox(stage, primpath, purpose, min, max)",
+            "contents": "usd_getbbox(${1:stage}, ${2:primpath}, ${3:purpose}, ${4:min}, ${5:max})"
+        },
+        {
+            "trigger": "usd_getbbox_center(stage, primpath, purpose)",
+            "contents": "usd_getbbox_center(${1:stage}, ${2:primpath}, ${3:purpose})"
+        },
+        {
+            "trigger": "usd_getbbox_max(stage, primpath, purpose)",
+            "contents": "usd_getbbox_max(${1:stage}, ${2:primpath}, ${3:purpose})"
+        },
+        {
+            "trigger": "usd_getbbox_min(stage, primpath, purpose)",
+            "contents": "usd_getbbox_min(${1:stage}, ${2:primpath}, ${3:purpose})"
+        },
+        {
+            "trigger": "usd_getbbox_size(stage, primpath, purpose)",
+            "contents": "usd_getbbox_size(${1:stage}, ${2:primpath}, ${3:purpose})"
+        },
+        {
+            "trigger": "usd_getbounds(stage, primpath, purpose, min, max)",
+            "contents": "usd_getbounds(${1:stage}, ${2:primpath}, ${3:purpose}, ${4:min}, ${5:max})"
+        },
+        {
+            "trigger": "usd_getbounds(stage, primpath, purpose, timecode, min, max)",
+            "contents": "usd_getbounds(${1:stage}, ${2:primpath}, ${3:purpose}, ${4:timecode}, ${5:min}, ${6:max})"
+        },
+        {
+            "trigger": "usd_getpointinstancebounds(stage, primpath, instance_index, purpose, min, max)",
+            "contents": "usd_getpointinstancebounds(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose}, ${5:min}, ${6:max})"
+        },
+        {
+            "trigger": "usd_getpointinstancebounds(stage, primpath, instance_index, purpose, timecode, min, max)",
+            "contents": "usd_getpointinstancebounds(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose}, ${5:timecode}, ${6:min}, ${7:max})"
+        },
+        {
+            "trigger": "usd_hasapi(stage, primpath, api)",
+            "contents": "usd_hasapi(${1:stage}, ${2:primpath}, ${3:api})"
+        },
+        {
+            "trigger": "usd_haspayload(stage, primpath)",
+            "contents": "usd_haspayload(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_isactive(stage, primpath)",
+            "contents": "usd_isactive(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_isarray(stage, primpath, name)",
+            "contents": "usd_isarray(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isarraymetadata(stage, path, name)",
+            "contents": "usd_isarraymetadata(${1:stage}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isarrayprimvar(stage, primpath, name)",
+            "contents": "usd_isarrayprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isattrib(stage, primpath, name)",
+            "contents": "usd_isattrib(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iscollection(stage, collectionpath)",
+            "contents": "usd_iscollection(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_iscollectionpath(stage, collectionpath)",
+            "contents": "usd_iscollectionpath(${1:stage}, ${2:collectionpath})"
+        },
+        {
+            "trigger": "usd_isindexedprimvar(stage, primpath, name)",
+            "contents": "usd_isindexedprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isinstance(stage, primpath)",
+            "contents": "usd_isinstance(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_iskind(stage, primpath, kind)",
+            "contents": "usd_iskind(${1:stage}, ${2:primpath}, ${3:kind})"
+        },
+        {
+            "trigger": "usd_ismetadata(stage, path, name)",
+            "contents": "usd_ismetadata(${1:stage}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isprim(stage, primpath)",
+            "contents": "usd_isprim(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_isprimvar(stage, primpath, name)",
+            "contents": "usd_isprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isrelationship(stage, primpath, name)",
+            "contents": "usd_isrelationship(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isstage(stage)",
+            "contents": "usd_isstage(${1:stage})"
+        },
+        {
+            "trigger": "usd_istransformreset(stage, primpath)",
+            "contents": "usd_istransformreset(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_istype(stage, primpath, type)",
+            "contents": "usd_istype(${1:stage}, ${2:primpath}, ${3:type})"
+        },
+        {
+            "trigger": "usd_isvisible(stage, primpath)",
+            "contents": "usd_isvisible(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_isvisible(stage, primpath, timecode)",
+            "contents": "usd_isvisible(${1:stage}, ${2:primpath}, ${3:timecode})"
+        },
+        {
+            "trigger": "usd_kind(stage, primpath)",
+            "contents": "usd_kind(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_localtransform(stage, primpath)",
+            "contents": "usd_localtransform(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_localtransform(stage, primpath, timecode)",
+            "contents": "usd_localtransform(${1:stage}, ${2:primpath}, ${3:timecode})"
+        },
+        {
+            "trigger": "usd_makeattribpath(stage, primpath, name)",
+            "contents": "usd_makeattribpath(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_makecollectionpath(stage, primpath, name)",
+            "contents": "usd_makecollectionpath(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_makepropertypath(stage, primpath, name)",
+            "contents": "usd_makepropertypath(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_makerelationshippath(stage, primpath, name)",
+            "contents": "usd_makerelationshippath(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_metadata(stage, path, name)",
+            "contents": "usd_metadata(${1:stage}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_metadataelement(stage, path, name, index)",
+            "contents": "usd_metadataelement(${1:stage}, ${2:path}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_metadatalen(stage, path, name)",
+            "contents": "usd_metadatalen(${1:stage}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_metadatanames(stage, path)",
+            "contents": "usd_metadatanames(${1:stage}, ${2:path})"
+        },
+        {
+            "trigger": "usd_name(stage, primpath)",
+            "contents": "usd_name(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_parentpath(stage, primpath)",
+            "contents": "usd_parentpath(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_pointinstancetransform(stage, primpath, index)",
+            "contents": "usd_pointinstancetransform(${1:stage}, ${2:primpath}, ${3:index})"
+        },
+        {
+            "trigger": "usd_pointinstancetransform(stage, primpath, index, timecode)",
+            "contents": "usd_pointinstancetransform(${1:stage}, ${2:primpath}, ${3:index}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_pointinstance_getbbox(stage, primpath, instance_index, purpose, min, max)",
+            "contents": "usd_pointinstance_getbbox(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose}, ${5:min}, ${6:max})"
+        },
+        {
+            "trigger": "usd_pointinstance_getbbox_center(stage, primpath, instance_index, purpose)",
+            "contents": "usd_pointinstance_getbbox_center(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose})"
+        },
+        {
+            "trigger": "usd_pointinstance_getbbox_max(stage, primpath, instance_index, purpose)",
+            "contents": "usd_pointinstance_getbbox_max(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose})"
+        },
+        {
+            "trigger": "usd_pointinstance_getbbox_min(stage, primpath, instance_index, purpose)",
+            "contents": "usd_pointinstance_getbbox_min(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose})"
+        },
+        {
+            "trigger": "usd_pointinstance_getbbox_size(stage, primpath, instance_index, purpose)",
+            "contents": "usd_pointinstance_getbbox_size(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose})"
+        },
+        {
+            "trigger": "usd_pointinstance_relbbox(stage, primpath, instance_index, purpose, position)",
+            "contents": "usd_pointinstance_relbbox(${1:stage}, ${2:primpath}, ${3:instance_index}, ${4:purpose}, ${5:position})"
+        },
+        {
+            "trigger": "usd_primvar(stage, primpath, name)",
+            "contents": "usd_primvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvar(stage, primpath, name, timecode)",
+            "contents": "usd_primvar(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_primvarattribname(stage, name)",
+            "contents": "usd_primvarattribname(${1:stage}, ${2:name})"
+        },
+        {
+            "trigger": "usd_primvarelement(stage, primpath, name, index)",
+            "contents": "usd_primvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_primvarelement(stage, primpath, name, index, timecode)",
+            "contents": "usd_primvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index}, ${5:timecode})"
+        },
+        {
+            "trigger": "usd_primvarelementsize(stage, primpath, name)",
+            "contents": "usd_primvarelementsize(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvarindices(stage, primpath, name)",
+            "contents": "usd_primvarindices(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvarindices(stage, primpath, name, timecode)",
+            "contents": "usd_primvarindices(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_primvarinterpolation(stage, primpath, name)",
+            "contents": "usd_primvarinterpolation(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvarlen(stage, primpath, name)",
+            "contents": "usd_primvarlen(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvarlen(stage, primpath, name, timecode)",
+            "contents": "usd_primvarlen(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_primvarnames(stage, primpath)",
+            "contents": "usd_primvarnames(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_primvarsize(stage, primpath, name)",
+            "contents": "usd_primvarsize(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvartimesamples(stage, primpath, name)",
+            "contents": "usd_primvartimesamples(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_primvartypename(stage, primpath, name)",
+            "contents": "usd_primvartypename(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_purpose(stage, primpath)",
+            "contents": "usd_purpose(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_relationshipforwardedtargets(stage, primpath, name)",
+            "contents": "usd_relationshipforwardedtargets(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_relationshipnames(stage, primpath)",
+            "contents": "usd_relationshipnames(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_relationshiptargets(stage, primpath, name)",
+            "contents": "usd_relationshiptargets(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_relbbox(stage, primpath, purpose, position)",
+            "contents": "usd_relbbox(${1:stage}, ${2:primpath}, ${3:purpose}, ${4:position})"
+        },
+        {
+            "trigger": "usd_removerelationshiptarget(stagehandle, primpath, name, target)",
+            "contents": "usd_removerelationshiptarget(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:target})"
+        },
+        {
+            "trigger": "usd_setactive(stagehandle, primpath, flag)",
+            "contents": "usd_setactive(${1:stagehandle}, ${2:primpath}, ${3:flag})"
+        },
+        {
+            "trigger": "usd_setattrib(stagehandle, primpath, name, value)",
+            "contents": "usd_setattrib(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:value})"
+        },
+        {
+            "trigger": "usd_setattribelement(stagehandle, primpath, name, index, value)",
+            "contents": "usd_setattribelement(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:index}, ${5:value})"
+        },
+        {
+            "trigger": "usd_setcollectionexcludes(stagehandle, collectionpath, excludes)",
+            "contents": "usd_setcollectionexcludes(${1:stagehandle}, ${2:collectionpath}, ${3:excludes})"
+        },
+        {
+            "trigger": "usd_setcollectionexpansionrule(stagehandle, collectionpath, rule)",
+            "contents": "usd_setcollectionexpansionrule(${1:stagehandle}, ${2:collectionpath}, ${3:rule})"
+        },
+        {
+            "trigger": "usd_setcollectionincludes(stagehandle, collectionpath, includes)",
+            "contents": "usd_setcollectionincludes(${1:stagehandle}, ${2:collectionpath}, ${3:includes})"
+        },
+        {
+            "trigger": "usd_setdrawmode(stagehandle, primpath, mode)",
+            "contents": "usd_setdrawmode(${1:stagehandle}, ${2:primpath}, ${3:mode})"
+        },
+        {
+            "trigger": "usd_setkind(stagehandle, primpath, kind)",
+            "contents": "usd_setkind(${1:stagehandle}, ${2:primpath}, ${3:kind})"
+        },
+        {
+            "trigger": "usd_setmetadata(stagehandle, path, name, value)",
+            "contents": "usd_setmetadata(${1:stagehandle}, ${2:path}, ${3:name}, ${4:value})"
+        },
+        {
+            "trigger": "usd_setmetadataelement(stagehandle, path, name, index, value)",
+            "contents": "usd_setmetadataelement(${1:stagehandle}, ${2:path}, ${3:name}, ${4:index}, ${5:value})"
+        },
+        {
+            "trigger": "usd_setprimvar(stagehandle, primpath, name, value)",
+            "contents": "usd_setprimvar(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:value})"
+        },
+        {
+            "trigger": "usd_setprimvarelement(stagehandle, primpath, name, index, value)",
+            "contents": "usd_setprimvarelement(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:index}, ${5:value})"
+        },
+        {
+            "trigger": "usd_setprimvarelementsize(stagehandle, primpath, name, size)",
+            "contents": "usd_setprimvarelementsize(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:size})"
+        },
+        {
+            "trigger": "usd_setprimvarindices(stagehandle, primpath, name, indices)",
+            "contents": "usd_setprimvarindices(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:indices})"
+        },
+        {
+            "trigger": "usd_setprimvarinterpolation(stagehandle, primpath, name, interpolation)",
+            "contents": "usd_setprimvarinterpolation(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:interpolation})"
+        },
+        {
+            "trigger": "usd_setpurpose(stagehandle, primpath, purpose)",
+            "contents": "usd_setpurpose(${1:stagehandle}, ${2:primpath}, ${3:purpose})"
+        },
+        {
+            "trigger": "usd_setrelationshiptargets(stagehandle, primpath, name, targets)",
+            "contents": "usd_setrelationshiptargets(${1:stagehandle}, ${2:primpath}, ${3:name}, ${4:targets})"
+        },
+        {
+            "trigger": "usd_settransformorder(stagehandle, primpath, transformorder)",
+            "contents": "usd_settransformorder(${1:stagehandle}, ${2:primpath}, ${3:transformorder})"
+        },
+        {
+            "trigger": "usd_settransformreset(stagehandle, primpath, flag)",
+            "contents": "usd_settransformreset(${1:stagehandle}, ${2:primpath}, ${3:flag})"
+        },
+        {
+            "trigger": "usd_setvariantselection(stage, primpath, variantset, variant)",
+            "contents": "usd_setvariantselection(${1:stage}, ${2:primpath}, ${3:variantset}, ${4:variant})"
+        },
+        {
+            "trigger": "usd_setvisible(stagehandle, primpath, flag)",
+            "contents": "usd_setvisible(${1:stagehandle}, ${2:primpath}, ${3:flag})"
+        },
+        {
+            "trigger": "usd_transformname(transformtype, suffix)",
+            "contents": "usd_transformname(${1:transformtype}, ${2:suffix})"
+        },
+        {
+            "trigger": "usd_transformorder(stage, primpath)",
+            "contents": "usd_transformorder(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_transformsuffix(name)",
+            "contents": "usd_transformsuffix(${1:name})"
+        },
+        {
+            "trigger": "usd_transformtype(name)",
+            "contents": "usd_transformtype(${1:name})"
+        },
+        {
+            "trigger": "usd_typename(stage, primpath)",
+            "contents": "usd_typename(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_uniquetransformname(stage, primpath, transformtype, suffix)",
+            "contents": "usd_uniquetransformname(${1:stage}, ${2:primpath}, ${3:transformtype}, ${4:suffix})"
+        },
+        {
+            "trigger": "usd_variants(stage, primpath, variantset)",
+            "contents": "usd_variants(${1:stage}, ${2:primpath}, ${3:variantset})"
+        },
+        {
+            "trigger": "usd_variantselection(stage, primpath, variantset)",
+            "contents": "usd_variantselection(${1:stage}, ${2:primpath}, ${3:variantset})"
+        },
+        {
+            "trigger": "usd_variantsets(stage, primpath)",
+            "contents": "usd_variantsets(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_worldtransform(stage, primpath)",
+            "contents": "usd_worldtransform(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_worldtransform(stage, primpath, timecode)",
+            "contents": "usd_worldtransform(${1:stage}, ${2:primpath}, ${3:timecode})"
         },
         {
             "trigger": "uvdist(geometry, uvname, uv, prim, primuv)",
@@ -5048,6 +6024,22 @@
         {
             "trigger": "xyztorgb(xyz)",
             "contents": "xyztorgb(${1:xyz})"
+        },
+        {
+            "trigger": "__uniform_mul(a, b)",
+            "contents": "__uniform_mul(${1:a}, ${2:b})"
+        },
+        {
+            "trigger": "__uniform_mul(m, a, b)",
+            "contents": "__uniform_mul(${1:m}, ${2:a}, ${3:b})"
+        },
+        {
+            "trigger": "__uniform_premul(a, b)",
+            "contents": "__uniform_premul(${1:a}, ${2:b})"
+        },
+        {
+            "trigger": "__uniform_premul(m, a, b)",
+            "contents": "__uniform_premul(${1:m}, ${2:a}, ${3:b})"
         }
     ]
 }
