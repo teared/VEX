@@ -87,7 +87,7 @@ environment variable. By default, the add-on uses `vcc` command.
 See "Syntax Check" section of this readme.
 
 [VEX Build]: https://github.com/teared/VEX/blob/master/prefs/VEX%20Build.sublime-build
-[Data]: http://docs.sublimetext.info/en/latest/basic_concepts.html#the-data-directory
+[Data]: https://sublime-text-unofficial-documentation.readthedocs.io/en/latest/basic_concepts.html#the-data-directory
 
 
 ### Optional: [HScript add-on]
