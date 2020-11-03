@@ -54,7 +54,7 @@ executable path.
 
 Example file location on Windows:
 
-    C:\Users\teared\Documents\houdini18.0\houdini.env
+    C:\Users\teared\Documents\houdini18.5\houdini.env
 
 Example line to add to houdini.env (use *forward* slashes):
 
