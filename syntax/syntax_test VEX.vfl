@@ -166,6 +166,9 @@ struct values {
 }
 // <- punctuation.braces.end
 
+dict s = {};
+// <- storage.type
+
 
 
 Operators.

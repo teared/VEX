@@ -1,0 +1,43 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.3
+
+
+1. Updated for Houdini 18.5.
+
+2. Add dictionary type:
+
+    https://www.sidefx.com/docs/houdini/vex/dicts
+
+3. New VEX functions added:
+
+    chdict
+    curvearclen
+    filter_remap
+    importance_remap
+    invlerp
+    isshadingRHS
+    json_dumps
+    json_loads
+    keys
+    ndcdepth
+    ocio_parsecolorspace
+    pointlocaltransforms
+    pointtransform
+    pointtransformrigid
+    pointtransforms
+    pointtransformsrigid
+    ramp_lookup
+    ramp_unpack
+    random_brj
+    setpointlocaltransforms
+    setpointtransform
+    setpointtransforms
+    solvephysfbik
+    spline_cdf
+    svddecomp
+
+    Tip: to read about new functions quickly, copy the list in empty
+    Sublime Text document, set VEX syntax and check documentation helpcards.

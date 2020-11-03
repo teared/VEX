@@ -1,6 +1,6 @@
 # [Houdini] add-on for [Sublime Text]
 
-[Houdini]: https://sidefx.com/
+[Houdini]: https://www.sidefx.com/
 [Sublime Text]: https://www.sublimetext.com/
 
 
@@ -43,7 +43,7 @@ You should be able to use the add-on now. Skip all "Optional" sections below
 if you are first-time user. Read them if you want to use more advanced
 features.
 
-[Sublime Text]: http://www.sublimetext.com/
+[Sublime Text]: https://www.sublimetext.com/
 [Package Control]: https://packagecontrol.io/
 
 
@@ -60,10 +60,11 @@ Example line to add to houdini.env (use *forward* slashes):
 
     EDITOR = "C:/Program Files/Sublime Text 3/sublime_text.exe"
 
-Place cursor in any parameter field and press `Alt+E`
-(`Alt+E+E` for speed) to launch Sublime Text from Houdini.
+Place cursor in any parameter field and press `Alt+E`,
+then place cursor inside the built-in editor
+and press `Alt+E` again to launch Sublime Text from Houdini.
 
-[houdini.env]: http://www.sidefx.com/docs/houdini/basics/config_env#setting-environment-variables
+[houdini.env]: https://www.sidefx.com/docs/houdini/basics/config_env#setting-environment-variables
 
 
 ### Optional: Configure VCC Path
@@ -74,7 +75,7 @@ Place cursor in any parameter field and press `Alt+E`
 
    Example setting for Windows:
 
-       "executable": "C:\Program Files\Side Effects Software\Houdini 18.0.287\bin\vcc.exe",
+       "executable": "C:\Program Files\Side Effects Software\Houdini 18.5.351\bin\vcc.exe",
 
 4. Save to *[Data]*/Packages/User/`Any Name`.sublime-build
 

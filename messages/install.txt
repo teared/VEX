@@ -30,8 +30,9 @@ Optional setup
         Example line to add to houdini.env (use forward slashes):
             EDITOR = "C:/Program Files/Sublime Text 3/sublime_text.exe"
 
-        Place cursor in any parameter field and press "Alt+E"
-        ("Alt+E+E" for speed) to launch Sublime Text from Houdini.
+        Place cursor in any parameter field and press "Alt+E",
+        then place cursor inside the built-in editor
+        and press "Alt+E" again to launch Sublime Text from Houdini.
 
 
     Configure VCC Path
@@ -43,7 +44,7 @@ Optional setup
 
         3.  Change value of "executable" setting to existing VCC executable path.
             Example setting for Windows:
-            "executable": "C:\Program Files\Side Effects Software\Houdini 16.5.268\bin\vcc.exe",
+            "executable": "C:\Program Files\Side Effects Software\Houdini 18.5.351\bin\vcc.exe",
 
         4.  Save to "Packages/User/Any Name.sublime-build"
             To override default, save to "Packages/VEX/prefs/VEX Build.sublime-build"

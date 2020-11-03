@@ -270,8 +270,16 @@
             "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths})"
         },
         {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, targettypes, targetoffsets)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths}, ${13:targettypes}, ${14:targetoffsets})"
+        },
+        {
             "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, goalxformattrib, constrainedxformattrib, jointlimitsattrib)",
             "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths}, ${13:goalxformattrib}, ${14:constrainedxformattrib}, ${15:jointlimitsattrib})"
+        },
+        {
+            "trigger": "agentsolvefbik(geometry, outgeo, prim, targets, targetxforms, xformgroup, iters, tolerance, pinroot, targetweights, targetpriorities, targetdepths, targettypes, targetoffsets, goalxformattrib, constrainedxformattrib, jointlimitsattrib)",
+            "contents": "agentsolvefbik(${1:geometry}, ${2:outgeo}, ${3:prim}, ${4:targets}, ${5:targetxforms}, ${6:xformgroup}, ${7:iters}, ${8:tolerance}, ${9:pinroot}, ${10:targetweights}, ${11:targetpriorities}, ${12:targetdepths}, ${13:targettypes}, ${14:targetoffsets}, ${15:goalxformattrib}, ${16:constrainedxformattrib}, ${17:jointlimitsattrib})"
         },
         {
             "trigger": "agenttransformcount(geometry, prim)",
@@ -640,6 +648,10 @@
         {
             "trigger": "chattrnames(attrclass)",
             "contents": "chattrnames(${1:attrclass})"
+        },
+        {
+            "trigger": "chdict(channel)",
+            "contents": "chdict(${1:channel})"
         },
         {
             "trigger": "chend(opinput)",
@@ -1042,8 +1054,12 @@
             "contents": "colorname()"
         },
         {
-            "trigger": "combinelocaltransform(local, parent_world, parent_local, mode)",
-            "contents": "combinelocaltransform(${1:local}, ${2:parent_world}, ${3:parent_local}, ${4:mode})"
+            "trigger": "combinelocaltransform(local, parent_world, parent_local, scale_inherit_mode)",
+            "contents": "combinelocaltransform(${1:local}, ${2:parent_world}, ${3:parent_local}, ${4:scale_inherit_mode})"
+        },
+        {
+            "trigger": "combinelocaltransform(local, parent_world, parent_local, scale_inherit_mode, effective_local_transform)",
+            "contents": "combinelocaltransform(${1:local}, ${2:parent_world}, ${3:parent_local}, ${4:scale_inherit_mode}, ${5:effective_local_transform})"
         },
         {
             "trigger": "computenormal(P, ...)",
@@ -1200,6 +1216,22 @@
         {
             "trigger": "curlxnoise2d(xyt)",
             "contents": "curlxnoise2d(${1:xyt})"
+        },
+        {
+            "trigger": "curvearclen(positions, uv1, uv2, closedflag, fmt, order)",
+            "contents": "curvearclen(${1:positions}, ${2:uv1}, ${3:uv2}, ${4:closedflag}, ${5:fmt}, ${6:order})"
+        },
+        {
+            "trigger": "curvearclen(positions, uv1, uv2, closedflag, fmt, order, divs)",
+            "contents": "curvearclen(${1:positions}, ${2:uv1}, ${3:uv2}, ${4:closedflag}, ${5:fmt}, ${6:order}, ${7:divs})"
+        },
+        {
+            "trigger": "curvearclen(positions, uv1, uv2, closedflag, fmt, order, divs, primuvmode)",
+            "contents": "curvearclen(${1:positions}, ${2:uv1}, ${3:uv2}, ${4:closedflag}, ${5:fmt}, ${6:order}, ${7:divs}, ${8:primuvmode})"
+        },
+        {
+            "trigger": "curvearclen(positions, uv1, uv2, closedflag, fmt, order, divs, primuvmode, primuvtol)",
+            "contents": "curvearclen(${1:positions}, ${2:uv1}, ${3:uv2}, ${4:closedflag}, ${5:fmt}, ${6:order}, ${7:divs}, ${8:primuvmode}, ${9:primuvtol})"
         },
         {
             "trigger": "cvex_bsdf(eval_cvex_shader, sampler_cvex_shader, ...)",
@@ -1482,32 +1514,48 @@
             "contents": "exp(${1:n})"
         },
         {
-            "trigger": "expandedgegroup(filename, groupname)",
-            "contents": "expandedgegroup(${1:filename}, ${2:groupname})"
+            "trigger": "expandedgegroup(geometry, groupname)",
+            "contents": "expandedgegroup(${1:geometry}, ${2:groupname})"
         },
         {
-            "trigger": "expandedgegroup(input, groupname)",
-            "contents": "expandedgegroup(${1:input}, ${2:groupname})"
+            "trigger": "expandedgegroup(geometry, groupname, mode)",
+            "contents": "expandedgegroup(${1:geometry}, ${2:groupname}, ${3:mode})"
         },
         {
             "trigger": "expandpointgroup(geometry, groupname)",
             "contents": "expandpointgroup(${1:geometry}, ${2:groupname})"
         },
         {
+            "trigger": "expandpointgroup(geometry, groupname, mode)",
+            "contents": "expandpointgroup(${1:geometry}, ${2:groupname}, ${3:mode})"
+        },
+        {
             "trigger": "expandprimgroup(geometry, groupname)",
             "contents": "expandprimgroup(${1:geometry}, ${2:groupname})"
+        },
+        {
+            "trigger": "expandprimgroup(geometry, groupname, mode)",
+            "contents": "expandprimgroup(${1:geometry}, ${2:groupname}, ${3:mode})"
         },
         {
             "trigger": "expandvertexgroup(geometry, groupname)",
             "contents": "expandvertexgroup(${1:geometry}, ${2:groupname})"
         },
         {
+            "trigger": "expandvertexgroup(geometry, groupname, mode)",
+            "contents": "expandvertexgroup(${1:geometry}, ${2:groupname}, ${3:mode})"
+        },
+        {
             "trigger": "expand_udim(u, v, path, ...)",
             "contents": "expand_udim(${1:u}, ${2:v}, ${3:path}, ${4:...})"
         },
         {
-            "trigger": "extractlocaltransform(world, parent_world, parent_local, mode)",
-            "contents": "extractlocaltransform(${1:world}, ${2:parent_world}, ${3:parent_local}, ${4:mode})"
+            "trigger": "extractlocaltransform(world, parent_world, parent_local, scale_inherit_mode)",
+            "contents": "extractlocaltransform(${1:world}, ${2:parent_world}, ${3:parent_local}, ${4:scale_inherit_mode})"
+        },
+        {
+            "trigger": "extractlocaltransform(world, parent_world, parent_local, mode, effective_local_transform)",
+            "contents": "extractlocaltransform(${1:world}, ${2:parent_world}, ${3:parent_local}, ${4:mode}, ${5:effective_local_transform})"
         },
         {
             "trigger": "fastshadow(P, D, bias, ...)",
@@ -1532,6 +1580,10 @@
         {
             "trigger": "filterstep(edge, x0, x1, ...)",
             "contents": "filterstep(${1:edge}, ${2:x0}, ${3:x1}, ${4:...})"
+        },
+        {
+            "trigger": "filter_remap(uv, filter, width, ...)",
+            "contents": "filter_remap(${1:uv}, ${2:filter}, ${3:width}, ${4:...})"
         },
         {
             "trigger": "find(haystack, needle)",
@@ -1804,6 +1856,14 @@
         {
             "trigger": "getcomp(array, index)",
             "contents": "getcomp(${1:array}, ${2:index})"
+        },
+        {
+            "trigger": "getcomp(d, index)",
+            "contents": "getcomp(${1:d}, ${2:index})"
+        },
+        {
+            "trigger": "getcomp(d, index, defvalue)",
+            "contents": "getcomp(${1:d}, ${2:index}, ${3:defvalue})"
         },
         {
             "trigger": "getcomp(value, index)",
@@ -2170,6 +2230,10 @@
             "contents": "ihasplane(${1:opinput}, ${2:planename})"
         },
         {
+            "trigger": "importance_remap(map, uv, ...)",
+            "contents": "importance_remap(${1:map}, ${2:uv}, ${3:...})"
+        },
+        {
             "trigger": "inedgegroup(filename, groupname, pointnum0, pointnum1)",
             "contents": "inedgegroup(${1:filename}, ${2:groupname}, ${3:pointnum0}, ${4:pointnum1})"
         },
@@ -2196,6 +2260,14 @@
         {
             "trigger": "insert(array, index, values)",
             "contents": "insert(${1:array}, ${2:index}, ${3:values})"
+        },
+        {
+            "trigger": "insert(dstdict, dstkey, srcdict, srckey)",
+            "contents": "insert(${1:dstdict}, ${2:dstkey}, ${3:srcdict}, ${4:srckey})"
+        },
+        {
+            "trigger": "insert(dstdict, srcdict)",
+            "contents": "insert(${1:dstdict}, ${2:srcdict})"
         },
         {
             "trigger": "instance(P, N)",
@@ -2270,6 +2342,10 @@
             "contents": "invertexgroup(${1:opinput}, ${2:groupname}, ${3:vertexnum})"
         },
         {
+            "trigger": "invlerp(a, min, max)",
+            "contents": "invlerp(${1:a}, ${2:min}, ${3:max})"
+        },
+        {
             "trigger": "iplaneindex(opinput, planename)",
             "contents": "iplaneindex(${1:opinput}, ${2:planename})"
         },
@@ -2342,6 +2418,10 @@
             "contents": "isseconds()"
         },
         {
+            "trigger": "isshadingRHS()",
+            "contents": "isshadingRHS()"
+        },
+        {
             "trigger": "isshadowray()",
             "contents": "isshadowray()"
         },
@@ -2366,6 +2446,10 @@
             "contents": "isvalidindex(${1:str}, ${2:index})"
         },
         {
+            "trigger": "isvalidindex(d, key)",
+            "contents": "isvalidindex(${1:d}, ${2:key})"
+        },
+        {
             "trigger": "isvarying(x)",
             "contents": "isvarying(${1:x})"
         },
@@ -2386,6 +2470,18 @@
             "contents": "join(${1:s}, ${2:spacer})"
         },
         {
+            "trigger": "json_dumps(d, flags)",
+            "contents": "json_dumps(${1:d}, ${2:flags})"
+        },
+        {
+            "trigger": "json_loads(json, flags)",
+            "contents": "json_loads(${1:json}, ${2:flags})"
+        },
+        {
+            "trigger": "keys(d)",
+            "contents": "keys(${1:d})"
+        },
+        {
             "trigger": "kspline(basis, sample_pos, value1, key_pos1, ...)",
             "contents": "kspline(${1:basis}, ${2:sample_pos}, ${3:value1}, ${4:key_pos1}, ${5:...})"
         },
@@ -2404,6 +2500,10 @@
         {
             "trigger": "len(s)",
             "contents": "len(${1:s})"
+        },
+        {
+            "trigger": "len(d)",
+            "contents": "len(${1:d})"
         },
         {
             "trigger": "length(f)",
@@ -2734,6 +2834,10 @@
             "contents": "nbouncetypes()"
         },
         {
+            "trigger": "ndcdepth(z)",
+            "contents": "ndcdepth(${1:z})"
+        },
+        {
             "trigger": "nearpoint(geometry, pt)",
             "contents": "nearpoint(${1:geometry}, ${2:pt})"
         },
@@ -2920,6 +3024,10 @@
         {
             "trigger": "ocio_import(space, property, value)",
             "contents": "ocio_import(${1:space}, ${2:property}, ${3:value})"
+        },
+        {
+            "trigger": "ocio_parsecolorspace(input)",
+            "contents": "ocio_parsecolorspace(${1:input})"
         },
         {
             "trigger": "ocio_roles()",
@@ -3566,12 +3674,32 @@
             "contents": "pointhedgenext(${1:geometry}, ${2:hedge})"
         },
         {
+            "trigger": "pointlocaltransforms(geometry, pnts)",
+            "contents": "pointlocaltransforms(${1:geometry}, ${2:pnts})"
+        },
+        {
             "trigger": "pointname()",
             "contents": "pointname()"
         },
         {
             "trigger": "pointprims(geometry, ptnum)",
             "contents": "pointprims(${1:geometry}, ${2:ptnum})"
+        },
+        {
+            "trigger": "pointtransform(geometry, pnt)",
+            "contents": "pointtransform(${1:geometry}, ${2:pnt})"
+        },
+        {
+            "trigger": "pointtransformrigid(geometry, pnt)",
+            "contents": "pointtransformrigid(${1:geometry}, ${2:pnt})"
+        },
+        {
+            "trigger": "pointtransforms(geometry, pnts)",
+            "contents": "pointtransforms(${1:geometry}, ${2:pnts})"
+        },
+        {
+            "trigger": "pointtransformsrigid(geometry, pnts)",
+            "contents": "pointtransformsrigid(${1:geometry}, ${2:pnts})"
         },
         {
             "trigger": "pointvertex(geometry, point_num)",
@@ -3584,6 +3712,10 @@
         {
             "trigger": "polardecomp(transform)",
             "contents": "polardecomp(${1:transform})"
+        },
+        {
+            "trigger": "polardecomp(transform, rot, stretch, check_determinant)",
+            "contents": "polardecomp(${1:transform}, ${2:rot}, ${3:stretch}, ${4:check_determinant})"
         },
         {
             "trigger": "polyneighbours(geometry, primnum)",
@@ -3662,6 +3794,14 @@
             "contents": "primarclen(${1:geometry}, ${2:uv1}, ${3:uv2}, ${4:prim_num}, ${5:divs})"
         },
         {
+            "trigger": "primarclen(geometry, uv1, uv2, prim_num, divs, primuvmode)",
+            "contents": "primarclen(${1:geometry}, ${2:uv1}, ${3:uv2}, ${4:prim_num}, ${5:divs}, ${6:primuvmode})"
+        },
+        {
+            "trigger": "primarclen(geometry, uv1, uv2, prim_num, divs, primuvmode, primuvtol)",
+            "contents": "primarclen(${1:geometry}, ${2:uv1}, ${3:uv2}, ${4:prim_num}, ${5:divs}, ${6:primuvmode}, ${7:primuvtol})"
+        },
+        {
             "trigger": "primattrib(geometry, attribute_name, prim, success)",
             "contents": "primattrib(${1:geometry}, ${2:attribute_name}, ${3:prim}, ${4:success})"
         },
@@ -3710,12 +3850,12 @@
             "contents": "primuv(${1:geometry}, ${2:attribute_name}, ${3:prim_num}, ${4:uvw})"
         },
         {
-            "trigger": "primuvconvert(filename, uv, prim_num, mode)",
-            "contents": "primuvconvert(${1:filename}, ${2:uv}, ${3:prim_num}, ${4:mode})"
+            "trigger": "primuvconvert(geometry, uv, prim_num, mode)",
+            "contents": "primuvconvert(${1:geometry}, ${2:uv}, ${3:prim_num}, ${4:mode})"
         },
         {
-            "trigger": "primuvconvert(filename, uv, prim_num, mode, tolerance)",
-            "contents": "primuvconvert(${1:filename}, ${2:uv}, ${3:prim_num}, ${4:mode}, ${5:tolerance})"
+            "trigger": "primuvconvert(geometry, uv, prim_num, mode, tolerance)",
+            "contents": "primuvconvert(${1:geometry}, ${2:uv}, ${3:prim_num}, ${4:mode}, ${5:tolerance})"
         },
         {
             "trigger": "primvertex(geometry, primnum, vertex)",
@@ -3882,6 +4022,18 @@
             "contents": "radians(${1:nums_in_degs})"
         },
         {
+            "trigger": "ramp_lookup(pos, ramp)",
+            "contents": "ramp_lookup(${1:pos}, ${2:ramp})"
+        },
+        {
+            "trigger": "ramp_lookup(pos, basis, key, val)",
+            "contents": "ramp_lookup(${1:pos}, ${2:basis}, ${3:key}, ${4:val})"
+        },
+        {
+            "trigger": "ramp_unpack(ramp, basis, pos, value)",
+            "contents": "ramp_unpack(${1:ramp}, ${2:basis}, ${3:pos}, ${4:value})"
+        },
+        {
             "trigger": "rand(seed)",
             "contents": "rand(${1:seed})"
         },
@@ -3896,6 +4048,10 @@
         {
             "trigger": "random(xpos, ypos)",
             "contents": "random(${1:xpos}, ${2:ypos})"
+        },
+        {
+            "trigger": "random_brj(seed, offset)",
+            "contents": "random_brj(${1:seed}, ${2:offset})"
         },
         {
             "trigger": "random_fhash(seed)",
@@ -4022,6 +4178,10 @@
             "contents": "removeindex(${1:array}, ${2:index})"
         },
         {
+            "trigger": "removeindex(dictionary, index)",
+            "contents": "removeindex(${1:dictionary}, ${2:index})"
+        },
+        {
             "trigger": "removepoint(geohandle, point_number)",
             "contents": "removepoint(${1:geohandle}, ${2:point_number})"
         },
@@ -4126,12 +4286,12 @@
             "contents": "re_split(${1:regex}, ${2:input}, ${3:maxsplits})"
         },
         {
-            "trigger": "rgbtohsv(hsv)",
-            "contents": "rgbtohsv(${1:hsv})"
+            "trigger": "rgbtohsv(rgb)",
+            "contents": "rgbtohsv(${1:rgb})"
         },
         {
-            "trigger": "rgbtohsv(h, s, v)",
-            "contents": "rgbtohsv(${1:h}, ${2:s}, ${3:v})"
+            "trigger": "rgbtohsv(r, g, b)",
+            "contents": "rgbtohsv(${1:r}, ${2:g}, ${3:b})"
         },
         {
             "trigger": "rgbtoxyz(rgb)",
@@ -4450,6 +4610,10 @@
             "contents": "set(${1:num})"
         },
         {
+            "trigger": "set(key, ...)",
+            "contents": "set(${1:key}, ${2:...})"
+        },
+        {
             "trigger": "setagentchannelvalue(geohandle, prim, value, channel)",
             "contents": "setagentchannelvalue(${1:geohandle}, ${2:prim}, ${3:value}, ${4:channel})"
         },
@@ -4518,6 +4682,10 @@
             "contents": "setcomp(${1:array}, ${2:value}, ${3:index})"
         },
         {
+            "trigger": "setcomp(d, value, index)",
+            "contents": "setcomp(${1:d}, ${2:value}, ${3:index})"
+        },
+        {
             "trigger": "setcurrentlight(lightid)",
             "contents": "setcurrentlight(${1:lightid})"
         },
@@ -4544,6 +4712,26 @@
         {
             "trigger": "setpointgroup(geohandle, name, point_num, value, mode)",
             "contents": "setpointgroup(${1:geohandle}, ${2:name}, ${3:point_num}, ${4:value}, ${5:mode})"
+        },
+        {
+            "trigger": "setpointlocaltransforms(geometry, pnts, transforms)",
+            "contents": "setpointlocaltransforms(${1:geometry}, ${2:pnts}, ${3:transforms})"
+        },
+        {
+            "trigger": "setpointtransform(geometry, pt, transform)",
+            "contents": "setpointtransform(${1:geometry}, ${2:pt}, ${3:transform})"
+        },
+        {
+            "trigger": "setpointtransform(geometry, pt, transform, constrain)",
+            "contents": "setpointtransform(${1:geometry}, ${2:pt}, ${3:transform}, ${4:constrain})"
+        },
+        {
+            "trigger": "setpointtransforms(geometry, pnts, transforms)",
+            "contents": "setpointtransforms(${1:geometry}, ${2:pnts}, ${3:transforms})"
+        },
+        {
+            "trigger": "setpointtransforms(geometry, pnts, transforms, constrain)",
+            "contents": "setpointtransforms(${1:geometry}, ${2:pnts}, ${3:transforms}, ${4:constrain})"
         },
         {
             "trigger": "setprimattrib(geohandle, name, prim_num, value, mode)",
@@ -4726,8 +4914,24 @@
             "contents": "solvecurve(${1:lengths}, ${2:closed}, ${3:orienttonormal}, ${4:tangent}, ${5:points}, ${6:normals})"
         },
         {
+            "trigger": "solvecurve(outlength, outpos, lengths, closed, orienttonormal, normalmode, tangent, points, normals)",
+            "contents": "solvecurve(${1:outlength}, ${2:outpos}, ${3:lengths}, ${4:closed}, ${5:orienttonormal}, ${6:normalmode}, ${7:tangent}, ${8:points}, ${9:normals})"
+        },
+        {
+            "trigger": "solvecurve(outlength, outpos, lengths, closed, orienttonormal, normalmode, tangent, points, normals, twists, initialtwists, fmt, order, lod)",
+            "contents": "solvecurve(${1:outlength}, ${2:outpos}, ${3:lengths}, ${4:closed}, ${5:orienttonormal}, ${6:normalmode}, ${7:tangent}, ${8:points}, ${9:normals}, ${10:twists}, ${11:initialtwists}, ${12:fmt}, ${13:order}, ${14:lod})"
+        },
+        {
             "trigger": "solvecurve(op, lengths, closed, orienttonormal, tangent, normalcalcmethod, relmat)",
             "contents": "solvecurve(${1:op}, ${2:lengths}, ${3:closed}, ${4:orienttonormal}, ${5:tangent}, ${6:normalcalcmethod}, ${7:relmat})"
+        },
+        {
+            "trigger": "solvecurve(op, lengths, closed, orienttonormal, tangent, normalcalcmethod, relmat, primnum, lod)",
+            "contents": "solvecurve(${1:op}, ${2:lengths}, ${3:closed}, ${4:orienttonormal}, ${5:tangent}, ${6:normalcalcmethod}, ${7:relmat}, ${8:primnum}, ${9:lod})"
+        },
+        {
+            "trigger": "solvefbik(xforms, parents, jointoptions, targetxforms, targets, targetoptions, iters, tolerance, pinroot)",
+            "contents": "solvefbik(${1:xforms}, ${2:parents}, ${3:jointoptions}, ${4:targetxforms}, ${5:targets}, ${6:targetoptions}, ${7:iters}, ${8:tolerance}, ${9:pinroot})"
         },
         {
             "trigger": "solvefbik(xforms, parents, targets, targetxforms, iters)",
@@ -4756,6 +4960,10 @@
         {
             "trigger": "solveik(lengths, targetpos, twistpos, twist, twistflag, dampen, resiststraight, trackingthres, relmat, constraints)",
             "contents": "solveik(${1:lengths}, ${2:targetpos}, ${3:twistpos}, ${4:twist}, ${5:twistflag}, ${6:dampen}, ${7:resiststraight}, ${8:trackingthres}, ${9:relmat}, ${10:constraints})"
+        },
+        {
+            "trigger": "solvephysfbik(xforms, parents, jointoptions, targetxforms, targets, targetoptions, iters, damping, tolerance)",
+            "contents": "solvephysfbik(${1:xforms}, ${2:parents}, ${3:jointoptions}, ${4:targetxforms}, ${5:targets}, ${6:targetoptions}, ${7:iters}, ${8:damping}, ${9:tolerance})"
         },
         {
             "trigger": "solvepoly(coef, roots, maxiter)",
@@ -4804,6 +5012,10 @@
         {
             "trigger": "spline(bases, sample_pos, values, positions, ...)",
             "contents": "spline(${1:bases}, ${2:sample_pos}, ${3:values}, ${4:positions}, ${5:...})"
+        },
+        {
+            "trigger": "spline_cdf(bases, values, positions, ...)",
+            "contents": "spline_cdf(${1:bases}, ${2:values}, ${3:positions}, ${4:...})"
         },
         {
             "trigger": "split(s)",
@@ -4896,6 +5108,14 @@
         {
             "trigger": "surfacedist(geometry, ptgroup, P_attribute, search_pt, max_radius, closest_pt, distance_metric)",
             "contents": "surfacedist(${1:geometry}, ${2:ptgroup}, ${3:P_attribute}, ${4:search_pt}, ${5:max_radius}, ${6:closest_pt}, ${7:distance_metric})"
+        },
+        {
+            "trigger": "svddecomp(input_M, output_U, output_S, output_V)",
+            "contents": "svddecomp(${1:input_M}, ${2:output_U}, ${3:output_S}, ${4:output_V})"
+        },
+        {
+            "trigger": "svddecomp(input_M)",
+            "contents": "svddecomp(${1:input_M})"
         },
         {
             "trigger": "switch(direct, indirect)",
