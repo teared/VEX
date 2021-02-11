@@ -1,0 +1,28 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.4
+
+
+1. Various Syntax Checker fixes:
+
+    It now works on Linux machines:
+        https://github.com/teared/VEX/issues/11
+
+    Fixed a few bugs causing "VCC is currently running..."
+    state stuck until the editor restarted.
+
+    Temporary files used with "As a Snippet" build now removed sooner.
+    An exception could cause files to get stuck in the temp folder.
+    Temporary filename pattern: tmpxxxxxx
+
+    Several more VCC errors are displayed.
+
+    Improved Snippet error detection of bad "@" symbol usages.
+
+    See "Optional: Configure VCC Path" and "Syntax Check"
+    sections of the readme for the relevant info:
+
+        https://github.com/teared/VEX#optional-configure-vcc-path
+        https://github.com/teared/VEX#syntax-check
