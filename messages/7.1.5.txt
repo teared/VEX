@@ -1,0 +1,12 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.5
+
+
+1. Added support for Sublime Text 4:
+
+    https://www.sublimetext.com/blog/articles/sublime-text-4
+
+2. Fixed Syntax Checker showing incorrect file paths in Snippet builds.
