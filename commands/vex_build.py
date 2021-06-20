@@ -259,7 +259,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             os.remove(file_path)
 
         self.output.run_command('append', {
-            'characters': self.format_output(vcc_output, file_path, snippet, code, generated_code),
+            'characters': self.format_output(vcc_output, file_path, snippet, code, generated_code, vars['file']),
             'force': True,
             'scroll_to_end': True
         })
@@ -296,7 +296,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
         else:
             return cols
 
-    def format_output(self, vcc_output, file_path='', snippet=False, code='', generated_code=''):
+    def format_output(self, vcc_output, file_path='', snippet=False, code='', generated_code='', original_file_path=''):
         """
         Beautify output and fix issues caused by code wrapping.
 
@@ -339,6 +339,8 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
                     row = row - 2
                     srcline = srclines[min(row - 1, len(srclines) - 1)]  # Temp fix for Index errors.
                     cols = self.match_columns(cols, genlines[row + 1], srcline)
+                    # Replace the Python tempfile with the Houdini-produced temp file.
+                    path = original_file_path
                 else:
                     with open(path, encoding='utf-8') as f:
                         srcline = f.readlines()[row - 1].rstrip()
