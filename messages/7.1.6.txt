@@ -1,0 +1,16 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.6
+
+
+1. Fixed internal deadlock caused by too many error messages:
+
+    VCC process waits for the OS pipe buffer to accept more data,
+    which caused the add-on stuck in the "VCC is currently running..." state.
+
+    The deadlock may have caused files to get stuck in the temp folder.
+    Temporary filename pattern: tmpxxxxxx
+
+2. Added compilation timeout of 30 seconds.

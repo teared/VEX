@@ -251,15 +251,29 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             startupinfo = subprocess.STARTUPINFO()
             startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         proc = subprocess.Popen(cmd, startupinfo=startupinfo, stderr=subprocess.PIPE, universal_newlines=True)
-        proc.wait()
-        vcc_output = proc.stderr.read()
+        try:
+            _, vcc_output = proc.communicate(timeout=30)
+            vcc_output = vcc_output.strip()
+            if vcc_output:
+                try:
+                    vcc_output = self.format_output(vcc_output, file_path, snippet, code, generated_code, vars['file'])
+                except: # Catch any errors during formatting.
+                    vcc_output = "Add-on error: can't parse VCC output for this input"
+            else:
+                vcc_output = 'Successfully compiled in %.02fs' % (time.time() - self.started)
+        except subprocess.TimeoutExpired:
+            # The child process is not killed if the timeout expires,
+            # so kill the child process and finish communication.
+            proc.kill()
+            proc.communicate()
+            vcc_output = 'VCC execution timeout: compilation took longer than 30 seconds'
 
         # Delete generated code file.
         if snippet:
             os.remove(file_path)
 
         self.output.run_command('append', {
-            'characters': self.format_output(vcc_output, file_path, snippet, code, generated_code, vars['file']),
+            'characters': vcc_output,
             'force': True,
             'scroll_to_end': True
         })
@@ -302,10 +316,6 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         TODO: fix splitting the whole path inside for loop.
         """
-        vcc_output = vcc_output.strip()
-        if not vcc_output:
-            return 'Successfully compiled in %.02fs' % (time.time() - self.started)
-
         parsed = []
         for line in vcc_output.split('\n'):
             match = re.match(r'^(.+?):(?:(\d+):(\d+(?:-\d+)?):)?\s+(.+?):\s+(.+)$', line)
