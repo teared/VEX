@@ -130,6 +130,10 @@
             "contents": "agentaddclip(${1:geohandle}, ${2:prim}, ${3:clipname}, ${4:clippath}, ${5:keepref})"
         },
         {
+            "trigger": "agentchannelcount(geometry, prim)",
+            "contents": "agentchannelcount(${1:geometry}, ${2:prim})"
+        },
+        {
             "trigger": "agentchannelnames(geometry, prim)",
             "contents": "agentchannelnames(${1:geometry}, ${2:prim})"
         },
@@ -210,8 +214,16 @@
             "contents": "agentcollisionlayer(${1:geometry}, ${2:prim})"
         },
         {
+            "trigger": "agentcollisionlayers(geometry, prim)",
+            "contents": "agentcollisionlayers(${1:geometry}, ${2:prim})"
+        },
+        {
             "trigger": "agentcurrentlayer(geometry, prim)",
             "contents": "agentcurrentlayer(${1:geometry}, ${2:prim})"
+        },
+        {
+            "trigger": "agentcurrentlayers(geometry, prim)",
+            "contents": "agentcurrentlayers(${1:geometry}, ${2:prim})"
         },
         {
             "trigger": "agentfindtransformgroup(geometry, prim, transformgroup)",
@@ -240,6 +252,10 @@
         {
             "trigger": "agentlocaltransforms(geometry, prim)",
             "contents": "agentlocaltransforms(${1:geometry}, ${2:prim})"
+        },
+        {
+            "trigger": "agentmetadata(geometry, prim)",
+            "contents": "agentmetadata(${1:geometry}, ${2:prim})"
         },
         {
             "trigger": "agentrigchildren(geometry, prim, transform)",
@@ -700,6 +716,10 @@
         {
             "trigger": "chi(channel, time)",
             "contents": "chi(${1:channel}, ${2:time})"
+        },
+        {
+            "trigger": "chiang(nn, tanV, R_v, R_s, TT_v, TT_s, TRT_v, TRT_s, shift, absorption_coeff, ior, ...)",
+            "contents": "chiang(${1:nn}, ${2:tanV}, ${3:R_v}, ${4:R_s}, ${5:TT_v}, ${6:TT_s}, ${7:TRT_v}, ${8:TRT_s}, ${9:shift}, ${10:absorption_coeff}, ${11:ior}, ${12:...})"
         },
         {
             "trigger": "chid(channel_path, op_id, parm_index, vector_index)",
@@ -1306,6 +1326,10 @@
             "contents": "decodeparm(${1:str})"
         },
         {
+            "trigger": "decodeutf8(str)",
+            "contents": "decodeutf8(${1:str})"
+        },
+        {
             "trigger": "degrees(num_in_rads)",
             "contents": "degrees(${1:num_in_rads})"
         },
@@ -1448,6 +1472,10 @@
         {
             "trigger": "encodeparm(str)",
             "contents": "encodeparm(${1:str})"
+        },
+        {
+            "trigger": "encodeutf8(codepoints)",
+            "contents": "encodeutf8(${1:codepoints})"
         },
         {
             "trigger": "endswith(haystack, needle)",
@@ -1856,6 +1884,14 @@
         {
             "trigger": "getcomp(array, index)",
             "contents": "getcomp(${1:array}, ${2:index})"
+        },
+        {
+            "trigger": "getcomp(array, i, j)",
+            "contents": "getcomp(${1:array}, ${2:i}, ${3:j})"
+        },
+        {
+            "trigger": "getcomp(array, i, j, k)",
+            "contents": "getcomp(${1:array}, ${2:i}, ${3:j}, ${4:k})"
         },
         {
             "trigger": "getcomp(d, index)",
@@ -2726,8 +2762,8 @@
             "contents": "metastart(${1:filename}, ${2:p})"
         },
         {
-            "trigger": "metaweight(filename, p)",
-            "contents": "metaweight(${1:filename}, ${2:p})"
+            "trigger": "metaweight(geometry, p)",
+            "contents": "metaweight(${1:geometry}, ${2:p})"
         },
         {
             "trigger": "min(value1, value2, ...)",
@@ -2820,6 +2856,14 @@
         {
             "trigger": "mwnoise(position, seed, f1, f2, f3, f4, periodx, periody, periodz, periodw)",
             "contents": "mwnoise(${1:position}, ${2:seed}, ${3:f1}, ${4:f2}, ${5:f3}, ${6:f4}, ${7:periodx}, ${8:periody}, ${9:periodz}, ${10:periodw})"
+        },
+        {
+            "trigger": "mx_cellnoise(pos)",
+            "contents": "mx_cellnoise(${1:pos})"
+        },
+        {
+            "trigger": "mx_perlin(pos)",
+            "contents": "mx_perlin(${1:pos})"
         },
         {
             "trigger": "nametopoint(geometry, name)",
@@ -4030,6 +4074,10 @@
             "contents": "ramp_lookup(${1:pos}, ${2:basis}, ${3:key}, ${4:val})"
         },
         {
+            "trigger": "ramp_pack(basis, pos, value)",
+            "contents": "ramp_pack(${1:basis}, ${2:pos}, ${3:value})"
+        },
+        {
             "trigger": "ramp_unpack(ramp, basis, pos, value)",
             "contents": "ramp_unpack(${1:ramp}, ${2:basis}, ${3:pos}, ${4:value})"
         },
@@ -4218,12 +4266,28 @@
             "contents": "reorder(${1:values}, ${2:indices})"
         },
         {
+            "trigger": "replace(str, old, new)",
+            "contents": "replace(${1:str}, ${2:old}, ${3:new})"
+        },
+        {
+            "trigger": "replace(str, old, new, count)",
+            "contents": "replace(${1:str}, ${2:old}, ${3:new}, ${4:count})"
+        },
+        {
+            "trigger": "replace_match(str, pattern_from, pattern_to)",
+            "contents": "replace_match(${1:str}, ${2:pattern_from}, ${3:pattern_to})"
+        },
+        {
             "trigger": "resample_linear(input, new_length)",
             "contents": "resample_linear(${1:input}, ${2:new_length})"
         },
         {
             "trigger": "resize(array, size)",
             "contents": "resize(${1:array}, ${2:size})"
+        },
+        {
+            "trigger": "resize(array, size, val)",
+            "contents": "resize(${1:array}, ${2:size}, ${3:val})"
         },
         {
             "trigger": "resolvemissedray(dir, time, mask, ...)",
@@ -4642,8 +4706,16 @@
             "contents": "setagentcollisionlayer(${1:geohandle}, ${2:prim}, ${3:layername})"
         },
         {
+            "trigger": "setagentcollisionlayers(geohandle, prim, layernames)",
+            "contents": "setagentcollisionlayers(${1:geohandle}, ${2:prim}, ${3:layernames})"
+        },
+        {
             "trigger": "setagentcurrentlayer(geohandle, prim, layername)",
             "contents": "setagentcurrentlayer(${1:geohandle}, ${2:prim}, ${3:layername})"
+        },
+        {
+            "trigger": "setagentcurrentlayers(geohandle, prim, layernames)",
+            "contents": "setagentcurrentlayers(${1:geohandle}, ${2:prim}, ${3:layernames})"
         },
         {
             "trigger": "setagentlocaltransform(geohandle, prim, transform, index)",
@@ -4680,6 +4752,14 @@
         {
             "trigger": "setcomp(array, value, index)",
             "contents": "setcomp(${1:array}, ${2:value}, ${3:index})"
+        },
+        {
+            "trigger": "setcomp(array, value, i, j)",
+            "contents": "setcomp(${1:array}, ${2:value}, ${3:i}, ${4:j})"
+        },
+        {
+            "trigger": "setcomp(array, value, i, j, k)",
+            "contents": "setcomp(${1:array}, ${2:value}, ${3:i}, ${4:j}, ${5:k})"
         },
         {
             "trigger": "setcomp(d, value, index)",
@@ -5422,6 +5502,22 @@
             "contents": "usd_findtransformname(${1:stage}, ${2:primpath}, ${3:suffix})"
         },
         {
+            "trigger": "usd_flattenediprimvar(stage, primpath, name)",
+            "contents": "usd_flattenediprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_flattenediprimvar(stage, primpath, name, timecode)",
+            "contents": "usd_flattenediprimvar(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_flattenediprimvarelement(stage, primpath, name, index)",
+            "contents": "usd_flattenediprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_flattenediprimvarelement(stage, primpath, name, index, timecode)",
+            "contents": "usd_flattenediprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index}, ${5:timecode})"
+        },
+        {
             "trigger": "usd_flattenedprimvar(stage, primpath, name)",
             "contents": "usd_flattenedprimvar(${1:stage}, ${2:primpath}, ${3:name})"
         },
@@ -5482,12 +5578,76 @@
             "contents": "usd_haspayload(${1:stage}, ${2:primpath})"
         },
         {
+            "trigger": "usd_iprimvar(stage, primpath, name)",
+            "contents": "usd_iprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvar(stage, primpath, name, timecode)",
+            "contents": "usd_iprimvar(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_iprimvarelement(stage, primpath, name, index)",
+            "contents": "usd_iprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index})"
+        },
+        {
+            "trigger": "usd_iprimvarelement(stage, primpath, name, index, timecode)",
+            "contents": "usd_iprimvarelement(${1:stage}, ${2:primpath}, ${3:name}, ${4:index}, ${5:timecode})"
+        },
+        {
+            "trigger": "usd_iprimvarelementsize(stage, primpath, name)",
+            "contents": "usd_iprimvarelementsize(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvarindices(stage, primpath, name)",
+            "contents": "usd_iprimvarindices(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvarindices(stage, primpath, name, timecode)",
+            "contents": "usd_iprimvarindices(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_iprimvarinterpolation(stage, primpath, name)",
+            "contents": "usd_iprimvarinterpolation(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvarlen(stage, primpath, name)",
+            "contents": "usd_iprimvarlen(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvarlen(stage, primpath, name, timecode)",
+            "contents": "usd_iprimvarlen(${1:stage}, ${2:primpath}, ${3:name}, ${4:timecode})"
+        },
+        {
+            "trigger": "usd_iprimvarnames(stage, primpath)",
+            "contents": "usd_iprimvarnames(${1:stage}, ${2:primpath})"
+        },
+        {
+            "trigger": "usd_iprimvarsize(stage, primpath, name)",
+            "contents": "usd_iprimvarsize(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvartimesamples(stage, primpath, name)",
+            "contents": "usd_iprimvartimesamples(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_iprimvartypename(stage, primpath, name)",
+            "contents": "usd_iprimvartypename(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isabstract(stage, primpath)",
+            "contents": "usd_isabstract(${1:stage}, ${2:primpath})"
+        },
+        {
             "trigger": "usd_isactive(stage, primpath)",
             "contents": "usd_isactive(${1:stage}, ${2:primpath})"
         },
         {
             "trigger": "usd_isarray(stage, primpath, name)",
             "contents": "usd_isarray(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_isarrayiprimvar(stage, primpath, name)",
+            "contents": "usd_isarrayiprimvar(${1:stage}, ${2:primpath}, ${3:name})"
         },
         {
             "trigger": "usd_isarraymetadata(stage, path, name)",
@@ -5510,6 +5670,10 @@
             "contents": "usd_iscollectionpath(${1:stage}, ${2:collectionpath})"
         },
         {
+            "trigger": "usd_isindexediprimvar(stage, primpath, name)",
+            "contents": "usd_isindexediprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
             "trigger": "usd_isindexedprimvar(stage, primpath, name)",
             "contents": "usd_isindexedprimvar(${1:stage}, ${2:primpath}, ${3:name})"
         },
@@ -5518,12 +5682,20 @@
             "contents": "usd_isinstance(${1:stage}, ${2:primpath})"
         },
         {
+            "trigger": "usd_isiprimvar(stage, primpath, name)",
+            "contents": "usd_isiprimvar(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
             "trigger": "usd_iskind(stage, primpath, kind)",
             "contents": "usd_iskind(${1:stage}, ${2:primpath}, ${3:kind})"
         },
         {
             "trigger": "usd_ismetadata(stage, path, name)",
             "contents": "usd_ismetadata(${1:stage}, ${2:path}, ${3:name})"
+        },
+        {
+            "trigger": "usd_ismodel(stage, primpath)",
+            "contents": "usd_ismodel(${1:stage}, ${2:primpath})"
         },
         {
             "trigger": "usd_isprim(stage, primpath)",
@@ -5806,8 +5978,16 @@
             "contents": "usd_setvariantselection(${1:stage}, ${2:primpath}, ${3:variantset}, ${4:variant})"
         },
         {
+            "trigger": "usd_setvisibility(stagehandle, primpath, code)",
+            "contents": "usd_setvisibility(${1:stagehandle}, ${2:primpath}, ${3:code})"
+        },
+        {
             "trigger": "usd_setvisible(stagehandle, primpath, flag)",
             "contents": "usd_setvisible(${1:stagehandle}, ${2:primpath}, ${3:flag})"
+        },
+        {
+            "trigger": "usd_specifier(stage, primpath)",
+            "contents": "usd_specifier(${1:stage}, ${2:primpath})"
         },
         {
             "trigger": "usd_transformname(transformtype, suffix)",
@@ -5982,6 +6162,54 @@
             "contents": "volume(${1:pos}, ${2:...})"
         },
         {
+            "trigger": "volumecubicsample(geometry, primnum, pos)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:primnum}, ${3:pos})"
+        },
+        {
+            "trigger": "volumecubicsample(geometry, volumename, pos)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:volumename}, ${3:pos})"
+        },
+        {
+            "trigger": "volumecubicsample(geometry, primnum, pos, grad)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumecubicsample(geometry, volumename, pos, grad)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumecubicsample(geometry, primnum, pos, grad, hess)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad}, ${5:hess})"
+        },
+        {
+            "trigger": "volumecubicsample(geometry, volumename, pos, grad, hess)",
+            "contents": "volumecubicsample(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad}, ${5:hess})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, primnum, pos)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:primnum}, ${3:pos})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, volumename, pos)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:volumename}, ${3:pos})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, primnum, pos, grad)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, volumename, pos, grad)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, primnum, pos, grad, hessX, hessY, hessZ)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad}, ${5:hessX}, ${6:hessY}, ${7:hessZ})"
+        },
+        {
+            "trigger": "volumecubicsamplev(geometry, volumename, pos, grad, hessX, hessY, hessZ)",
+            "contents": "volumecubicsamplev(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad}, ${5:hessX}, ${6:hessY}, ${7:hessZ})"
+        },
+        {
             "trigger": "volumegradient(geometry, primnum, pos)",
             "contents": "volumegradient(${1:geometry}, ${2:primnum}, ${3:pos})"
         },
@@ -6060,6 +6288,54 @@
         {
             "trigger": "volumesamplev(geometry, volumename, pos)",
             "contents": "volumesamplev(${1:geometry}, ${2:volumename}, ${3:pos})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, primnum, pos)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:primnum}, ${3:pos})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, volumename, pos)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:volumename}, ${3:pos})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, primnum, pos, grad)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, volumename, pos, grad)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, primnum, pos, grad, hess)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad}, ${5:hess})"
+        },
+        {
+            "trigger": "volumesmoothsample(geometry, volumename, pos, grad, hess)",
+            "contents": "volumesmoothsample(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad}, ${5:hess})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, primnum, pos)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:primnum}, ${3:pos})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, volumename, pos)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:volumename}, ${3:pos})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, primnum, pos, grad)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, volumename, pos, grad)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, primnum, pos, grad, hessX, hessY, hessZ)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:primnum}, ${3:pos}, ${4:grad}, ${5:hessX}, ${6:hessY}, ${7:hessZ})"
+        },
+        {
+            "trigger": "volumesmoothsamplev(geometry, volumename, pos, grad, hessX, hessY, hessZ)",
+            "contents": "volumesmoothsamplev(${1:geometry}, ${2:volumename}, ${3:pos}, ${4:grad}, ${5:hessX}, ${6:hessY}, ${7:hessZ})"
         },
         {
             "trigger": "volumevoxeldiameter(geometry, primnum)",

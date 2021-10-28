@@ -1,0 +1,66 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.7
+
+
+1. Updated for Houdini 19.0.
+
+    Note:
+    Houdini native VEX editor got some quality of life improvements as well!
+    Line numbers, font size zooming, better selection.
+
+2. Documentation popups changes:
+
+    Display version tag for the functions added in the last few versions of Houdini.
+    Provided by the documentation, so it is not always present.
+
+    Remove random & messy function tags.
+
+3. New VEX functions added:
+
+    agentchannelcount
+    agentcollisionlayers (deprecates agentcollisionlayer)
+    agentcurrentlayers (deprecates agentcurrentlayer)
+    agentmetadata
+    chiang
+    decodeutf8
+    encodeutf8
+    mx_cellnoise
+    mx_perlin
+    ramp_pack
+    replace
+    replace_match
+    setagentcollisionlayers (deprecates setagentcollisionlayer)
+    setagentcurrentlayers (deprecates setagentcurrentlayer)
+    usd_flattenediprimvar
+    usd_flattenediprimvarelement
+    usd_iprimvar
+    usd_iprimvarelement
+    usd_iprimvarelementsize
+    usd_iprimvarindices
+    usd_iprimvarinterpolation
+    usd_iprimvarlen
+    usd_iprimvarnames
+    usd_iprimvarsize
+    usd_iprimvartimesamples
+    usd_iprimvartypename
+    usd_isabstract
+    usd_isarrayiprimvar
+    usd_isindexediprimvar
+    usd_isiprimvar
+    usd_ismodel
+    usd_setvisibility
+    usd_specifier
+    volumecubicsample
+    volumecubicsamplev
+    volumesmoothsample
+    volumesmoothsamplev
+
+    Tip: to read about new functions quickly, copy the list in empty
+    Sublime Text document, set VEX syntax and check documentation helpcards.
+
+
+Open issues for bug reports, requests, suggestions, etc:
+    https://github.com/teared/VEX/issues
