@@ -25,10 +25,10 @@ Optional setup
         executable path.
 
         Example file location on Windows:
-            C:\Users\teared\Documents\houdini18.5\houdini.env
+            C:\Users\teared\Documents\houdini19.5\houdini.env
 
         Example line to add to houdini.env (use forward slashes):
-            EDITOR = "C:/Program Files/Sublime Text 3/sublime_text.exe"
+            EDITOR = "C:/Program Files/Sublime Text/sublime_text.exe"
 
         Place cursor in any parameter field and press "Alt+E",
         then place cursor inside the built-in editor
@@ -44,7 +44,7 @@ Optional setup
 
         3.  Change value of "executable" setting to existing VCC executable path.
             Example setting for Windows:
-            "executable": "C:\Program Files\Side Effects Software\Houdini 18.5.351\bin\vcc.exe",
+            "executable": "C:\Program Files\Side Effects Software\Houdini 19.5.303\bin\vcc.exe",
 
         4.  Save to "Packages/User/Any Name.sublime-build"
             To override default, save to "Packages/VEX/prefs/VEX Build.sublime-build"
@@ -81,12 +81,6 @@ Optional setup
             https://github.com/timonwong/SublimeAStyleFormatter
             https://gist.github.com/teared/cfcf27705954fcf741b7 (my settings)
 
-        Anaconda
-            Add-on that covers all Python scripting needs, including HOM scripting
-            for Houdini.
-
-            https://github.com/DamnWidget/anaconda
-
 
 Usage
 
@@ -107,7 +101,7 @@ Usage
 
     For the rest, check Sublime Text Documentation, it has many small features
     that make textual editing easy and powerful.
-        https://www.sublimetext.com/docs/3/
+        https://www.sublimetext.com/docs/
 
 
 Syntax Check

@@ -54,7 +54,7 @@ executable path.
 
 Example file location on Windows:
 
-    C:\Users\teared\Documents\houdini19.0\houdini.env
+    C:\Users\teared\Documents\houdini19.5\houdini.env
 
 Example line to add to houdini.env (use *forward* slashes):
 
@@ -75,7 +75,7 @@ and press `Alt+E` again to launch Sublime Text from Houdini.
 
    Example setting for Windows:
 
-       "executable": "C:\Program Files\Side Effects Software\Houdini 19.0.383\bin\vcc.exe",
+       "executable": "C:\Program Files\Side Effects Software\Houdini 19.5.303\bin\vcc.exe",
 
 4. Save to *[Data]*/Packages/User/`Any Name`.sublime-build
 
@@ -107,13 +107,10 @@ Some tools I use to work on Houdini projects using Sublime Text.
   Greatly affects default Markdown syntax highlighting.
 * [SublimeAStyleFormatter] — format messy code for easier reading.
   [My settings].
-* [Anaconda] — add-on that covers all Python scripting needs, including HOM
-  scripting for Houdini.
 
 [Monolit]: https://gist.github.com/teared/88146c0b021363e0e0c07a897c41cdaf
 [SublimeAStyleFormatter]: https://github.com/timonwong/SublimeAStyleFormatter
 [My settings]: https://gist.github.com/teared/cfcf27705954fcf741b7
-[Anaconda]: https://github.com/DamnWidget/anaconda
 
 
 ## Usage
@@ -138,7 +135,7 @@ Shortcut: `Ctrl+Alt+D`.
 For the rest, check [Sublime Text Documentation], it has many small features
 that make textual editing easy and powerful.
 
-[Sublime Text Documentation]: https://www.sublimetext.com/docs/3/
+[Sublime Text Documentation]: https://www.sublimetext.com/docs/
 
 
 ### Syntax Check

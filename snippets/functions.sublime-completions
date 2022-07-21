@@ -70,6 +70,10 @@
             "contents": "addprim(${1:geohandle}, ${2:type}, ${3:pt0}, ${4:pt1}, ${5:pt2}, ${6:pt3})"
         },
         {
+            "trigger": "addprim(geohandle, type, pt0, pt1, pt2, pt3, pt4, pt5, pt6, pt7)",
+            "contents": "addprim(${1:geohandle}, ${2:type}, ${3:pt0}, ${4:pt1}, ${5:pt2}, ${6:pt3}, ${7:pt4}, ${8:pt5}, ${9:pt6}, ${10:pt7})"
+        },
+        {
             "trigger": "addprim(geohandle, type, points)",
             "contents": "addprim(${1:geohandle}, ${2:type}, ${3:points})"
         },
@@ -88,6 +92,10 @@
         {
             "trigger": "addprim(prim_num, geohandle, type, pt0, pt1, pt2, pt3, vertices)",
             "contents": "addprim(${1:prim_num}, ${2:geohandle}, ${3:type}, ${4:pt0}, ${5:pt1}, ${6:pt2}, ${7:pt3}, ${8:vertices})"
+        },
+        {
+            "trigger": "addprim(prim_num, geohandle, type, pt0, pt1, pt2, pt3, pt4, pt5, pt6, pt7, vertices)",
+            "contents": "addprim(${1:prim_num}, ${2:geohandle}, ${3:type}, ${4:pt0}, ${5:pt1}, ${6:pt2}, ${7:pt3}, ${8:pt4}, ${9:pt5}, ${10:pt6}, ${11:pt7}, ${12:vertices})"
         },
         {
             "trigger": "addprim(prim_num, geohandle, type, points, vertices)",
@@ -154,12 +162,28 @@
             "contents": "agentclipchannel(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:channel})"
         },
         {
+            "trigger": "agentclipchannel(geometry, prim, clipindex, channel)",
+            "contents": "agentclipchannel(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:channel})"
+        },
+        {
             "trigger": "agentclipchannelnames(geometry, prim, clipname)",
             "contents": "agentclipchannelnames(${1:geometry}, ${2:prim}, ${3:clipname})"
         },
         {
+            "trigger": "agentclipchannelnames(geometry, prim, clipindex)",
+            "contents": "agentclipchannelnames(${1:geometry}, ${2:prim}, ${3:clipindex})"
+        },
+        {
+            "trigger": "agentcliplayerblend(values, value_weights, value_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayerblend(${1:values}, ${2:value_weights}, ${3:value_layer_ids}, ${4:layer_blend_modes}, ${5:layer_weights}, ${6:layer_parent_ids})"
+        },
+        {
             "trigger": "agentcliplength(geometry, prim, clipname)",
             "contents": "agentcliplength(${1:geometry}, ${2:prim}, ${3:clipname})"
+        },
+        {
+            "trigger": "agentcliplength(geometry, prim, clipindex)",
+            "contents": "agentcliplength(${1:geometry}, ${2:prim}, ${3:clipindex})"
         },
         {
             "trigger": "agentclipnames(geometry, prim)",
@@ -174,28 +198,60 @@
             "contents": "agentclipsample(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:channel})"
         },
         {
+            "trigger": "agentclipsample(geometry, prim, clipindex, time, channel_index)",
+            "contents": "agentclipsample(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time}, ${5:channel_index})"
+        },
+        {
+            "trigger": "agentclipsample(geometry, prim, clipindex, time, channel)",
+            "contents": "agentclipsample(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time}, ${5:channel})"
+        },
+        {
             "trigger": "agentclipsamplelocal(geometry, prim, clipname, time)",
             "contents": "agentclipsamplelocal(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time})"
+        },
+        {
+            "trigger": "agentclipsamplelocal(geometry, prim, clipindex, time)",
+            "contents": "agentclipsamplelocal(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time})"
         },
         {
             "trigger": "agentclipsamplelocal(geometry, prim, clipname, time, transform)",
             "contents": "agentclipsamplelocal(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:transform})"
         },
         {
+            "trigger": "agentclipsamplelocal(geometry, prim, clipindex, time, transform)",
+            "contents": "agentclipsamplelocal(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time}, ${5:transform})"
+        },
+        {
             "trigger": "agentclipsamplerate(geometry, prim, clipname)",
             "contents": "agentclipsamplerate(${1:geometry}, ${2:prim}, ${3:clipname})"
+        },
+        {
+            "trigger": "agentclipsamplerate(geometry, prim, clipindex)",
+            "contents": "agentclipsamplerate(${1:geometry}, ${2:prim}, ${3:clipindex})"
         },
         {
             "trigger": "agentclipsampleworld(geometry, prim, clipname, time)",
             "contents": "agentclipsampleworld(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time})"
         },
         {
+            "trigger": "agentclipsampleworld(geometry, prim, clipindex, time)",
+            "contents": "agentclipsampleworld(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time})"
+        },
+        {
             "trigger": "agentclipsampleworld(geometry, prim, clipname, time, transform)",
             "contents": "agentclipsampleworld(${1:geometry}, ${2:prim}, ${3:clipname}, ${4:time}, ${5:transform})"
         },
         {
+            "trigger": "agentclipsampleworld(geometry, prim, clipindex, time, transform)",
+            "contents": "agentclipsampleworld(${1:geometry}, ${2:prim}, ${3:clipindex}, ${4:time}, ${5:transform})"
+        },
+        {
             "trigger": "agentclipstarttime(geometry, prim, clipname)",
             "contents": "agentclipstarttime(${1:geometry}, ${2:prim}, ${3:clipname})"
+        },
+        {
+            "trigger": "agentclipstarttime(geometry, prim, clipindex)",
+            "contents": "agentclipstarttime(${1:geometry}, ${2:prim}, ${3:clipindex})"
         },
         {
             "trigger": "agentcliptimes(geometry, prim)",
@@ -226,12 +282,24 @@
             "contents": "agentcurrentlayers(${1:geometry}, ${2:prim})"
         },
         {
+            "trigger": "agentfindclip(geometry, prim, clipname)",
+            "contents": "agentfindclip(${1:geometry}, ${2:prim}, ${3:clipname})"
+        },
+        {
+            "trigger": "agentfindlayer(geometry, prim, layername)",
+            "contents": "agentfindlayer(${1:geometry}, ${2:prim}, ${3:layername})"
+        },
+        {
             "trigger": "agentfindtransformgroup(geometry, prim, transformgroup)",
             "contents": "agentfindtransformgroup(${1:geometry}, ${2:prim}, ${3:transformgroup})"
         },
         {
             "trigger": "agentlayerbindings(geometry, prim, layername, shapetype)",
             "contents": "agentlayerbindings(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapetype})"
+        },
+        {
+            "trigger": "agentlayerbindings(geometry, prim, layerindex, shapetype)",
+            "contents": "agentlayerbindings(${1:geometry}, ${2:prim}, ${3:layerindex}, ${4:shapetype})"
         },
         {
             "trigger": "agentlayers(geometry, prim)",
@@ -242,8 +310,16 @@
             "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layername}, ${4:shapetype})"
         },
         {
+            "trigger": "agentlayershapes(geometry, prim, layerindex, shapetype)",
+            "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layerindex}, ${4:shapetype})"
+        },
+        {
             "trigger": "agentlayershapes(geometry, prim, layername, transform)",
             "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layername}, ${4:transform})"
+        },
+        {
+            "trigger": "agentlayershapes(geometry, prim, layerindex, transform)",
+            "contents": "agentlayershapes(${1:geometry}, ${2:prim}, ${3:layerindex}, ${4:transform})"
         },
         {
             "trigger": "agentlocaltransform(geometry, prim, transform)",
@@ -256,6 +332,14 @@
         {
             "trigger": "agentmetadata(geometry, prim)",
             "contents": "agentmetadata(${1:geometry}, ${2:prim})"
+        },
+        {
+            "trigger": "agentrestlocaltransform(geometry, prim, transform)",
+            "contents": "agentrestlocaltransform(${1:geometry}, ${2:prim}, ${3:transform})"
+        },
+        {
+            "trigger": "agentrestworldtransform(geometry, prim, transform)",
+            "contents": "agentrestworldtransform(${1:geometry}, ${2:prim}, ${3:transform})"
         },
         {
             "trigger": "agentrigchildren(geometry, prim, transform)",
@@ -1206,6 +1290,30 @@
             "contents": "ctransform(${1:tospace}, ${2:clr})"
         },
         {
+            "trigger": "curlgxnoise(xyz)",
+            "contents": "curlgxnoise(${1:xyz})"
+        },
+        {
+            "trigger": "curlgxnoise(xyzt)",
+            "contents": "curlgxnoise(${1:xyzt})"
+        },
+        {
+            "trigger": "curlgxnoise2d(xy)",
+            "contents": "curlgxnoise2d(${1:xy})"
+        },
+        {
+            "trigger": "curlgxnoise2d(x, y)",
+            "contents": "curlgxnoise2d(${1:x}, ${2:y})"
+        },
+        {
+            "trigger": "curlgxnoise2d(xyz)",
+            "contents": "curlgxnoise2d(${1:xyz})"
+        },
+        {
+            "trigger": "curlgxnoise2d(xyzt)",
+            "contents": "curlgxnoise2d(${1:xyzt})"
+        },
+        {
             "trigger": "curlnoise(xyz)",
             "contents": "curlnoise(${1:xyz})"
         },
@@ -2082,6 +2190,22 @@
             "contents": "gradient(${1:P}, ${2:val}, ${3:...})"
         },
         {
+            "trigger": "gxnoise(xy)",
+            "contents": "gxnoise(${1:xy})"
+        },
+        {
+            "trigger": "gxnoise(x, y)",
+            "contents": "gxnoise(${1:x}, ${2:y})"
+        },
+        {
+            "trigger": "gxnoise(xyz)",
+            "contents": "gxnoise(${1:xyz})"
+        },
+        {
+            "trigger": "gxnoise(xyzt)",
+            "contents": "gxnoise(${1:xyzt})"
+        },
+        {
             "trigger": "hair(N, tip, lobe_shift, lobe_width_lon, ...)",
             "contents": "hair(${1:N}, ${2:tip}, ${3:lobe_shift}, ${4:lobe_width_lon}, ${5:...})"
         },
@@ -2204,6 +2328,14 @@
         {
             "trigger": "henyeygreenstein(anisotropic_bias, ...)",
             "contents": "henyeygreenstein(${1:anisotropic_bias}, ${2:...})"
+        },
+        {
+            "trigger": "hex_adjacent(geometry, primindex, faceno)",
+            "contents": "hex_adjacent(${1:geometry}, ${2:primindex}, ${3:faceno})"
+        },
+        {
+            "trigger": "hex_faceindex(faceno, vtxno)",
+            "contents": "hex_faceindex(${1:faceno}, ${2:vtxno})"
         },
         {
             "trigger": "hscript_noise(pos)",
@@ -2686,6 +2818,14 @@
             "contents": "maketransform(${1:trs}, ${2:xyz}, ${3:t}, ${4:r}, ${5:s}, ${6:p}, ${7:pr}, ${8:shears})"
         },
         {
+            "trigger": "makevalidvarname(name)",
+            "contents": "makevalidvarname(${1:name})"
+        },
+        {
+            "trigger": "makevalidvarname(name, safe_chars)",
+            "contents": "makevalidvarname(${1:name}, ${2:safe_chars})"
+        },
+        {
             "trigger": "maskname()",
             "contents": "maskname()"
         },
@@ -2864,6 +3004,22 @@
         {
             "trigger": "mx_perlin(pos)",
             "contents": "mx_perlin(${1:pos})"
+        },
+        {
+            "trigger": "mx_voronoi(position, jitter, metric, d1, d2, d3, p1, p2, p3)",
+            "contents": "mx_voronoi(${1:position}, ${2:jitter}, ${3:metric}, ${4:d1}, ${5:d2}, ${6:d3}, ${7:p1}, ${8:p2}, ${9:p3})"
+        },
+        {
+            "trigger": "mx_voronoi(position, jitter, metric, d1, d2, p1, p2)",
+            "contents": "mx_voronoi(${1:position}, ${2:jitter}, ${3:metric}, ${4:d1}, ${5:d2}, ${6:p1}, ${7:p2})"
+        },
+        {
+            "trigger": "mx_voronoi(position, jitter, metric, d1, p1)",
+            "contents": "mx_voronoi(${1:position}, ${2:jitter}, ${3:metric}, ${4:d1}, ${5:p1})"
+        },
+        {
+            "trigger": "mx_worley(pos, jitter, metric)",
+            "contents": "mx_worley(${1:pos}, ${2:jitter}, ${3:metric})"
         },
         {
             "trigger": "nametopoint(geometry, name)",
@@ -3742,8 +3898,16 @@
             "contents": "pointtransforms(${1:geometry}, ${2:pnts})"
         },
         {
+            "trigger": "pointtransforms(geometry)",
+            "contents": "pointtransforms(${1:geometry})"
+        },
+        {
             "trigger": "pointtransformsrigid(geometry, pnts)",
             "contents": "pointtransformsrigid(${1:geometry}, ${2:pnts})"
+        },
+        {
+            "trigger": "pointtransformsrigid(geometry)",
+            "contents": "pointtransformsrigid(${1:geometry})"
         },
         {
             "trigger": "pointvertex(geometry, point_num)",
@@ -3876,6 +4040,10 @@
         {
             "trigger": "primhedge(geometry, prim)",
             "contents": "primhedge(${1:geometry}, ${2:prim})"
+        },
+        {
+            "trigger": "priminteriorweights(geometry, prim_num, uvw, verts, weights)",
+            "contents": "priminteriorweights(${1:geometry}, ${2:prim_num}, ${3:uvw}, ${4:verts}, ${5:weights})"
         },
         {
             "trigger": "primintrinsic(geometry, intrinsic_name, prim_num)",
@@ -4222,6 +4390,14 @@
             "contents": "relpointbbox(${1:geometry}, ${2:pointgroup}, ${3:position})"
         },
         {
+            "trigger": "removeattrib(geohandle, attribclass, name)",
+            "contents": "removeattrib(${1:geohandle}, ${2:attribclass}, ${3:name})"
+        },
+        {
+            "trigger": "removedetailattrib(geohandle, name)",
+            "contents": "removedetailattrib(${1:geohandle}, ${2:name})"
+        },
+        {
             "trigger": "removeindex(array, index)",
             "contents": "removeindex(${1:array}, ${2:index})"
         },
@@ -4238,8 +4414,24 @@
             "contents": "removepoint(${1:geohandle}, ${2:point_number}, ${3:and_prims})"
         },
         {
+            "trigger": "removepointattrib(geohandle, name)",
+            "contents": "removepointattrib(${1:geohandle}, ${2:name})"
+        },
+        {
+            "trigger": "removepointgroup(geohandle, name)",
+            "contents": "removepointgroup(${1:geohandle}, ${2:name})"
+        },
+        {
             "trigger": "removeprim(geohandle, prim_number, andpoints)",
             "contents": "removeprim(${1:geohandle}, ${2:prim_number}, ${3:andpoints})"
+        },
+        {
+            "trigger": "removeprimattrib(geohandle, name)",
+            "contents": "removeprimattrib(${1:geohandle}, ${2:name})"
+        },
+        {
+            "trigger": "removeprimgroup(geohandle, name)",
+            "contents": "removeprimgroup(${1:geohandle}, ${2:name})"
         },
         {
             "trigger": "removevalue(array, value)",
@@ -4248,6 +4440,14 @@
         {
             "trigger": "removevertex(geohandle, linear_vertex_index)",
             "contents": "removevertex(${1:geohandle}, ${2:linear_vertex_index})"
+        },
+        {
+            "trigger": "removevertexattrib(geohandle, name)",
+            "contents": "removevertexattrib(${1:geohandle}, ${2:name})"
+        },
+        {
+            "trigger": "removevertexgroup(geohandle, name)",
+            "contents": "removevertexgroup(${1:geohandle}, ${2:name})"
         },
         {
             "trigger": "renderstate(query, value)",
@@ -4694,6 +4894,10 @@
             "contents": "setagentclips(${1:geohandle}, ${2:prim}, ${3:clip_names}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_groups}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})"
         },
         {
+            "trigger": "setagentclips(geohandle, prim, clip_ids, clip_times, clip_weights, clip_transform_group_ids, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "setagentclips(${1:geohandle}, ${2:prim}, ${3:clip_ids}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_group_ids}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})"
+        },
+        {
             "trigger": "setagentcliptimes(geohandle, prim, cliptimes)",
             "contents": "setagentcliptimes(${1:geohandle}, ${2:prim}, ${3:cliptimes})"
         },
@@ -4710,12 +4914,20 @@
             "contents": "setagentcollisionlayers(${1:geohandle}, ${2:prim}, ${3:layernames})"
         },
         {
+            "trigger": "setagentcollisionlayers(geohandle, prim, layer_ids)",
+            "contents": "setagentcollisionlayers(${1:geohandle}, ${2:prim}, ${3:layer_ids})"
+        },
+        {
             "trigger": "setagentcurrentlayer(geohandle, prim, layername)",
             "contents": "setagentcurrentlayer(${1:geohandle}, ${2:prim}, ${3:layername})"
         },
         {
             "trigger": "setagentcurrentlayers(geohandle, prim, layernames)",
             "contents": "setagentcurrentlayers(${1:geohandle}, ${2:prim}, ${3:layernames})"
+        },
+        {
+            "trigger": "setagentcurrentlayers(geohandle, prim, layer_ids)",
+            "contents": "setagentcurrentlayers(${1:geohandle}, ${2:prim}, ${3:layer_ids})"
         },
         {
             "trigger": "setagentlocaltransform(geohandle, prim, transform, index)",
@@ -4794,24 +5006,24 @@
             "contents": "setpointgroup(${1:geohandle}, ${2:name}, ${3:point_num}, ${4:value}, ${5:mode})"
         },
         {
-            "trigger": "setpointlocaltransforms(geometry, pnts, transforms)",
-            "contents": "setpointlocaltransforms(${1:geometry}, ${2:pnts}, ${3:transforms})"
+            "trigger": "setpointlocaltransforms(geohandle, pnts, transforms)",
+            "contents": "setpointlocaltransforms(${1:geohandle}, ${2:pnts}, ${3:transforms})"
         },
         {
-            "trigger": "setpointtransform(geometry, pt, transform)",
-            "contents": "setpointtransform(${1:geometry}, ${2:pt}, ${3:transform})"
+            "trigger": "setpointtransform(geohandle, pt, transform)",
+            "contents": "setpointtransform(${1:geohandle}, ${2:pt}, ${3:transform})"
         },
         {
-            "trigger": "setpointtransform(geometry, pt, transform, constrain)",
-            "contents": "setpointtransform(${1:geometry}, ${2:pt}, ${3:transform}, ${4:constrain})"
+            "trigger": "setpointtransform(geohandle, pt, transform, constrain)",
+            "contents": "setpointtransform(${1:geohandle}, ${2:pt}, ${3:transform}, ${4:constrain})"
         },
         {
-            "trigger": "setpointtransforms(geometry, pnts, transforms)",
-            "contents": "setpointtransforms(${1:geometry}, ${2:pnts}, ${3:transforms})"
+            "trigger": "setpointtransforms(geohandle, pnts, transforms)",
+            "contents": "setpointtransforms(${1:geohandle}, ${2:pnts}, ${3:transforms})"
         },
         {
-            "trigger": "setpointtransforms(geometry, pnts, transforms, constrain)",
-            "contents": "setpointtransforms(${1:geometry}, ${2:pnts}, ${3:transforms}, ${4:constrain})"
+            "trigger": "setpointtransforms(geohandle, pnts, transforms, constrain)",
+            "contents": "setpointtransforms(${1:geohandle}, ${2:pnts}, ${3:transforms}, ${4:constrain})"
         },
         {
             "trigger": "setprimattrib(geohandle, name, prim_num, value, mode)",
@@ -5466,6 +5678,10 @@
             "contents": "usd_boundmaterialpath(${1:stage}, ${2:primpath})"
         },
         {
+            "trigger": "usd_childnames(stage, primpath)",
+            "contents": "usd_childnames(${1:stage}, ${2:primpath})"
+        },
+        {
             "trigger": "usd_clearmetadata(stagehandle, path, name)",
             "contents": "usd_clearmetadata(${1:stagehandle}, ${2:path}, ${3:name})"
         },
@@ -5756,6 +5972,14 @@
         {
             "trigger": "usd_makerelationshippath(stage, primpath, name)",
             "contents": "usd_makerelationshippath(${1:stage}, ${2:primpath}, ${3:name})"
+        },
+        {
+            "trigger": "usd_makevalidprimname(name)",
+            "contents": "usd_makevalidprimname(${1:name})"
+        },
+        {
+            "trigger": "usd_makevalidprimpath(path, allow_relative)",
+            "contents": "usd_makevalidprimpath(${1:path}, ${2:allow_relative})"
         },
         {
             "trigger": "usd_metadata(stage, path, name)",
@@ -6104,6 +6328,10 @@
         {
             "trigger": "vertexattribtypeinfo(geometry, attribute_name)",
             "contents": "vertexattribtypeinfo(${1:geometry}, ${2:attribute_name})"
+        },
+        {
+            "trigger": "vertexcurveparam(geometry, linearindex)",
+            "contents": "vertexcurveparam(${1:geometry}, ${2:linearindex})"
         },
         {
             "trigger": "vertexhedge(geometry, vertex)",

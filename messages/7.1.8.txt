@@ -1,0 +1,45 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.1.8
+
+
+1. Updated for Houdini 19.5.
+
+2. New VEX functions added:
+
+    agentcliplayerblend
+    agentfindclip
+    agentfindlayer
+    agentrestlocaltransform
+    agentrestworldtransform
+    curlgxnoise
+    curlgxnoise2d
+    gxnoise
+    hex_adjacent
+    hex_faceindex
+    makevalidvarname
+    mx_voronoi
+    mx_worley
+    priminteriorweights
+    removeattrib
+    removedetailattrib
+    removepointattrib
+    removepointgroup
+    removeprimattrib
+    removeprimgroup
+    removevertexattrib
+    removevertexgroup
+    usd_childnames
+    usd_makevalidprimname
+    usd_makevalidprimpath
+    vertexcurveparam
+
+    Tip: to read about new functions quickly,
+    copy the list into an empty Sublime Text document,
+    set the VEX syntax, and check the documentation helpcards.
+
+
+Open issues for bug reports, requests, suggestions, etc:
+    https://github.com/teared/VEX/issues
