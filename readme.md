@@ -54,7 +54,7 @@ executable path.
 
 Example file location on Windows:
 
-    C:\Users\teared\Documents\houdini19.5\houdini.env
+    C:\Users\teared\Documents\houdini20.0\houdini.env
 
 Example line to add to houdini.env (use *forward* slashes):
 
@@ -75,7 +75,7 @@ and press `Alt+E` again to launch Sublime Text from Houdini.
 
    Example setting for Windows:
 
-       "executable": "C:\Program Files\Side Effects Software\Houdini 19.5.303\bin\vcc.exe",
+       "executable": "C:\Program Files\Side Effects Software\Houdini 20.0.506\bin\vcc.exe",
 
 4. Save to *[Data]*/Packages/User/`Any Name`.sublime-build
 

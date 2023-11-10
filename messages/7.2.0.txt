@@ -1,0 +1,76 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.2.0
+
+
+1. Updated for Houdini 20.0.
+    https://www.sidefx.com/docs/houdini/news/20/vex.html
+
+2. Show short function description in completions window.
+
+3. New VEX functions added:
+
+    chiang_fur
+    gxnoised
+    integratehoseksky
+    slerpv
+    typeid
+    windingnumber
+    windingnumber2d
+
+    diag
+    norm_1
+    norm_fro
+    norm_inf
+    norm_max
+    pinvert
+    tr
+
+    weightarrayblend
+    weightarrayfromname
+    weightarraynormalize
+    weightarraythreshold
+
+    volumeindexi
+    volumeindexp
+    volumeindexu
+    volumesamplei
+    volumesamplep
+    volumesampleu
+    volumetypeid
+
+    distance_pointline
+    distance_pointray
+    distance_pointsegment
+
+    chprim_clear
+    chprim_destroykey
+    chprim_end
+    chprim_eval
+    chprim_insertkey
+    chprim_keycount
+    chprim_keytimes
+    chprim_keyvalues
+    chprim_length
+    chprim_setkeyaccel
+    chprim_setkeyslope
+    chprim_setkeyvalue
+    chprim_start
+
+    ocio_parsecolorspace
+    ocio_transformview
+
+    usd_addschemaattrib
+    usd_applyapi
+
+    Tip: to read about new functions quickly,
+    copy the list into an empty Sublime Text document,
+    set the VEX syntax, and check the documentation helpcards (Ctrl+Alt+D).
+
+4. Fixed broken documentation links for functions in helpcards.
+
+
+Open issues for bug reports, requests, suggestions, etc:
+    https://github.com/teared/VEX/issues

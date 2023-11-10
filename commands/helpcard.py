@@ -35,9 +35,9 @@ class VexHelpcardCommand(sublime_plugin.TextCommand):
                 No popup help available for "{term}".
                 </p>
                 <p>Search online:
-                    <a href="https://cse.google.com/cse?cx=001106583893786776783%3A4dnyszriw9c&q={term}">Docs</a> |
-                    <a href="https://encrypted.google.com/search?&q=site%3Asidefx.com+OR+site%3Aodforce.net+{term}">Community</a> |
-                    <a href="https://encrypted.google.com/search?&q={term}">Internet</a>
+                    <a href="https://cse.google.com/cse?cx=001106583893786776783%3A4dnyszriw9c&amp;q={term}">Docs</a> |
+                    <a href="https://encrypted.google.com/search?&amp;q=site%3Asidefx.com+OR+site%3Aodforce.net+{term}">Community</a> |
+                    <a href="https://encrypted.google.com/search?&amp;q={term}">Internet</a>
                 </p>
             </body>
             '''.format(term=word, style=self.css)
