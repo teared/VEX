@@ -182,7 +182,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
         window = self.window
         view = window.active_view()
         code = view.substr(sublime.Region(0, view.size()))
-        vars = window.extract_variables()
+        variables = window.extract_variables()
 
         # Create and show output panel.
         self.output = window.create_output_panel('exec')
@@ -194,7 +194,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
         settings.set('line_numbers', False)
         settings.set('gutter', False)
         settings.set('scroll_past_end', False)
-        settings.set('result_base_dir', vars['file_path'])
+        settings.set('result_base_dir', variables['file_path'])
         self.output.assign_syntax('Packages/VEX/syntax/VEX Build.sublime-syntax')
 
         # Respect generic user preference about build window.
@@ -202,15 +202,15 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             window.run_command('show_panel', {'panel': 'output.exec'})
 
         # Run VCC in other thread.
-        args = (executable, context, compile_all, include_dirs, vex_output, snippet, code, vars)
+        args = (executable, context, compile_all, include_dirs, vex_output, snippet, code, variables)
         threading.Thread(target=self.worker, args=args).start()
 
-    def worker(self, executable, context, compile_all, include_dirs, vex_output, snippet, code, vars):
+    def worker(self, executable, context, compile_all, include_dirs, vex_output, snippet, code, variables):
         self.started = time.time()  # Track running VCC instances.
         sublime.status_message('Compiling VEX...')
 
         # Call VCC and check output.
-        cmd = [sublime.expand_variables(op.normpath(executable), vars)]
+        cmd = [sublime.expand_variables(op.normpath(executable), variables)]
 
         if compile_all:
             cmd.append('--compile-all')
@@ -220,10 +220,10 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         if include_dirs:
             for include_dir in include_dirs:
-                cmd.extend(['--include-dir', op.normpath(sublime.expand_variables(include_dir, vars))])
+                cmd.extend(['--include-dir', op.normpath(sublime.expand_variables(include_dir, variables))])
 
         if vex_output and vex_output != 'stdout':
-            cmd.extend(['--vex-output', op.normpath(sublime.expand_variables(vex_output, vars))])
+            cmd.extend(['--vex-output', op.normpath(sublime.expand_variables(vex_output, variables))])
         else:
             cmd.extend(['--vex-output', 'stdout'])
 
@@ -242,7 +242,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
                 f.write(generated_code)
         else:
             code, generated_code = '', ''
-            file_path = vars['file']
+            file_path = variables['file']
         cmd.append(file_path)
 
         # Avoid console window flashing on Windows.
@@ -256,8 +256,8 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
             vcc_output = vcc_output.strip()
             if vcc_output:
                 try:
-                    vcc_output = self.format_output(vcc_output, file_path, snippet, code, generated_code, vars['file'])
-                except: # Catch any errors during formatting.
+                    vcc_output = self.format_output(vcc_output, file_path, snippet, code, generated_code, variables['file'])
+                except:  # Catch any errors during formatting.
                     vcc_output = "Add-on error: can't parse VCC output for this input"
             else:
                 vcc_output = 'Successfully compiled in %.02fs' % (time.time() - self.started)
