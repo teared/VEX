@@ -114,6 +114,8 @@ def snippet_to_vex(source):
                         prefix = common[name_noinput]
                     elif name.startswith('group_'):
                         prefix = 'i'
+                    elif name.startswith('OpInput'):
+                        prefix = 's'
                     else:
                         prefix = 'f'
 
