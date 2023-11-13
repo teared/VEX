@@ -91,16 +91,19 @@ def snippet_to_vex(source):
             '2': 'matrix2', '3': 'matrix3', '4': 'matrix', 'i': 'int',
             's': 'string'
         }
-        common = {
-            'accel': 'v', 'Cd': 'v', 'center': 'v', 'dPdx': 'v', 'dPdy': 'v',
-            'dPdz': 'v', 'force': 'v', 'N': 'v', 'P': 'v', 'rest': 'v',
-            'scale': 'v', 'torque': 'v', 'up': 'v', 'uv': 'v', 'v': 'v',
-            'backtrack': 'p', 'orient': 'p', 'rot': 'p', 'id': 'i', 'ix': 'i',
-            'iy': 'i', 'iz': 'i', 'nextid': 'i', 'numprim': 'i', 'numpt': 'i',
-            'numvtx': 'i', 'primnum': 'i', 'pstate': 'i', 'ptnum': 'i',
-            'resx': 'i', 'resy': 'i', 'resz': 'i', 'vtxnum': 'i',
-            'instance': 's', 'name': 's'
-        }
+
+        # https://www.sidefx.com/docs/houdini/vex/snippets.html#known
+        known_vector = 'P accel Cd N scale force rest torque up uv v center dPdx dPdy dPdz'.split()
+        known_vector4 = 'backtrack orient rot'.split()
+        known_int = 'id nextid pstate elemnum ptnum primnum vtxnum numelem numpt numprim numvtx ix iy iz resx resy resz'.split()
+        known_string = 'name instance'.split()
+
+        common = {}
+        common.update({attr: 'v' for attr in known_vector})
+        common.update({attr: 'p' for attr in known_vector4})
+        common.update({attr: 'i' for attr in known_int})
+        common.update({attr: 's' for attr in known_string})
+
         for type_, name in bindings:
             if name not in bound:
                 prefix = type_.strip('[]')
