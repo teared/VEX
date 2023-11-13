@@ -304,12 +304,15 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
                     re.split(r'(\b_bound_)', genline))
         c1 = 0
         c2 = cols[0]
-        for p1, p2 in parts:
-            c1 += len(p1)
-            c2 -= len(p2)
+        for srcpart, genpart in parts:
+            c1 += len(srcpart)
+            c2 -= len(genpart)
             if c2 <= 0:
                 start = c1 + c2
                 length = (cols[-1] - cols[0])
+                if genpart.startswith('_bound_'):
+                    start += 6
+                    length -= 6
                 end = start + length
                 return [start, end] if start != end else [start]
         else:
