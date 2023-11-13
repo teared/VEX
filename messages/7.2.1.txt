@@ -1,0 +1,25 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.2.1
+
+This patch release is a follow up to the Houdini 20.0 Update released a few days ago:
+    https://github.com/teared/VEX/releases/tag/7.2.0
+
+It improves functionality and fixes problems in VEX snippets.
+
+1. Added #include <math.h> in snippets.
+    Houdini has been doing this for a while under the hood.
+    In other words, snippets using PI will compile.
+
+2. Dictionary attributes supported: d@something.
+
+3. All automatically cast attributes supported.
+    Namely, added @elemnum, @numelem, @OpInput[1-4] to the support list.
+
+4. Fixed wrong column numbers for bound attribute names in VEX compile errors.
+
+
+Open issues for bug reports, requests, suggestions, etc:
+    https://github.com/teared/VEX/issues
