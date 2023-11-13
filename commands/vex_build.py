@@ -129,7 +129,7 @@ def snippet_to_vex(source):
     # Collect everything into same string.
     args = '; '.join(args)
     source = ''.join(pieces)
-    source = 'void vcc_build_from_sublime_text(%s)\n{\n%s\n}\n' % (args, source)
+    source = '#include <math.h>\nvoid vcc_build_from_sublime_text(%s)\n{\n%s\n}\n' % (args, source)
     source = source.replace('@', '_bound_')
 
     return source
@@ -349,9 +349,9 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
                 if snippet and path == file_path:
                     # Fix row and columns numbers.
-                    row = row - 2
+                    row = row - 3
                     srcline = srclines[min(row - 1, len(srclines) - 1)]  # Temp fix for Index errors.
-                    cols = self.match_columns(cols, genlines[row + 1], srcline)
+                    cols = self.match_columns(cols, genlines[row + 2], srcline)
                     # Replace the Python tempfile with the Houdini-produced temp file.
                     path = original_file_path
                 else:
