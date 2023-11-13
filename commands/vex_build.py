@@ -89,7 +89,7 @@ def snippet_to_vex(source):
         types = {
             'f': 'float', 'u': 'vector2', 'v': 'vector', 'p': 'vector4',
             '2': 'matrix2', '3': 'matrix3', '4': 'matrix', 'i': 'int',
-            's': 'string'
+            's': 'string', 'd': 'dict'
         }
 
         # https://www.sidefx.com/docs/houdini/vex/snippets.html#known
