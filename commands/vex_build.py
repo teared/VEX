@@ -42,7 +42,7 @@ def snippet_to_vex(source):
     """
     Wrap code into a function.
 
-    This allow to compile small VEX snippets without need to manually wrap
+    This allows to compile small VEX snippets without need to manually wrap
     them into functions and convert all attributes into argument bindings.
     """
     bound = set()  # Keeping track of bound attribute names.
@@ -295,7 +295,7 @@ class VexBuildCommand(sublime_plugin.WindowCommand):
 
         Then two simple counters will be used to match column numbers.
         """
-        parts = zip(re.split(r'((?:\b[\w\d](?:\[])?)?@)(?=[\w\d_]+)', srcline),
+        parts = zip(re.split(r'((?:\b\w(?:\[])?)?@)(?=[\w_]+)', srcline),
                     re.split(r'(\b_bound_)', genline))
         c1 = 0
         c2 = cols[0]
