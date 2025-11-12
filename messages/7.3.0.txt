@@ -1,0 +1,39 @@
+Houdini add-on for Sublime Text:
+    https://github.com/teared/VEX
+
+
+Release 7.3.0
+
+
+1. Updated for Houdini 21.0.
+    https://www.sidefx.com/docs/houdini21.0/vex/index.html
+
+2. New VEX functions added:
+
+    agentcliplayersamplelocal
+    agentcliplayersampleworld
+    cospi
+    findlowerbound
+    findlowerboundsorted
+    findsorted
+    isinf
+    medulla_diffuse
+    medulla_henyeygreenstein
+    norm_spectral
+    ocio_transformviewreverse
+    osd_limit
+    pointprimuv
+    py_dumps
+    py_loads
+    sheen
+    sinpi
+    tanpi
+    usd_bindmaterial
+
+    Tip: to read about new functions quickly,
+    copy the list into an empty Sublime Text document,
+    set the VEX syntax, and check the documentation helpcards (Ctrl+Alt+D).
+
+
+Open issues for bug reports, requests, suggestions, etc:
+    https://github.com/teared/VEX/issues

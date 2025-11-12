@@ -266,6 +266,54 @@
             "details": "Blends values according to an agent\u2019s animation layers"
         },
         {
+            "trigger": "agentcliplayersamplelocal(geometry, prim, clip_names, clip_times, clip_weights, clip_transform_groups, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersamplelocal(${1:geometry}, ${2:prim}, ${3:clip_names}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_groups}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersamplelocal(geometry, prim, clip_ids, clip_times, clip_weights, clip_transform_group_ids, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersamplelocal(${1:geometry}, ${2:prim}, ${3:clip_ids}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_group_ids}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersamplelocal(geometry, prim, transform, clip_names, clip_times, clip_weights, clip_transform_groups, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersamplelocal(${1:geometry}, ${2:prim}, ${3:transform}, ${4:clip_names}, ${5:clip_times}, ${6:clip_weights}, ${7:clip_transform_groups}, ${8:clip_layer_ids}, ${9:layer_blend_modes}, ${10:layer_weights}, ${11:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersamplelocal(geometry, prim, transform, clip_ids, clip_times, clip_weights, clip_transform_group_ids, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersamplelocal(${1:geometry}, ${2:prim}, ${3:transform}, ${4:clip_ids}, ${5:clip_times}, ${6:clip_weights}, ${7:clip_transform_group_ids}, ${8:clip_layer_ids}, ${9:layer_blend_modes}, ${10:layer_weights}, ${11:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersampleworld(geometry, prim, clip_names, clip_times, clip_weights, clip_transform_groups, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersampleworld(${1:geometry}, ${2:prim}, ${3:clip_names}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_groups}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersampleworld(geometry, prim, clip_ids, clip_times, clip_weights, clip_transform_group_ids, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersampleworld(${1:geometry}, ${2:prim}, ${3:clip_ids}, ${4:clip_times}, ${5:clip_weights}, ${6:clip_transform_group_ids}, ${7:clip_layer_ids}, ${8:layer_blend_modes}, ${9:layer_weights}, ${10:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersampleworld(geometry, prim, transform, clip_names, clip_times, clip_weights, clip_transform_groups, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersampleworld(${1:geometry}, ${2:prim}, ${3:transform}, ${4:clip_names}, ${5:clip_times}, ${6:clip_weights}, ${7:clip_transform_groups}, ${8:clip_layer_ids}, ${9:layer_blend_modes}, ${10:layer_weights}, ${11:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
+            "trigger": "agentcliplayersampleworld(geometry, prim, transform, clip_ids, clip_times, clip_weights, clip_transform_group_ids, clip_layer_ids, layer_blend_modes, layer_weights, layer_parent_ids)",
+            "contents": "agentcliplayersampleworld(${1:geometry}, ${2:prim}, ${3:transform}, ${4:clip_ids}, ${5:clip_times}, ${6:clip_weights}, ${7:clip_transform_group_ids}, ${8:clip_layer_ids}, ${9:layer_blend_modes}, ${10:layer_weights}, ${11:layer_parent_ids})",
+            "kind": "function",
+            "details": "Samples and blends an agent\u2019s layered animation clips"
+        },
+        {
             "trigger": "agentcliplength(geometry, prim, clipname)",
             "contents": "agentcliplength(${1:geometry}, ${2:prim}, ${3:clipname})",
             "kind": "function",
@@ -1211,6 +1259,12 @@
             "details": "Returns a chiang_fur BSDF"
         },
         {
+            "trigger": "chiang_fur(nn, tanV, mask, cuticle, R_v, R_s, TT_v, TT_s, TRT_v, TRT_s, shift, absorption_coeff, ior, ...)",
+            "contents": "chiang_fur(${1:nn}, ${2:tanV}, ${3:mask}, ${4:cuticle}, ${5:R_v}, ${6:R_s}, ${7:TT_v}, ${8:TT_s}, ${9:TRT_v}, ${10:TRT_s}, ${11:shift}, ${12:absorption_coeff}, ${13:ior}, ${14:...})",
+            "kind": "function",
+            "details": "Returns a chiang_fur BSDF"
+        },
+        {
             "trigger": "chid(channel_path, op_id, parm_index, vector_index)",
             "contents": "chid(${1:channel_path}, ${2:op_id}, ${3:parm_index}, ${4:vector_index})",
             "kind": "function",
@@ -1901,6 +1955,12 @@
             "details": "Returns the hyperbolic cosine of the argument"
         },
         {
+            "trigger": "cospi(n)",
+            "contents": "cospi(${1:n})",
+            "kind": "function",
+            "details": "Returns the cosine of the argument scaled by Pi"
+        },
+        {
             "trigger": "cracktransform(trs, xyz, c, pivot, pivot_rotate, xform)",
             "contents": "cracktransform(${1:trs}, ${2:xyz}, ${3:c}, ${4:pivot}, ${5:pivot_rotate}, ${6:xform})",
             "kind": "function",
@@ -2351,20 +2411,8 @@
             "details": "Returns a diffuse BSDF or computes diffuse shading"
         },
         {
-            "trigger": "diffuse(roughness, ...)",
-            "contents": "diffuse(${1:roughness}, ${2:...})",
-            "kind": "function",
-            "details": "Returns a diffuse BSDF or computes diffuse shading"
-        },
-        {
             "trigger": "diffuse(nml, ...)",
             "contents": "diffuse(${1:nml}, ${2:...})",
-            "kind": "function",
-            "details": "Returns a diffuse BSDF or computes diffuse shading"
-        },
-        {
-            "trigger": "diffuse(nml, roughness, ...)",
-            "contents": "diffuse(${1:nml}, ${2:roughness}, ${3:...})",
             "kind": "function",
             "details": "Returns a diffuse BSDF or computes diffuse shading"
         },
@@ -2375,8 +2423,32 @@
             "details": "Returns a diffuse BSDF or computes diffuse shading"
         },
         {
+            "trigger": "diffuse(roughness, ...)",
+            "contents": "diffuse(${1:roughness}, ${2:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
+            "trigger": "diffuse(nml, roughness, ...)",
+            "contents": "diffuse(${1:nml}, ${2:roughness}, ${3:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
+            "trigger": "diffuse(nml, roughness, energycompensated, ...)",
+            "contents": "diffuse(${1:nml}, ${2:roughness}, ${3:energycompensated}, ${4:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
             "trigger": "diffuse(nml, geo_normal, roughness, ...)",
             "contents": "diffuse(${1:nml}, ${2:geo_normal}, ${3:roughness}, ${4:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
+            "trigger": "diffuse(nml, geo_normal, roughness, energycompensated, ...)",
+            "contents": "diffuse(${1:nml}, ${2:geo_normal}, ${3:roughness}, ${4:energycompensated}, ${5:...})",
             "kind": "function",
             "details": "Returns a diffuse BSDF or computes diffuse shading"
         },
@@ -2759,6 +2831,60 @@
             "contents": "findattribvalcount(${1:geometry}, ${2:attribclass}, ${3:attribute_name}, ${4:value})",
             "kind": "function",
             "details": "Returns number of elements where an integer or string attribute has a certain value"
+        },
+        {
+            "trigger": "findlowerbound(array, target)",
+            "contents": "findlowerbound(${1:array}, ${2:target})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in an array"
+        },
+        {
+            "trigger": "findlowerbound(array, target, start)",
+            "contents": "findlowerbound(${1:array}, ${2:target}, ${3:start})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in an array"
+        },
+        {
+            "trigger": "findlowerbound(array, target, start, end)",
+            "contents": "findlowerbound(${1:array}, ${2:target}, ${3:start}, ${4:end})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in an array"
+        },
+        {
+            "trigger": "findlowerboundsorted(array, target)",
+            "contents": "findlowerboundsorted(${1:array}, ${2:target})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in a sorted array"
+        },
+        {
+            "trigger": "findlowerboundsorted(array, target, start)",
+            "contents": "findlowerboundsorted(${1:array}, ${2:target}, ${3:start})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in a sorted array"
+        },
+        {
+            "trigger": "findlowerboundsorted(array, target, start, end)",
+            "contents": "findlowerboundsorted(${1:array}, ${2:target}, ${3:start}, ${4:end})",
+            "kind": "function",
+            "details": "Finds the largest item smaller than a target value in a sorted array"
+        },
+        {
+            "trigger": "findsorted(array, target)",
+            "contents": "findsorted(${1:array}, ${2:target})",
+            "kind": "function",
+            "details": "Finds an item in a sorted array"
+        },
+        {
+            "trigger": "findsorted(array, target, start)",
+            "contents": "findsorted(${1:array}, ${2:target}, ${3:start})",
+            "kind": "function",
+            "details": "Finds an item in a sorted array"
+        },
+        {
+            "trigger": "findsorted(array, target, start, end)",
+            "contents": "findsorted(${1:array}, ${2:target}, ${3:start}, ${4:end})",
+            "kind": "function",
+            "details": "Finds an item in a sorted array"
         },
         {
             "trigger": "finput(u, v, ...)",
@@ -3386,6 +3512,12 @@
             "details": "Returns a ggx BSDF"
         },
         {
+            "trigger": "ggx(ng, nn, xg, yg, F0, F82, F90, alphax, alphay, masking, fresblend, eta, reflect, refract, reflectmask, refractmask, dispersion, ...)",
+            "contents": "ggx(${1:ng}, ${2:nn}, ${3:xg}, ${4:yg}, ${5:F0}, ${6:F82}, ${7:F90}, ${8:alphax}, ${9:alphay}, ${10:masking}, ${11:fresblend}, ${12:eta}, ${13:reflect}, ${14:refract}, ${15:reflectmask}, ${16:refractmask}, ${17:dispersion}, ${18:...})",
+            "kind": "function",
+            "details": "Returns a ggx BSDF"
+        },
+        {
             "trigger": "gradient(val, ...)",
             "contents": "gradient(${1:val}, ${2:...})",
             "kind": "function",
@@ -3984,6 +4116,12 @@
             "details": "Returns 1 if the Vex CHOP\u2019s Unit Menu is currently set to 'frames', 0 otherwise"
         },
         {
+            "trigger": "isinf(x)",
+            "contents": "isinf(${1:x})",
+            "kind": "function",
+            "details": "Checks whether a value is a positive or negative infinity"
+        },
+        {
             "trigger": "islpeactive()",
             "contents": "islpeactive()",
             "kind": "function",
@@ -4447,6 +4585,24 @@
             "contents": "mdensity(${1:P})",
             "kind": "function",
             "details": "Returns the density of the metaball field if metaball geometry is specified to i3dgen"
+        },
+        {
+            "trigger": "medulla_diffuse(nml, ...)",
+            "contents": "medulla_diffuse(${1:nml}, ${2:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
+            "trigger": "medulla_diffuse(nml, geo_normal, ...)",
+            "contents": "medulla_diffuse(${1:nml}, ${2:geo_normal}, ${3:...})",
+            "kind": "function",
+            "details": "Returns a diffuse BSDF or computes diffuse shading"
+        },
+        {
+            "trigger": "medulla_henyeygreenstein(anisotropic_bias, ...)",
+            "contents": "medulla_henyeygreenstein(${1:anisotropic_bias}, ${2:...})",
+            "kind": "function",
+            "details": "Returns an anisotropic volumetric BSDF, which can scatter light forward or backward"
         },
         {
             "trigger": "metadata(opinput, name)",
@@ -4937,7 +5093,7 @@
             "trigger": "norm_1(m)",
             "contents": "norm_1(${1:m})",
             "kind": "function",
-            "details": "Returns the matrix 1-norm"
+            "details": "Returns the induced matrix 1-norm"
         },
         {
             "trigger": "norm_fro(m)",
@@ -4949,13 +5105,19 @@
             "trigger": "norm_inf(m)",
             "contents": "norm_inf(${1:m})",
             "kind": "function",
-            "details": "Returns the matrix inf-norm"
+            "details": "Returns the induced matrix infinity-norm"
         },
         {
             "trigger": "norm_max(m)",
             "contents": "norm_max(${1:m})",
             "kind": "function",
             "details": "Returns the matrix max-norm"
+        },
+        {
+            "trigger": "norm_spectral(m)",
+            "contents": "norm_spectral(${1:m})",
+            "kind": "function",
+            "details": "Returns the matrix spectral norm"
         },
         {
             "trigger": "npoints(geometry)",
@@ -5112,6 +5274,12 @@
             "contents": "ocio_transformview(${1:src}, ${2:display}, ${3:view}, ${4:clr})",
             "kind": "function",
             "details": "Transform colors to a view using Open Color IO"
+        },
+        {
+            "trigger": "ocio_transformviewreverse(src, display, view, clr)",
+            "contents": "ocio_transformviewreverse(${1:src}, ${2:display}, ${3:view}, ${4:clr})",
+            "kind": "function",
+            "details": "Transform colors from a display/view using Open Color IO"
         },
         {
             "trigger": "onoise(pos)",
@@ -5434,6 +5602,12 @@
             "trigger": "osd_firstpatch(geometry, face_id)",
             "contents": "osd_firstpatch(${1:geometry}, ${2:face_id})",
             "kind": "function"
+        },
+        {
+            "trigger": "osd_limit(geometry, attrib_name, patch_id, u, v, result, result_du, result_dv, result_duu, result_duv, result_dvv)",
+            "contents": "osd_limit(${1:geometry}, ${2:attrib_name}, ${3:patch_id}, ${4:u}, ${5:v}, ${6:result}, ${7:result_du}, ${8:result_dv}, ${9:result_duu}, ${10:result_duv}, ${11:result_dvv})",
+            "kind": "function",
+            "details": "Evaluates a point attribute at the subdivision limit surface using Open Subdiv, and also evaluates all first and second partial derivatives with respect to the given attribute"
         },
         {
             "trigger": "osd_limitsurface(geometry, attrib_name, patch_id, u, v, result)",
@@ -6063,6 +6237,18 @@
             "details": "Returns the list of primitives containing a point"
         },
         {
+            "trigger": "pointprimuv(geometry, ptnum, primnum, u, v)",
+            "contents": "pointprimuv(${1:geometry}, ${2:ptnum}, ${3:primnum}, ${4:u}, ${5:v})",
+            "kind": "function",
+            "details": "Returns the intrinsic uv location of the point in the primitive"
+        },
+        {
+            "trigger": "pointprimuv(geometry, ptnum, primnum, uvw)",
+            "contents": "pointprimuv(${1:geometry}, ${2:ptnum}, ${3:primnum}, ${4:uvw})",
+            "kind": "function",
+            "details": "Returns the intrinsic uv location of the point in the primitive"
+        },
+        {
             "trigger": "pointtransform(geometry, pnt)",
             "contents": "pointtransform(${1:geometry}, ${2:pnt})",
             "kind": "function",
@@ -6511,6 +6697,18 @@
             "contents": "pxnoised(${1:xyzw}, ${2:px}, ${3:py}, ${4:pz}, ${5:pw}, ${6:v}, ${7:dvdx}, ${8:dvdy}, ${9:dvdz}, ${10:dvdw})",
             "kind": "function",
             "details": "Periodic derivatives of Simplex Noise"
+        },
+        {
+            "trigger": "py_dumps(d)",
+            "contents": "py_dumps(${1:d})",
+            "kind": "function",
+            "details": "Converts a VEX dictionary into a Python-style dictionary string"
+        },
+        {
+            "trigger": "py_loads(pythondict)",
+            "contents": "py_loads(${1:pythondict})",
+            "kind": "function",
+            "details": "Converts a Python dictionary string into a VEX dictionary"
         },
         {
             "trigger": "qconvert(quaternion)",
@@ -7850,6 +8048,12 @@
             "details": "Executes the shadow shader for a given light and returns the amount of shadowing as a multiplier of the shaded color"
         },
         {
+            "trigger": "sheen(nml, roughness, ...)",
+            "contents": "sheen(${1:nml}, ${2:roughness}, ${3:...})",
+            "kind": "function",
+            "details": "Returns a Zeltner Sheen BSDF"
+        },
+        {
             "trigger": "shimport(variable_name, value)",
             "contents": "shimport(${1:variable_name}, ${2:value})",
             "kind": "function",
@@ -7908,6 +8112,12 @@
             "contents": "sinh(${1:v})",
             "kind": "function",
             "details": "Returns the hyperbolic sine of the argument"
+        },
+        {
+            "trigger": "sinpi(n)",
+            "contents": "sinpi(${1:n})",
+            "kind": "function",
+            "details": "Returns the sine of the argument scaled by Pi"
         },
         {
             "trigger": "sleep(milliseconds)",
@@ -8351,13 +8561,13 @@
             "trigger": "svddecomp(input_M, output_U, output_S, output_V)",
             "contents": "svddecomp(${1:input_M}, ${2:output_U}, ${3:output_S}, ${4:output_V})",
             "kind": "function",
-            "details": "Computes the singular value decomposition of a 3\u00d73 matrix"
+            "details": "Computes the singular value decomposition of a given matrix"
         },
         {
             "trigger": "svddecomp(input_M)",
             "contents": "svddecomp(${1:input_M})",
             "kind": "function",
-            "details": "Computes the singular value decomposition of a 3\u00d73 matrix"
+            "details": "Computes the singular value decomposition of a given matrix"
         },
         {
             "trigger": "switch(direct, indirect)",
@@ -8400,6 +8610,18 @@
             "contents": "tanh(${1:n})",
             "kind": "function",
             "details": "Returns the hyperbolic tangent of the argument"
+        },
+        {
+            "trigger": "tanpi(n)",
+            "contents": "tanpi(${1:n})",
+            "kind": "function",
+            "details": "Returns the trigonometric tangent of the argument scaled by Pi"
+        },
+        {
+            "trigger": "tanpi(v)",
+            "contents": "tanpi(${1:v})",
+            "kind": "function",
+            "details": "Returns the trigonometric tangent of the argument scaled by Pi"
         },
         {
             "trigger": "tet_adjacent(geometry, primindex, faceno)",
@@ -8760,6 +8982,12 @@
             "contents": "usd_attribtypename(${1:stage}, ${2:primpath}, ${3:name})",
             "kind": "function",
             "details": "Returns the name of the attribute type"
+        },
+        {
+            "trigger": "usd_bindmaterial(stagehandle, primpath, materialpath)",
+            "contents": "usd_bindmaterial(${1:stagehandle}, ${2:primpath}, ${3:materialpath})",
+            "kind": "function",
+            "details": "Binds a material to a given primitive"
         },
         {
             "trigger": "usd_blockattrib(stagehandle, primpath, name)",
@@ -10250,8 +10478,20 @@
             "details": "Blends an existing name/weight array pair with another array or named item"
         },
         {
+            "trigger": "weightarrayblend(indices, weights, newindex, blend)",
+            "contents": "weightarrayblend(${1:indices}, ${2:weights}, ${3:newindex}, ${4:blend})",
+            "kind": "function",
+            "details": "Blends an existing name/weight array pair with another array or named item"
+        },
+        {
             "trigger": "weightarrayblend(names, weights, newnames, newweights, blend)",
             "contents": "weightarrayblend(${1:names}, ${2:weights}, ${3:newnames}, ${4:newweights}, ${5:blend})",
+            "kind": "function",
+            "details": "Blends an existing name/weight array pair with another array or named item"
+        },
+        {
+            "trigger": "weightarrayblend(indices, weights, newindices, newweights, blend)",
+            "contents": "weightarrayblend(${1:indices}, ${2:weights}, ${3:newindices}, ${4:newweights}, ${5:blend})",
             "kind": "function",
             "details": "Blends an existing name/weight array pair with another array or named item"
         },
@@ -10277,49 +10517,49 @@
             "trigger": "windingnumber(geometry, origin)",
             "contents": "windingnumber(${1:geometry}, ${2:origin})",
             "kind": "function",
-            "details": "Computes the winding number of a mesh around a point. Winding number indicates how many times a geometry wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the mesh and zero outside"
+            "details": "Computes the winding number of a mesh around a point"
         },
         {
             "trigger": "windingnumber(geometry, origin, accuracy)",
             "contents": "windingnumber(${1:geometry}, ${2:origin}, ${3:accuracy})",
             "kind": "function",
-            "details": "Computes the winding number of a mesh around a point. Winding number indicates how many times a geometry wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the mesh and zero outside"
+            "details": "Computes the winding number of a mesh around a point"
         },
         {
             "trigger": "windingnumber(geometry, primgroup, origin)",
             "contents": "windingnumber(${1:geometry}, ${2:primgroup}, ${3:origin})",
             "kind": "function",
-            "details": "Computes the winding number of a mesh around a point. Winding number indicates how many times a geometry wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the mesh and zero outside"
+            "details": "Computes the winding number of a mesh around a point"
         },
         {
             "trigger": "windingnumber(geometry, primgroup, origin, accuracy)",
             "contents": "windingnumber(${1:geometry}, ${2:primgroup}, ${3:origin}, ${4:accuracy})",
             "kind": "function",
-            "details": "Computes the winding number of a mesh around a point. Winding number indicates how many times a geometry wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the mesh and zero outside"
+            "details": "Computes the winding number of a mesh around a point"
         },
         {
             "trigger": "windingnumber2d(geometry, origin)",
             "contents": "windingnumber2d(${1:geometry}, ${2:origin})",
             "kind": "function",
-            "details": "Computes the winding number of a curve in XY plane around a point. Winding number indicates how many times a curve wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the curve and zero outside"
+            "details": "Computes the winding number of a curve in XY plane around a point"
         },
         {
             "trigger": "windingnumber2d(geometry, origin, accuracy)",
             "contents": "windingnumber2d(${1:geometry}, ${2:origin}, ${3:accuracy})",
             "kind": "function",
-            "details": "Computes the winding number of a curve in XY plane around a point. Winding number indicates how many times a curve wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the curve and zero outside"
+            "details": "Computes the winding number of a curve in XY plane around a point"
         },
         {
             "trigger": "windingnumber2d(geometry, primgroup, origin)",
             "contents": "windingnumber2d(${1:geometry}, ${2:primgroup}, ${3:origin})",
             "kind": "function",
-            "details": "Computes the winding number of a curve in XY plane around a point. Winding number indicates how many times a curve wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the curve and zero outside"
+            "details": "Computes the winding number of a curve in XY plane around a point"
         },
         {
             "trigger": "windingnumber2d(geometry, primgroup, origin, accuracy)",
             "contents": "windingnumber2d(${1:geometry}, ${2:primgroup}, ${3:origin}, ${4:accuracy})",
             "kind": "function",
-            "details": "Computes the winding number of a curve in XY plane around a point. Winding number indicates how many times a curve wraps around a point. Useful for inside/outside test, the winding number is equal to one inside of the curve and zero outside"
+            "details": "Computes the winding number of a curve in XY plane around a point"
         },
         {
             "trigger": "wireblinn(tangent, exponent, ...)",
